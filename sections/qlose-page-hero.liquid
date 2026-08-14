@@ -66,6 +66,14 @@
     border-bottom: 1px solid var(--qlose-divider);
   }
 
+  /* about.html and routine.html both open on a full-bleed editorial
+     headline, roughly double the simple variant. */
+  .qlose-page-hero--editorial .qlose-page-hero__heading {
+    font-size: clamp(52px, 12vw, 200px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+
   .qlose-page-hero--legal .qlose-page-hero__heading {
     font-size: clamp(36px, 5vw, 72px);
   }
