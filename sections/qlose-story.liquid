@@ -1,0 +1,141 @@
+{%- comment -%} Ported from docs/design-source/about.html:233-306 {%- endcomment -%}
+
+<section class="qlose-story">
+  <div class="qlose-story__visual">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1000
+        | image_tag:
+          widths: '400,700,1000',
+          sizes: '(max-width: 900px) 92vw, 38vw',
+          loading: 'lazy',
+          class: 'qlose-story__img',
+          alt: section.settings.image.alt | default: shop.name
+      }}
+    {%- endif -%}
+  </div>
+
+  <div class="qlose-story__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="qlose-story__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+
+    <h2 class="qlose-story__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-story__body">{{ section.settings.body_before }}</div>
+
+    {%- if section.settings.pullquote != blank -%}
+      <blockquote class="qlose-story__pullquote">{{ section.settings.pullquote }}</blockquote>
+    {%- endif -%}
+
+    <div class="qlose-story__body">{{ section.settings.body_after }}</div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-story {
+    padding: 100px var(--qlose-gutter);
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .qlose-story__visual {
+    aspect-ratio: 3 / 4;
+    background: var(--qlose-accent-soft);
+    position: sticky;
+    top: 100px;
+    overflow: hidden;
+  }
+
+  .qlose-story__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .qlose-story__eyebrow {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--qlose-accent-deep);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .qlose-story__heading {
+    font-size: clamp(32px, 4vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--qlose-black);
+    margin-bottom: 40px;
+  }
+
+  .qlose-story__body p {
+    font-size: 16px;
+    color: var(--qlose-graphite);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .qlose-story__pullquote {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    color: var(--qlose-black);
+    padding: 40px 0;
+    margin: 40px 0;
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+    font-weight: 400;
+    max-width: 600px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-story {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-block: 60px;
+    }
+
+    .qlose-story__visual {
+      position: static;
+    }
+
+    .qlose-story__pullquote {
+      font-size: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE story",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— The Story" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>WE MADE THE THING WE COULDN'T <em>find</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "body_before", "label": "Body, before the pull quote" },
+    { "type": "text", "id": "pullquote", "label": "Pull quote" },
+    { "type": "richtext", "id": "body_after", "label": "Body, after the pull quote" }
+  ],
+  "presets": [{ "name": "QLOSE story" }]
+}
+{% endschema %}

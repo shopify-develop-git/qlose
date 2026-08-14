@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "qlose-page-hero",
+      "settings": {
+        "variant": "editorial",
+        "meta_left": "ABOUT QLOSE",
+        "meta_right": "LONDON",
+        "heading": "<p>A BETTER<br><strong>ROUTINE</strong>.<br>A BETTER<br><em>brand</em>.</p>"
+      }
+    },
+    "story": {
+      "type": "qlose-story",
+      "settings": {
+        "eyebrow": "— The Story",
+        "heading": "<p>WE MADE THE THING WE COULDN'T <em>find</em>.</p>",
+        "body_before": "<p>QLOSE started with a simple frustration: everyone talks about the importance of oral care, but nobody sells you a complete routine. You buy your toothbrush at one shop, your floss at another, your tongue scraper on Amazon, and your tuft brush at the dentist. Then you keep them in a drawer, forget half of them, and wonder why your mouth doesn't feel as clean as it should.</p><p>So we built the kit. Five tools, chosen to work in sequence, arriving in one considered case. A complete routine — not a shelf full of half-remembered products.</p>",
+        "pullquote": "The best routine is the one you actually do.",
+        "body_after": "<p>We designed QLOSE around a single belief: oral care is a ritual, not a chore. When the tools are beautiful, when they're right there when you need them, when the routine has a clear order — you actually do it. And when you actually do it, you notice the difference.</p><p>The kit is built in the UK. The subscription sends a fresh refill every 90 days, so you never think about running out. And every design decision — from the case to the sequence to the way the tools feel in your hand — is intentional.</p><p>We're a small brand starting in London. This is the beginning.</p>"
+      }
+    },
+    "values": {
+      "type": "qlose-values",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "number": "01",
+            "title": "Considered, Not Complicated",
+            "text": "Every tool in the kit earns its place. Nothing is filler. Nothing is added to bump up the price or the perceived value. If it's in the case, it's because the routine doesn't work without it."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "number": "02",
+            "title": "A System, Not a Shelf",
+            "text": "Five separate products are five things to remember. One system is a routine. We build for the routine, not the shelf — because the routine is what changes how your mouth actually feels."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "number": "03",
+            "title": "Quiet, Not Shouty",
+            "text": "We won't tell you QLOSE will change your life. It's oral care. What we will tell you is that when the tools are right, the routine is easy — and easy routines are the ones you actually keep."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "settings": {
+        "eyebrow": "— What we believe",
+        "heading": "<p>THREE THINGS,<br>ALWAYS <em>true</em>.</p>"
+      }
+    },
+    "team": {
+      "type": "qlose-cta-band",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "theme": "light",
+        "heading": "<p>A SMALL TEAM,<br>BUILDING <em>quietly</em>.</p>",
+        "text": "<p>QLOSE is a small independent brand based in London. We work with makers and manufacturers who share our values — quality, honesty, restraint. No investors, no growth-at-all-costs pressure. Just the routine, delivered well.</p>"
+      }
+    },
+    "cta": {
+      "type": "qlose-cta-band",
+      "blocks": {
+        "b1": {
+          "type": "cta",
+          "settings": {
+            "label": "Get the kit — £29",
+            "url": "/products/manual-kit",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ],
+      "settings": {
+        "theme": "light",
+        "heading": "<p>READY TO START YOUR<br><em>routine</em>?</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "story",
+    "values",
+    "team",
+    "cta"
+  ]
+}

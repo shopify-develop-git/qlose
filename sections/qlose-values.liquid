@@ -1,0 +1,138 @@
+{%- comment -%} Ported from docs/design-source/about.html:308-374 {%- endcomment -%}
+
+<section class="qlose-values">
+  <div class="qlose-values__inner">
+    <div class="qlose-values__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="qlose-values__eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+      <h2 class="qlose-values__heading qlose-display">
+        {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+      </h2>
+    </div>
+
+    <div class="qlose-values__grid">
+      {%- for block in section.blocks -%}
+        <article class="qlose-value" {{ block.shopify_attributes }}>
+          <div class="qlose-value__num">{{ block.settings.number }}</div>
+          <h3 class="qlose-value__title">{{ block.settings.title }}</h3>
+          <p class="qlose-value__text">{{ block.settings.text }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-values {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 120px var(--qlose-gutter);
+  }
+
+  .qlose-values__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .qlose-values__header {
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Source used rgba(255,255,255,0.5) = 4.1:1 on black, just under AA at
+     this size. 0.6 clears it. */
+  .qlose-values__eyebrow {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+  }
+
+  .qlose-values__heading {
+    font-size: clamp(44px, 8vw, 120px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    max-width: 1200px;
+  }
+
+  .qlose-values__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+  }
+
+  .qlose-value__num {
+    font-family: var(--qlose-font-sans);
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--qlose-accent);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .qlose-value__title {
+    font-family: var(--qlose-font-sans);
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .qlose-value__text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1000px) {
+    .qlose-values__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-values {
+      padding-block: 60px;
+    }
+
+    .qlose-values__header {
+      margin-bottom: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE values",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— What we believe" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>THREE THINGS, ALWAYS <em>true</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE values" }]
+}
+{% endschema %}
