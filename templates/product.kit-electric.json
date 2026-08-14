@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "main": {
+      "type": "qlose-product",
+      "blocks": {
+        "plan1": { "type": "plan", "settings": { "label": "Kit + refills", "badge": "Popular", "sub": "Refills arrive automatically every 90 days", "price": "£59", "price_note": "then £18 / 90 days", "selling_plan_id": "" } },
+        "plan2": { "type": "plan", "settings": { "label": "Kit only", "sub": "No refills, no subscription", "price": "£59", "price_note": "one payment", "selling_plan_id": "" } },
+        "t1": { "type": "trust", "settings": { "title": "Free UK Shipping", "text": "On subscriptions" } },
+        "t2": { "type": "trust", "settings": { "title": "Skip Anytime", "text": "Pause or cancel" } },
+        "t3": { "type": "trust", "settings": { "title": "UK Made Kit", "text": "Assembled in London" } },
+        "d1": { "type": "detail", "settings": { "open": true, "heading": "What's inside", "content": "<ul><li>Electric toothbrush, USB-C rechargeable</li><li>Soft-bristle brush head, fitted</li><li>Angled floss handle + 20 replacement floss heads</li><li>Tongue brush with soft bristles</li><li>Stainless steel tongue scraper</li><li>Tuft brush handle + 4 screw-in heads</li><li>QLOSE zip-close travel case</li><li>USB-C charging cable (mains plug not included)</li></ul>" } },
+        "d2": { "type": "detail", "settings": { "heading": "Materials", "content": "<p>Medical-grade stainless steel scraper, BPA-free soft-touch handles, DuPont nylon brush bristles, soft tongue brush bristles. Case is durable EVA foam with fabric interior.</p>" } },
+        "d3": { "type": "detail", "settings": { "heading": "How the subscription works", "content": "<p>Your first box includes the full kit for £59. Every 90 days we send a fresh refill — one brush head, 20 floss heads, four tuft brush heads and a tongue brush — for £18. Ninety days matches standard dental guidance on replacing a brush head. Tuft heads wear faster and are designed to be swapped roughly every three weeks, which is why four are included. Pause, skip, or cancel anytime from your account. No calls, no forms.</p>" } },
+        "d4": { "type": "detail", "settings": { "heading": "Technical specification", "content": "<ul><li>Charging: USB-C, cable included (mains plug not included)</li><li>Charge time: approximately 3 hours</li><li>Battery: 320 mAh, 3.7 V rated voltage</li><li>Input: 5 V / 1 A</li><li>Rated power: 0.5 W</li><li>Battery life: around 30 days of twice-daily brushing</li><li>Water resistance: IPX7</li><li>Timer: 2-minute cycle, pauses every 30 seconds to prompt you to change area</li></ul>" } },
+        "d5": { "type": "detail", "settings": { "heading": "Warranty", "content": "<p>Your electric toothbrush is covered by a 12-month QLOSE warranty from the date of delivery. This is in addition to your statutory rights under UK consumer law, which are not affected.</p>" } },
+        "d6": { "type": "detail", "settings": { "heading": "Recycling and disposal", "content": "<p>This kit contains electrical equipment with a built-in rechargeable battery and must not be disposed of with household waste. WEEE producer registration number to be confirmed before launch.</p>" } },
+        "d7": { "type": "detail", "settings": { "heading": "Returns and hygiene seal", "content": "<p>Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>" } },
+        "d8": { "type": "detail", "settings": { "heading": "Shipping", "content": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.</p>" } }
+      },
+      "block_order": ["plan1", "plan2", "t1", "t2", "t3", "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8"],
+      "settings": {
+        "breadcrumb_label": "The Electric Kit",
+        "tag": "01 / KIT",
+        "fallback_image": "qlose-kit-case-closed.png",
+        "meta_left": "THE ELECTRIC KIT — MODEL 02",
+        "meta_right": "IN STOCK",
+        "title": "<p>The Electric<br><em>clean</em> Mouth Kit.</p>",
+        "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, USB-C rechargeable electric toothbrush, tongue brush, tongue scraper, and tuft brush — precision tools designed to work in sequence.</p>",
+        "purchase_label": "— Choose your plan",
+        "save_note": "Free UK shipping on subscriptions",
+        "atc_label": "Add to cart — start my routine"
+      }
+    },
+    "tools": {
+      "type": "qlose-tools-grid",
+      "blocks": {
+        "x1": { "type": "tool", "settings": { "index": "— 01", "fallback_asset": "qlose-tool-floss-pick.png", "name": "Angled Floss Pick", "material": "Soft-touch handle, PTFE-coated floss thread" } },
+        "x2": { "type": "tool", "settings": { "index": "— 02", "fallback_asset": "qlose-tool-toothbrush.png", "name": "Electric Toothbrush", "material": "USB-C rechargeable, IPX7, 2-minute timer" } },
+        "x3": { "type": "tool", "settings": { "index": "— 03", "fallback_asset": "qlose-tool-tongue-brush.png", "name": "Tongue Brush", "material": "Soft bristles, ergonomic grip" } },
+        "x4": { "type": "tool", "settings": { "index": "— 04", "fallback_asset": "qlose-tool-tongue-scraper.png", "name": "Tongue Scraper", "material": "Medical-grade stainless steel" } },
+        "x5": { "type": "tool", "settings": { "index": "— 05", "fallback_asset": "qlose-tool-tuft-brush.png", "name": "Tuft Brush", "material": "Screw-in replaceable head, angled bristle tuft" } }
+      },
+      "block_order": ["x1", "x2", "x3", "x4", "x5"],
+      "settings": {
+        "eyebrow_index": "02 /",
+        "eyebrow_text": "WHAT'S INSIDE",
+        "heading": "<p>FIVE TOOLS.<br>ONE <em>system</em>.</p>",
+        "intro": "<p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.</p>"
+      }
+    },
+    "compare": {
+      "type": "qlose-compare-table",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "feature": "Complete 5-step routine", "ours": "✓ Included", "theirs": "Buy separately" } },
+        "r2": { "type": "row", "settings": { "feature": "Travel case", "ours": "✓ Premium zip case", "theirs": "None" } },
+        "r3": { "type": "row", "settings": { "feature": "Refills delivered", "ours": "✓ Every 90 days", "theirs": "Reorder yourself" } },
+        "r4": { "type": "row", "settings": { "feature": "Cost over 12 months", "ours": "£113 in year one", "theirs": "Priced individually" } },
+        "r5": { "type": "row", "settings": { "feature": "Designed to work together", "ours": "✓ Yes", "theirs": "Chance" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "eyebrow_index": "03 /",
+        "eyebrow_text": "THE DIFFERENCE",
+        "heading": "<p>WHY <em>complete</em> BEATS <em>separate</em>.</p>",
+        "col_feature": "FEATURE",
+        "col_ours": "QLOSE KIT",
+        "col_theirs": "SEPARATE TOOLS"
+      }
+    },
+    "faq": {
+      "type": "qlose-faq",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "open": true, "question": "Is the electric toothbrush waterproof?", "answer": "<p>Yes — the toothbrush is rated IPX7, meaning it's fully waterproof and can be safely used in the shower. Do not submerge the USB-C charging cable.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "How long does the toothbrush battery last?", "answer": "<p>A full charge lasts around 30 days of twice-daily brushing. Charging via USB-C takes approximately 3 hours from empty to full.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "Can I pause or cancel my subscription?", "answer": "<p>Yes — anytime. Log into your account, and you can pause, skip a delivery, change your frequency, or cancel entirely. No calls, no forms.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "Do you ship internationally?", "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "Do I need to use all five tools?", "answer": "<p>Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short, and together they add up to a complete clean.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {
+        "eyebrow_index": "04 /",
+        "eyebrow_text": "THE DETAILS",
+        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
+      }
+    },
+    "cross": {
+      "type": "qlose-cross-sell",
+      "settings": {
+        "eyebrow_index": "—",
+        "eyebrow_text": "ALSO AVAILABLE",
+        "heading": "<p>PREFER MANUAL?</p>",
+        "text": "<p>The Manual Kit has the same five-step system without the rechargeable brush.</p>",
+        "cta_label": "View The Manual Kit — £29 →",
+        "cta_url": "/products/manual-kit"
+      }
+    }
+  },
+  "order": ["main", "tools", "compare", "faq", "cross"]
+}
