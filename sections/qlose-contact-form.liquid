@@ -1,0 +1,223 @@
+{%- comment -%}
+  Contact form. The client's HTML set has no contact page, so this is
+  assembled from the system's own parts -- the bordered grid, mono labels
+  and black submit bar used everywhere else -- on Shopify's native contact
+  form, which delivers to the store's support email.
+{%- endcomment -%}
+
+<section class="qlose-contact">
+  <div class="qlose-contact__intro">
+    {%- if section.settings.eyebrow_text != blank -%}
+      {%- render 'qlose-eyebrow',
+          index: section.settings.eyebrow_index,
+          text: section.settings.eyebrow_text
+      -%}
+    {%- endif -%}
+    <div class="qlose-contact__text">{{ section.settings.text }}</div>
+
+    {%- if section.settings.email != blank -%}
+      <div class="qlose-contact__direct">
+        <span class="qlose-contact__direct-label">{{ section.settings.email_label }}</span>
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="qlose-contact__form-wrap">
+    {%- form 'contact', class: 'qlose-contact__form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="qlose-contact__message" role="status">{{ section.settings.success_text }}</p>
+      {%- elsif form.errors -%}
+        <p class="qlose-contact__message qlose-contact__message--error" role="alert">
+          {{ form.errors | default_errors }}
+        </p>
+      {%- endif -%}
+
+      <div class="qlose-contact__field">
+        <label for="QloseContactName-{{ section.id }}">Name</label>
+        <input
+          id="QloseContactName-{{ section.id }}"
+          type="text"
+          name="contact[name]"
+          value="{{ form.name }}"
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="qlose-contact__field">
+        <label for="QloseContactEmail-{{ section.id }}">Email</label>
+        <input
+          id="QloseContactEmail-{{ section.id }}"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="qlose-contact__field">
+        <label for="QloseContactOrder-{{ section.id }}">Order number</label>
+        <input
+          id="QloseContactOrder-{{ section.id }}"
+          type="text"
+          name="contact[order number]"
+          placeholder="{{ section.settings.order_placeholder }}"
+        >
+      </div>
+
+      <div class="qlose-contact__field">
+        <label for="QloseContactBody-{{ section.id }}">Message</label>
+        <textarea
+          id="QloseContactBody-{{ section.id }}"
+          name="contact[body]"
+          rows="7"
+          required
+        >{{ form.body }}</textarea>
+      </div>
+
+      <button type="submit" class="qlose-contact__submit">{{ section.settings.button_label }}</button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-contact {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 40px var(--qlose-gutter) 120px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .qlose-contact__text {
+    font-size: 16px;
+    color: var(--qlose-graphite);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .qlose-contact__direct {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-contact__direct-label {
+    display: block;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-bottom: 8px;
+  }
+
+  .qlose-contact__direct a {
+    font-family: var(--qlose-font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--qlose-black);
+  }
+
+  .qlose-contact__field {
+    border-top: 1px solid var(--qlose-black);
+    padding: 20px 0;
+  }
+
+  .qlose-contact__field:last-of-type {
+    border-bottom: 1px solid var(--qlose-black);
+    margin-bottom: 32px;
+  }
+
+  .qlose-contact__field label {
+    display: block;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-bottom: 10px;
+  }
+
+  .qlose-contact__field :is(input, textarea) {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--qlose-font-sans);
+    font-size: 16px;
+    color: var(--qlose-black);
+    padding: 0;
+    resize: vertical;
+  }
+
+  .qlose-contact__field :is(input, textarea):focus-visible {
+    outline: 2px solid var(--qlose-accent);
+    outline-offset: 4px;
+  }
+
+  .qlose-contact__submit {
+    width: 100%;
+    padding: 22px;
+    font-family: var(--qlose-font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .qlose-contact__submit:hover {
+    background: var(--qlose-graphite);
+  }
+
+  .qlose-contact__message {
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    background: var(--qlose-bone);
+    border-left: 3px solid var(--qlose-accent);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-contact__message--error {
+    border-left-color: #b3261e;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-contact {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-bottom: 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE contact form",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "01 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "GET IN TOUCH" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "email_label", "label": "Direct email label", "default": "— Or email us" },
+    { "type": "text", "id": "email", "label": "Direct email", "default": "hello@getqlose.com" },
+    { "type": "text", "id": "order_placeholder", "label": "Order number placeholder", "default": "If your message is about an order" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send message" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "Thanks — we reply within one working day." }
+  ],
+  "presets": [{ "name": "QLOSE contact form" }]
+}
+{% endschema %}

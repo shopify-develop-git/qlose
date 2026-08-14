@@ -1,145 +1,53 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
-          "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "title",
-        "content"
-      ],
+    "hero": {
+      "type": "qlose-page-hero",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "variant": "simple",
+        "meta_left": "SUPPORT — CONTACT",
+        "meta_right": "REPLY WITHIN ONE WORKING DAY",
+        "heading": "<p>SAY <em>hello</em>.</p>",
+        "subtext": "<p>Questions about the kit, an order, or your subscription — we read every message.</p>"
       }
     },
     "form": {
-      "type": "section",
+      "type": "qlose-contact-form",
+      "settings": {
+        "eyebrow_index": "01 /",
+        "eyebrow_text": "GET IN TOUCH",
+        "text": "<p>Whatever it is — a question before you buy, something wrong with an order, or a change to your refill schedule — send it here. We're a small team in London and we answer everything ourselves.</p>",
+        "email_label": "— Or email us",
+        "email": "hello@getqlose.com",
+        "order_placeholder": "If your message is about an order",
+        "button_label": "Send message",
+        "success_text": "Thanks — we reply within one working day."
+      }
+    },
+    "faq_cta": {
+      "type": "qlose-cta-band",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "b1": {
+          "type": "cta",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "input_style": "default",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "label": "Read the FAQ →",
+            "url": "/pages/faq",
+            "style": "primary"
+          }
         }
       },
       "block_order": [
-        "contact_form_UwiCkQ"
+        "b1"
       ],
-      "name": "t:names.contact_form",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "theme": "light",
+        "heading": "<p>MAYBE IT'S ALREADY <em>answered</em>.</p>",
+        "text": "<p>Most questions about the kit, the subscription and shipping are covered in the FAQ.</p>"
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "hero",
+    "form",
+    "faq_cta"
   ]
 }
