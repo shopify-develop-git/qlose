@@ -40,5 +40,16 @@
       "FREE UK SHIPPING ON SUBSCRIPTIONS"
     ],
     "absent": []
+  },
+  {
+    "name": "header-nav",
+    "path": "/",
+    "contains": [
+      "qlose-header",
+      "qlose-header__menu",
+      "<cart-icon",
+      "cart-bubble"
+    ],
+    "absent": []
   }
 ]

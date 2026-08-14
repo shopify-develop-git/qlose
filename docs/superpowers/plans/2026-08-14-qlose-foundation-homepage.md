@@ -795,7 +795,10 @@ CSS портується з `docs/design-source/index.html:71-112` (дескто
    `hidden`; два правила CSS повертають його у потік, і дизайнерське «Cart / 0»
    відтворюється без форку вендорського JS.
 2. Мобільне меню отримує `aria-controls` / `aria-expanded` і закривається по
-   `Escape`.
+   `Escape` з поверненням фокуса на кнопку. Логіка живе не в інлайн-скрипті, а
+   в `assets/qlose-header.js` — web-компоненті на `@theme/component` з `refs`,
+   як решта інтерактиву Horizon. Розмітка відповідно обгортається у
+   `<qlose-header>`, а `menu` і `toggle` позначаються атрибутом `ref`.
 3. Лого — `settings.logo` з фолбеком на вбудований ассет, щоб шапка була
    правильною на порожньому сторі.
 
@@ -926,19 +929,28 @@ CSS портується з `docs/design-source/index.html:71-112` (дескто
 
   /* Horizon hides the count when the cart is empty, but keeps the value "0"
      in the DOM. The design calls for a permanently visible "Cart / 0", so we
-     put it back in flow instead of forking cart-icon.js. */
+     put it back in flow instead of forking cart-icon.js.
+
+     !important is required, not sloppiness: base.css declares
+     `.hidden { display: none !important }` and
+     `.visually-hidden:not(:focus,:active) { position: absolute !important }`.
+     Our selectors already outrank them on specificity, but !important wins
+     over specificity, so the only way to override is in kind. Scoped to this
+     header so no other cart bubble in the theme is affected. */
   .qlose-header__cart-icon .cart-bubble.visually-hidden {
-    position: static;
-    clip: auto;
-    clip-path: none;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    margin: 0;
+    position: static !important;
+    clip: auto !important;
+    clip-path: none !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
   }
 
   .qlose-header__cart-icon .cart-bubble__text-count.hidden {
-    display: inline;
+    display: inline !important;
   }
 
   .qlose-header__cart-icon .cart-bubble {

@@ -1,0 +1,209 @@
+{%- comment -%} Ported from docs/design-source/index.html:71-112, 895-926, 935-950 {%- endcomment -%}
+
+<script src="{{ 'cart-icon.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<script src="{{ 'qlose-header.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<qlose-header class="qlose-header">
+  <a href="{{ routes.root_url }}" class="qlose-header__logo">
+    {%- if settings.logo != blank -%}
+      {{
+        settings.logo
+        | image_url: width: 400
+        | image_tag: widths: '200,400', alt: shop.name, class: 'qlose-header__logo-img'
+      }}
+    {%- else -%}
+      <img
+        src="{{ 'qlose-logo.png' | asset_url }}"
+        alt="{{ shop.name }}"
+        width="400"
+        height="47"
+        class="qlose-header__logo-img"
+      >
+    {%- endif -%}
+  </a>
+
+  <ul class="qlose-header__menu" id="QloseHeaderMenu" ref="menu">
+    {%- for link in section.settings.menu.links -%}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+
+  <button
+    class="qlose-header__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="QloseHeaderMenu"
+    ref="toggle"
+  >
+    Menu
+  </button>
+
+  <div class="qlose-header__actions">
+    <a href="{{ routes.account_url }}">Account</a>
+    <a href="{{ routes.cart_url }}" class="qlose-header__cart">
+      <cart-icon class="qlose-header__cart-icon">
+        <span>Cart</span>
+        <span aria-hidden="true">/</span>
+        {% render 'cart-bubble', limit: 100 %}
+      </cart-icon>
+    </a>
+  </div>
+</qlose-header>
+
+{% stylesheet %}
+  .qlose-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px var(--qlose-gutter);
+    background: var(--qlose-off-white);
+    border-bottom: 1px solid var(--qlose-divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .qlose-header__logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .qlose-header__menu {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .qlose-header__menu a,
+  .qlose-header__actions a {
+    color: var(--qlose-black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--qlose-font-sans);
+  }
+
+  .qlose-header__actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .qlose-header__cart-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Horizon hides the count when the cart is empty, but keeps the value "0"
+     in the DOM. The design calls for a permanently visible "Cart / 0", so we
+     put it back in flow instead of forking cart-icon.js.
+
+     !important is required, not sloppiness: base.css declares
+     `.hidden { display: none !important }` and
+     `.visually-hidden:not(:focus,:active) { position: absolute !important }`.
+     Our selectors already outrank them on specificity, but !important wins
+     over specificity, so the only way to override is in kind. Scoped to this
+     header so no other cart bubble in the theme is affected. */
+  .qlose-header__cart-icon .cart-bubble.visually-hidden {
+    position: static !important;
+    clip: auto !important;
+    clip-path: none !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  .qlose-header__cart-icon .cart-bubble__text-count.hidden {
+    display: inline !important;
+  }
+
+  .qlose-header__cart-icon .cart-bubble {
+    width: auto;
+    aspect-ratio: auto;
+    padding: 0;
+    color: var(--qlose-black);
+  }
+
+  .qlose-header__cart-icon .cart-bubble__background {
+    display: none;
+  }
+
+  .qlose-header__cart-icon .cart-bubble__text {
+    font-family: var(--qlose-font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  .qlose-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-header {
+      flex-wrap: wrap;
+    }
+
+    .qlose-header__toggle {
+      display: block;
+      order: 3;
+    }
+
+    .qlose-header__menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+
+    .qlose-header__menu--open {
+      display: flex;
+    }
+
+    .qlose-header__menu li {
+      border-top: 1px solid var(--qlose-divider);
+      padding: 14px 0;
+    }
+
+    .qlose-header__menu a {
+      font-size: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE header",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [{ "name": "QLOSE header" }],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}
