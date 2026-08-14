@@ -241,3 +241,52 @@ summary:focus-visible,
     transition: none;
   }
 }
+
+/* Prose.
+
+   Body typography for any admin-authored or long-form copy: the legal
+   pages, the shipping returns block, and article bodies. Lives here for the
+   same reason the accordion does -- more than one section renders it, and a
+   section must not style classes it does not own. */
+.qlose-prose :is(h2, h3) {
+  font-family: var(--qlose-font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--qlose-black);
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.qlose-prose h2 {
+  font-size: 22px;
+}
+
+.qlose-prose h3 {
+  font-size: 17px;
+}
+
+.qlose-prose :is(p, li) {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--qlose-graphite);
+}
+
+.qlose-prose p {
+  margin-bottom: 16px;
+}
+
+.qlose-prose ul,
+.qlose-prose ol {
+  margin: 0 0 16px 20px;
+}
+
+.qlose-prose li {
+  margin-bottom: 8px;
+}
+
+.qlose-prose a {
+  color: var(--qlose-accent-deep);
+}
+
+
