@@ -40,6 +40,28 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Display headings.
+
+   The design mixes three treatments inside a single heading: Archivo 900
+   caps, an Instrument Serif italic accent, and an outlined "stroke" word.
+   Shopify's richtext setting sanitises class attributes off <span>, so the
+   source's `<span class="serif-italic">` cannot survive a theme setting.
+
+   Instead we map the two tags richtext does permit onto the two brand
+   treatments. The client gets the native bold/italic buttons in the editor
+   rather than a raw HTML field, and italic-means-italic is honest. */
+.qlose-display {
+  font-family: var(--qlose-font-sans);
+  font-weight: 900;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.qlose-display p {
+  margin: 0;
+}
+
+.qlose-display em,
 .qlose-serif-italic {
   font-family: var(--qlose-font-serif);
   font-style: italic;
@@ -49,9 +71,11 @@ body {
   color: var(--qlose-accent);
 }
 
+.qlose-display strong,
 .qlose-stroke {
   -webkit-text-stroke: 1.5px var(--qlose-accent);
   color: transparent;
+  font-weight: inherit;
 }
 
 .qlose-mono {

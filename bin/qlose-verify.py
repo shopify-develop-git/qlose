@@ -58,9 +58,13 @@ def main():
     patient = "--now" not in sys.argv
     selected = [c for c in checks if not only or only in (c["name"], "--now")]
 
+    # One retry budget for the whole run, not per check. Per-check deadlines
+    # multiply: seven checks against a broken page waited 7 x 40s and blew
+    # past the caller's timeout.
+    deadline = time.time() + (RETRY_SECONDS if patient else 0)
+
     failed = 0
     for check in selected:
-        deadline = time.time() + (RETRY_SECONDS if patient else 0)
         while True:
             failures = run(check)
             if not failures or time.time() >= deadline:

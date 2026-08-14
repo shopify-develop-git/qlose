@@ -61,5 +61,15 @@
       "QLOSE LTD"
     ],
     "absent": []
+  },
+  {
+    "name": "hero",
+    "path": "/",
+    "contains": [
+      "qlose-hero__headline",
+      "qlose-hero__visual",
+      "THE COMPLETE MOUTH ROUTINE"
+    ],
+    "absent": []
   }
 ]

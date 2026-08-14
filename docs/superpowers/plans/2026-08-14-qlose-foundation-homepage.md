@@ -1646,7 +1646,7 @@ Task 12), замінивши вміст файлу на:
       },
       "block_order": ["b1", "b2", "b3"],
       "settings": {
-        "headline": "<p>EVERY <span class=\"qlose-stroke\">TOOL</span>.<br>THE RIGHT <span class=\"qlose-serif-italic\">order</span>.</p>",
+        "headline": "<p>EVERY <strong>TOOL</strong>.<br>THE RIGHT <em>order</em>.</p>",
         "subtext": "<p>A five-piece oral care system, in two versions — manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>"
       }
     }
@@ -2160,7 +2160,7 @@ scroll-snap стрічка на 600px.
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5"],
       "settings": {
-        "heading": "<p>FIVE STEPS.<br>ONE <span class=\"qlose-serif-italic\">system</span>.</p>",
+        "heading": "<p>FIVE STEPS.<br>ONE <em>system</em>.</p>",
         "intro": "<p>This isn't a generic checklist. It's a sequence built around how each tool actually works — floss to disrupt, brush to clean, then a two-step finish on the tongue. Loosen first, then lift it all off.</p>"
       }
     }
@@ -2320,7 +2320,7 @@ CSS портується з `docs/design-source/index.html:469-518`, розмі�
       "type": "qlose-statement",
       "settings": {
         "eyebrow": "— 03 / THE PHILOSOPHY",
-        "heading": "<p>ORAL CARE<br>ISN'T A <span class=\"qlose-stroke\">CHORE</span>.<br>IT'S A <span class=\"qlose-serif-italic\">ritual</span>.</p>",
+        "heading": "<p>ORAL CARE<br>ISN'T A <strong>CHORE</strong>.<br>IT'S A <em>ritual</em>.</p>",
         "attribution": "— QLOSE / MANIFESTO"
       }
     }
@@ -2543,7 +2543,7 @@ CSS портується з `docs/design-source/index.html:737-793`, розмі�
       "settings": {
         "eyebrow_index": "05 /",
         "eyebrow_text": "THE DETAILS",
-        "heading": "<p>QUESTIONS,<br><span class=\"qlose-serif-italic\">answered</span>.</p>"
+        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
       }
     }
 ```
@@ -2854,7 +2854,7 @@ CSS портується з `docs/design-source/index.html:520-661`, розмі�
         "numeral": "90",
         "eyebrow_index": "04 /",
         "eyebrow_text": "THE SUBSCRIPTION",
-        "heading": "<p>TWO KITS.<br><span class=\"qlose-serif-italic\">one</span> SYSTEM.</p>",
+        "heading": "<p>TWO KITS.<br><em>one</em> SYSTEM.</p>",
         "description": "<p>Same five-step routine, your choice of brush. Bristles wear out and floss runs low, so your subscription sends a fresh refill every 90 days for £18 — the same cadence dentists recommend for replacing a brush head.</p>",
         "cta_label": "Choose your kit →",
         "cta_url": "/products/electric-kit"

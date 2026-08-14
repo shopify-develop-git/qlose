@@ -1,0 +1,221 @@
+{%- comment -%} Ported from docs/design-source/index.html:114-257, 952-977 {%- endcomment -%}
+
+<section class="qlose-hero">
+  <div class="qlose-hero__meta">
+    <span><strong>{{ section.settings.meta_left }}</strong></span>
+    <span>{{ section.settings.meta_right }}</span>
+  </div>
+
+  <div class="qlose-hero__main">
+    <div>
+      {%- comment -%}
+        The <p> wrapper richtext adds is stripped: <p> inside <h1> is invalid.
+      {%- endcomment -%}
+      <h1 class="qlose-hero__headline qlose-display">
+        {{- section.settings.headline | replace: '<p>', '' | replace: '</p>', '' -}}
+      </h1>
+      <div class="qlose-hero__sub">{{ section.settings.subtext }}</div>
+      <div class="qlose-hero__cta">
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}>
+            {%- render 'qlose-button',
+                label: block.settings.label,
+                url: block.settings.url,
+                style: block.settings.style
+            -%}
+          </span>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="qlose-hero__visual">
+      {%- if section.settings.tag != blank -%}
+        <div class="qlose-hero__tag">{{ section.settings.tag }}</div>
+      {%- endif -%}
+
+      {%- comment -%}
+        This is the LCP element, hence fetchpriority high and no lazy loading.
+        The source inlined a 300 KB base64 PNG with no width/height, which
+        cost both a render-blocking payload and a layout shift.
+      {%- endcomment -%}
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '400,600,900,1200',
+            sizes: '(max-width: 900px) 90vw, 40vw',
+            fetchpriority: 'high',
+            class: 'qlose-hero__img',
+            alt: section.settings.image.alt | default: shop.name
+        }}
+      {%- else -%}
+        <img
+          src="{{ 'qlose-kit-case-closed.png' | asset_url }}"
+          alt="QLOSE kit case"
+          width="800"
+          height="278"
+          fetchpriority="high"
+          class="qlose-hero__img"
+        >
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-hero {
+    padding: 60px var(--qlose-gutter) 100px;
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+    position: relative;
+  }
+
+  .qlose-hero__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--qlose-divider);
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-hero__meta strong {
+    color: var(--qlose-black);
+    font-weight: 500;
+  }
+
+  .qlose-hero__main {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .qlose-hero__headline {
+    /* Source min was 72px, which overflows a 320px viewport on the word
+       "EVERY" and gives the whole page a horizontal scrollbar. */
+    font-size: clamp(56px, 12vw, 180px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--qlose-black);
+    margin-bottom: 40px;
+  }
+
+  .qlose-hero__sub {
+    max-width: 400px;
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .qlose-hero__cta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .qlose-hero__visual {
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qlose-hero__img {
+    max-width: 88%;
+    max-height: 60%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transform: rotate(-8deg);
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.35));
+  }
+
+  .qlose-hero__tag {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    padding: 10px 16px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1100px) {
+    .qlose-hero__main {
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-hero {
+      padding-block: 40px 60px;
+    }
+
+    .qlose-hero__main {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "meta_left", "label": "Meta left", "default": "THE COMPLETE MOUTH ROUTINE" },
+    { "type": "text", "id": "meta_right", "label": "Meta right", "default": "LONDON" },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>EVERY TOOL. THE RIGHT ORDER.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>A five-piece oral care system, in two versions — manual or electric.</p>"
+    },
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "text", "id": "tag", "label": "Corner tag", "default": "THE KITS" }
+  ],
+  "blocks": [
+    {
+      "type": "cta",
+      "name": "Button",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "ghost", "label": "Ghost" },
+            { "value": "underline", "label": "Underline" }
+          ],
+          "default": "primary"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE hero" }]
+}
+{% endschema %}
