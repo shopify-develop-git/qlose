@@ -1,0 +1,87 @@
+{%- comment -%}
+  Body copy for the legal pages. Typography ported from
+  docs/design-source/privacy.html, section .legal-hero.
+{%- endcomment -%}
+
+<section class="qlose-rich-text">
+  <div class="qlose-rich-text__inner">
+    {%- if section.settings.use_page_content and page.content != blank -%}
+      {{ page.content }}
+    {%- else -%}
+      {{ section.settings.content }}
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-rich-text {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 60px var(--qlose-gutter) 120px;
+  }
+
+  .qlose-rich-text__inner :is(h2, h3) {
+    font-family: var(--qlose-font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--qlose-black);
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  .qlose-rich-text__inner h2 {
+    font-size: 22px;
+  }
+
+  .qlose-rich-text__inner h3 {
+    font-size: 17px;
+  }
+
+  .qlose-rich-text__inner :is(p, li) {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-rich-text__inner p {
+    margin-bottom: 16px;
+  }
+
+  .qlose-rich-text__inner ul,
+  .qlose-rich-text__inner ol {
+    margin: 0 0 16px 20px;
+  }
+
+  .qlose-rich-text__inner li {
+    margin-bottom: 8px;
+  }
+
+  .qlose-rich-text__inner a {
+    color: var(--qlose-accent-deep);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-rich-text {
+      padding-bottom: 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE rich text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_page_content",
+      "label": "Use page content",
+      "default": true,
+      "info": "When on, renders the page body from the admin. When off, uses the text below."
+    },
+    { "type": "richtext", "id": "content", "label": "Content" }
+  ],
+  "presets": [{ "name": "QLOSE rich text" }]
+}
+{% endschema %}

@@ -1,0 +1,107 @@
+{%- comment -%} Ported from docs/design-source/about.html, section .bottom-cta {%- endcomment -%}
+
+<section class="qlose-cta-band">
+  <div class="qlose-cta-band__inner">
+    <h2 class="qlose-cta-band__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    {%- if section.settings.text != blank -%}
+      <div class="qlose-cta-band__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+
+    <div class="qlose-cta-band__actions">
+      {%- for block in section.blocks -%}
+        <span {{ block.shopify_attributes }}>
+          {%- render 'qlose-button',
+              label: block.settings.label,
+              url: block.settings.url,
+              style: block.settings.style
+          -%}
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-cta-band {
+    background: var(--qlose-bone);
+    padding: 120px var(--qlose-gutter);
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-cta-band__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .qlose-cta-band__heading {
+    font-size: clamp(36px, 5vw, 80px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 24px;
+  }
+
+  .qlose-cta-band__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--qlose-graphite);
+    margin-bottom: 40px;
+  }
+
+  .qlose-cta-band__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-cta-band {
+      padding-block: 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE CTA band",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>READY TO START YOUR <em>routine</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" }
+  ],
+  "blocks": [
+    {
+      "type": "cta",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop the kits" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "ghost", "label": "Ghost" },
+            { "value": "underline", "label": "Underline" }
+          ],
+          "default": "primary"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE CTA band" }]
+}
+{% endschema %}

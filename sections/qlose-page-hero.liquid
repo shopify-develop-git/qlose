@@ -1,0 +1,116 @@
+{%- comment -%}
+  Page header, three variants. Sources:
+    simple    -> docs/design-source/faq.html      (.simple-hero)
+    legal     -> docs/design-source/privacy.html  (.legal-hero)
+    editorial -> docs/design-source/journal.html  (.journal-hero)
+{%- endcomment -%}
+
+<section class="qlose-page-hero qlose-page-hero--{{ section.settings.variant }}">
+  <div class="qlose-page-hero__inner">
+    {%- if section.settings.meta_left != blank or section.settings.meta_right != blank -%}
+      <div class="qlose-page-hero__meta">
+        <span><strong>{{ section.settings.meta_left }}</strong></span>
+        <span>{{ section.settings.meta_right }}</span>
+      </div>
+    {%- endif -%}
+
+    <h1 class="qlose-page-hero__heading qlose-display">
+      {%- if section.settings.heading != blank -%}
+        {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+      {%- else -%}
+        {{- page.title | default: shop.name -}}
+      {%- endif -%}
+    </h1>
+
+    {%- if section.settings.subtext != blank -%}
+      <div class="qlose-page-hero__sub">{{ section.settings.subtext }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-page-hero {
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+    padding: 80px var(--qlose-gutter) 60px;
+  }
+
+  .qlose-page-hero__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--qlose-divider);
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-page-hero__meta strong {
+    color: var(--qlose-black);
+    font-weight: 500;
+  }
+
+  .qlose-page-hero__heading {
+    color: var(--qlose-black);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-size: clamp(40px, 7vw, 110px);
+  }
+
+  .qlose-page-hero--legal {
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-page-hero--legal .qlose-page-hero__heading {
+    font-size: clamp(36px, 5vw, 72px);
+  }
+
+  .qlose-page-hero__sub {
+    margin-top: 24px;
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--qlose-graphite);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-page-hero {
+      padding-block: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE page hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Variant",
+      "options": [
+        { "value": "simple", "label": "Simple" },
+        { "value": "legal", "label": "Legal" },
+        { "value": "editorial", "label": "Editorial" }
+      ],
+      "default": "simple"
+    },
+    { "type": "text", "id": "meta_left", "label": "Meta left" },
+    { "type": "text", "id": "meta_right", "label": "Meta right" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Falls back to the page title when empty. Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "subtext", "label": "Subtext" }
+  ],
+  "presets": [{ "name": "QLOSE page hero" }]
+}
+{% endschema %}
