@@ -3255,8 +3255,29 @@ shopify theme check 2>&1 | tail -6
 
 - [ ] **Step 3: Візуальна перевірка на трьох ширинах**
 
+Chrome на macOS не дає вікну звузитись менше ніж приблизно до 500px незалежно
+від запитаної ширини, тож 375 через `resize_window` недосяжні. Брейкпоінт 600px
+перевіряється на 500px, а самі правила від конкретної ширини не залежать. Замість
+покладання на око — заміряти обчислені стилі:
+
+```js
+({
+  viewport: innerWidth,
+  horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+  stepsDisplay: getComputedStyle(document.querySelector('.qlose-steps')).display,
+  stepsOverflowX: getComputedStyle(document.querySelector('.qlose-steps')).overflowX,
+  mutedColor: getComputedStyle(document.querySelector('.qlose-eyebrow')).color,
+  headlineWeight: getComputedStyle(document.querySelector('.qlose-hero__headline')).fontWeight
+})
+```
+
+Очікується: на 500px — `display: flex`, `overflow-x: auto`; на 820px —
+`grid-template-columns` з трьох значень; на 1440 — з пʼяти. `mutedColor` завжди
+`rgb(102, 102, 102)`, `headlineWeight` завжди `900` (це заодно доводить, що
+змінний Archivo працює, а не підмінюється синтетичним жирним).
+
 Через Claude in Chrome відкрити `http://127.0.0.1:9292/` і зняти скріншоти на
-1440, 768 і 375. Перевірити по кожній ширині:
+1440, 820 і 500. Перевірити по кожній ширині:
 
 - горизонтального скролу немає на жодній;
 - шапка липка, «Cart / 0» видно;
