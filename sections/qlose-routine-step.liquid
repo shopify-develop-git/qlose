@@ -1,0 +1,294 @@
+{%- comment -%}
+  One deep-dive step. Ported from docs/design-source/routine.html:276-434.
+
+  Two things from the source are deliberately not carried over:
+
+  1. Column flipping used `direction: rtl` on the grid with `direction: ltr`
+     re-applied to every child. That is a layout hack riding on text
+     direction. Grid `order` does the same job without touching writing mode.
+  2. Image sizing was keyed off `[alt="TONGUE BRUSH"]` selectors, which welds
+     layout to screen-reader text: rewording an alt silently breaks the
+     design. The size is a block setting now.
+{%- endcomment -%}
+
+<section class="qlose-routine-step{% if section.settings.reverse %} qlose-routine-step--reverse{% endif %}">
+  <div class="qlose-routine-step__visual">
+    {%- if section.settings.tag != blank -%}
+      <div class="qlose-routine-step__tag">{{ section.settings.tag }}</div>
+    {%- endif -%}
+
+    {%- capture img_class -%}
+      qlose-routine-step__img qlose-routine-step__img--{{ section.settings.image_shape }}
+    {%- endcapture -%}
+
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 900
+        | image_tag:
+          widths: '300,600,900',
+          sizes: '(max-width: 900px) 88vw, 40vw',
+          loading: 'lazy',
+          class: img_class,
+          alt: section.settings.image_alt
+      }}
+    {%- elsif section.settings.fallback_asset != blank -%}
+      <img
+        src="{{ section.settings.fallback_asset | asset_url }}"
+        alt="{{ section.settings.image_alt }}"
+        loading="lazy"
+        width="400"
+        height="800"
+        class="{{ img_class | strip }}"
+      >
+    {%- endif -%}
+  </div>
+
+  <div class="qlose-routine-step__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="qlose-routine-step__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+
+    <h2 class="qlose-routine-step__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-routine-step__text">{{ section.settings.text }}</div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="qlose-routine-step__howto">
+        <div class="qlose-routine-step__howto-title">{{ section.settings.howto_title }}</div>
+        <ol class="qlose-routine-step__howto-list">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-routine-step {
+    padding: 100px var(--qlose-gutter);
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-routine-step--reverse .qlose-routine-step__visual {
+    order: 2;
+  }
+
+  .qlose-routine-step__visual {
+    aspect-ratio: 1;
+    background: linear-gradient(180deg, var(--qlose-bone) 0%, var(--qlose-off-white) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    transition: background 0.5s ease;
+  }
+
+  .qlose-routine-step:hover .qlose-routine-step__visual {
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+  }
+
+  .qlose-routine-step__tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    padding: 8px 14px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+
+  .qlose-routine-step__img {
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  .qlose-routine-step:hover .qlose-routine-step__img {
+    transform: scale(1.05) translateY(-8px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-routine-step__visual,
+    .qlose-routine-step__img {
+      transition: none;
+    }
+
+    .qlose-routine-step:hover .qlose-routine-step__img {
+      transform: none;
+    }
+  }
+
+  /* Replaces the source's [alt="..."] selectors. */
+  .qlose-routine-step__img--tall {
+    width: auto;
+    height: 78%;
+    max-width: 32%;
+  }
+
+  .qlose-routine-step__img--slim {
+    width: auto;
+    height: 80%;
+    max-width: 25%;
+  }
+
+  .qlose-routine-step__img--wide {
+    width: 80%;
+    height: auto;
+    max-height: 50%;
+  }
+
+  .qlose-routine-step__img--curved {
+    width: auto;
+    height: 75%;
+    max-width: 60%;
+  }
+
+  .qlose-routine-step__eyebrow {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--qlose-accent-deep);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .qlose-routine-step__heading {
+    font-size: clamp(36px, 5vw, 80px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 32px;
+  }
+
+  .qlose-routine-step__text {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 500px;
+  }
+
+  .qlose-routine-step__howto {
+    padding: 24px 0;
+    border-top: 1px solid var(--qlose-divider);
+    margin-top: 24px;
+  }
+
+  .qlose-routine-step__howto-title {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  /* An ordered list, not the source's <ul> with numbers painted on by CSS
+     content: a screen reader now hears "step 2 of 5" instead of nothing. */
+  .qlose-routine-step__howto-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: qlose-howto;
+  }
+
+  .qlose-routine-step__howto-list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 14px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    counter-increment: qlose-howto;
+  }
+
+  .qlose-routine-step__howto-list li::before {
+    content: counter(qlose-howto, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-accent-deep);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-routine-step {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-block: 50px;
+    }
+
+    .qlose-routine-step--reverse .qlose-routine-step__visual {
+      order: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE routine step",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "reverse", "label": "Image on the right", "default": false },
+    { "type": "text", "id": "tag", "label": "Corner tag", "default": "01 / 30 SEC" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback_asset", "label": "Bundled asset filename", "default": "qlose-tool-floss-pick.png" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Angled floss pick" },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "label": "Image shape",
+      "options": [
+        { "value": "tall", "label": "Tall" },
+        { "value": "slim", "label": "Slim" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "curved", "label": "Curved" }
+      ],
+      "default": "tall"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— Step 01 / Between the teeth" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>ANGLED FLOSS <em>pick</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "howto_title", "label": "How-to title", "default": "— How to" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "How-to step",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE routine step" }]
+}
+{% endschema %}
