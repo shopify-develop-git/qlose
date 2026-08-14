@@ -51,5 +51,15 @@
       "cart-bubble"
     ],
     "absent": []
+  },
+  {
+    "name": "footer",
+    "path": "/",
+    "contains": [
+      "qlose-footer",
+      "qlose-footer__mega",
+      "QLOSE LTD"
+    ],
+    "absent": []
   }
 ]

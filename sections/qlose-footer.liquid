@@ -1,0 +1,235 @@
+{%- comment -%} Ported from docs/design-source/index.html:795-893, 1141-1196 {%- endcomment -%}
+
+<footer class="qlose-footer">
+  <div class="qlose-footer__inner">
+    <div class="qlose-footer__mega">
+      <img
+        src="{{ 'qlose-logo-mega.png' | asset_url }}"
+        alt="{{ shop.name }}"
+        width="1200"
+        height="142"
+        loading="lazy"
+        class="qlose-footer__mega-img"
+      >
+    </div>
+
+    <div class="qlose-footer__top">
+      <div>
+        <p class="qlose-footer__tagline">{{ section.settings.tagline }}</p>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div class="qlose-footer__col" {{ block.shopify_attributes }}>
+          {%- comment -%}
+            h2, not the source's h4: the source jumps from h2 straight to h4,
+            which breaks the document outline for screen readers. The visual
+            size comes from the class, so nothing changes on screen.
+          {%- endcomment -%}
+          <h2 class="qlose-footer__col-heading">{{ block.settings.heading }}</h2>
+          <ul>
+            {%- for link in block.settings.menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.legal != blank -%}
+      <div class="qlose-footer__legal">{{ section.settings.legal }}</div>
+    {%- endif -%}
+
+    <div class="qlose-footer__bottom">
+      <div>{{ section.settings.copyright }}</div>
+      <div class="qlose-footer__policies">
+        {%- for link in section.settings.policy_menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+      <div class="qlose-footer__social">
+        {%- for link in section.settings.social_menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .qlose-footer {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 80px var(--qlose-gutter) 32px;
+  }
+
+  .qlose-footer__inner {
+    max-width: var(--qlose-max);
+    margin: 0 auto;
+  }
+
+  .qlose-footer__mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+
+  .qlose-footer__mega-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .qlose-footer__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .qlose-footer__tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+
+  .qlose-footer__col-heading {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.5;
+    font-weight: 400;
+  }
+
+  .qlose-footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .qlose-footer__col li {
+    margin-bottom: 12px;
+  }
+
+  .qlose-footer__col a,
+  .qlose-footer__policies a,
+  .qlose-footer__social a,
+  .qlose-footer__legal a {
+    color: var(--qlose-white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .qlose-footer__col a:hover,
+  .qlose-footer__policies a:hover,
+  .qlose-footer__social a:hover {
+    opacity: 0.6;
+  }
+
+  .qlose-footer__legal {
+    padding-top: 32px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    line-height: 1.9;
+  }
+
+  .qlose-footer__legal a {
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+
+  .qlose-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .qlose-footer__policies,
+  .qlose-footer__social {
+    display: flex;
+    gap: 18px;
+  }
+
+  .qlose-footer__policies a,
+  .qlose-footer__social a {
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-footer__top {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .qlose-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE footer",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "A better routine, delivered. Made for people who take the small rituals seriously."
+    },
+    {
+      "type": "richtext",
+      "id": "legal",
+      "label": "Legal lines",
+      "default": "<p>QLOSE LTD — REGISTERED IN ENGLAND & WALES, COMPANY NO. 17311111</p><p>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</p>"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright line",
+      "default": "© 2026 QLOSE LTD / ALL RIGHTS RESERVED"
+    },
+    { "type": "link_list", "id": "policy_menu", "label": "Policy links" },
+    { "type": "link_list", "id": "social_menu", "label": "Social links" }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "QLOSE footer",
+      "blocks": [
+        { "type": "column", "settings": { "heading": "Shop" } },
+        { "type": "column", "settings": { "heading": "Learn" } },
+        { "type": "column", "settings": { "heading": "Help" } }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}
