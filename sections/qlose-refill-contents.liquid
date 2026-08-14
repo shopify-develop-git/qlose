@@ -1,0 +1,219 @@
+{%- comment -%} Ported from docs/design-source/refills.html:254-367 {%- endcomment -%}
+
+<section class="qlose-refill-contents">
+  <div class="qlose-refill-contents__header">
+    <div>
+      {%- render 'qlose-eyebrow',
+          index: section.settings.eyebrow_index,
+          text: section.settings.eyebrow_text
+      -%}
+      <h2 class="qlose-refill-contents__heading qlose-display">
+        {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+      </h2>
+    </div>
+    <div class="qlose-refill-contents__intro">{{ section.settings.intro }}</div>
+  </div>
+
+  <div class="qlose-refill-contents__grid">
+    {%- for block in section.blocks -%}
+      <article class="qlose-content-item" {{ block.shopify_attributes }}>
+        <div class="qlose-content-item__num">{{ block.settings.index }}</div>
+        <div class="qlose-content-item__media">
+          <div class="qlose-content-item__media-inner">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 600
+                | image_tag:
+                  widths: '200,400,600',
+                  sizes: '(max-width: 900px) 80vw, 30vw',
+                  loading: 'lazy',
+                  alt: block.settings.title
+              }}
+            {%- elsif block.settings.fallback_asset != blank -%}
+              <img
+                src="{{ block.settings.fallback_asset | asset_url }}"
+                alt="{{ block.settings.title }}"
+                loading="lazy"
+                width="400"
+                height="800"
+              >
+            {%- endif -%}
+          </div>
+        </div>
+        <h3 class="qlose-content-item__title">{{ block.settings.title }}</h3>
+        <p class="qlose-content-item__text">{{ block.settings.text }}</p>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-refill-contents {
+    padding: 120px var(--qlose-gutter);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .qlose-refill-contents__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-refill-contents__heading {
+    font-size: clamp(32px, 5vw, 72px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-refill-contents__intro {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
+  .qlose-refill-contents__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--qlose-black);
+    border-left: 1px solid var(--qlose-black);
+  }
+
+  .qlose-content-item {
+    background: var(--qlose-off-white);
+    padding: 40px 32px;
+    border-right: 1px solid var(--qlose-black);
+    border-bottom: 1px solid var(--qlose-black);
+  }
+
+  .qlose-content-item__num {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .qlose-content-item__media {
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(180deg, var(--qlose-bone) 0%, var(--qlose-off-white) 100%);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+
+  .qlose-content-item:hover .qlose-content-item__media {
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+  }
+
+  .qlose-content-item__media-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .qlose-content-item__media-inner img {
+    max-width: 70%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+    transition: transform 0.4s ease;
+  }
+
+  .qlose-content-item:hover .qlose-content-item__media-inner img {
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-content-item__media,
+    .qlose-content-item__media-inner img {
+      transition: none;
+    }
+
+    .qlose-content-item:hover .qlose-content-item__media-inner img {
+      transform: none;
+    }
+  }
+
+  .qlose-content-item__title {
+    font-family: var(--qlose-font-sans);
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--qlose-black);
+    margin-bottom: 12px;
+  }
+
+  .qlose-content-item__text {
+    font-size: 13px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+  }
+
+  /* The source collapses to a single column at 900px. */
+  @media (max-width: 1000px) {
+    .qlose-refill-contents__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-refill-contents {
+      padding-block: 60px;
+    }
+
+    .qlose-refill-contents__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .qlose-refill-contents__grid { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE refill contents",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "03 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "WHAT ARRIVES" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>WHAT'S IN A <em>refill</em> BOX.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "intro", "label": "Intro" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "index", "label": "Index", "default": "— 01" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_asset", "label": "Bundled asset filename" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE refill contents" }]
+}
+{% endschema %}
