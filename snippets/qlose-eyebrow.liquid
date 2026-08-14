@@ -1,0 +1,9 @@
+{%- doc -%}
+  @param [index] - {string} Leading counter, e.g. "01 /". Optional.
+  @param {string} text - Label text, e.g. "THE METHOD".
+{%- enddoc -%}
+
+<div class="qlose-eyebrow">
+  {%- if index != blank -%}<strong>{{ index }}</strong> {% endif -%}
+  {{- text -}}
+</div>

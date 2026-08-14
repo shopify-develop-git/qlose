@@ -7,11 +7,18 @@ its section is supposed to produce. Run with the dev server up.
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
 BASE = os.environ.get("QLOSE_BASE", "http://127.0.0.1:9292")
 CHECKS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "checks.json")
+
+# `shopify theme dev` uploads changed files asynchronously, so a check run
+# straight after an edit can hit the previous revision and report a false
+# failure. Retry failures for a while before believing them.
+RETRY_SECONDS = int(os.environ.get("QLOSE_RETRY_SECONDS", "40"))
+RETRY_INTERVAL = 2.0
 
 
 def fetch(path):
@@ -46,11 +53,19 @@ def main():
     with open(CHECKS, encoding="utf-8") as fh:
         checks = json.load(fh)
     only = sys.argv[1] if len(sys.argv) > 1 else None
+    # --now skips the sync grace period; use it when you expect a failure,
+    # such as the red step of a task.
+    patient = "--now" not in sys.argv
+    selected = [c for c in checks if not only or only in (c["name"], "--now")]
+
     failed = 0
-    for check in checks:
-        if only and check["name"] != only:
-            continue
-        failures = run(check)
+    for check in selected:
+        deadline = time.time() + (RETRY_SECONDS if patient else 0)
+        while True:
+            failures = run(check)
+            if not failures or time.time() >= deadline:
+                break
+            time.sleep(RETRY_INTERVAL)
         if failures:
             failed += 1
             print("FAIL  {}  ({})".format(check["name"], check["path"]))

@@ -10,5 +10,17 @@
     "path": "/",
     "contains": ["qlose.css"],
     "absent": []
+  },
+  {
+    "name": "qlose-fonts-loaded",
+    "path": "/",
+    "contains": ["qlose-archivo.woff2", "QLOSE Archivo"],
+    "absent": []
+  },
+  {
+    "name": "no-google-fonts",
+    "path": "/",
+    "contains": [],
+    "absent": ["fonts.googleapis.com"]
   }
 ]

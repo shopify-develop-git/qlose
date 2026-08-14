@@ -1,0 +1,142 @@
+/* QLOSE design tokens and primitives.
+   Ported from docs/design-source/index.html. The one intentional deviation
+   from the source is --qlose-muted: #888 fails WCAG AA on both theme
+   backgrounds (3.22:1 on off-white, 2.86:1 on bone). #666 passes both
+   (5.22:1 and 4.64:1). */
+
+:root {
+  --qlose-white: #ffffff;
+  --qlose-off-white: #f5f4f0;
+  --qlose-bone: #eae7de;
+  --qlose-black: #0a0a0a;
+  --qlose-ink: #1a1a1a;
+  --qlose-graphite: #2a2a2a;
+  --qlose-muted: #666666;
+  --qlose-divider: rgba(10, 10, 10, 0.12);
+  --qlose-accent: #c65a3d;
+  --qlose-accent-soft: #f0dcd0;
+  --qlose-accent-deep: #a04627;
+
+  --qlose-font-sans: 'QLOSE Archivo', 'Archivo', sans-serif;
+  --qlose-font-serif: 'QLOSE Instrument Serif', 'Instrument Serif', serif;
+  --qlose-font-mono: 'QLOSE JetBrains Mono', 'JetBrains Mono', monospace;
+
+  --qlose-gutter: 40px;
+  --qlose-max: 1500px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --qlose-gutter: 20px;
+  }
+}
+
+body {
+  font-family: var(--qlose-font-sans);
+  background: var(--qlose-off-white);
+  color: var(--qlose-ink);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.qlose-serif-italic {
+  font-family: var(--qlose-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+  color: var(--qlose-accent);
+}
+
+.qlose-stroke {
+  -webkit-text-stroke: 1.5px var(--qlose-accent);
+  color: transparent;
+}
+
+.qlose-mono {
+  font-family: var(--qlose-font-mono);
+}
+
+.qlose-section {
+  max-width: var(--qlose-max);
+  margin-inline: auto;
+  padding: 120px var(--qlose-gutter);
+}
+
+@media (max-width: 900px) {
+  .qlose-section {
+    padding-block: 60px;
+  }
+}
+
+.qlose-eyebrow {
+  font-family: var(--qlose-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--qlose-muted);
+  margin-bottom: 24px;
+}
+
+.qlose-eyebrow strong {
+  color: var(--qlose-black);
+  font-weight: 500;
+}
+
+.qlose-btn {
+  padding: 18px 32px;
+  font-family: var(--qlose-font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.qlose-btn--primary {
+  background: var(--qlose-black);
+  color: var(--qlose-white);
+}
+
+.qlose-btn--primary:hover {
+  background: var(--qlose-graphite);
+}
+
+.qlose-btn--ghost {
+  background: transparent;
+  color: var(--qlose-black);
+  border: 1px solid var(--qlose-black);
+}
+
+.qlose-btn--ghost:hover {
+  background: var(--qlose-black);
+  color: var(--qlose-white);
+}
+
+.qlose-btn--underline {
+  color: var(--qlose-black);
+  padding: 0 0 4px;
+  border-bottom: 1px solid var(--qlose-black);
+}
+
+/* The source defines no focus styling at all, which makes keyboard
+   navigation invisible. */
+.qlose-btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--qlose-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qlose-marquee__inner {
+    animation: none !important;
+  }
+}

@@ -37,6 +37,8 @@
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
+    {{ 'qlose.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- render 'qlose-fonts' -%}
     {%- render 'card-hover-effect-styles' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}

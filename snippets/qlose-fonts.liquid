@@ -9,13 +9,11 @@
   static 400 in both styles.
 {%- endcomment -%}
 
-<link
-  rel="preload"
-  href="{{ 'qlose-archivo.woff2' | asset_url }}"
-  as="font"
-  type="font/woff2"
-  crossorigin
->
+{{
+  'qlose-archivo.woff2'
+  | asset_url
+  | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous'
+}}
 
 {% style %}
   @font-face {

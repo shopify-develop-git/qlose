@@ -1,0 +1,15 @@
+{%- doc -%}
+  @param {string} label - Button text.
+  @param [url] - {string} Destination. Renders a <span> when blank.
+  @param [style] - {string} One of primary, ghost, underline. Defaults to primary.
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = style | default: 'primary'
+-%}
+
+{%- if url != blank -%}
+  <a href="{{ url }}" class="qlose-btn qlose-btn--{{ variant }}">{{ label }}</a>
+{%- else -%}
+  <span class="qlose-btn qlose-btn--{{ variant }}">{{ label }}</span>
+{%- endif -%}
