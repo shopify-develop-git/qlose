@@ -1,0 +1,177 @@
+{%- comment -%}
+  The FAQ page: a sticky jump-nav beside several grouped question sets.
+  Ported from docs/design-source/faq.html:236-336 and the .faq-wrap markup.
+
+  Built as one section rather than a nav section plus N FAQ sections because
+  the sidebar has to sit alongside all the groups at once, and sibling
+  sections cannot share a grid.
+
+  Blocks are a flat list, so a "group" block opens a set and every "question"
+  after it belongs to that set until the next "group".
+{%- endcomment -%}
+
+<div class="qlose-faq-page">
+  <aside class="qlose-faq-page__nav">
+    <h2 class="qlose-faq-page__nav-title">{{ section.settings.nav_title }}</h2>
+    <ul>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'group' -%}
+          <li>
+            <a href="#{{ block.settings.anchor | default: block.id }}">{{ block.settings.nav_label | default: block.settings.heading }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </aside>
+
+  <div class="qlose-faq-page__content">
+    {%- comment -%}
+      Each group opens and closes inside one iteration, so every tag is
+      balanced within a single branch. The inner loop walks forward from the
+      group and stops at the next one, which is what makes a flat block list
+      behave like a nested one.
+    {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'group' -%}
+        <section
+          class="qlose-faq-page__group"
+          id="{{ block.settings.anchor | default: block.id }}"
+          {{ block.shopify_attributes }}
+        >
+          <h2 class="qlose-faq-page__group-heading qlose-display">
+            {{- block.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+          </h2>
+
+          {%- for entry in section.blocks offset: forloop.index -%}
+            {%- if entry.type == 'group' -%}
+              {%- break -%}
+            {%- endif -%}
+            <details
+              class="qlose-faq__item"
+              {% if entry.settings.open %}open{% endif %}
+              {{ entry.shopify_attributes }}
+            >
+              <summary class="qlose-faq__q">{{ entry.settings.question }}</summary>
+              <div class="qlose-faq__a"><div>{{ entry.settings.answer }}</div></div>
+            </details>
+          {%- endfor -%}
+        </section>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .qlose-faq-page {
+    padding: 60px var(--qlose-gutter) 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .qlose-faq-page__nav {
+    position: sticky;
+    top: 100px;
+  }
+
+  .qlose-faq-page__nav-title {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .qlose-faq-page__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .qlose-faq-page__nav li {
+    padding: 12px 0;
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-faq-page__nav a {
+    font-family: var(--qlose-font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+    text-decoration: none;
+  }
+
+  .qlose-faq-page__nav a:hover {
+    color: var(--qlose-accent-deep);
+  }
+
+  .qlose-faq-page__group {
+    margin-bottom: 60px;
+    /* Anchor jumps otherwise land under the sticky header. */
+    scroll-margin-top: 110px;
+  }
+
+  .qlose-faq-page__group-heading {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--qlose-black);
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-faq-page {
+      grid-template-columns: 1fr;
+      padding: 40px var(--qlose-gutter) 60px;
+      gap: 40px;
+    }
+
+    .qlose-faq-page__nav {
+      position: static;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE FAQ groups",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "nav_title", "label": "Jump-nav title", "default": "— Jump to" }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "Group",
+      "settings": [
+        { "type": "text", "id": "anchor", "label": "Anchor id", "default": "product" },
+        { "type": "text", "id": "nav_label", "label": "Jump-nav label", "default": "The Kit" },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<p>The <em>kit</em>.</p>",
+          "info": "Italic renders as the serif accent, bold as the stroked outline."
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE FAQ groups" }]
+}
+{% endschema %}
