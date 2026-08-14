@@ -2,25 +2,43 @@
   {
     "name": "homepage-renders",
     "path": "/",
-    "contains": ["<!doctype html>"],
+    "contains": [
+      "<!doctype html>"
+    ],
     "absent": []
   },
   {
     "name": "qlose-css-loaded",
     "path": "/",
-    "contains": ["qlose.css"],
+    "contains": [
+      "qlose.css"
+    ],
     "absent": []
   },
   {
     "name": "qlose-fonts-loaded",
     "path": "/",
-    "contains": ["qlose-archivo.woff2", "QLOSE Archivo"],
+    "contains": [
+      "qlose-archivo.woff2",
+      "QLOSE Archivo"
+    ],
     "absent": []
   },
   {
     "name": "no-google-fonts",
     "path": "/",
     "contains": [],
-    "absent": ["fonts.googleapis.com"]
+    "absent": [
+      "fonts.googleapis.com"
+    ]
+  },
+  {
+    "name": "announcement-bar",
+    "path": "/",
+    "contains": [
+      "qlose-announce",
+      "FREE UK SHIPPING ON SUBSCRIPTIONS"
+    ],
+    "absent": []
   }
 ]

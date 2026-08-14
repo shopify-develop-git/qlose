@@ -1,0 +1,63 @@
+{%- comment -%} Ported from docs/design-source/index.html:57-69, 931-933 {%- endcomment -%}
+
+<div class="qlose-announce">
+  {%- for block in section.blocks -%}
+    <span class="qlose-announce__item" {{ block.shopify_attributes }}>
+      {{- block.settings.text -}}
+    </span>
+  {%- endfor -%}
+</div>
+
+{% stylesheet %}
+  .qlose-announce {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* The source hardcodes a <span>—</span> between messages. Generating it
+     instead keeps the message count free. */
+  .qlose-announce__item + .qlose-announce__item::before {
+    content: '—';
+    opacity: 0.4;
+    margin: 0 16px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE announcement",
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free UK shipping on subscriptions"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "QLOSE announcement",
+      "blocks": [
+        { "type": "message", "settings": { "text": "FREE UK SHIPPING ON SUBSCRIPTIONS" } },
+        { "type": "message", "settings": { "text": "SKIP OR CANCEL ANYTIME" } },
+        { "type": "message", "settings": { "text": "UK DELIVERY" } }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}
