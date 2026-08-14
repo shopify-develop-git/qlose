@@ -1,0 +1,14 @@
+[
+  {
+    "name": "homepage-renders",
+    "path": "/",
+    "contains": ["<!doctype html>"],
+    "absent": []
+  },
+  {
+    "name": "qlose-css-loaded",
+    "path": "/",
+    "contains": ["qlose.css"],
+    "absent": []
+  }
+]

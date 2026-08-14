@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""QLOSE theme verification harness.
+
+Checks that the local dev server renders each page with the markup contract
+its section is supposed to produce. Run with the dev server up.
+"""
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+BASE = os.environ.get("QLOSE_BASE", "http://127.0.0.1:9292")
+CHECKS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "checks.json")
+
+
+def fetch(path):
+    req = urllib.request.Request(BASE + path, headers={"User-Agent": "qlose-verify"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return r.status, r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+    except Exception as e:
+        return 0, "{}: {}".format(type(e).__name__, e)
+
+
+def run(check):
+    status, body = fetch(check["path"])
+    failures = []
+    if status != 200:
+        failures.append("HTTP {}".format(status))
+        if status == 0:
+            failures.append(body[:200])
+        return failures
+    for needle in check.get("contains", []):
+        if needle not in body:
+            failures.append("missing: {!r}".format(needle))
+    for needle in check.get("absent", []):
+        if needle in body:
+            failures.append("unexpected: {!r}".format(needle))
+    return failures
+
+
+def main():
+    with open(CHECKS, encoding="utf-8") as fh:
+        checks = json.load(fh)
+    only = sys.argv[1] if len(sys.argv) > 1 else None
+    failed = 0
+    for check in checks:
+        if only and check["name"] != only:
+            continue
+        failures = run(check)
+        if failures:
+            failed += 1
+            print("FAIL  {}  ({})".format(check["name"], check["path"]))
+            for f in failures:
+                print("        " + f)
+        else:
+            print("ok    {}  ({})".format(check["name"], check["path"]))
+    if failed:
+        print("\n{} check(s) failed".format(failed))
+    return 1 if failed else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
