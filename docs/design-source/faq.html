@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  .simple-hero {
+    padding: 80px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .simple-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .simple-hero-meta strong { color: var(--black); font-weight: 500; }
+  .simple-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(64px, 10vw, 160px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+  .simple-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .simple-hero-lead {
+    max-width: 600px;
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  /* FAQ categories sidebar layout */
+  .faq-wrap {
+    padding: 60px 40px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .faq-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .faq-sidebar h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .faq-sidebar ul {
+    list-style: none;
+  }
+  .faq-sidebar li {
+    padding: 12px 0;
+    border-top: 1px solid var(--divider);
+  }
+  .faq-sidebar li:last-child { border-bottom: 1px solid var(--divider); }
+  .faq-sidebar a {
+    color: var(--black);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    transition: color 0.2s;
+  }
+  .faq-sidebar a:hover { color: var(--accent); }
+
+  .faq-content-section {
+    margin-bottom: 80px;
+    scroll-margin-top: 100px;
+  }
+  .faq-content-section h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--black);
+  }
+  .faq-content-section h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--divider);
+    padding: 24px 0;
+    cursor: pointer;
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--divider); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform 0.3s;
+    color: var(--accent);
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s, padding 0.4s;
+    color: var(--graphite);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 400px; padding-top: 16px; }
+
+  .still-stuck {
+    padding: 80px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+  .still-stuck h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .still-stuck h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .still-stuck p {
+    max-width: 500px;
+    margin: 0 auto 32px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .simple-hero { padding: 40px 20px; }
+    .faq-wrap { grid-template-columns: 1fr; padding: 40px 20px 60px; gap: 40px; }
+    .faq-sidebar { position: static; }
+    .still-stuck { padding: 60px 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="simple-hero">
+  <div class="simple-hero-meta">
+    <span><strong>SUPPORT</strong> — FREQUENTLY ASKED</span>
+    <span>UPDATED JULY 2026</span>
+  </div>
+  <h1>QUESTIONS,<br><span class="serif-italic">answered</span>.</h1>
+  <p class="simple-hero-lead">Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.</p>
+</section>
+
+<div class="faq-wrap">
+  <aside class="faq-sidebar">
+    <h3>— Jump to</h3>
+    <ul>
+      <li><a href="#product">The Kit</a></li>
+      <li><a href="#subscription">Subscription</a></li>
+      <li><a href="#shipping">Shipping</a></li>
+      <li><a href="#toothbrush">Electric Toothbrush</a></li>
+      <li><a href="#care">Care & Use</a></li>
+      <li><a href="#account">Account</a></li>
+    </ul>
+  </aside>
+
+  <div class="faq-content">
+
+    <section class="faq-content-section" id="product">
+      <h2>The <span class="serif-italic">kit</span>.</h2>
+
+      <div class="faq-item open">
+        <div class="faq-q">What comes in the QLOSE Kit?</div>
+        <div class="faq-a">Five tools in a branded travel case: an angled floss handle with 20 replacement heads, a toothbrush, a tuft brush handle with four screw-in heads, a tongue brush, and a stainless steel tongue scraper. There are two versions — The Electric Kit (£59) comes with a USB-C rechargeable toothbrush, and The Manual Kit (£29) comes with a soft-bristle manual one. Everything else is the same.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to use all five tools?</div>
+        <div class="faq-a">Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What materials are the tools made from?</div>
+        <div class="faq-a">Medical-grade stainless steel tongue scraper. Soft-touch BPA-free plastic handles. DuPont nylon bristles on the toothbrush head. Soft bristles on the tongue brush. Durable EVA foam case with fabric interior.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is the kit good for sensitive teeth or gums?</div>
+        <div class="faq-a">Yes — all bristles are soft-grade and gentle. The electric toothbrush also has a sensitive mode. If you have specific dental concerns, we recommend checking with your dentist before starting a new routine.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can children use the kit?</div>
+        <div class="faq-a">The kit is designed for adults. For children over 8, adult supervision is recommended. Not suitable for children under 3.</div>
+      </div>
+    </section>
+
+    <section class="faq-content-section" id="subscription">
+      <h2>The <span class="serif-italic">subscription</span>.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">How does the subscription work?</div>
+        <div class="faq-a">Your first box includes the full kit. After that, we send a refill every 90 days for £18. Each refill contains one replacement brush head or toothbrush, 20 floss heads, and four fresh tuft brush heads.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I pause or cancel my subscription?</div>
+        <div class="faq-a">Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I change how often refills arrive?</div>
+        <div class="faq-a">We ship on a single 90-day cadence, which matches standard dental guidance on replacing a brush head. If you need a delivery sooner or later, you can skip a delivery or bring one forward from your account at any time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When am I charged?</div>
+        <div class="faq-a">You're charged when each refill ships, not before. Your account shows exactly when the next payment is due, so there are no surprises.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I subscribe without buying the full kit?</div>
+        <div class="faq-a">Not yet. The subscription is designed to keep your existing QLOSE kit fresh. If you already have the tools you need, get in touch and we'll figure something out.</div>
+      </div>
+    </section>
+
+    <section class="faq-content-section" id="shipping">
+      <h2>Shipping.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Do you ship internationally?</div>
+        <div class="faq-a">Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap — join our newsletter to be the first to know when we cross borders.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much does shipping cost?</div>
+        <div class="faq-a">Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard, or £6.50 express.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does delivery take?</div>
+        <div class="faq-a">Orders placed by 2pm ship the same day. Delivery within 2-3 working days via Royal Mail tracked. You'll receive tracking as soon as it ships.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm not home for delivery?</div>
+        <div class="faq-a">Royal Mail will leave a card and either try again or hold the parcel at your local post office for pickup. You can also give delivery instructions when placing your order.</div>
+      </div>
+    </section>
+
+    <section class="faq-content-section" id="toothbrush">
+      <h2>Electric <span class="serif-italic">toothbrush</span>.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Is the toothbrush waterproof?</div>
+        <div class="faq-a">Yes — the toothbrush is rated IPX7, meaning it's fully waterproof and safe to use in the shower. Do not submerge the USB-C charging cable.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does the battery last?</div>
+        <div class="faq-a">Around 30 days of twice-daily brushing on a full charge. Charging via USB-C takes approximately 3 hours from empty to full. The charging cable is included; a mains plug is not.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I replace the brush head?</div>
+        <div class="faq-a">This applies to The Electric Kit. The head snaps off — pull it firmly upward from the handle, then press the new head down until it clicks into place. No tools needed. We recommend replacing every 90 days. Manual Kit subscribers receive a complete replacement toothbrush instead.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does the two-minute timer work?</div>
+        <div class="faq-a">The toothbrush runs a single two-minute cleaning cycle, pausing briefly every 30 seconds to prompt you to move to the next area of your mouth. It switches off automatically at the end of the cycle.</div>
+      </div>
+    </section>
+
+    <section class="faq-content-section" id="care">
+      <h2>Care <span class="serif-italic">&</span> use.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">How often should I replace the tools?</div>
+        <div class="faq-a">Brush head or toothbrush: every 90 days, in line with standard dental guidance. Floss heads: as you use them, twenty per refill. Tuft brush heads: four per refill, so you can swap roughly every three weeks — the handle is reusable and the head screws off. Tongue brush: every 90 days, replaced whole and included in every refill. Tongue scraper: stainless steel, not replaced — it stays with your kit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I clean the tools?</div>
+        <div class="faq-a">Rinse each tool with warm water after use. Store dry in the case. The stainless steel scraper can be sanitised occasionally with rubbing alcohol.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I take the kit on a plane?</div>
+        <div class="faq-a">Yes — the kit is compact and travel-friendly. The toothbrush battery is under airline lithium restrictions and safe for carry-on and checked luggage.</div>
+      </div>
+    </section>
+
+    <section class="faq-content-section" id="account">
+      <h2>Account <span class="serif-italic">&</span> billing.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I update my payment method?</div>
+        <div class="faq-a">Log into your account, go to Subscription Settings, and update your card details. Changes apply to your next billing cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I change my shipping address?</div>
+        <div class="faq-a">Update it in your account before your next scheduled shipment. If your order has already been packed, contact us and we'll do our best to redirect.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is the electric toothbrush covered by a warranty?</div>
+        <div class="faq-a">Yes — 12 months from the date of delivery. If it develops a fault in that time, email hello@getqlose.com with your order number and we'll replace it. Your statutory rights under UK consumer law are in addition to this and are not affected.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer refunds?</div>
+        <div class="faq-a">Every kit is sealed with a belly band and a perforated pull tab. If the seal is intact, you can return your kit within 14 days of delivery for a full refund. Once the tab is broken the kit counts as opened and, for hygiene reasons, cannot be returned. Refills are non-refundable once shipped. None of this affects your statutory rights if an item is faulty.</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<section class="still-stuck">
+  <h2>STILL <span class="serif-italic">stuck</span>?</h2>
+  <p>We're a small team but we read every message. Get in touch and we'll get back to you within one working day.</p>
+  <a href="/pages/contact" class="btn btn-primary" style="background: var(--white); color: var(--black);">Contact us →</a>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+</script>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

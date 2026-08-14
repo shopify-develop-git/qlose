@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refills — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  /* Refills page */
+  .refills-hero {
+    padding: 80px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .refills-hero-content h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+  .refills-hero-content h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .refills-hero-content p {
+    font-size: 17px;
+    color: var(--graphite);
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+  .refills-visual {
+    aspect-ratio: 1;
+    background: var(--accent-soft);
+    position: relative;
+  }
+  .refills-visual::before {
+    content: 'REFILL BOX';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.2em;
+  }
+  .refills-big-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 400px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    text-align: center;
+    width: 100%;
+    padding-top: 12%;
+  }
+
+  /* Refill contents */
+  .refill-contents {
+    padding: 120px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .refill-contents-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .refill-contents-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+  }
+  .refill-contents-header h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .contents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .content-item {
+    background: var(--off-white);
+    padding: 40px 32px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+  .content-item .content-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+  .content-item .content-image {
+    aspect-ratio: 3/2;
+    background: var(--bone);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .content-item .content-image::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.2em;
+  }
+  .content-item h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .content-item p {
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+
+  .content-item .content-image {
+    aspect-ratio: 3/2;
+    background: linear-gradient(180deg, var(--bone) 0%, var(--off-white) 100%) !important;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+  .content-item:hover .content-image {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%) !important;
+  }
+  .content-image-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+  }
+  .content-image-inner img {
+    max-width: 70%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.25));
+    transition: transform 0.4s ease;
+  }
+  .content-item:hover .content-image-inner img {
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  /* Frequency choice */
+  .frequency {
+    background: var(--bone);
+    padding: 120px 40px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .frequency-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .frequency h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 60px;
+  }
+  .frequency h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .frequency-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  .freq-card {
+    background: var(--off-white);
+    padding: 48px 32px;
+    text-align: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .freq-card.selected { border-color: var(--black); }
+  .freq-card .freq-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+  .freq-card .freq-days {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .freq-card .freq-desc {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: 44px;
+  }
+  .freq-card .freq-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .freq-card .freq-price small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* Note */
+  .refill-note {
+    padding: 80px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .refill-note h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .refill-note p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .refills-hero { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    .refills-big-num { font-size: 240px; padding-top: 20%; }
+    .contents-grid { grid-template-columns: 1fr; }
+    .frequency-options { grid-template-columns: 1fr; }
+    .refill-contents, .frequency { padding: 60px 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="refills-hero">
+  <div class="refills-hero-content">
+    <div class="section-eyebrow"><strong>02 /</strong> REFILLS</div>
+    <h1>REFILLS,<br>ON <span class="serif-italic">time</span>.</h1>
+    <p>Bristles wear out. Floss picks run low. Instead of remembering to reorder, we send replacements on the schedule that fits your routine.</p>
+    <div class="hero-cta" style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="/products/electric-kit" class="btn btn-primary">Electric Kit — £59</a>
+      <a href="/products/manual-kit" class="btn btn-ghost">Manual Kit — £29</a>
+    </div>
+  </div>
+  <div class="refills-visual">
+    <div class="refills-big-num">90</div>
+  </div>
+</section>
+
+<section class="refill-contents">
+  <div class="refill-contents-header">
+    <div>
+      <div class="section-eyebrow"><strong>03 /</strong> WHAT ARRIVES</div>
+      <h2>WHAT'S IN A<br><span class="serif-italic">refill</span> BOX.</h2>
+    </div>
+    <p style="max-width: 400px; color: var(--graphite); font-size: 15px; line-height: 1.6;">Just the parts that wear out. Your case, handles and stainless steel tongue scraper are built to stay with you.</p>
+  </div>
+
+  <div class="contents-grid">
+    <div class="content-item">
+      <div class="content-num">— 01</div>
+      <h3>Brush head or toothbrush</h3>
+      <p>Electric Kit refills contain one replacement brush head. Manual Kit refills contain one replacement toothbrush.</p>
+    </div>
+    <div class="content-item">
+      <div class="content-num">— 02</div>
+      <h3>Floss Heads × 20</h3>
+      <p>Twenty replacement heads for your angled floss handle.</p>
+    </div>
+    <div class="content-item">
+      <div class="content-num">— 03</div>
+      <h3>Tuft Brush Heads × 4</h3>
+      <p>Tuft heads wear faster than a toothbrush — swap one roughly every three weeks. Four covers your cycle. The handle stays with you.</p>
+    </div>
+    <div class="content-item">
+      <div class="content-num">— 04</div>
+      <h3>Tongue Brush</h3>
+      <p>Bristles flatten with use and stop lifting the coating properly. A fresh one every 90 days, replaced whole — there is no separate head.</p>
+    </div>
+  </div>
+
+  <p style="max-width:640px; margin:48px auto 0; text-align:center; font-size:14px; color:var(--graphite); line-height:1.7;">Your refill is matched to the kit you own. Refills can be bought as a one-off or on subscription — subscription is cheaper and includes free UK delivery.</p>
+</section>
+
+<section class="frequency">
+  <div class="frequency-inner">
+    <div class="section-eyebrow"><strong>04 /</strong> YOUR CADENCE</div>
+    <h2>EVERY<br><span class="serif-italic">ninety</span> DAYS.</h2>
+
+    <div class="frequency-options">
+      <div class="freq-card selected">
+        <div class="freq-num">90</div>
+        <div class="freq-days">— DAYS</div>
+        <div class="freq-desc">Every 90 days — the interval dentists recommend for replacing a brush head.</div>
+        <div class="freq-price">£18<small>PER BOX</small></div>
+      </div>
+    </div>
+
+    <p style="max-width: 500px; margin: 0 auto; font-size: 14px; color: var(--graphite); line-height: 1.6;">Pause anytime. Skip a delivery from your account. Cancel whenever you like. No calls, no forms.</p>
+  </div>
+</section>
+
+<section class="refill-note">
+  <h3>"You don't want to think about oral care.<br>So we think about it for you."</h3>
+  <p>— QLOSE / THE PHILOSOPHY</p>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.freq-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.freq-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+</script>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

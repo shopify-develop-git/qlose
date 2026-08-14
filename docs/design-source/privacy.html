@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  .simple-hero {
+    padding: 80px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .simple-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .simple-hero-meta strong { color: var(--black); font-weight: 500; }
+  .simple-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(64px, 10vw, 160px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+  .simple-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .simple-hero-lead {
+    max-width: 600px;
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  /* Shipping rates table */
+  .shipping-rates {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .rates-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .rates-header strong { color: var(--black); font-weight: 500; }
+  .rates-table {
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .rates-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .rates-cell {
+    padding: 24px 28px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rates-cell.header {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .rates-cell.highlight {
+    background: var(--accent-soft);
+  }
+  .rate-name {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 15px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .rate-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .rate-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  /* Info cards grid */
+  .info-cards {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bone);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    max-width: none;
+  }
+  .info-cards-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .info-cards h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .info-cards h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .info-card {
+    background: var(--off-white);
+    padding: 40px 32px;
+    border: 1px solid var(--divider);
+  }
+  .info-card .card-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .info-card h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.7;
+  }
+
+  /* Returns section */
+  .returns {
+    padding: 100px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .returns h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+  .returns h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .returns p {
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .returns .pull-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--black);
+    padding: 32px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    font-weight: 400;
+  }
+
+  /* International waitlist */
+  .waitlist {
+    padding: 100px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+  .waitlist h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .waitlist h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .waitlist p {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+  .waitlist-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 12px;
+  }
+  .waitlist-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    padding: 12px 0;
+    outline: none;
+  }
+  .waitlist-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .waitlist-form button {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .simple-hero, .shipping-rates, .returns, .waitlist { padding: 40px 20px; }
+    .info-cards { padding: 60px 20px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .rates-row { grid-template-columns: 1fr; }
+    .rates-cell.header { display: none; }
+    .rates-cell { padding: 16px 20px; }
+    .rates-cell::before {
+      content: attr(data-label);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* --- Legal page layout --- */
+  .legal-hero {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--divider);
+  }
+  .legal-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 24px 0 20px;
+  }
+  .legal-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-weight: 400;
+    text-transform: lowercase; letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .legal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .legal-body { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+  .legal-body h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin: 56px 0 16px; padding-top: 24px;
+    border-top: 1px solid var(--divider);
+  }
+  .legal-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .legal-body h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px; font-weight: 700; margin: 28px 0 10px;
+  }
+  .legal-body p, .legal-body li {
+    font-size: 15px; line-height: 1.75; color: var(--graphite); margin-bottom: 14px;
+  }
+  .legal-body ul { padding-left: 20px; margin-bottom: 20px; }
+  .legal-body a { color: var(--accent-deep); }
+  .legal-notice {
+    background: var(--bone);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px; margin: 32px 0;
+    font-size: 14px; line-height: 1.7;
+  }
+  .legal-notice strong { color: var(--black); }
+  .legal-toc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 2; margin-bottom: 40px;
+  }
+  .legal-toc a { color: var(--black); text-decoration: none; border-bottom: 1px solid var(--divider); }
+  .legal-toc a:hover { border-color: var(--black); }
+  @media (max-width: 900px) {
+    .legal-hero { padding: 40px 20px 30px; }
+    .legal-body { padding: 40px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="legal-hero">
+  <div class="legal-meta">LEGAL — PRIVACY</div>
+  <h1>PRIVACY<br><span class="serif-italic">policy</span>.</h1>
+  <p style="max-width:620px; color:var(--graphite); font-size:15px; line-height:1.7;">How Qlose collects, uses and protects your personal information, and the rights you have over it.</p>
+  <p class="legal-meta" style="margin-top:24px;">Last updated: 18 July 2026</p>
+</section>
+
+<section class="legal-body">
+<div class="legal-notice">
+  <strong>Note for the Qlose team — remove before launch.</strong> This document was drafted to match how Qlose actually operates and covers the areas UK law requires, but it has not been reviewed by a solicitor. Have it checked before you take your first order, and revisit it whenever your processors, products or shipping arrangements change.
+</div>
+<h2>1. Who we are</h2>
+<p><strong>Qlose Ltd</strong><br>
+Registered in England &amp; Wales, company number 17311111<br>
+Registered office: 8 Shepherd Market, No. 613, London W1J 7JY<br>
+Email: <a href="mailto:hello@getqlose.com">hello@getqlose.com</a></p>
+<p>Qlose Ltd is the data controller for personal information collected through getqlose.com. If you have any question about how we handle your data, email us at the address above.</p>
+
+<h2>2. What we collect</h2>
+<h3>Information you give us</h3>
+<ul>
+  <li>Name, delivery address, billing address, email address and phone number when you place an order</li>
+  <li>Account details if you create an account, including your subscription preferences</li>
+  <li>Your email address if you join our newsletter or a product waitlist</li>
+  <li>The content of any message you send us</li>
+</ul>
+<h3>Information we collect automatically</h3>
+<ul>
+  <li>Device and browser information, IP address, and pages viewed on our site</li>
+  <li>Information collected through cookies and similar technologies — see our cookie section below</li>
+</ul>
+<h3>Payment information</h3>
+<p>We do not store your full card details. Payments are processed by our payment provider, and we receive only confirmation of payment and the last four digits of your card.</p>
+
+<h2>3. Why we use it, and our lawful basis</h2>
+<ul>
+  <li><strong>To fulfil your order and manage your subscription</strong> — necessary to perform our contract with you.</li>
+  <li><strong>To provide customer service and handle returns</strong> — necessary to perform our contract with you.</li>
+  <li><strong>To send marketing emails</strong> — your consent, which you can withdraw at any time.</li>
+  <li><strong>To improve our website and understand how it is used</strong> — our legitimate interests in running and improving our business, or your consent where cookies require it.</li>
+  <li><strong>To meet our legal obligations</strong>, including tax and accounting records and product safety requirements — compliance with a legal obligation.</li>
+  <li><strong>To prevent fraud</strong> — our legitimate interests in protecting our business.</li>
+</ul>
+
+<h2>4. Who we share it with</h2>
+<p>We share personal data with service providers who help us operate. Each is bound to process data only on our instructions.</p>
+<ul>
+  <li><strong>Our ecommerce platform</strong>, which hosts our store and processes orders</li>
+  <li><strong>Our payment provider</strong>, which processes card payments</li>
+  <li><strong>Our subscription provider</strong>, which manages recurring orders</li>
+  <li><strong>Our email marketing provider</strong>, which sends our newsletters and order emails</li>
+  <li><strong>Our delivery partner</strong>, which needs your address to deliver your order</li>
+  <li><strong>Our analytics providers</strong>, where you have consented to analytics cookies</li>
+  <li><strong>Our accountants and professional advisers</strong>, where necessary</li>
+</ul>
+<p>We do not sell your personal data.</p>
+<!-- TODO before launch: replace the generic descriptions above with the named providers actually used (e.g. Shopify, Klaviyo, Royal Mail, GA4) and confirm each one's role. -->
+
+<h2>5. International transfers</h2>
+<p>Some of our providers are based outside the UK. Where personal data is transferred outside the UK, we make sure it is protected by an approved safeguard, such as UK adequacy regulations or the International Data Transfer Agreement.</p>
+
+<h2>6. How long we keep it</h2>
+<ul>
+  <li>Order and transaction records: six years, to meet tax and accounting requirements</li>
+  <li>Account and subscription data: for as long as your account is open, and for a reasonable period afterwards</li>
+  <li>Marketing contacts: until you unsubscribe, and for a short period afterwards to honour your opt-out</li>
+  <li>Customer service correspondence: two years</li>
+</ul>
+
+<h2>7. Cookies</h2>
+<p>We use cookies that are strictly necessary for the site to work, and — with your consent — cookies for analytics and advertising. You can accept or reject non-essential cookies using the banner shown on your first visit, and change your choice at any time. Rejecting non-essential cookies will not stop you shopping with us.</p>
+
+<h2>8. Your rights</h2>
+<p>Under UK data protection law you have the right to:</p>
+<ul>
+  <li>Ask for a copy of the personal data we hold about you</li>
+  <li>Ask us to correct data that is inaccurate or incomplete</li>
+  <li>Ask us to delete your data, in certain circumstances</li>
+  <li>Ask us to restrict or object to how we use your data</li>
+  <li>Ask us to transfer your data to another provider</li>
+  <li>Withdraw your consent at any time, where we rely on consent</li>
+</ul>
+<p>To exercise any of these, email <a href="mailto:hello@getqlose.com">hello@getqlose.com</a>. We will respond within one month. You will not have to pay a fee.</p>
+
+<h2>9. Complaints</h2>
+<p>If you are unhappy with how we have handled your data, please tell us first so we can put it right. You also have the right to complain to the Information Commissioner's Office, the UK supervisory authority, at ico.org.uk.</p>
+
+<h2>10. Marketing</h2>
+<p>We will only send you marketing emails if you have opted in. Every marketing email includes an unsubscribe link, and you can also email us to opt out. Order confirmations, delivery updates and subscription notices are service messages and are sent regardless, because you need them.</p>
+
+<h2>11. Children</h2>
+<p>Our site is not directed at children and we do not knowingly collect data from anyone under 16. If you believe a child has given us their data, contact us and we will delete it.</p>
+
+<h2>12. Changes to this notice</h2>
+<p>We may update this notice from time to time. The date at the top shows when it was last changed. If we make a significant change, we will tell you by email or with a notice on our site.</p>
+
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

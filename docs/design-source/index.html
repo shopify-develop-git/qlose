@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QLOSE — Minimalist Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+
+  /* Logo image styles */
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-large {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    text-transform: uppercase;
+  }
+  .logo::after {
+    content: '';
+  }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Archivo', sans-serif;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 60px 40px 100px;
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+  .hero-meta strong { color: var(--black); font-weight: 500; }
+
+  .hero-main {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-headline {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(72px, 12vw, 180px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--black);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .hero-headline .stroke {
+    -webkit-text-stroke: 1.5px var(--accent);
+    color: transparent;
+  }
+  .hero-headline .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: var(--accent);
+  }
+  .hero-sub {
+    max-width: 400px;
+    font-size: 15px;
+    color: var(--graphite);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  .hero-visual {
+    aspect-ratio: 4/5;
+    background: var(--accent-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual::before {
+    content: 'PRODUCT IMAGE';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+  .product-block {
+    width: 55%;
+    height: 60%;
+    background: var(--black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+  .product-block-label {
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .product-tag {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 10px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Marquee */
+  .marquee-strip {
+    background: var(--black);
+    color: var(--white);
+    padding: 24px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: scroll 35s linear infinite;
+    font-family: 'Archivo', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .marquee-inner span { padding: 0 40px; }
+  .marquee-inner .divider {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--white);
+    vertical-align: middle;
+    padding: 0;
+    margin: 0 20px;
+  }
+  .marquee-inner .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Routine section */
+  .routine {
+    padding: 120px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .routine-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+  .routine-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 6vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--black);
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .routine-header h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .routine-header-text {
+    padding-bottom: 8px;
+  }
+  .routine-header p {
+    font-size: 15px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .step {
+    padding: 40px 28px 32px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    background: var(--off-white);
+    transition: background 0.3s;
+    cursor: pointer;
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  .step:hover { background: var(--bone); }
+  .step-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .step-number {
+    font-family: 'Archivo', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 0.9;
+    margin-bottom: 24px;
+    letter-spacing: -0.05em;
+  }
+  .step-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    color: var(--black);
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.5;
+    margin-bottom: auto;
+  }
+  .step-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--divider);
+    text-transform: uppercase;
+  }
+
+
+  /* Tool image styling in step cards - editorial */
+  .step {
+    padding: 0 !important;
+    background: var(--off-white);
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 480px !important;
+    overflow: hidden;
+  }
+  .step .tool-image-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 20px;
+    background: linear-gradient(180deg, var(--bone) 0%, var(--off-white) 100%);
+    border-bottom: 1px solid var(--divider);
+    position: relative;
+    min-height: 240px;
+  }
+  .step .tool-image-wrap img {
+    max-height: 200px;
+    max-width: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.25));
+    transition: transform 0.4s ease;
+  }
+  .step:hover .tool-image-wrap img {
+    transform: translateY(-6px) scale(1.03);
+  }
+  .step:hover { background: var(--off-white); }
+  .step .step-index {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    z-index: 2;
+    margin-bottom: 0 !important;
+  }
+  .step-content-inner {
+    padding: 24px 24px 32px;
+  }
+  .step .step-title {
+    margin-bottom: 8px !important;
+  }
+  .step .step-time {
+    padding-top: 0 !important;
+    margin-top: 12px !important;
+    border-top: none !important;
+    color: var(--accent) !important;
+  }
+
+  /* Philosophy break */
+  .philosophy {
+    background: var(--black);
+    color: var(--white);
+    padding: 160px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .philosophy-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .philosophy-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .philosophy h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(56px, 8vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    font-weight: 900;
+    text-transform: uppercase;
+    max-width: 1100px;
+  }
+  .philosophy h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .philosophy h2 .stroke {
+    -webkit-text-stroke: 1.5px var(--accent);
+    color: transparent;
+  }
+  .philosophy-attribution {
+    margin-top: 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Subscribe section */
+  .subscribe {
+    padding: 120px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .subscribe-visual {
+    aspect-ratio: 1;
+    background: var(--accent-soft);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .subscribe-visual::before {
+    content: 'REFILL IMAGE';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+  .big-numeral {
+    font-family: 'Archivo', sans-serif;
+    font-size: 400px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    opacity: 0.9;
+  }
+  .subscribe h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(44px, 5vw, 84px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--black);
+    margin-bottom: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .subscribe h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .subscribe-desc {
+    font-size: 15px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+  .plans {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--black);
+  }
+  .plan {
+    border-bottom: 1px solid var(--black);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    transition: padding 0.2s;
+  }
+  .plan:hover, .plan.active { padding-left: 20px; padding-right: 20px; background: var(--bone); }
+  .plan-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .plan-number {
+    font-family: 'Archivo', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .plan-details {
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .plan-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .plan-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .plan-price small {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .plan-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    background: var(--bone);
+    padding: 120px 40px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .testi-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .testi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .testi-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.9;
+    color: var(--black);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    max-width: 700px;
+  }
+  .testi-header h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .testi {
+    background: var(--off-white);
+    padding: 40px 32px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+  .testi-stars {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .testi-quote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .testi-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .testi-name strong { color: var(--black); font-weight: 500; }
+
+  /* FAQ */
+  .faq {
+    padding: 120px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .faq h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(56px, 6vw, 96px);
+    line-height: 0.9;
+    color: var(--black);
+    margin-bottom: 60px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+  }
+  .faq h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .faq-item {
+    border-top: 1px solid var(--black);
+    padding: 28px 0;
+    cursor: pointer;
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--black); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 28px;
+    font-weight: 300;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s, padding 0.4s;
+    color: var(--graphite);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-top: 20px; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(120px, 22vw, 340px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    color: var(--white);
+    overflow: hidden;
+  }
+  .foot-mega .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-col a:hover { opacity: 0.6; }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .hero, .routine, .subscribe, .testimonials, .philosophy, .faq { padding: 60px 20px; }
+    .hero-main, .subscribe, .routine-header, .testi-header { grid-template-columns: 1fr; gap: 40px; }
+    .steps, .testi-grid { grid-template-columns: 1fr; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .marquee-inner { font-size: 32px; }
+  }
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><img class="logo-img" src="data:BASE64" alt="QLOSE"></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="#">Account</a>
+    <a href="#">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-meta">
+    <span><strong>THE COMPLETE MOUTH ROUTINE</strong></span>
+    <span>LONDON</span>
+  </div>
+  <div class="hero-main">
+    <div>
+      <h1 class="hero-headline">
+        EVERY<br>
+        <span class="stroke">TOOL</span>.<br>
+        THE RIGHT<br>
+        <span class="serif-italic">order</span>.
+      </h1>
+      <p class="hero-sub">A five-piece oral care system, in two versions — manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>
+      <div class="hero-cta">
+        <a href="/products/electric-kit" class="btn btn-primary">Electric Kit / £59</a>
+        <a href="/products/manual-kit" class="btn btn-ghost">Manual Kit / £29</a>
+        <a href="/pages/routine" class="btn btn-underline">See how it works →</a>
+      </div>
+    </div>
+    <div class="hero-visual" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); overflow: visible;">
+      <div class="product-tag">THE KITS</div>
+      <img src="data:BASE64" alt="QLOSE Case" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-8deg); max-width: 88%; max-height: 60%; object-fit: contain; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.35));">
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>PICK</span><span class="divider"></span>
+    <span>BRUSH</span><span class="divider"></span>
+    <span>TUFT</span><span class="divider"></span>
+    <span>TONGUE</span><span class="divider"></span>
+    <span>SCRAPE</span><span class="divider"></span>
+    <span>PICK</span><span class="divider"></span>
+    <span>BRUSH</span><span class="divider"></span>
+    <span>TUFT</span><span class="divider"></span>
+    <span>TONGUE</span><span class="divider"></span>
+    <span>SCRAPE</span><span class="divider"></span>
+  </div>
+</div>
+
+<section class="routine">
+  <div class="routine-header">
+    <div>
+      <div class="section-eyebrow"><strong>02 /</strong> THE METHOD</div>
+      <h2>FIVE STEPS.<br>ONE <span class="serif-italic">system</span>.</h2>
+    </div>
+    <div class="routine-header-text">
+      <p>This isn't a generic checklist. It's a sequence built around how each tool actually works — floss to disrupt, brush to clean, then a two-step finish on the tongue. Loosen first, then lift it all off.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="tool-image-wrap">
+        <div class="step-index">— 01 / FLOSS</div>
+        <img src="data:BASE64" alt="Angled Floss Pick">
+      </div>
+      <div class="step-content-inner">
+        <h3 class="step-title">Angled Floss Pick</h3>
+        <p class="step-desc">Start between the teeth. Reach every gap — even the back molars.</p>
+        <div class="step-time">30 SEC</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="tool-image-wrap">
+        <div class="step-index">— 02 / BRUSH</div>
+        <img src="data:BASE64" alt="Brush Teeth">
+      </div>
+      <div class="step-content-inner">
+        <h3 class="step-title">Brush Teeth</h3>
+        <p class="step-desc">Every surface. 45° angle. No missed corners.</p>
+        <div class="step-time">90 SEC</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="tool-image-wrap">
+        <div class="step-index">— 03 / DETAIL</div>
+        <img src="data:BASE64" alt="Tuft Brush">
+      </div>
+      <div class="step-content-inner">
+        <h3 class="step-title">Tuft Brush</h3>
+        <p class="step-desc">Precision finish. Behind the back teeth and around tight spots.</p>
+        <div class="step-time">30 SEC</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="tool-image-wrap">
+        <div class="step-index">— 04 / TONGUE</div>
+        <img src="data:BASE64" alt="Tongue Brush">
+      </div>
+      <div class="step-content-inner">
+        <h3 class="step-title">Tongue Brush</h3>
+        <p class="step-desc">Loosen the coating. Bristles work into the crevices.</p>
+        <div class="step-time">15 SEC</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="tool-image-wrap">
+        <div class="step-index">— 05 / SCRAPE</div>
+        <img src="data:BASE64" alt="Tongue Scraper">
+      </div>
+      <div class="step-content-inner">
+        <h3 class="step-title">Tongue Scraper</h3>
+        <p class="step-desc">One smooth pull lifts everything you loosened.</p>
+        <div class="step-time">15 SEC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-eyebrow">— 03 / THE PHILOSOPHY</div>
+    <h2>
+      ORAL CARE<br>
+      ISN'T A <span class="stroke">CHORE</span>.<br>
+      IT'S A <span class="serif-italic">ritual</span>.
+    </h2>
+    <p class="philosophy-attribution">— QLOSE / MANIFESTO</p>
+  </div>
+</section>
+
+<section class="subscribe">
+  <div class="subscribe-visual">
+    <div class="big-numeral">90</div>
+  </div>
+  <div>
+    <div class="section-eyebrow"><strong>04 /</strong> THE SUBSCRIPTION</div>
+    <h2>TWO KITS.<br><span class="serif-italic">one</span> SYSTEM.</h2>
+    <p class="subscribe-desc">Same five-step routine, your choice of brush. Bristles wear out and floss runs low, so your subscription sends a fresh refill every 90 days for £18 — the same cadence dentists recommend for replacing a brush head.</p>
+
+    <div class="plans">
+      <div class="plan active">
+        <div class="plan-info">
+          <div class="plan-number">01</div>
+          <div class="plan-details">
+            <div class="plan-label">The Electric Kit <span class="plan-badge">Popular</span></div>
+            <div class="plan-sub">Five tools, USB-C rechargeable brush</div>
+          </div>
+        </div>
+        <div class="plan-price">£59<small>THEN £18 / 90 DAYS</small></div>
+      </div>
+      <div class="plan">
+        <div class="plan-info">
+          <div class="plan-number">02</div>
+          <div class="plan-details">
+            <div class="plan-label">The Manual Kit</div>
+            <div class="plan-sub">Five tools, soft-bristle manual brush</div>
+          </div>
+        </div>
+        <div class="plan-price">£29<small>THEN £18 / 90 DAYS</small></div>
+      </div>
+    </div>
+
+    <a href="/products/electric-kit" class="btn btn-primary">Choose your kit →</a>
+  </div>
+</section>
+
+<!-- Testimonials section removed pending genuine reviews. Re-add via reviews app (Judge.me / Okendo / Trustpilot). CSS retained below. -->
+
+
+<section class="faq">
+  <div class="section-eyebrow"><strong>05 /</strong> THE DETAILS</div>
+  <h2>QUESTIONS,<br><span class="serif-italic">answered</span>.</h2>
+
+  <div class="faq-item open">
+    <div class="faq-q">What comes in the starter kit?</div>
+    <div class="faq-a">The full five-tool system: angled floss pick, toothbrush, tuft brush, tongue brush, and stainless steel tongue scraper — all housed in a zippered travel case. Choose the Electric Kit for a USB-C rechargeable brush, or the Manual Kit for a soft-bristle manual one.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How does the subscription work?</div>
+    <div class="faq-a">You get the full kit once. After that, we send a refill every 90 days for £18, containing the parts that wear out. Your case and tongue scraper stay with you.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do you ship internationally?</div>
+    <div class="faq-a">Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap — join our newsletter to be the first to know when we cross borders.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do I need to use all five tools?</div>
+    <div class="faq-a">Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I pause or cancel my subscription?</div>
+    <div class="faq-a">Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+  document.querySelectorAll('.plan').forEach(plan => {
+    plan.addEventListener('click', () => {
+      document.querySelectorAll('.plan').forEach(p => p.classList.remove('active'));
+      plan.classList.add('active');
+    });
+  });
+</script>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

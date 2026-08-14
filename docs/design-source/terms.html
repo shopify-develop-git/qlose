@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  .simple-hero {
+    padding: 80px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .simple-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .simple-hero-meta strong { color: var(--black); font-weight: 500; }
+  .simple-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(64px, 10vw, 160px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+  .simple-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .simple-hero-lead {
+    max-width: 600px;
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  /* Shipping rates table */
+  .shipping-rates {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .rates-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .rates-header strong { color: var(--black); font-weight: 500; }
+  .rates-table {
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .rates-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .rates-cell {
+    padding: 24px 28px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rates-cell.header {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .rates-cell.highlight {
+    background: var(--accent-soft);
+  }
+  .rate-name {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 15px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .rate-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .rate-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  /* Info cards grid */
+  .info-cards {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bone);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    max-width: none;
+  }
+  .info-cards-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .info-cards h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .info-cards h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .info-card {
+    background: var(--off-white);
+    padding: 40px 32px;
+    border: 1px solid var(--divider);
+  }
+  .info-card .card-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .info-card h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.7;
+  }
+
+  /* Returns section */
+  .returns {
+    padding: 100px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .returns h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+  .returns h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .returns p {
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .returns .pull-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--black);
+    padding: 32px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    font-weight: 400;
+  }
+
+  /* International waitlist */
+  .waitlist {
+    padding: 100px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+  .waitlist h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .waitlist h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .waitlist p {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+  .waitlist-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 12px;
+  }
+  .waitlist-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    padding: 12px 0;
+    outline: none;
+  }
+  .waitlist-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .waitlist-form button {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .simple-hero, .shipping-rates, .returns, .waitlist { padding: 40px 20px; }
+    .info-cards { padding: 60px 20px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .rates-row { grid-template-columns: 1fr; }
+    .rates-cell.header { display: none; }
+    .rates-cell { padding: 16px 20px; }
+    .rates-cell::before {
+      content: attr(data-label);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* --- Legal page layout --- */
+  .legal-hero {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--divider);
+  }
+  .legal-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 24px 0 20px;
+  }
+  .legal-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-weight: 400;
+    text-transform: lowercase; letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .legal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .legal-body { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+  .legal-body h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin: 56px 0 16px; padding-top: 24px;
+    border-top: 1px solid var(--divider);
+  }
+  .legal-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .legal-body h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px; font-weight: 700; margin: 28px 0 10px;
+  }
+  .legal-body p, .legal-body li {
+    font-size: 15px; line-height: 1.75; color: var(--graphite); margin-bottom: 14px;
+  }
+  .legal-body ul { padding-left: 20px; margin-bottom: 20px; }
+  .legal-body a { color: var(--accent-deep); }
+  .legal-notice {
+    background: var(--bone);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px; margin: 32px 0;
+    font-size: 14px; line-height: 1.7;
+  }
+  .legal-notice strong { color: var(--black); }
+  .legal-toc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 2; margin-bottom: 40px;
+  }
+  .legal-toc a { color: var(--black); text-decoration: none; border-bottom: 1px solid var(--divider); }
+  .legal-toc a:hover { border-color: var(--black); }
+  @media (max-width: 900px) {
+    .legal-hero { padding: 40px 20px 30px; }
+    .legal-body { padding: 40px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="legal-hero">
+  <div class="legal-meta">LEGAL — TERMS OF SALE</div>
+  <h1>TERMS &amp;<br><span class="serif-italic">conditions</span>.</h1>
+  <p style="max-width:620px; color:var(--graphite); font-size:15px; line-height:1.7;">The terms on which we sell our products to you. Please read them before placing an order.</p>
+  <p class="legal-meta" style="margin-top:24px;">Last updated: 18 July 2026</p>
+</section>
+
+<section class="legal-body">
+<div class="legal-notice">
+  <strong>Note for the Qlose team — remove before launch.</strong> This document was drafted to match how Qlose actually operates and covers the areas UK law requires, but it has not been reviewed by a solicitor. Have it checked before you take your first order, and revisit it whenever your processors, products or shipping arrangements change.
+</div>
+<h2>1. About us</h2>
+<p><strong>Qlose Ltd</strong><br>
+Registered in England &amp; Wales, company number 17311111<br>
+Registered office: 8 Shepherd Market, No. 613, London W1J 7JY<br>
+Email: <a href="mailto:hello@getqlose.com">hello@getqlose.com</a></p>
+<p>These terms apply to every order placed through getqlose.com. Please read them before you order. By placing an order you agree to them.</p>
+
+<h2>2. Who we sell to</h2>
+<p>We currently sell and deliver to addresses in the United Kingdom only. You must be at least 18 to place an order.</p>
+
+<h2>3. How a contract is formed</h2>
+<p>When you place an order we will send an acknowledgement email. That email confirms we have received your order, but it is not acceptance. A contract between us is formed only when we send you an email confirming that your order has been dispatched. If we cannot accept your order — for example because an item is out of stock or we have identified a pricing error — we will tell you and refund any payment taken.</p>
+
+<h2>4. Our products</h2>
+<p>Product images on our site are for illustration. Small variations in colour and finish are normal and do not make a product faulty.</p>
+<p>Our kits are oral care products, not medical devices intended to diagnose or treat disease. Nothing on our site is dental advice. If you have a dental or medical condition, speak to your dentist or doctor before changing your routine.</p>
+
+<h2>5. Price and payment</h2>
+<p>Prices are shown in pounds sterling and include VAT where applicable. Delivery costs are shown separately at checkout before you pay.</p>
+<p>We take payment at the point of order for one-time purchases, and on each renewal date for subscriptions. If a payment fails we may retry it and will contact you.</p>
+<p>We may change our prices from time to time. A change will never affect an order we have already accepted. For subscriptions, we will give you at least 30 days' notice by email before a price change takes effect, and you may cancel before it applies.</p>
+<!-- TODO: Qlose Ltd is not currently VAT registered. Once registered, add the VAT number here and in the footer, and confirm the VAT treatment of subscription renewals. -->
+
+<h2>6. Delivery</h2>
+<p>Delivery times and costs are set out on our <a href="/pages/shipping">Shipping &amp; Returns</a> page. Delivery estimates are estimates, not guarantees.</p>
+<p>Your order becomes your responsibility once it is delivered to the address you gave us. Risk passes to you on delivery; ownership passes once we have received payment in full.</p>
+<p>If nobody is available, our delivery partner will follow its usual process — leaving the parcel in a safe place, with a neighbour, or at a local collection point.</p>
+
+<h2>7. Subscriptions</h2>
+<p>When you subscribe, you buy your first kit and then receive refills automatically on the cadence you chose, at the price shown when you subscribed.</p>
+<ul>
+  <li>You can pause, skip a delivery, change your cadence or cancel at any time from your account.</li>
+  <li>Changes take effect on your next renewal, provided you make them before that renewal is processed. Once an order has been processed we cannot stop it.</li>
+  <li>There is no minimum term and no cancellation fee.</li>
+  <li>We will email you before each renewal so you have time to make changes.</li>
+</ul>
+
+<h2>8. Your right to cancel, and returns</h2>
+<p>Your legal right to cancel, and how our hygiene seal affects it, is set out in full on our <a href="/pages/returns">Returns &amp; Cancellations</a> page, which forms part of these terms.</p>
+
+<h2>9. Faulty goods and warranty</h2>
+<p>If something is faulty, misdescribed or not as agreed, you have legal rights under the Consumer Rights Act 2015. Nothing in these terms limits those rights.</p>
+<p>In addition, the electric toothbrush supplied in The Electric Kit carries a 12-month Qlose warranty from the date of delivery. If it develops a fault in normal use during that period, contact us and we will replace it. The warranty does not cover damage from misuse, accident, or normal wear of consumable parts such as brush heads.</p>
+
+<h2>10. Our liability</h2>
+<p>We are responsible for loss or damage you suffer that is a foreseeable result of us breaking these terms or failing to use reasonable care and skill. We are not responsible for loss or damage that is not foreseeable.</p>
+<p>We do not exclude or limit our liability in any way where it would be unlawful to do so. This includes liability for death or personal injury caused by our negligence, for fraud, and for breach of your legal rights in relation to the products.</p>
+<p>We do not supply products for business use, and we have no liability to you for business loss.</p>
+
+<h2>11. Events outside our control</h2>
+<p>We are not liable for delays or failures caused by events outside our reasonable control. If such an event occurs we will contact you and either extend the delivery timeframe or, if the delay is substantial, allow you to cancel and receive a refund.</p>
+
+<h2>12. Complaints</h2>
+<p>If something has gone wrong, email <a href="mailto:hello@getqlose.com">hello@getqlose.com</a> with your order number. We aim to reply within one working day.</p>
+
+<h2>13. Other important terms</h2>
+<p>We may transfer our rights and obligations under these terms to another organisation, and will tell you if we do. You may only transfer your rights to someone else with our written agreement.</p>
+<p>If a court finds part of these terms unlawful, the remaining terms continue in force.</p>
+<p>These terms are governed by English law and you can bring legal proceedings in the English courts. If you live in Scotland or Northern Ireland, you may also bring proceedings in your own courts.</p>
+
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

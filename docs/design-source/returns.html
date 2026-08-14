@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Returns & Cancellations — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  .simple-hero {
+    padding: 80px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .simple-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .simple-hero-meta strong { color: var(--black); font-weight: 500; }
+  .simple-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(64px, 10vw, 160px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+  .simple-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .simple-hero-lead {
+    max-width: 600px;
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  /* Shipping rates table */
+  .shipping-rates {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .rates-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .rates-header strong { color: var(--black); font-weight: 500; }
+  .rates-table {
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .rates-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .rates-cell {
+    padding: 24px 28px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rates-cell.header {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .rates-cell.highlight {
+    background: var(--accent-soft);
+  }
+  .rate-name {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 15px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .rate-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .rate-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  /* Info cards grid */
+  .info-cards {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bone);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    max-width: none;
+  }
+  .info-cards-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .info-cards h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .info-cards h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .info-card {
+    background: var(--off-white);
+    padding: 40px 32px;
+    border: 1px solid var(--divider);
+  }
+  .info-card .card-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .info-card h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.7;
+  }
+
+  /* Returns section */
+  .returns {
+    padding: 100px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .returns h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+  .returns h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .returns p {
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .returns .pull-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--black);
+    padding: 32px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    font-weight: 400;
+  }
+
+  /* International waitlist */
+  .waitlist {
+    padding: 100px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+  .waitlist h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .waitlist h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .waitlist p {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+  .waitlist-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 12px;
+  }
+  .waitlist-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    padding: 12px 0;
+    outline: none;
+  }
+  .waitlist-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .waitlist-form button {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .simple-hero, .shipping-rates, .returns, .waitlist { padding: 40px 20px; }
+    .info-cards { padding: 60px 20px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .rates-row { grid-template-columns: 1fr; }
+    .rates-cell.header { display: none; }
+    .rates-cell { padding: 16px 20px; }
+    .rates-cell::before {
+      content: attr(data-label);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* --- Legal page layout --- */
+  .legal-hero {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--divider);
+  }
+  .legal-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 24px 0 20px;
+  }
+  .legal-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-weight: 400;
+    text-transform: lowercase; letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .legal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .legal-body { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+  .legal-body h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin: 56px 0 16px; padding-top: 24px;
+    border-top: 1px solid var(--divider);
+  }
+  .legal-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .legal-body h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px; font-weight: 700; margin: 28px 0 10px;
+  }
+  .legal-body p, .legal-body li {
+    font-size: 15px; line-height: 1.75; color: var(--graphite); margin-bottom: 14px;
+  }
+  .legal-body ul { padding-left: 20px; margin-bottom: 20px; }
+  .legal-body a { color: var(--accent-deep); }
+  .legal-notice {
+    background: var(--bone);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px; margin: 32px 0;
+    font-size: 14px; line-height: 1.7;
+  }
+  .legal-notice strong { color: var(--black); }
+  .legal-toc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 2; margin-bottom: 40px;
+  }
+  .legal-toc a { color: var(--black); text-decoration: none; border-bottom: 1px solid var(--divider); }
+  .legal-toc a:hover { border-color: var(--black); }
+  @media (max-width: 900px) {
+    .legal-hero { padding: 40px 20px 30px; }
+    .legal-body { padding: 40px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="legal-hero">
+  <div class="legal-meta">LEGAL — RETURNS</div>
+  <h1>RETURNS &amp;<br><span class="serif-italic">cancellations</span>.</h1>
+  <p style="max-width:620px; color:var(--graphite); font-size:15px; line-height:1.7;">Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p>
+  <p class="legal-meta" style="margin-top:24px;">Last updated: 18 July 2026</p>
+</section>
+
+<section class="legal-body">
+<div class="legal-notice">
+  <strong>Note for the Qlose team — remove before launch.</strong> This document was drafted to match how Qlose actually operates and covers the areas UK law requires, but it has not been reviewed by a solicitor. Have it checked before you take your first order, and revisit it whenever your processors, products or shipping arrangements change.
+</div>
+<h2>1. Your legal right to cancel</h2>
+<p>Under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 you have the right to cancel an online order within 14 days of receiving it, without giving a reason. You then have a further 14 days to send the goods back to us.</p>
+
+<h2>2. The hygiene seal — please read before opening</h2>
+<div class="legal-notice">
+  <strong>Every Qlose kit arrives sealed with a belly band carrying a perforated pull tab.</strong> While that tab is intact, your kit can be returned. Once you break it, the kit counts as opened and, for hygiene reasons, cannot be returned or refunded. If you think you might want to return your kit, do not break the seal.
+</div>
+<p>This is permitted under the Regulations, which allow the right to cancel to be disapplied for sealed goods that are not suitable for return once unsealed, for reasons of health protection or hygiene. Oral care products fall into that category.</p>
+<p>This does not affect your rights if an item is faulty, damaged or not as described. Those rights apply whether or not the seal has been broken — see section 5.</p>
+
+<h2>3. Returning an unopened kit</h2>
+<ul>
+  <li>Email <a href="mailto:hello@getqlose.com">hello@getqlose.com</a> within 14 days of delivery, with your order number.</li>
+  <li>We will confirm the return address and instructions.</li>
+  <li>The kit must be complete, in its original packaging, with the perforated tab unbroken.</li>
+  <li>Send it back within 14 days of telling us you want to cancel.</li>
+</ul>
+<p>You pay the cost of returning the item unless it is faulty or was sent in error. We recommend using a tracked service, as we cannot refund a parcel we do not receive.</p>
+
+<h2>4. Refills</h2>
+<p>Refills contain consumable hygiene items and are non-refundable once dispatched. You can pause, skip or cancel your subscription at any time from your account to prevent future orders. If you cancel before an order is processed, you will not be charged for it.</p>
+
+<h2>5. Faulty, damaged or incorrect items</h2>
+<p>If your order arrives damaged, incomplete, or with a fault — a missing tool, a damaged case, or a toothbrush that will not power on — email us with your order number and, if you can, a photograph. We will send a replacement and you will not usually need to return anything.</p>
+<p>Under the Consumer Rights Act 2015, if a fault appears within 30 days of delivery you can ask for a full refund. After 30 days we will repair or replace the item, and if that is not possible you may be entitled to a refund.</p>
+<p>The electric toothbrush also carries a 12-month Qlose warranty from delivery, which sits on top of your statutory rights and does not replace them.</p>
+
+<h2>6. Refunds</h2>
+<p>We will refund you using the same payment method you used to pay. Where you have cancelled an unopened kit, we will refund within 14 days of receiving the goods back, or within 14 days of you providing proof of postage, whichever is earlier.</p>
+<p>We refund the price you paid plus standard outbound delivery. If you chose express delivery, we refund the standard rate only. Where a return is due to a fault or our error, we refund your return postage too.</p>
+<p>We may reduce your refund to reflect any reduction in the value of the goods caused by handling beyond what is necessary to establish their nature and characteristics.</p>
+
+<h2>7. Cancelling a subscription</h2>
+<p>You can cancel at any time from your account. There is no minimum term and no cancellation fee. Cancelling stops future deliveries; it does not automatically refund an order that has already been processed or dispatched.</p>
+
+<h2>8. How to reach us</h2>
+<p>Email <a href="mailto:hello@getqlose.com">hello@getqlose.com</a> with your order number. We aim to reply within one working day.</p>
+<p>Qlose Ltd, 8 Shepherd Market, No. 613, London W1J 7JY. Company number 17311111.</p>
+
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Electric Kit — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  /* Product page specific */
+  .product-page {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 40px 100px;
+  }
+  .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb .current { color: var(--black); }
+
+  .product-main {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Product gallery */
+  .product-gallery { position: sticky; top: 100px; }
+  .gallery-main {
+    aspect-ratio: 1;
+    background: var(--accent-soft);
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .gallery-main::before {
+    content: 'MAIN IMAGE';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.2em;
+  }
+  .product-hero-block {
+    width: 55%;
+    height: 55%;
+    background: var(--black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+  .product-hero-block-label {
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .product-tag {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 10px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .thumb {
+    aspect-ratio: 1;
+    background: var(--bone);
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .thumb.active { border-color: var(--black); }
+
+
+  /* Product info */
+  .product-info { padding-top: 20px; }
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .product-meta strong { color: var(--black); font-weight: 500; }
+
+  .product-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .product-title .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .product-desc {
+    font-size: 15px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  /* Reviews summary */
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .stars-inline {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    letter-spacing: 3px;
+    font-size: 14px;
+  }
+  .review-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Purchase options */
+  .purchase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+  }
+  .purchase-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 500;
+  }
+  .save-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .plans {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--black);
+  }
+  .plan {
+    border-bottom: 1px solid var(--black);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    transition: padding 0.2s, background 0.2s;
+  }
+  .plan.active { padding-left: 20px; padding-right: 20px; background: var(--bone); }
+  .plan-info { display: flex; align-items: center; gap: 20px; }
+  .plan-radio {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--black);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .plan.active .plan-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--black);
+    border-radius: 50%;
+  }
+  .plan-details { display: flex; flex-direction: column; }
+  .plan-label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .plan-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .plan-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .plan-price {
+    font-family: 'Archivo', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    text-align: right;
+  }
+  .plan-price-original {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .add-to-cart {
+    width: 100%;
+    padding: 22px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+  }
+  .add-to-cart:hover { background: var(--graphite); }
+
+  .trust-signals {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+  }
+  .trust-item {
+    text-align: center;
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--graphite);
+    line-height: 1.5;
+  }
+  .trust-item strong { color: var(--black); display: block; margin-bottom: 4px; }
+
+  /* Product details accordion */
+  .details {
+    padding-top: 20px;
+  }
+  .detail-item {
+    border-top: 1px solid var(--divider);
+    padding: 20px 0;
+    cursor: pointer;
+  }
+  .detail-item:last-child { border-bottom: 1px solid var(--divider); }
+  .detail-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .detail-q::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 300;
+    transition: transform 0.3s;
+  }
+  .detail-item.open .detail-q::after { transform: rotate(45deg); }
+  .detail-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s, padding 0.4s;
+    color: var(--graphite);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .detail-item.open .detail-a { max-height: 500px; padding-top: 16px; }
+  .detail-a ul { list-style: none; padding: 0; }
+  .detail-a li { padding: 4px 0; padding-left: 16px; position: relative; }
+  .detail-a li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  /* What's inside section */
+  .inside-section {
+    background: var(--bone);
+    padding: 120px 40px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    margin-top: 100px;
+  }
+  .inside-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .inside-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .inside-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+  }
+  .inside-header h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .inside-header p {
+    font-size: 15px;
+    color: var(--graphite);
+    line-height: 1.6;
+    padding-bottom: 8px;
+  }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .tool-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .tool-image {
+    aspect-ratio: 3/4;
+    background: var(--off-white);
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid var(--divider);
+  }
+  .tool-image::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  .tool-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .tool-name {
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .tool-material {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+
+  .tool-image {
+    background: linear-gradient(180deg, var(--bone) 0%, var(--off-white) 100%) !important;
+    border: none !important;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .tool-item:hover .tool-image {
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%) !important;
+  }
+  .tool-image-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .tool-image-inner img {
+    max-width: 75%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 40px rgba(0,0,0,0.28));
+    transition: transform 0.4s ease;
+  }
+  .tool-item:hover .tool-image-inner img {
+    transform: translateY(-8px) scale(1.04);
+  }
+
+  /* Compare section */
+  .compare {
+    padding: 120px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .compare-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .compare-header h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+  }
+  .compare-header h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .compare-table {
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+  .compare-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .compare-cell.header {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .compare-cell.qlose {
+    background: var(--accent-soft);
+    font-weight: 500;
+  }
+  .compare-cell .check { color: var(--accent); font-weight: 700; }
+  .compare-cell .cross { color: var(--muted); }
+  .compare-row:first-child .compare-cell.header {
+    background: var(--black);
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .faq-section h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 60px;
+  }
+  .faq-section h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .faq-item {
+    border-top: 1px solid var(--black);
+    padding: 28px 0;
+    cursor: pointer;
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--black); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 28px;
+    font-weight: 300;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s, padding 0.4s;
+    color: var(--graphite);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-top: 20px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .product-page { padding: 20px 20px 60px; }
+    .product-main { grid-template-columns: 1fr; gap: 40px; }
+    .product-gallery { position: static; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .inside-section, .faq-section, .compare { padding: 60px 20px; }
+    .inside-header { grid-template-columns: 1fr; gap: 24px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  .cross-sell {
+    background: var(--bone);
+    padding: 100px 40px;
+    border-top: 1px solid var(--divider);
+    text-align: center;
+  }
+  .cross-inner { max-width: 700px; margin: 0 auto; }
+  .cross-sell h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin: 16px 0 20px;
+  }
+  .cross-sell p { color: var(--graphite); font-size: 15px; line-height: 1.6; margin-bottom: 32px; }
+  @media (max-width: 900px) { .cross-sell { padding: 60px 20px; } }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<div class="product-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/collections/all">Shop</a> / <span class="current">The Electric Kit</span>
+  </div>
+
+  <div class="product-main">
+    <div class="product-gallery">
+      <div class="gallery-main" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); overflow: hidden;">
+        <div class="product-tag">01 / KIT</div>
+        <img src="data:BASE64" alt="QLOSE Kit Case" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-6deg); max-width: 88%; max-height: 55%; object-fit: contain; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.35));">
+      </div>
+      <div class="gallery-thumbs">
+        <div class="thumb active" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); display: flex; align-items: center; justify-content: center; padding: 8px;">
+          <img src="data:BASE64" alt="Closed" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+        </div>
+        <div class="thumb" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); display: flex; align-items: center; justify-content: center; padding: 8px;">
+          <img src="data:BASE64" alt="Open" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+        </div>
+        <div class="thumb" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); display: flex; align-items: center; justify-content: center; padding: 8px;">
+          <img src="data:BASE64" alt="Toothbrush" style="max-width: 60%; max-height: 90%; object-fit: contain;">
+        </div>
+        <div class="thumb" style="background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bone) 100%); display: flex; align-items: center; justify-content: center; padding: 8px;">
+          <img src="data:BASE64" alt="Tongue Scraper" style="max-width: 80%; max-height: 90%; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <div class="product-meta">
+        <span><strong>THE ELECTRIC KIT</strong> — MODEL 02</span>
+        <span>IN STOCK</span>
+      </div>
+
+      <h1 class="product-title">The Electric<br><span class="serif-italic">clean</span> Mouth Kit.</h1>
+
+      <p class="product-desc">A five-piece oral care system in one travel case. Angled floss pick, USB-C rechargeable electric toothbrush, tongue brush, tongue scraper, and tuft brush — precision tools designed to work in sequence.</p>
+
+      <!-- Review summary removed pending genuine reviews. Re-add via reviews app (Judge.me / Okendo / Trustpilot). CSS retained. -->
+
+      <div class="purchase-header">
+        <div class="purchase-label">— Choose your plan</div>
+        <div class="save-note">Free UK shipping on subscriptions</div>
+      </div>
+
+      <div class="plans">
+        <div class="plan active" data-plan="90">
+          <div class="plan-info">
+            <div class="plan-radio"></div>
+            <div class="plan-details">
+              <div class="plan-label">Kit + refills <span class="plan-badge">Popular</span></div>
+              <div class="plan-sub">Refills arrive automatically every 90 days</div>
+            </div>
+          </div>
+          <div>
+            <div class="plan-price">£59<span class="plan-price-original">then £18 / 90 days</span></div>
+          </div>
+        </div>
+        <div class="plan" data-plan="once">
+          <div class="plan-info">
+            <div class="plan-radio"></div>
+            <div class="plan-details">
+              <div class="plan-label">Kit only</div>
+              <div class="plan-sub">No refills, no subscription</div>
+            </div>
+          </div>
+          <div>
+            <div class="plan-price">£59<span class="plan-price-original">one payment</span></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="add-to-cart">Add to cart — start my routine</button>
+
+      <div class="trust-signals">
+        <div class="trust-item"><strong>Free UK Shipping</strong>On subscriptions</div>
+        <div class="trust-item"><strong>Skip Anytime</strong>Pause or cancel</div>
+        <div class="trust-item"><strong>UK Made Kit</strong>Assembled in London</div>
+      </div>
+
+      <div class="details">
+        <div class="detail-item open">
+          <div class="detail-q">What's inside</div>
+          <div class="detail-a">
+            <ul>
+              <li>Electric toothbrush, USB-C rechargeable</li>
+              <li>Soft-bristle brush head, fitted</li>
+              <li>Angled floss handle + 20 replacement floss heads</li>
+              <li>Tongue brush with soft bristles</li>
+              <li>Stainless steel tongue scraper</li>
+              <li>Tuft brush handle + 4 screw-in heads</li>
+              <li>QLOSE zip-close travel case</li>
+              <li>USB-C charging cable (mains plug not included)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Materials</div>
+          <div class="detail-a">Medical-grade stainless steel scraper, BPA-free soft-touch handles, DuPont nylon brush bristles, soft tongue brush bristles. Case is durable EVA foam with fabric interior.</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">How the subscription works</div>
+          <div class="detail-a">Your first box includes the full kit for £59. Every 90 days we send a fresh refill — one brush head, 20 floss heads, four tuft brush heads and a tongue brush — for £18. Ninety days matches standard dental guidance on replacing a brush head. Tuft heads wear faster and are designed to be swapped roughly every three weeks, which is why four are included. Pause, skip, or cancel anytime from your account. No calls, no forms.</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Technical specification</div>
+          <div class="detail-a">
+            <ul>
+              <li>Charging: USB-C, cable included (mains plug not included)</li>
+              <li>Charge time: approximately 3 hours</li>
+              <li>Battery: 320 mAh, 3.7 V rated voltage</li>
+              <li>Input: 5 V / 1 A</li>
+              <li>Rated power: 0.5 W</li>
+              <li>Battery life: around 30 days of twice-daily brushing</li>
+              <li>Water resistance: IPX7</li>
+              <li>Timer: 2-minute cycle, pauses every 30 seconds to prompt you to change area</li>
+            </ul>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Warranty</div>
+          <div class="detail-a">Your electric toothbrush is covered by a 12-month QLOSE warranty from the date of delivery. This is in addition to your statutory rights under UK consumer law, which are not affected.</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Recycling and disposal</div>
+          <div class="detail-a">This kit contains electrical equipment with a built-in rechargeable battery and must not be disposed of with household waste. WEEE producer registration number to be confirmed before launch. <!-- TODO: insert WEEE producer registration number from Clarity Environmental --></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Returns and hygiene seal</div>
+          <div class="detail-a">Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-q">Shipping</div>
+          <div class="detail-a">Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="inside-section">
+  <div class="inside-inner">
+    <div class="inside-header">
+      <div>
+        <div class="section-eyebrow"><strong>02 /</strong> WHAT'S INSIDE</div>
+        <h2>FIVE TOOLS.<br>ONE <span class="serif-italic">system</span>.</h2>
+      </div>
+      <p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-item">
+        <div class="tool-image"><div class="tool-image-inner"><img src="data:BASE64" alt="ANGLED FLOSS PICK"></div></div>
+        <div class="tool-index">— 01</div>
+        <div class="tool-name">Angled Floss Pick</div>
+        <div class="tool-material">Soft-touch handle, PTFE-coated floss thread</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-image"><div class="tool-image-inner"><img src="data:BASE64" alt="ELECTRIC TOOTHBRUSH"></div></div>
+        <div class="tool-index">— 02</div>
+        <div class="tool-name">Electric Toothbrush</div>
+        <div class="tool-material">USB-C rechargeable, IPX7, 2-minute timer</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-image"><div class="tool-image-inner"><img src="data:BASE64" alt="TONGUE BRUSH"></div></div>
+        <div class="tool-index">— 03</div>
+        <div class="tool-name">Tongue Brush</div>
+        <div class="tool-material">Soft bristles, ergonomic grip</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-image"><div class="tool-image-inner"><img src="data:BASE64" alt="TONGUE SCRAPER"></div></div>
+        <div class="tool-index">— 04</div>
+        <div class="tool-name">Tongue Scraper</div>
+        <div class="tool-material">Medical-grade stainless steel</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-image"><div class="tool-image-inner"><img src="data:BASE64" alt="TUFT BRUSH"></div></div>
+        <div class="tool-index">— 05</div>
+        <div class="tool-name">Tuft Brush</div>
+        <div class="tool-material">Screw-in replaceable head, angled bristle tuft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare">
+  <div class="compare-header">
+    <div class="section-eyebrow"><strong>03 /</strong> THE DIFFERENCE</div>
+    <h2>WHY <span class="serif-italic">complete</span> BEATS <span class="serif-italic">separate</span>.</h2>
+  </div>
+
+  <div class="compare-table">
+    <div class="compare-row">
+      <div class="compare-cell header">FEATURE</div>
+      <div class="compare-cell header">QLOSE KIT</div>
+      <div class="compare-cell header">SEPARATE TOOLS</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Complete 5-step routine</div>
+      <div class="compare-cell qlose"><span class="check">✓ Included</span></div>
+      <div class="compare-cell"><span class="cross">Buy separately</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Travel case</div>
+      <div class="compare-cell qlose"><span class="check">✓ Premium zip case</span></div>
+      <div class="compare-cell"><span class="cross">None</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Refills delivered</div>
+      <div class="compare-cell qlose"><span class="check">✓ Every 90 days</span></div>
+      <div class="compare-cell"><span class="cross">Reorder yourself</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Cost over 12 months</div>
+      <div class="compare-cell qlose"><span class="check">£113 in year one</span></div>
+      <div class="compare-cell"><span class="cross">Priced individually</span></div>
+      <!-- £113 = £59 first box + 3 x £18 refills on the 90-day cadence. Update if pricing or cadence changes. Do not add a competitor cost figure without substantiation. -->
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell">Designed to work together</div>
+      <div class="compare-cell qlose"><span class="check">✓ Yes</span></div>
+      <div class="compare-cell"><span class="cross">Chance</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="section-eyebrow"><strong>04 /</strong> THE DETAILS</div>
+  <h2>QUESTIONS,<br><span class="serif-italic">answered</span>.</h2>
+
+  <div class="faq-item open">
+    <div class="faq-q">Is the electric toothbrush waterproof?</div>
+    <div class="faq-a">Yes — the toothbrush is rated IPX7, meaning it's fully waterproof and can be safely used in the shower. Do not submerge the USB-C charging cable.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How long does the toothbrush battery last?</div>
+    <div class="faq-a">A full charge lasts around 30 days of twice-daily brushing. Charging via USB-C takes approximately 3 hours from empty to full.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I pause or cancel my subscription?</div>
+    <div class="faq-a">Yes — anytime. Log into your account, and you can pause, skip a delivery, change your frequency, or cancel entirely. No calls, no forms.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do you ship internationally?</div>
+    <div class="faq-a">Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do I need to use all five tools?</div>
+    <div class="faq-a">Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short, and together they add up to a complete clean.</div>
+  </div>
+</section>
+
+<section class="cross-sell">
+  <div class="cross-inner">
+    <div class="section-eyebrow"><strong>—</strong> ALSO AVAILABLE</div>
+    <h2>PREFER MANUAL?</h2>
+    <p>The Manual Kit has the same five-step system without the rechargeable brush.</p>
+    <a href="/products/manual-kit" class="btn btn-ghost">View The Manual Kit — £29 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.plan').forEach(plan => {
+    plan.addEventListener('click', () => {
+      document.querySelectorAll('.plan').forEach(p => p.classList.remove('active'));
+      plan.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.detail-item, .faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+  document.querySelectorAll('.thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+</script>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>

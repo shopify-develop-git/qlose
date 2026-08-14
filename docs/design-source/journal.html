@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  /* Journal hero */
+  .journal-hero {
+    padding: 80px 40px 60px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .journal-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .journal-hero-meta strong { color: var(--black); font-weight: 500; }
+  .journal-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(72px, 12vw, 200px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+  .journal-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .journal-hero-lead {
+    max-width: 700px;
+    font-size: 17px;
+    color: var(--graphite);
+    line-height: 1.5;
+  }
+
+  /* Category filter */
+  .categories {
+    padding: 32px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 32px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    overflow-x: auto;
+  }
+  .cat-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .cat-item.active,
+  .cat-item:hover {
+    color: var(--black);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Featured article */
+  .featured {
+    padding: 60px 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .featured-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .featured-visual {
+    aspect-ratio: 4/3;
+    background: var(--accent-soft);
+    position: relative;
+  }
+  .featured-visual::before {
+    content: 'FEATURED IMAGE';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.2em;
+  }
+  .featured-tag {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--black);
+    color: var(--white);
+    padding: 8px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .featured-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .featured h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(36px, 4.5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .featured h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .featured-excerpt {
+    font-size: 15px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+  .featured-meta-line {
+    display: flex;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .featured-meta-line span:not(:last-child)::after {
+    content: '/';
+    margin-left: 16px;
+    opacity: 0.4;
+  }
+
+  /* Article grid */
+  .articles {
+    padding: 80px 40px 120px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .articles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .articles-header h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 500;
+  }
+  .articles-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .article {
+    cursor: pointer;
+  }
+  .article-image {
+    aspect-ratio: 4/3;
+    background: var(--bone);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .article:hover .article-image {
+    background: var(--accent-soft);
+  }
+  .article-image::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.4);
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  .article-image .article-num {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--black);
+    color: var(--white);
+    padding: 4px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+  .article-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .article h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--black);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .article h3 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+  .article-excerpt {
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .article-info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Newsletter */
+  .newsletter {
+    background: var(--black);
+    color: var(--white);
+    padding: 120px 40px;
+    text-align: center;
+  }
+  .newsletter h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(40px, 5vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .newsletter h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .newsletter p {
+    max-width: 500px;
+    margin: 0 auto 40px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 12px;
+  }
+  .newsletter-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    padding: 12px 0;
+    outline: none;
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-form button {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .journal-hero, .featured, .articles, .newsletter { padding: 40px 20px; }
+    .featured-inner { grid-template-columns: 1fr; gap: 40px; }
+    .article-grid { grid-template-columns: 1fr; gap: 32px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+
+
+  /* --- Footer legal block --- */
+  .foot-legal {
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    line-height: 1.9;
+  }
+  .foot-legal a { color: var(--white); text-decoration: none; }
+  .foot-legal a:hover { opacity: 0.7; }
+  .foot-policies, .foot-social { display: flex; gap: 18px; }
+  .foot-policies a, .foot-social a {
+    color: var(--white); text-decoration: none;
+  }
+  .foot-policies a:hover, .foot-social a:hover { opacity: 0.7; }
+  .foot-bottom { flex-wrap: wrap; gap: 16px; }
+
+  /* --- Mobile navigation (fixes unreachable menu below 900px) --- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; order: 3; }
+    nav { flex-wrap: wrap; }
+    .nav-menu {
+      display: none;
+      order: 4;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 16px;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu li {
+      border-top: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .nav-menu a { font-size: 14px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE UK SHIPPING ON SUBSCRIPTIONS <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK DELIVERY
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/electric-kit">Electric Kit</a></li>
+    <li><a href="/products/manual-kit">Manual Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">Menu</button>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="journal-hero">
+  <div class="journal-hero-meta">
+    <span><strong>THE JOURNAL</strong> — WRITINGS ON RITUAL, CARE, AND METHOD</span>
+    <span>UPDATED WEEKLY</span>
+  </div>
+  <h1>
+    THE<br>
+    <span class="serif-italic">journal</span>.
+  </h1>
+  <p class="journal-hero-lead">Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>
+</section>
+
+<div class="categories">
+  <div class="cat-item active">— All</div>
+  <div class="cat-item">Routine</div>
+  <div class="cat-item">Science</div>
+  <div class="cat-item">Design</div>
+  <div class="cat-item">Ritual</div>
+  <div class="cat-item">Product Notes</div>
+</div>
+
+<section class="featured">
+  <div class="featured-inner">
+    <div class="featured-visual">
+      <div class="featured-tag">FEATURED / 01</div>
+    </div>
+    <div>
+      <div class="featured-meta">— ROUTINE / 8 MIN READ</div>
+      <h2>WHY THE <span class="serif-italic">order</span> OF YOUR ROUTINE ACTUALLY MATTERS.</h2>
+      <p class="featured-excerpt">Most of us grew up brushing our teeth and calling it done. But the sequence you use — floss first, then brush, then finish on the tongue — turns out to matter more than any single tool. Here's what we've learned building QLOSE.</p>
+      <div class="featured-meta-line">
+        <span>Published 12 July 2026</span>
+        <span>By The QLOSE Team</span>
+      </div>
+      <a href="#" class="btn btn-ghost">Read the piece →</a>
+    </div>
+  </div>
+</section>
+
+<section class="articles">
+  <div class="articles-header">
+    <h3>— Recent pieces</h3>
+    <div class="articles-count">12 ARTICLES</div>
+  </div>
+
+  <div class="article-grid">
+    <article class="article">
+      <div class="article-image" data-label="TONGUE SCRAPING">
+        <div class="article-num">01</div>
+      </div>
+      <div class="article-meta">— SCIENCE / 5 MIN</div>
+      <h3>WHY YOU SHOULD BE <span class="serif-italic">scraping</span> YOUR TONGUE.</h3>
+      <p class="article-excerpt">Most bad breath starts in the mouth, and a coated tongue is its most common source. Here's what the research actually says — and how to do it right.</p>
+      <div class="article-info">— 08 JUL 2026</div>
+    </article>
+
+    <article class="article">
+      <div class="article-image" data-label="FLOSS BEFORE BRUSH">
+        <div class="article-num">02</div>
+      </div>
+      <div class="article-meta">— ROUTINE / 4 MIN</div>
+      <h3>FLOSS FIRST. <span class="serif-italic">then</span> BRUSH. HERE'S WHY.</h3>
+      <p class="article-excerpt">A small change in order that makes a big difference to what actually gets cleaned.</p>
+      <div class="article-info">— 05 JUL 2026</div>
+    </article>
+
+    <article class="article">
+      <div class="article-image" data-label="CASE DESIGN">
+        <div class="article-num">03</div>
+      </div>
+      <div class="article-meta">— DESIGN / 6 MIN</div>
+      <h3>DESIGNING THE <span class="serif-italic">case</span>. FIFTEEN VERSIONS.</h3>
+      <p class="article-excerpt">Behind the scenes on why the QLOSE case looks the way it does — and the prototypes that didn't make it.</p>
+      <div class="article-info">— 01 JUL 2026</div>
+    </article>
+
+    <article class="article">
+      <div class="article-image" data-label="MORNING RITUAL">
+        <div class="article-num">04</div>
+      </div>
+      <div class="article-meta">— RITUAL / 3 MIN</div>
+      <h3>THE THREE-MINUTE <span class="serif-italic">morning</span>.</h3>
+      <p class="article-excerpt">A simple framework for making your morning oral care feel like ritual, not chore.</p>
+      <div class="article-info">— 28 JUN 2026</div>
+    </article>
+
+    <article class="article">
+      <div class="article-image" data-label="BRISTLE SCIENCE">
+        <div class="article-num">05</div>
+      </div>
+      <div class="article-meta">— SCIENCE / 7 MIN</div>
+      <h3>WHY SOFT BRISTLES ALWAYS <span class="serif-italic">win</span>.</h3>
+      <p class="article-excerpt">The dentist advice you may have heard — but not fully understood.</p>
+      <div class="article-info">— 24 JUN 2026</div>
+    </article>
+
+    <article class="article">
+      <div class="article-image" data-label="ELECTRIC VS MANUAL">
+        <div class="article-num">06</div>
+      </div>
+      <div class="article-meta">— PRODUCT NOTES / 5 MIN</div>
+      <h3>ELECTRIC OR MANUAL? A <span class="serif-italic">quiet</span> ANSWER.</h3>
+      <p class="article-excerpt">The truth about whether an electric toothbrush is actually better — and when it doesn't matter.</p>
+      <div class="article-info">— 20 JUN 2026</div>
+    </article>
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2>NEW PIECES,<br>IN YOUR <span class="serif-italic">inbox</span>.</h2>
+  <p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>
+  <form class="newsletter-form">
+    <input type="email" placeholder="Your email address">
+    <button type="submit">Subscribe →</button>
+  </form>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/electric-kit">Electric Kit</a></li>
+          <li><a href="/products/manual-kit">Manual Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+          <li><a href="/account">Manage Subscription</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD — REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+      <!-- VAT number to be added here once Qlose Ltd is VAT registered -->
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div class="foot-policies">
+        <a href="/pages/privacy">Privacy</a>
+        <a href="/pages/terms">Terms</a>
+        <a href="/pages/returns">Returns</a>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    menu.id = menu.id || 'nav-menu';
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  })();
+</script>
+</body>
+</html>
