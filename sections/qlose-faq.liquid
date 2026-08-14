@@ -1,0 +1,151 @@
+{%- comment -%} Ported from docs/design-source/index.html:737-793, 1115-1139 {%- endcomment -%}
+
+<section class="qlose-faq qlose-section">
+  {%- if section.settings.eyebrow_text != blank -%}
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+  {%- endif -%}
+
+  <h2 class="qlose-faq__heading qlose-display">
+    {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+  </h2>
+
+  {%- comment -%}
+    <details>/<summary> rather than the source's click-handled <div>: that
+    markup was unreachable by keyboard and announced no state. Native
+    disclosure gives both for free, with no JavaScript at all.
+  {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    <details
+      class="qlose-faq__item"
+      {% if block.settings.open %}open{% endif %}
+      {{ block.shopify_attributes }}
+    >
+      <summary class="qlose-faq__q">{{ block.settings.question }}</summary>
+      <div class="qlose-faq__a"><div>{{ block.settings.answer }}</div></div>
+    </details>
+  {%- endfor -%}
+</section>
+
+{% stylesheet %}
+  /* Two classes, not one: .qlose-section in qlose.css sets max-width with the
+     same specificity, and Shopify's bundle order between the two files is not
+     guaranteed. */
+  .qlose-faq.qlose-section {
+    max-width: 1100px;
+  }
+
+  .qlose-faq__heading {
+    font-size: clamp(40px, 6vw, 96px);
+    line-height: 0.9;
+    color: var(--qlose-black);
+    margin-bottom: 60px;
+    letter-spacing: -0.04em;
+  }
+
+  .qlose-faq__item {
+    border-top: 1px solid var(--qlose-black);
+  }
+
+  .qlose-faq__item:last-of-type {
+    border-bottom: 1px solid var(--qlose-black);
+  }
+
+  .qlose-faq__q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 0;
+    cursor: pointer;
+    font-family: var(--qlose-font-sans);
+    font-size: 20px;
+    color: var(--qlose-black);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    list-style: none;
+  }
+
+  .qlose-faq__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .qlose-faq__q::after {
+    content: '+';
+    font-size: 28px;
+    font-weight: 300;
+    flex: none;
+    transition: transform 0.3s;
+  }
+
+  .qlose-faq__item[open] .qlose-faq__q::after {
+    transform: rotate(45deg);
+  }
+
+  /* The source caps the answer at max-height: 300px, which silently clips
+     the longer answers. A grid row from 0fr to 1fr animates to content
+     height with no cap. */
+  .qlose-faq__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    color: var(--qlose-graphite);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .qlose-faq__a > div {
+    overflow: hidden;
+  }
+
+  .qlose-faq__item[open] .qlose-faq__a {
+    grid-template-rows: 1fr;
+    padding-bottom: 28px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-faq__a,
+    .qlose-faq__q::after {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .qlose-faq__q {
+      font-size: 17px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "05 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "THE DETAILS" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>QUESTIONS, <em>answered</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What comes in the starter kit?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>The full five-tool system.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE FAQ" }]
+}
+{% endschema %}

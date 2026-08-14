@@ -1,0 +1,234 @@
+{%- comment -%} Ported from docs/design-source/index.html:520-661, 1076-1110 {%- endcomment -%}
+
+<section class="qlose-subscribe qlose-section">
+  <div class="qlose-subscribe__visual">
+    <div class="qlose-subscribe__numeral">{{ section.settings.numeral }}</div>
+  </div>
+
+  <div>
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+
+    <h2 class="qlose-subscribe__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-subscribe__desc">{{ section.settings.description }}</div>
+
+    {%- comment -%}
+      A showcase, not a form. The interactive plan selector belongs on the
+      product page, where it has a variant and a selling plan to bind to.
+      .qlose-plan--active here is purely a visual accent, so no JS.
+    {%- endcomment -%}
+    <div class="qlose-plans">
+      {%- for block in section.blocks -%}
+        <div
+          class="qlose-plan{% if block.settings.highlight %} qlose-plan--active{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="qlose-plan__info">
+            <div class="qlose-plan__number">{{ block.settings.number }}</div>
+            <div>
+              <div class="qlose-plan__label">
+                {{ block.settings.label }}
+                {%- if block.settings.badge != blank -%}
+                  <span class="qlose-plan__badge">{{ block.settings.badge }}</span>
+                {%- endif -%}
+              </div>
+              <div class="qlose-plan__sub">{{ block.settings.sub }}</div>
+            </div>
+          </div>
+          <div class="qlose-plan__price">
+            {{ block.settings.price }}
+            <small>{{ block.settings.price_note }}</small>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- render 'qlose-button',
+        label: section.settings.cta_label,
+        url: section.settings.cta_url,
+        style: 'primary'
+    -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-subscribe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .qlose-subscribe__visual {
+    aspect-ratio: 1;
+    background: var(--qlose-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qlose-subscribe__numeral {
+    font-family: var(--qlose-font-sans);
+    font-size: clamp(160px, 26vw, 400px);
+    font-weight: 900;
+    color: var(--qlose-black);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+  }
+
+  .qlose-subscribe__heading {
+    font-size: clamp(36px, 5vw, 84px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 32px;
+  }
+
+  .qlose-subscribe__desc {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .qlose-plans {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--qlose-black);
+  }
+
+  .qlose-plan {
+    border-bottom: 1px solid var(--qlose-black);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .qlose-plan--active {
+    padding-inline: 20px;
+    background: var(--qlose-bone);
+  }
+
+  .qlose-plan__info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .qlose-plan__number,
+  .qlose-plan__price {
+    font-family: var(--qlose-font-sans);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--qlose-black);
+    letter-spacing: -0.02em;
+  }
+
+  .qlose-plan__label {
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--qlose-black);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .qlose-plan__sub {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .qlose-plan__price small {
+    font-size: 11px;
+    color: var(--qlose-muted);
+    font-family: var(--qlose-font-mono);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .qlose-plan__badge {
+    display: inline-block;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    font-family: var(--qlose-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-subscribe {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .qlose-plan {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .qlose-plan__price small {
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE plan teaser",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "numeral", "label": "Large numeral", "default": "90" },
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "04 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "THE SUBSCRIPTION" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>TWO KITS. <em>one</em> SYSTEM.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Same five-step routine, your choice of brush.</p>" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Choose your kit →" },
+    { "type": "url", "id": "cta_url", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "label", "label": "Label", "default": "The Electric Kit" },
+        { "type": "text", "id": "badge", "label": "Badge" },
+        { "type": "text", "id": "sub", "label": "Subtitle" },
+        { "type": "text", "id": "price", "label": "Price", "default": "£59" },
+        { "type": "text", "id": "price_note", "label": "Price note" },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE plan teaser" }]
+}
+{% endschema %}

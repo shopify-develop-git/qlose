@@ -71,5 +71,67 @@
       "THE COMPLETE MOUTH ROUTINE"
     ],
     "absent": []
+  },
+  {
+    "name": "marquee",
+    "path": "/",
+    "contains": [
+      "qlose-marquee__inner",
+      "qlose-marquee__set",
+      "SCRAPE"
+    ],
+    "absent": []
+  },
+  {
+    "name": "routine-steps",
+    "path": "/",
+    "contains": [
+      "qlose-steps",
+      "Angled Floss Pick",
+      "Tongue Scraper"
+    ],
+    "absent": []
+  },
+  {
+    "name": "statement",
+    "path": "/",
+    "contains": [
+      "qlose-statement__heading",
+      "QLOSE / MANIFESTO"
+    ],
+    "absent": []
+  },
+  {
+    "name": "faq-accessible",
+    "path": "/",
+    "contains": [
+      "qlose-faq__item",
+      "<details",
+      "<summary"
+    ],
+    "absent": []
+  },
+  {
+    "name": "plan-teaser",
+    "path": "/",
+    "contains": [
+      "qlose-plans",
+      "The Electric Kit",
+      "THEN £18 / 90 DAYS"
+    ],
+    "absent": []
+  },
+  {
+    "name": "homepage-section-order",
+    "path": "/",
+    "contains": [
+      "qlose-hero",
+      "qlose-marquee",
+      "qlose-steps",
+      "qlose-statement",
+      "qlose-plans",
+      "qlose-faq"
+    ],
+    "absent": []
   }
 ]

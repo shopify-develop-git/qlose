@@ -1,0 +1,256 @@
+{%- comment -%} Ported from docs/design-source/index.html:300-467, 994-1062 {%- endcomment -%}
+
+<section class="qlose-routine qlose-section">
+  <div class="qlose-routine__header">
+    <div>
+      {%- render 'qlose-eyebrow',
+          index: section.settings.eyebrow_index,
+          text: section.settings.eyebrow_text
+      -%}
+      <h2 class="qlose-routine__heading qlose-display">
+        {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+      </h2>
+    </div>
+    <div class="qlose-routine__intro">{{ section.settings.intro }}</div>
+  </div>
+
+  <div class="qlose-steps">
+    {%- for block in section.blocks -%}
+      <article class="qlose-step" {{ block.shopify_attributes }}>
+        <div class="qlose-step__media">
+          <div class="qlose-step__index">{{ block.settings.index }}</div>
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 600
+              | image_tag:
+                widths: '200,400,600',
+                sizes: '(max-width: 600px) 70vw, 20vw',
+                loading: 'lazy',
+                class: 'qlose-step__img',
+                alt: block.settings.title
+            }}
+          {%- elsif block.settings.fallback_asset != blank -%}
+            <img
+              src="{{ block.settings.fallback_asset | asset_url }}"
+              alt="{{ block.settings.title }}"
+              loading="lazy"
+              width="400"
+              height="800"
+              class="qlose-step__img"
+            >
+          {%- endif -%}
+        </div>
+        <div class="qlose-step__body">
+          <h3 class="qlose-step__title">{{ block.settings.title }}</h3>
+          <p class="qlose-step__desc">{{ block.settings.description }}</p>
+          <div class="qlose-step__time">{{ block.settings.duration }}</div>
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-routine__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-routine__heading {
+    font-size: clamp(40px, 6vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-routine__intro {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    padding-bottom: 8px;
+  }
+
+  .qlose-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--qlose-black);
+    border-left: 1px solid var(--qlose-black);
+  }
+
+  .qlose-step {
+    border-right: 1px solid var(--qlose-black);
+    border-bottom: 1px solid var(--qlose-black);
+    background: var(--qlose-off-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 480px;
+    overflow: hidden;
+  }
+
+  .qlose-step__media {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 20px;
+    background: linear-gradient(180deg, var(--qlose-bone) 0%, var(--qlose-off-white) 100%);
+    border-bottom: 1px solid var(--qlose-divider);
+    position: relative;
+    min-height: 240px;
+  }
+
+  .qlose-step__img {
+    max-height: 200px;
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+    transition: transform 0.4s ease;
+  }
+
+  .qlose-step:hover .qlose-step__img {
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-step__img {
+      transition: none;
+    }
+
+    .qlose-step:hover .qlose-step__img {
+      transform: none;
+    }
+  }
+
+  .qlose-step__index {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--qlose-muted);
+    z-index: 2;
+  }
+
+  .qlose-step__body {
+    padding: 24px 24px 32px;
+  }
+
+  .qlose-step__title {
+    font-family: var(--qlose-font-sans);
+    font-size: 16px;
+    color: var(--qlose-black);
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .qlose-step__desc {
+    font-size: 13px;
+    color: var(--qlose-graphite);
+    line-height: 1.5;
+  }
+
+  .qlose-step__time {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--qlose-accent);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* The source jumps straight from five columns to one at 900px, which
+     produces five 480px-tall cards stacked on a phone. */
+  @media (max-width: 1400px) {
+    .qlose-steps { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  @media (max-width: 1100px) {
+    .qlose-steps { grid-template-columns: repeat(3, 1fr); }
+    .qlose-routine__header { gap: 40px; }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-routine__header {
+      grid-template-columns: 1fr;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .qlose-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .qlose-steps {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      border-left: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .qlose-step {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+      border-left: 1px solid var(--qlose-black);
+      min-height: 420px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE routine steps",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "02 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "THE METHOD" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>FIVE STEPS. ONE <em>system</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>It's a sequence built around how each tool actually works.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "index", "label": "Index", "default": "— 01 / FLOSS" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "text",
+          "id": "fallback_asset",
+          "label": "Bundled asset filename",
+          "default": "qlose-tool-floss-pick.png",
+          "info": "Used when no image is picked, so the section works on an empty store."
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Angled Floss Pick" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Start between the teeth." },
+        { "type": "text", "id": "duration", "label": "Duration", "default": "30 SEC" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE routine steps" }]
+}
+{% endschema %}

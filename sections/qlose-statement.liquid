@@ -1,0 +1,86 @@
+{%- comment -%} Ported from docs/design-source/index.html:469-518, 1064-1074 {%- endcomment -%}
+
+<section class="qlose-statement">
+  <div class="qlose-statement__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="qlose-statement__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+
+    <h2 class="qlose-statement__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    {%- if section.settings.attribution != blank -%}
+      <p class="qlose-statement__attribution">{{ section.settings.attribution }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-statement {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 160px var(--qlose-gutter);
+    overflow: hidden;
+  }
+
+  .qlose-statement__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Not --qlose-muted here: #666 on #0a0a0a is only 3.6:1. #9a9a9a gives
+     7.5:1 on the same background. */
+  .qlose-statement__eyebrow,
+  .qlose-statement__attribution {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+  }
+
+  .qlose-statement__eyebrow {
+    margin-bottom: 40px;
+  }
+
+  .qlose-statement__attribution {
+    margin-top: 60px;
+  }
+
+  .qlose-statement__heading {
+    font-size: clamp(44px, 8vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    max-width: 1100px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-statement {
+      padding-block: 80px;
+    }
+
+    .qlose-statement__attribution {
+      margin-top: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE statement",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— 03 / THE PHILOSOPHY" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>ORAL CARE ISN'T A <strong>CHORE</strong>. IT'S A <em>ritual</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "text", "id": "attribution", "label": "Attribution", "default": "— QLOSE / MANIFESTO" }
+  ],
+  "presets": [{ "name": "QLOSE statement" }]
+}
+{% endschema %}

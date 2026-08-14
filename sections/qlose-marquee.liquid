@@ -1,0 +1,112 @@
+{%- comment -%} Ported from docs/design-source/index.html:259-298, 979-992 {%- endcomment -%}
+
+<div class="qlose-marquee">
+  <div class="qlose-marquee__inner" style="--qlose-marquee-duration: {{ section.settings.duration }}s;">
+    {%- comment -%}
+      Two copies: the translateX(-50%) loop needs an exact duplicate to be
+      seamless. The source hardcoded the words twice; here the second copy is
+      generated and marked aria-hidden so a screen reader reads the list once.
+    {%- endcomment -%}
+    {%- for i in (1..2) -%}
+      <div class="qlose-marquee__set"{% if i == 2 %} aria-hidden="true"{% endif %}>
+        {%- for block in section.blocks -%}
+          <span class="qlose-marquee__word" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          <span class="qlose-marquee__dot"></span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .qlose-marquee {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 24px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .qlose-marquee__inner {
+    display: flex;
+    width: max-content;
+    animation: qlose-marquee-scroll var(--qlose-marquee-duration, 35s) linear infinite;
+    font-family: var(--qlose-font-sans);
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .qlose-marquee__set {
+    display: flex;
+    align-items: center;
+  }
+
+  .qlose-marquee__word {
+    padding: 0 40px;
+  }
+
+  .qlose-marquee__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--qlose-white);
+    flex: none;
+  }
+
+  @keyframes qlose-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-marquee__inner {
+      font-size: 32px;
+    }
+
+    .qlose-marquee__word {
+      padding: 0 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE marquee",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Scroll duration",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 35
+    }
+  ],
+  "blocks": [
+    {
+      "type": "word",
+      "name": "Word",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Word", "default": "PICK" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "QLOSE marquee",
+      "blocks": [
+        { "type": "word", "settings": { "text": "PICK" } },
+        { "type": "word", "settings": { "text": "BRUSH" } },
+        { "type": "word", "settings": { "text": "TUFT" } },
+        { "type": "word", "settings": { "text": "TONGUE" } },
+        { "type": "word", "settings": { "text": "SCRAPE" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
