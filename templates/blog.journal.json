@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "hero": {
+      "type": "qlose-page-hero",
+      "settings": {
+        "variant": "editorial",
+        "meta_left": "THE JOURNAL — WRITINGS ON RITUAL, CARE, AND METHOD",
+        "meta_right": "UPDATED WEEKLY",
+        "heading": "<p>THE<br><em>journal</em>.</p>",
+        "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>"
+      }
+    },
+    "featured": {
+      "type": "qlose-featured-article",
+      "settings": {
+        "badge": "FEATURED / 01",
+        "read_time": "8 MIN READ",
+        "cta_label": "Read the piece →"
+      }
+    },
+    "grid": {
+      "type": "qlose-article-grid",
+      "settings": {
+        "show_filters": true,
+        "filter_label": "Filter by topic",
+        "filter_all_label": "— All",
+        "skip_featured": true,
+        "eyebrow": "— Recent pieces",
+        "count_label": "ARTICLES",
+        "per_page": 12,
+        "empty_text": "No pieces published yet."
+      }
+    },
+    "newsletter": {
+      "type": "qlose-newsletter",
+      "settings": {
+        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox</em>.</p>",
+        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>",
+        "placeholder": "your@email.com",
+        "button_label": "Subscribe →",
+        "success_text": "Thanks — you're on the list."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "grid",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,290 @@
+{%- comment -%}
+  Ported from docs/design-source/journal.html, sections .journal-filters and
+  .articles. The source's category chips are wired to blog tags, and the
+  grid is paginated rather than a fixed list of six.
+{%- endcomment -%}
+
+{%- liquid
+  assign target = blog
+  if section.settings.blog != blank
+    assign target = blogs[section.settings.blog]
+  endif
+  assign skip_first = 0
+  if section.settings.skip_featured
+    assign skip_first = 1
+  endif
+-%}
+
+<section class="qlose-articles">
+  <div class="qlose-articles__inner">
+    {%- if section.settings.show_filters and target.all_tags.size > 0 -%}
+      <nav class="qlose-articles__filters" aria-label="{{ section.settings.filter_label }}">
+        <a
+          class="qlose-articles__filter{% if current_tags == blank %} qlose-articles__filter--active{% endif %}"
+          href="{{ target.url }}"
+        >{{ section.settings.filter_all_label }}</a>
+        {%- for tag in target.all_tags -%}
+          <a
+            class="qlose-articles__filter{% if current_tags contains tag %} qlose-articles__filter--active{% endif %}"
+            href="{{ target.url }}/tagged/{{ tag | handleize }}"
+          >{{ tag }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="qlose-articles__header">
+      <div class="qlose-articles__eyebrow">{{ section.settings.eyebrow }}</div>
+      <div class="qlose-articles__count">
+        {{ target.articles_count }} {{ section.settings.count_label }}
+      </div>
+    </div>
+
+    {%- comment -%}
+      Guard before paginate: given a nil collection the paginate tag renders
+      nothing at all, swallowing the empty state along with it. That happens
+      whenever the section is placed outside a blog template.
+    {%- endcomment -%}
+    {%- if target == blank or target.articles_count == 0 -%}
+      <p class="qlose-articles__empty">{{ section.settings.empty_text }}</p>
+    {%- else -%}
+    {%- paginate target.articles by section.settings.per_page -%}
+      {%- if target.articles.size > skip_first -%}
+        <div class="qlose-articles__grid">
+          {%- for post in target.articles offset: skip_first -%}
+            <article class="qlose-article">
+              <a class="qlose-article__link" href="{{ post.url }}">
+                <div class="qlose-article__media">
+                  {%- if post.image != blank -%}
+                    {{
+                      post.image
+                      | image_url: width: 800
+                      | image_tag:
+                        widths: '300,500,800',
+                        sizes: '(max-width: 900px) 92vw, 30vw',
+                        loading: 'lazy',
+                        class: 'qlose-article__img',
+                        alt: post.image.alt | default: post.title
+                    }}
+                  {%- endif -%}
+                  <span class="qlose-article__index">
+                    {{- forloop.index | plus: skip_first | prepend: '0' | slice: -2, 2 -}}
+                  </span>
+                </div>
+
+                <div class="qlose-article__meta">
+                  {%- if post.tags.size > 0 -%}— {{ post.tags.first | upcase }}{%- endif -%}
+                </div>
+
+                <h3 class="qlose-article__title qlose-display">{{ post.title }}</h3>
+
+                <p class="qlose-article__excerpt">
+                  {{- post.excerpt_or_content | strip_html | truncatewords: 26 -}}
+                </p>
+
+                <time class="qlose-article__date" datetime="{{ post.published_at | date: '%Y-%m-%d' }}">
+                  — {{ post.published_at | date: '%d %b %Y' | upcase }}
+                </time>
+              </a>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="qlose-articles__empty">{{ section.settings.empty_text }}</p>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="qlose-articles__pagination" aria-label="Pagination">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}">← {{ paginate.previous.title }}</a>
+          {%- endif -%}
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}">{{ paginate.next.title }} →</a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-articles {
+    padding: 60px var(--qlose-gutter) 120px;
+    max-width: var(--qlose-max);
+    margin: 0 auto;
+  }
+
+  .qlose-articles__filters {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--qlose-divider);
+    margin-bottom: 40px;
+  }
+
+  .qlose-articles__filter {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    text-decoration: none;
+  }
+
+  .qlose-articles__filter:hover,
+  .qlose-articles__filter--active {
+    color: var(--qlose-black);
+  }
+
+  .qlose-articles__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-articles__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .qlose-article__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .qlose-article__media {
+    aspect-ratio: 4 / 3;
+    background: var(--qlose-bone);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .qlose-article:hover .qlose-article__media {
+    background: var(--qlose-accent-soft);
+  }
+
+  .qlose-article__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .qlose-article__index {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--qlose-black);
+    background: var(--qlose-off-white);
+    padding: 4px 8px;
+  }
+
+  .qlose-article__meta,
+  .qlose-article__date {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    display: block;
+  }
+
+  .qlose-article__meta {
+    margin-bottom: 10px;
+  }
+
+  .qlose-article__title {
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--qlose-black);
+    margin-bottom: 12px;
+  }
+
+  .qlose-article__link:hover .qlose-article__title {
+    color: var(--qlose-accent-deep);
+  }
+
+  .qlose-article__excerpt {
+    font-size: 13px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .qlose-articles__empty {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-articles__pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--qlose-divider);
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .qlose-articles__pagination a {
+    color: var(--qlose-black);
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-article__media {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .qlose-articles__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .qlose-articles__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE article grid",
+  "tag": "section",
+  "settings": [
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "Leave empty to use the current blog." },
+    { "type": "checkbox", "id": "show_filters", "label": "Show tag filters", "default": true },
+    { "type": "text", "id": "filter_label", "label": "Filter nav label", "default": "Filter by topic" },
+    { "type": "text", "id": "filter_all_label", "label": "All label", "default": "— All" },
+    { "type": "checkbox", "id": "skip_featured", "label": "Skip the newest post", "default": true, "info": "On when a featured section above already shows it." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— Recent pieces" },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "ARTICLES" },
+    { "type": "range", "id": "per_page", "label": "Posts per page", "min": 3, "max": 24, "step": 3, "default": 12 },
+    { "type": "text", "id": "empty_text", "label": "Empty state", "default": "No pieces published yet." }
+  ],
+  "presets": [{ "name": "QLOSE article grid" }]
+}
+{% endschema %}
