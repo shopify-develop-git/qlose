@@ -1,0 +1,290 @@
+# QLOSE — міграція HTML-дизайну на Shopify Horizon
+
+Дата: 2026-08-14
+Стор: `getqlose.myshopify.com`
+Тема: Horizon 4.1.4 (стокова, у репо на гілці `main`)
+Джерело: `~/Downloads/qlose-website (1)/` — 12 статичних HTML
+
+## 1. Контекст
+
+Клієнт згенерував дизайн через Claude Code як набір самодостатніх HTML-файлів:
+спільні nav/footer, спільний блок CSS-змінних, 9 унікальних PNG у base64 (1.1 MB
+після декодування). Стиль — brutalist editorial: Archivo 900 у мега-кеглях,
+Instrument Serif italic як акцент, JetBrains Mono для метаданих, сітки з
+суцільними бордерами 1px, теракотовий акцент `#c65a3d`.
+
+Завдання: перенести це на Shopify, підключити реальну е-комерс логіку та
+виправити дефекти адаптиву й доступності, які є в джерелі.
+
+### Стан середовища
+
+Робота була заблокована: стокова Horizon 4.1.4 не заливалась на стор — 16 файлів
+відхилялись з `Invalid schema: default must be a color or dynamic source access
+path`. Причина — 50 посилань на тип налаштування `color_palette`, який
+підтримується лише свіжішою версією Theme API, ніж та, у яку ходить Shopify CLI
+3.93.2. Ланцюг: Horizon 4.1.4 → CLI 4.x → Node ≥ 22.12.
+
+Розвʼязано ізольовано, без впливу на інші проєкти:
+
+| Node | Shopify CLI | Призначення |
+|---|---|---|
+| v20.20.0 (nvm default) | 3.93.2 | решта проєктів, не змінювалась |
+| v22.23.2 | 4.6.1 | цей проєкт, пін через `.nvmrc` |
+
+Після переходу на CLI 4 тема заливається з нулем помилок.
+
+### Стан стора
+
+Стор порожній: 0 товарів, немає блогу `journal`, немає жодної сторінки. Усі
+секції мають коректно рендеритись при відсутніх даних — інакше тему неможливо
+буде відкрити в редакторі до заповнення каталогу. Наповнення каталогу винесено
+в окремий етап (розділ 9).
+
+## 2. Архітектура
+
+Чотири шари. Правило: **шар вище ніколи не редагує шар нижче.**
+
+```
+Horizon core            theme.liquid, cart-drawer, product-form, variant-picker,
+(не чіпаємо)            localization, morph, events, predictive-search
+      ↓
+QLOSE foundation        assets/qlose.css — токени, типографіка, примітиви
+(гілка main)            self-hosted шрифти, snippets/qlose-*
+      ↓
+QLOSE sections          sections/qlose-*.liquid, кожна зі своїм {% stylesheet %}
+      ↓
+Templates               templates/*.json — одна сторінка = один JSON = одна гілка
+```
+
+Увесь кастом має префікс `qlose-`. Це гарантує, що оновлення Horizon ніколи не
+перезапише нашу роботу, і що будь-який розробник з першого погляду бачить межу
+між вендорським кодом і нашим.
+
+Кастомні секції пишемо в конвенції Horizon, а не збоку від неї:
+`{% stylesheet %}` всередині секції (Shopify сам бандлить), `{% schema %}` з
+`presets`, а для JS — web-компоненти на базі `@theme/component` з `refs`, як у
+`assets/marquee.js`.
+
+## 3. Дизайн-система
+
+### Токени
+
+Переносяться з `:root` джерела у `assets/qlose.css` як CSS-змінні. Значення
+беруться як є, крім одного виправлення (розділ 8): `--muted` темніє з `#888` до
+`#666`.
+
+```
+--white #ffffff   --off-white #f5f4f0   --bone #eae7de
+--black #0a0a0a   --ink #1a1a1a         --graphite #2a2a2a
+--muted #666666                         --divider rgba(10,10,10,0.12)
+--accent #c65a3d  --accent-soft #f0dcd0 --accent-deep #a04627
+```
+
+`#666` обрано тому, що `--muted` лягає на два різні тла: `--off-white` у
+більшості секцій і `--bone` у блоках з підсвіткою. Воно проходить AA на обох —
+5.22:1 і 4.64:1 відповідно. Ближче значення `#707070` дало б рівно 4.50:1 на
+першому, але 4.01:1 на другому, тобто провал.
+
+### Шрифти
+
+Archivo (100–900), Instrument Serif (roman + italic), JetBrains Mono (300–500).
+Усі три під SIL OFL, тож self-hosting законний. Кладемо як `.woff2` у `assets/`
+і підключаємо через `@font-face` з `font-display: swap` + `preload` для
+Archivo.
+
+Це свідома відмова від `settings.type_*_font` Horizon: жоден з трьох шрифтів не
+доступний повністю у бібліотеці Shopify, а брендова типографіка тут не є
+предметом налаштування клієнтом. Заразом прибирає звернення до Google Fonts CDN
+— мінус зовнішній запит на кожній сторінці й мінус GDPR-питання для UK/EU.
+
+### Примітиви
+
+`snippets/qlose-button.liquid` — три варіанти (`primary`, `ghost`, `underline`).
+`snippets/qlose-eyebrow.liquid` — патерн `01 / THE METHOD`.
+Стани `:focus-visible` визначаються один раз у `qlose.css` для всіх
+інтерактивних елементів.
+
+## 4. Бібліотека секцій
+
+Правило розподілу: секція, потрібна **більш ніж одній** сторінці, лежить на
+`main`. Інакше кожна гілка тягнула б її копію і мердж давав би конфлікти.
+
+### Фундамент — гілка `main`
+
+| Секція | Призначення | Налаштування |
+|---|---|---|
+| `qlose-announcement-bar` | верхня чорна стрічка | повідомлення (блоки), кольори |
+| `qlose-header` | nav, лого, акаунт, кошик | меню (linklist), лого з `settings.logo` |
+| `qlose-footer` | мега-лого, 4 колонки, legal | колонки (блоки), реквізити, соцмережі |
+| `qlose-page-hero` | хедер сторінки, 3 варіанти: `simple` / `legal` / `editorial` | eyebrow, заголовок, підзаголовок, мета-рядок |
+| `qlose-faq` | акордеон | питання (блоки), eyebrow, заголовок |
+| `qlose-cta-band` | нижній заклик | заголовок, текст, кнопки |
+| `qlose-statement` | чорний фул-блід з мега-типографікою | eyebrow, заголовок, атрибуція |
+| `qlose-hero` | головний екран | мета-рядок, заголовок, текст, до 3 CTA, візуал |
+| `qlose-marquee` | рухома стрічка слів | слова (блоки), швидкість |
+| `qlose-routine-steps` | 5 кроків рутини | заголовок секції, кроки (блоки) |
+| `qlose-plan-teaser` | блок підписки на головній | візуал, плани (блоки), CTA |
+| `qlose-rich-text` | тіло юридичних сторінок | `page.content` + нумеровані розділи |
+
+`qlose-rich-text` живе на `main`, хоч головна його й не використовує: він
+потрібен трьом гілкам (privacy, terms, returns), жодна з яких не є природним
+батьком для двох інших.
+
+`qlose-header` не пишеться з нуля: лічильник кошика та відкриття drawer беруться
+з готових компонентів Horizon (`cart-icon`, `cart-drawer`), мобільна панель — з
+`header-drawer`. Ми даємо тільки розмітку й стилі.
+
+`qlose-faq` будується на `<details>`/`<summary>`, а не на `div` з обробником
+кліку — це дає клавіатурну доступність і семантику безкоштовно. Анімація
+розкриття — через `grid-template-rows`, без обмеження висоти.
+
+### Секції сторінок — свої гілки
+
+| Секція | Гілка, що її створює |
+|---|---|
+| `qlose-product` (breadcrumb, галерея, план-селектор, add-to-cart, деталі) | `feature/product-electric-kit` |
+| `qlose-tools-grid`, `qlose-compare-table`, `qlose-cross-sell` | `feature/product-electric-kit` |
+| `qlose-routine-step-detail`, `qlose-time-strip` | `feature/page-routine` |
+| `qlose-story`, `qlose-values-grid` | `feature/page-about` |
+| `qlose-refill-contents`, `qlose-frequency` | `feature/product-refills` |
+| `qlose-rates-table`, `qlose-info-cards`, `qlose-waitlist` | `feature/page-shipping` |
+| `qlose-featured-article`, `qlose-article-grid`, `qlose-newsletter` | `feature/blog-journal` |
+
+Electric Kit і Manual Kit ділять ~95% розмітки, тому PDP-секції робимо
+**керованими налаштуваннями**: два кити відрізняються лише вмістом свого
+`templates/product.*.json`.
+
+Родину PDP-секцій свідомо лишаємо на гілці Electric Kit, а не виносимо на
+`main`. Якби вони жили на `main`, гілка Electric Kit звелась би до одного
+JSON-файлу — рев'ювер ніколи не побачив би код сторінки товару в контексті
+сторінки товару. Ціна рішення — **єдина залежність у проєкті**, описана в
+розділі 5.
+
+## 5. Маршрути та гілки
+
+`main` містить фундамент, бібліотеку спільних секцій і головну сторінку. Кожна
+наступна гілка відгалужується від `main` і додає **тільки свій шаблон плюс свої
+унікальні секції**.
+
+**Порядок мерджу.** Гілки не перетинаються між собою, тож мердж вільний — з
+одним винятком. `feature/product-manual-kit` і `feature/product-refills`
+використовують родину PDP-секцій, яку створює `feature/product-electric-kit`,
+і відгалужуються **від неї**, а не від `main`. Отже Electric Kit мерджиться
+першим із трьох товарних. Решта дев'ять гілок незалежні повністю.
+
+| Джерело | Shopify | Гілка |
+|---|---|---|
+| `index.html` | `templates/index.json` | `main` |
+| `electric-kit.html` | `templates/product.kit-electric.json` | `feature/product-electric-kit` |
+| `manual-kit.html` | `templates/product.kit-manual.json` | `feature/product-manual-kit` |
+| `refills.html` | `templates/product.refills.json` | `feature/product-refills` |
+| `routine.html` | `templates/page.routine.json` | `feature/page-routine` |
+| `about.html` | `templates/page.about.json` | `feature/page-about` |
+| `faq.html` | `templates/page.faq.json` | `feature/page-faq` |
+| `shipping.html` | `templates/page.shipping.json` | `feature/page-shipping` |
+| `returns.html` | `templates/page.returns.json` | `feature/page-returns` |
+| `privacy.html` | `templates/page.privacy.json` | `feature/page-privacy` |
+| `terms.html` | `templates/page.terms.json` | `feature/page-terms` |
+| `journal.html` | `templates/blog.journal.json`, `templates/article.json` | `feature/blog-journal` |
+| — (дизайну немає) | `templates/page.contact.json` | `feature/page-contact` |
+
+Refills робимо як product-шаблон, бо в навігації джерела він лінкується як
+`/products/refills`. Секції пишемо переносними, щоб перекидання на `page.` за
+потреби коштувало однієї зміни шаблону.
+
+Сторінки `contact` у дизайні немає — збираємо у стилі системи на формі Horizon.
+
+## 6. Підключення логіки
+
+Кошик і drawer — компоненти Horizon, лічильник у шапці живий. Форма товару —
+`product-form` Horizon з реальними варіантами й станом «немає в наявності».
+Блог і стаття — з обʼєктів `blog` / `article`. Форма новин на journal — через
+`{% form 'customer' %}`. Валюта GBP, локаль UK.
+
+**Селектор планів** (`£59` / `£59 + £18 кожні 90 днів`) на цьому етапі —
+робочий UI-компонент без бекенду підписки. Пишемо його як web-компонент
+`qlose-plan-selector` з єдиною точкою підключення: обраний план виставляє
+`selling_plan` у прихованому полі форми. Коли клієнт визначиться з застосунком
+підписок, увімкнення зводиться до заповнення цього поля з
+`product.selling_plan_groups` — розмітку переробляти не доведеться.
+
+## 7. Верифікація
+
+Кожна гілка перед позначенням готовою:
+
+1. `shopify theme check` — без нових помилок відносно базового рівня стокової теми.
+2. Сторінка віддає 200 на `127.0.0.1:9292`.
+3. Візуальна перевірка в Chrome через розширення Claude in Chrome на трьох
+   ширинах: 375, 768, 1440.
+4. Консоль без помилок, мережа без 404 на ассетах.
+
+Базовий рівень theme check на стоковій Horizon 4.1.4 — 6 errors / 2 warnings у
+5 файлах (`collection-links`, `header`, `main-cart`, `product-list`,
+`bento-grid`). Це вендорські файли, ми їх не чіпаємо; рахуємо тільки приріст.
+
+## 8. Що виправляємо в джерелі
+
+Дизайн переносимо як є. Виправляємо тільки те, що є дефектом, а не рішенням:
+
+**Контраст.** `--muted: #888` на `--off-white: #f5f4f0` дає 3.2:1 — провал WCAG
+AA (потрібно 4.5:1). Цим кольором набрано весь 11px mono: eyebrow-и, мета-рядки,
+підписи планів, легенду футера. Темнимо до проходження AA.
+
+**Акордеони.** Обробник кліку висить на `<div>` — з клавіатури недоступно,
+скрінрідер не оголошує стан. `max-height: 300px` ріже довгі відповіді, а в FAQ і
+в блоці «What's inside» вони довгі. Переходимо на `<details>` + анімацію через
+`grid-template-rows`.
+
+**Адаптив.** У джерелі один брейкпоінт — 900px. Наслідок: сітка з 5 кроків
+рутини стає 5 велетенськими картками одна під одною, а таблиця порівняння на
+телефоні ламається. Додаємо проміжний рівень (2 колонки) і scroll-snap карусель
+для кроків на вузьких екранах.
+
+**Анімація.** Marquee крутиться завжди, без `prefers-reduced-motion`. Додаємо.
+
+**Фокус.** `:focus-visible` не визначено ніде — навігація з клавіатури невидима.
+Додаємо в примітиви.
+
+**Зображення.** base64 → Shopify CDN з `srcset`, явними `width`/`height` і
+`loading="lazy"` нижче згину. Прибирає ~1.1 MB інлайну з HTML і CLS.
+
+**Мобільне меню.** У джерелі це `display: none` + клас `.open`. Перекладаємо на
+`header-drawer` Horizon з фокус-трапом і закриттям по Esc.
+
+## 9. Передумова: наповнення каталогу
+
+Стор порожній, тож PDP-шаблони немає на чому перевірити. Потрібні:
+
+- 3 товари: `electric-kit` (£59), `manual-kit` (£29), `refills` (£18) з медіа
+  з витягнутих PNG;
+- блог з хендлом `journal` і хоча б одна стаття;
+- 9 сторінок з відповідними хендлами.
+
+Це не входить у код теми і виконується окремим етапом до гілок PDP. Рішення
+про те, хто це робить — я через адмінку чи клієнт — потребує підтвердження.
+
+## 10. Поза межами
+
+Реальний бекенд підписок (потребує вибору застосунку клієнтом). Застосунок
+відгуків — у джерелі блок відгуків уже вимкнено коментарем із поміткою
+підключити Judge.me / Okendo / Trustpilot. Юридичний текст переносимо дослівно,
+не редагуємо. WEEE-номер і VAT у джерелі позначені як TODO клієнта.
+
+## 11. Витягнуті ассети
+
+9 PNG декодовано з base64 у `/private/tmp/.../img/`:
+
+| Файл | Розмір | Використання |
+|---|---|---|
+| `logo-qlose-small.png` | 400×47 | лого в шапці |
+| `logo-qlose-large.png` | 1200×142 | мега-лого у футері |
+| `kit-case-closed.png` | 800×278 | герой головної, галерея PDP |
+| `kit-case-open.png` | 800×534 | галерея PDP |
+| `tool-floss-pick.png` | 138×800 | крок 01 |
+| `tool-toothbrush.png` | 66×800 | крок 02 |
+| `tool-tuft-brush.png` | 109×800 | крок 03 |
+| `tool-tongue-brush.png` | 800×126 | крок 04 |
+| `tool-tongue-scraper.png` | 479×800 | крок 05 |
+
+Лого йде в `settings.logo`, знімки інструментів — у Files і підтягуються
+`image_picker`-налаштуваннями секцій, кейси — у медіа товарів.
