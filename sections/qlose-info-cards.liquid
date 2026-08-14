@@ -1,0 +1,131 @@
+{%- comment -%} Ported from docs/design-source/shipping.html, section .info-cards {%- endcomment -%}
+
+<section class="qlose-info-cards">
+  <div class="qlose-info-cards__inner">
+    {%- if section.settings.eyebrow_text != blank -%}
+      {%- render 'qlose-eyebrow',
+          index: section.settings.eyebrow_index,
+          text: section.settings.eyebrow_text
+      -%}
+    {%- endif -%}
+
+    <h2 class="qlose-info-cards__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-info-cards__grid">
+      {%- for block in section.blocks -%}
+        <article class="qlose-info-card" {{ block.shopify_attributes }}>
+          <div class="qlose-info-card__num">{{ block.settings.number }}</div>
+          <h3 class="qlose-info-card__title">{{ block.settings.title }}</h3>
+          <p class="qlose-info-card__text">{{ block.settings.text }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-info-cards {
+    background: var(--qlose-bone);
+    padding: 100px var(--qlose-gutter);
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-info-cards__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .qlose-info-cards__heading {
+    font-size: clamp(32px, 5vw, 72px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 60px;
+  }
+
+  .qlose-info-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .qlose-info-card {
+    background: var(--qlose-off-white);
+    padding: 40px 32px;
+    border: 1px solid var(--qlose-black);
+  }
+
+  .qlose-info-card__num {
+    font-family: var(--qlose-font-sans);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--qlose-accent);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .qlose-info-card__title {
+    font-family: var(--qlose-font-sans);
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--qlose-black);
+    margin-bottom: 12px;
+  }
+
+  .qlose-info-card__text {
+    font-size: 14px;
+    color: var(--qlose-graphite);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-info-cards {
+      padding-block: 60px;
+    }
+
+    .qlose-info-cards__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .qlose-info-cards__heading {
+      margin-bottom: 32px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE info cards",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>HOW IT <em>works</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE info cards" }]
+}
+{% endschema %}

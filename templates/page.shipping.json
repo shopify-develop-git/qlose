@@ -1,0 +1,143 @@
+{
+  "sections": {
+    "hero": {
+      "type": "qlose-page-hero",
+      "settings": {
+        "variant": "simple",
+        "meta_left": "SHIPPING — DELIVERY & RETURNS",
+        "meta_right": "UK ONLY",
+        "heading": "<p>SHIPPING <em>&amp;</em><br>RETURNS.</p>",
+        "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.</p>"
+      }
+    },
+    "rates": {
+      "type": "qlose-rates-table",
+      "blocks": {
+        "r1": {
+          "type": "rate",
+          "settings": {
+            "name": "Subscription Delivery",
+            "carrier": "Royal Mail Tracked 48",
+            "time": "2-3 Working Days",
+            "cost": "FREE",
+            "free": true
+          }
+        },
+        "r2": {
+          "type": "rate",
+          "settings": {
+            "name": "Standard Delivery",
+            "carrier": "Royal Mail Tracked 48",
+            "time": "2-3 Working Days",
+            "cost": "£3.50",
+            "free": false
+          }
+        },
+        "r3": {
+          "type": "rate",
+          "settings": {
+            "name": "Next-Day Delivery",
+            "carrier": "Royal Mail Tracked 24",
+            "time": "Next Working Day",
+            "cost": "£6.50",
+            "free": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "— UK Delivery Options",
+        "col_method": "Delivery Method",
+        "col_time": "Time",
+        "col_cost": "Cost"
+      }
+    },
+    "how": {
+      "type": "qlose-info-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "number": "01",
+            "title": "Order by 2pm",
+            "text": "Orders placed before 2pm on a working day ship the same day. Orders after 2pm ship the next working day."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "number": "02",
+            "title": "Tracking sent",
+            "text": "You'll receive an email with tracking as soon as your parcel is with Royal Mail. Check the delivery window in the tracking portal."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "number": "03",
+            "title": "Not home?",
+            "text": "Royal Mail will leave a card and either try again or hold the parcel at your local post office for pickup within 18 days."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "heading": "<p>HOW IT <em>works</em>.</p>"
+      }
+    },
+    "returns_head": {
+      "type": "qlose-page-hero",
+      "settings": {
+        "variant": "simple",
+        "meta_left": "02 /",
+        "meta_right": "RETURNS",
+        "heading": "<p>RETURNS <em>&amp;</em><br>REPLACEMENTS.</p>"
+      }
+    },
+    "returns_body": {
+      "type": "qlose-rich-text",
+      "settings": {
+        "use_page_content": false,
+        "pullquote": "Oral care is personal. Once a kit's been opened, it belongs to you.",
+        "content": "<h2>Unopened kits</h2><p>Every kit ships sealed with a belly band carrying a perforated pull tab. If that tab is intact, you can cancel and return your kit within 14 days of delivery for a full refund, with a further 14 days to send it back. Email hello@getqlose.com with your order number and we'll share return instructions.</p><h2>Opened kits</h2><p>Once the perforated tab on the belly band is broken, the kit counts as opened. For hygiene reasons we can't accept returns or refunds on opened kits, as permitted under the Consumer Contracts Regulations 2013 for sealed goods that aren't suitable for return once unsealed.</p><h2>Refills</h2><p>Non-refundable once shipped. You can pause, skip, or cancel your subscription anytime from your account to prevent future orders.</p><h2>Damaged, incomplete or faulty</h2><p>If your kit arrives with anything wrong — a missing tool, damaged case, or a toothbrush that won't power on — email hello@getqlose.com within 14 days with your order number. We'll send a replacement, no returns needed. The electric toothbrush also carries a 12-month warranty from delivery. Your statutory rights in respect of faulty goods are unaffected by the hygiene-seal policy above.</p><h2>How to get in touch</h2><p>Email <a href=\"mailto:hello@getqlose.com\">hello@getqlose.com</a> with your order number. We reply within one working day.</p>"
+      }
+    },
+    "waitlist": {
+      "type": "qlose-cta-band",
+      "blocks": {
+        "b1": {
+          "type": "cta",
+          "settings": {
+            "label": "Notify me →",
+            "url": "/pages/contact",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ],
+      "settings": {
+        "theme": "dark",
+        "heading": "<p>SHIPPING <em>outside</em><br>THE UK?</p>",
+        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "rates",
+    "how",
+    "returns_head",
+    "returns_body",
+    "waitlist"
+  ]
+}

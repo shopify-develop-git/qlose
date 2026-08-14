@@ -1,0 +1,151 @@
+{%- comment -%} Ported from docs/design-source/shipping.html, section .shipping-rates {%- endcomment -%}
+
+<section class="qlose-rates">
+  {%- if section.settings.eyebrow != blank -%}
+    <div class="qlose-rates__eyebrow">{{ section.settings.eyebrow }}</div>
+  {%- endif -%}
+
+  {%- comment -%}
+    A real table: this is rate data, and a screen reader needs the row and
+    column headers to read a cell as "Next-Day Delivery, cost, £6.50".
+  {%- endcomment -%}
+  <table class="qlose-rates__table">
+    <thead>
+      <tr>
+        <th scope="col">{{ section.settings.col_method }}</th>
+        <th scope="col">{{ section.settings.col_time }}</th>
+        <th scope="col">{{ section.settings.col_cost }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for block in section.blocks -%}
+        <tr {{ block.shopify_attributes }}>
+          <th scope="row">
+            <span class="qlose-rates__name">{{ block.settings.name }}</span>
+            {%- if block.settings.carrier != blank -%}
+              <span class="qlose-rates__carrier">{{ block.settings.carrier }}</span>
+            {%- endif -%}
+          </th>
+          <td>{{ block.settings.time }}</td>
+          <td class="qlose-rates__cost{% if block.settings.free %} qlose-rates__cost--free{% endif %}">
+            {{- block.settings.cost -}}
+          </td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+</section>
+
+{% stylesheet %}
+  .qlose-rates {
+    padding: 60px var(--qlose-gutter) 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .qlose-rates__eyebrow {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-bottom: 24px;
+  }
+
+  .qlose-rates__table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--qlose-black);
+    border-left: 1px solid var(--qlose-black);
+    text-align: left;
+  }
+
+  .qlose-rates__table :is(th, td) {
+    padding: 20px 24px;
+    border-right: 1px solid var(--qlose-black);
+    border-bottom: 1px solid var(--qlose-black);
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: middle;
+  }
+
+  .qlose-rates__table thead th {
+    font-family: var(--qlose-font-sans);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+  }
+
+  .qlose-rates__name {
+    display: block;
+    font-family: var(--qlose-font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-rates__carrier {
+    display: block;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .qlose-rates__cost {
+    font-family: var(--qlose-font-sans);
+    font-weight: 900;
+    font-size: 18px;
+  }
+
+  .qlose-rates__cost--free {
+    color: var(--qlose-accent-deep);
+  }
+
+  @media (max-width: 700px) {
+    .qlose-rates {
+      overflow-x: auto;
+    }
+
+    .qlose-rates__table {
+      min-width: 520px;
+    }
+
+    .qlose-rates__table :is(th, td) {
+      padding: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE rates table",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— UK Delivery Options" },
+    { "type": "text", "id": "col_method", "label": "Column 1", "default": "Delivery Method" },
+    { "type": "text", "id": "col_time", "label": "Column 2", "default": "Time" },
+    { "type": "text", "id": "col_cost", "label": "Column 3", "default": "Cost" }
+  ],
+  "blocks": [
+    {
+      "type": "rate",
+      "name": "Rate",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "carrier", "label": "Carrier" },
+        { "type": "text", "id": "time", "label": "Time" },
+        { "type": "text", "id": "cost", "label": "Cost" },
+        { "type": "checkbox", "id": "free", "label": "Highlight as free", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE rates table" }]
+}
+{% endschema %}
