@@ -190,20 +190,56 @@ git commit -m "chore: verification harness, vendored design source, brand assets
 
 Запит із десктопним User-Agent повертає CSS саме з `woff2`, а не з legacy-форматами.
 
+Блок потрібного subset-у вибирається **за `unicode-range`, а не за позицією**.
+Порядок блоків у відповіді залежить від родини: для Archivo це vietnamese,
+latin-ext, latin — тобто потрібний нам latin іде третім, а не першим. Для
+Instrument Serif ще й треба розрізнити roman та italic за `font-style`.
+
 ```bash
-UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+python3 - <<'PY'
+import re, urllib.request
 
-fetch_font () {  # $1 = family query, $2 = output file, $3 = nth url (1-based)
-  url=$(curl -s -H "User-Agent: $UA" "https://fonts.googleapis.com/css2?family=$1&display=swap" \
-        | grep -oE 'https://fonts.gstatic.com/[^)]*\.woff2' | sed -n "${3}p")
-  echo "$2 <- $url"
-  curl -s -o "$2" "$url"
-}
+UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
-fetch_font "Archivo:wght@100..900"      assets/qlose-archivo.woff2                 1
-fetch_font "Instrument+Serif:ital@0;1"  assets/qlose-instrument-serif.woff2        1
-fetch_font "Instrument+Serif:ital@0;1"  assets/qlose-instrument-serif-italic.woff2 2
-fetch_font "JetBrains+Mono:wght@300..500" assets/qlose-jetbrains-mono.woff2        1
+def css(family):
+    url = "https://fonts.googleapis.com/css2?family=%s&display=swap" % family
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    return urllib.request.urlopen(req, timeout=60).read().decode()
+
+def pick(text, style="normal"):
+    """Return the src URL of the latin @font-face block for the given style."""
+    for block in re.findall(r"@font-face\s*\{(.*?)\}", text, re.S):
+        if "font-style: %s;" % style not in block:
+            continue
+        ur = re.search(r"unicode-range:\s*([^;]+);", block)
+        if not ur or "U+0000-00FF" not in ur.group(1):
+            continue
+        src = re.search(r"src:\s*url\((https://[^)]+\.woff2)\)", block)
+        if src:
+            return src.group(1)
+    return None
+
+jobs = [
+    ("Archivo:wght@100..900",        "normal", "assets/qlose-archivo.woff2"),
+    ("Instrument+Serif:ital@0;1",    "normal", "assets/qlose-instrument-serif.woff2"),
+    ("Instrument+Serif:ital@0;1",    "italic", "assets/qlose-instrument-serif-italic.woff2"),
+    ("JetBrains+Mono:wght@300..500", "normal", "assets/qlose-jetbrains-mono.woff2"),
+]
+
+cache = {}
+for family, style, dest in jobs:
+    if family not in cache:
+        cache[family] = css(family)
+    url = pick(cache[family], style)
+    if not url:
+        print("NO URL for", family, style)
+        continue
+    data = urllib.request.urlopen(
+        urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60).read()
+    open(dest, "wb").write(data)
+    print("%-46s %6d bytes" % (dest, len(data)))
+PY
 ```
 
 - [ ] **Step 2: Перевірити, що завантажились справжні woff2, а не HTML-помилка**
@@ -214,14 +250,22 @@ ls -la assets/qlose-*.woff2
 ```
 
 Очікується: чотири файли, кожен визначається як `Web Open Font Format (Version 2)`,
-розмір кожного більший за 10 KB. Якщо якийсь файл ~0 KB або визначається як
-текст — URL не витягнувся; перевірити вручну вивід
+розмір кожного більший за 10 KB. Якщо скрипт надрукував `NO URL` — структура
+відповіді Google змінилась, перевірити вручну вивід
 `curl -s -H "User-Agent: $UA" "https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap"`.
 
-Google Fonts віддає CSS із кількома блоками `@font-face` для різних subset-ів
-(latin, latin-ext, cyrillic тощо) у сталому порядку. `sed -n 1p` бере перший,
-який завжди latin. Для Instrument Serif roman і italic ідуть послідовно, тож
-другий URL — italic.
+Далі підтвердити, що Archivo і JetBrains Mono приїхали змінними — від цього
+залежить уся типографіка дизайну, яка тримається на вагах 500–900:
+
+```bash
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+curl -s -H "User-Agent: $UA" "https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap" | grep 'font-weight' | sort -u
+curl -s -H "User-Agent: $UA" "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300..500&display=swap" | grep 'font-weight' | sort -u
+```
+
+Очікується `font-weight: 100 900` і `font-weight: 300 500`. Google віддає
+діапазон рівно тоді, коли файл змінний; одиничне значення означало б статичний
+накреслення і зламану типографіку. Остаточне візуальне підтвердження — у Task 14.
 
 - [ ] **Step 3: Написати снипет підключення шрифтів**
 

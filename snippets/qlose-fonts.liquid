@@ -1,0 +1,52 @@
+{%- comment -%}
+  Self-hosted brand fonts. All three families are SIL OFL licensed.
+  Replaces the Google Fonts CDN link used by the source HTML: one less
+  third-party request per page, and no EU/UK data-transfer question.
+
+  Files are the latin subset (U+0000-00FF) pulled from the Google Fonts
+  css2 endpoint. Archivo and JetBrains Mono are variable fonts, so a single
+  file covers the whole weight range the design uses. Instrument Serif is
+  static 400 in both styles.
+{%- endcomment -%}
+
+<link
+  rel="preload"
+  href="{{ 'qlose-archivo.woff2' | asset_url }}"
+  as="font"
+  type="font/woff2"
+  crossorigin
+>
+
+{% style %}
+  @font-face {
+    font-family: 'QLOSE Archivo';
+    src: url({{ 'qlose-archivo.woff2' | asset_url }}) format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'QLOSE Instrument Serif';
+    src: url({{ 'qlose-instrument-serif.woff2' | asset_url }}) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'QLOSE Instrument Serif';
+    src: url({{ 'qlose-instrument-serif-italic.woff2' | asset_url }}) format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'QLOSE JetBrains Mono';
+    src: url({{ 'qlose-jetbrains-mono.woff2' | asset_url }}) format('woff2-variations');
+    font-weight: 300 500;
+    font-style: normal;
+    font-display: swap;
+  }
+{% endstyle %}
