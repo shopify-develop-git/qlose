@@ -1,6 +1,11 @@
-{%- comment -%} Ported from docs/design-source/about.html, section .bottom-cta {%- endcomment -%}
+{%- comment -%}
+  Ported from docs/design-source/about.html and routine.html, both section
+  .bottom-cta. The two pages use the same block in opposite polarities --
+  about on bone, routine inverted on black -- so the theme is a setting
+  rather than two near-identical sections.
+{%- endcomment -%}
 
-<section class="qlose-cta-band">
+<section class="qlose-cta-band qlose-cta-band--{{ section.settings.theme }}">
   <div class="qlose-cta-band__inner">
     <h2 class="qlose-cta-band__heading qlose-display">
       {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
@@ -26,15 +31,28 @@
 
 {% stylesheet %}
   .qlose-cta-band {
-    background: var(--qlose-bone);
     padding: 120px var(--qlose-gutter);
+  }
+
+  .qlose-cta-band--light {
+    background: var(--qlose-bone);
     border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-cta-band--dark {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding-block: 140px;
   }
 
   .qlose-cta-band__inner {
     max-width: 900px;
     margin: 0 auto;
     text-align: center;
+  }
+
+  .qlose-cta-band--dark .qlose-cta-band__inner {
+    max-width: 1000px;
   }
 
   .qlose-cta-band__heading {
@@ -45,11 +63,45 @@
     margin-bottom: 24px;
   }
 
+  .qlose-cta-band--dark .qlose-cta-band__heading {
+    color: var(--qlose-white);
+    font-size: clamp(40px, 7vw, 120px);
+    letter-spacing: -0.05em;
+  }
+
   .qlose-cta-band__text {
     font-size: 15px;
     line-height: 1.6;
     color: var(--qlose-graphite);
     margin-bottom: 40px;
+  }
+
+  .qlose-cta-band--dark .qlose-cta-band__text {
+    font-size: 16px;
+    /* Source used rgba(255,255,255,0.7) = 7.4:1 on black, which passes. */
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  /* The primary button is black on black in the dark theme, so invert it. */
+  .qlose-cta-band--dark .qlose-btn--primary {
+    background: var(--qlose-white);
+    color: var(--qlose-black);
+  }
+
+  .qlose-cta-band--dark .qlose-btn--primary:hover {
+    background: var(--qlose-bone);
+  }
+
+  .qlose-cta-band--dark .qlose-btn--ghost {
+    color: var(--qlose-white);
+    border-color: var(--qlose-white);
+  }
+
+  .qlose-cta-band--dark .qlose-btn--ghost:hover {
+    background: var(--qlose-white);
+    color: var(--qlose-black);
   }
 
   .qlose-cta-band__actions {
@@ -71,6 +123,16 @@
   "name": "QLOSE CTA band",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "Theme",
+      "options": [
+        { "value": "light", "label": "Light (bone)" },
+        { "value": "dark", "label": "Dark (black)" }
+      ],
+      "default": "light"
+    },
     {
       "type": "richtext",
       "id": "heading",
