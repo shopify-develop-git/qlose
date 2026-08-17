@@ -1,0 +1,83 @@
+{%- comment -%} Ported from docs/design-source/routine.html:192-238 {%- endcomment -%}
+
+<section class="qlose-routine-hero">
+  <div class="qlose-routine-hero__meta">
+    <span><strong>{{ section.settings.meta_left }}</strong></span>
+    <span>{{ section.settings.meta_right }}</span>
+  </div>
+
+  <h1 class="qlose-routine-hero__heading qlose-display">
+    {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+  </h1>
+
+  <div class="qlose-routine-hero__lead">{{ section.settings.lead }}</div>
+</section>
+
+{% stylesheet %}
+  .qlose-routine-hero {
+    padding: 80px var(--qlose-gutter) 60px;
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+  }
+
+  .qlose-routine-hero__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--qlose-divider);
+    margin-bottom: 40px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-routine-hero__meta strong {
+    color: var(--qlose-black);
+    font-weight: 500;
+  }
+
+  .qlose-routine-hero__heading {
+    /* Source min was 72px, which overflows a 320px viewport. */
+    font-size: clamp(52px, 12vw, 200px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--qlose-black);
+    margin-bottom: 40px;
+  }
+
+  .qlose-routine-hero__lead {
+    max-width: 700px;
+    font-size: 18px;
+    color: var(--qlose-graphite);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-routine-hero {
+      padding-block: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE routine hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "meta_left", "label": "Meta left", "default": "THE METHOD" },
+    { "type": "text", "id": "meta_right", "label": "Meta right", "default": "THE COMPLETE ROUTINE / 3 MINUTES" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>THE FIVE-STEP <em>clean</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "lead", "label": "Lead" }
+  ],
+  "presets": [{ "name": "QLOSE routine hero" }]
+}
+{% endschema %}

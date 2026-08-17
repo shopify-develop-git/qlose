@@ -1,0 +1,82 @@
+{%- comment -%} Ported from docs/design-source/routine.html:240-274 {%- endcomment -%}
+
+<div class="qlose-time-strip">
+  {%- for block in section.blocks -%}
+    <div class="qlose-time-item" {{ block.shopify_attributes }}>
+      <span class="qlose-time-item__num{% if block.settings.serif %} qlose-time-item__num--serif{% endif %}">
+        {{- block.settings.number -}}
+      </span>
+      {{ block.settings.label }}
+    </div>
+  {%- endfor -%}
+</div>
+
+{% stylesheet %}
+  .qlose-time-strip {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 40px var(--qlose-gutter);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .qlose-time-item {
+    text-align: center;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    /* Source used rgba(255,255,255,0.5) = 4.1:1 on black. 0.6 clears AA. */
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .qlose-time-item__num {
+    font-family: var(--qlose-font-sans);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--qlose-white);
+    display: block;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+
+  .qlose-time-item__num--serif {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    color: var(--qlose-accent);
+  }
+
+  @media (max-width: 700px) {
+    .qlose-time-strip {
+      gap: 24px;
+    }
+
+    .qlose-time-item__num {
+      font-size: 36px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE time strip",
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "5" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Tools" },
+        { "type": "checkbox", "id": "serif", "label": "Serif italic accent", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE time strip" }]
+}
+{% endschema %}
