@@ -77,10 +77,32 @@ class QloseAccordion extends Component {
     this.#open(details);
   };
 
-  /** @param {HTMLDetailsElement} details */
+  /**
+   * A closed <details> does not render its content at all, so at the moment it
+   * opens there is no previous value for the row to animate away from and the
+   * browser jumps straight to the end -- the first open of any panel arrived
+   * with no animation, while every one after a close looked right. Opening it,
+   * pinning the row shut, flushing that, then handing the row back to the
+   * stylesheet gives the transition the start it was missing.
+   *
+   * @param {HTMLDetailsElement} details
+   */
   #open(details) {
     this.#cancel(details);
+
+    const panel = this.#panel(details);
+    if (!panel || this.#reducedMotion) {
+      details.open = true;
+      return;
+    }
+
     details.open = true;
+    panel.style.gridTemplateRows = '0fr';
+    panel.style.paddingBottom = '0';
+    // Reading a layout property commits the shut state as the starting frame.
+    void panel.offsetHeight;
+    panel.style.gridTemplateRows = '';
+    panel.style.paddingBottom = '';
   }
 
   /** @param {HTMLDetailsElement} details */
