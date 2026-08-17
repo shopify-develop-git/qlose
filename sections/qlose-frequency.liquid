@@ -32,7 +32,14 @@
 
 {%- if section.settings.quote != blank -%}
   <aside class="qlose-refill-note">
-    <blockquote class="qlose-refill-note__quote">{{ section.settings.quote }}</blockquote>
+    {%- comment -%}
+      The source breaks this quote itself, into two lines of roughly equal
+      length. Set as one run it fills the 900px measure and breaks wherever the
+      width happens to fall, which is what made it read as unbounded.
+    {%- endcomment -%}
+    <blockquote class="qlose-refill-note__quote">
+      {{- section.settings.quote | newline_to_br | strip_newlines -}}
+    </blockquote>
     {%- if section.settings.quote_attribution != blank -%}
       <p class="qlose-refill-note__attribution">{{ section.settings.quote_attribution }}</p>
     {%- endif -%}
@@ -141,7 +148,7 @@
     font-size: 14px;
     color: var(--qlose-graphite);
     line-height: 1.6;
-    max-width: 620px;
+    max-width: 500px;
     margin: 0 auto;
   }
 
@@ -205,7 +212,7 @@
       "info": "Italic renders as the serif accent, bold as the stroked outline."
     },
     { "type": "richtext", "id": "footnote", "label": "Footnote" },
-    { "type": "text", "id": "quote", "label": "Closing quote" },
+    { "type": "textarea", "id": "quote", "label": "Closing quote", "info": "Each line break is kept." },
     { "type": "text", "id": "quote_attribution", "label": "Quote attribution" }
   ],
   "blocks": [
