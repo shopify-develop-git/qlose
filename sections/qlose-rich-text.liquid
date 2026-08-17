@@ -4,7 +4,11 @@
 {%- endcomment -%}
 
 <section class="qlose-rich-text">
-  <div class="qlose-rich-text__inner">
+  <div class="qlose-rich-text__inner qlose-prose">
+    {%- if section.settings.pullquote != blank -%}
+      <blockquote class="qlose-rich-text__pullquote">{{ section.settings.pullquote }}</blockquote>
+    {%- endif -%}
+
     {%- if section.settings.use_page_content and page.content != blank -%}
       {{ page.content }}
     {%- else -%}
@@ -20,45 +24,22 @@
     padding: 60px var(--qlose-gutter) 120px;
   }
 
-  .qlose-rich-text__inner :is(h2, h3) {
-    font-family: var(--qlose-font-sans);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
+  .qlose-rich-text__pullquote {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.35;
     color: var(--qlose-black);
-    margin-top: 48px;
-    margin-bottom: 16px;
+    margin: 0 0 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--qlose-divider);
+    font-weight: 400;
   }
 
-  .qlose-rich-text__inner h2 {
-    font-size: 22px;
-  }
-
-  .qlose-rich-text__inner h3 {
-    font-size: 17px;
-  }
-
-  .qlose-rich-text__inner :is(p, li) {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--qlose-graphite);
-  }
-
-  .qlose-rich-text__inner p {
-    margin-bottom: 16px;
-  }
-
-  .qlose-rich-text__inner ul,
-  .qlose-rich-text__inner ol {
-    margin: 0 0 16px 20px;
-  }
-
-  .qlose-rich-text__inner li {
-    margin-bottom: 8px;
-  }
-
-  .qlose-rich-text__inner a {
-    color: var(--qlose-accent-deep);
+  @media (max-width: 700px) {
+    .qlose-rich-text__pullquote {
+      font-size: 22px;
+    }
   }
 
   @media (max-width: 900px) {
@@ -80,6 +61,7 @@
       "default": true,
       "info": "When on, renders the page body from the admin. When off, uses the text below."
     },
+    { "type": "text", "id": "pullquote", "label": "Pull quote", "info": "Optional. Renders above the body." },
     { "type": "richtext", "id": "content", "label": "Content" }
   ],
   "presets": [{ "name": "QLOSE rich text" }]
