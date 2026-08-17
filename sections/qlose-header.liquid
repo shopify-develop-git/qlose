@@ -3,61 +3,78 @@
 <script src="{{ 'cart-icon.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <script src="{{ 'qlose-header.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
+{%- comment -%}
+  The band paints full width; the inner element carries the content rail so the
+  logo lines up with the hero below it. The source's nav has no such wrapper --
+  it pads 40px off the viewport edge while every section under it is capped at
+  1500px -- which leaves the header hanging off the grid on a wide screen. The
+  source's own footer has the wrapper, so the rail was clearly the intent.
+{%- endcomment -%}
 <qlose-header class="qlose-header">
-  <a href="{{ routes.root_url }}" class="qlose-header__logo">
-    {%- if settings.logo != blank -%}
-      {{
-        settings.logo
-        | image_url: width: 400
-        | image_tag: widths: '200,400', alt: shop.name, class: 'qlose-header__logo-img'
-      }}
-    {%- else -%}
-      <img
-        src="{{ 'qlose-logo.png' | asset_url }}"
-        alt="{{ shop.name }}"
-        width="400"
-        height="47"
-        class="qlose-header__logo-img"
-      >
-    {%- endif -%}
-  </a>
-
-  <ul class="qlose-header__menu" id="QloseHeaderMenu" ref="menu">
-    {%- for link in section.settings.menu.links -%}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-    {%- endfor -%}
-  </ul>
-
-  <button
-    class="qlose-header__toggle"
-    type="button"
-    aria-expanded="false"
-    aria-controls="QloseHeaderMenu"
-    ref="toggle"
-  >
-    Menu
-  </button>
-
-  <div class="qlose-header__actions">
-    <a href="{{ routes.account_url }}">Account</a>
-    <a href="{{ routes.cart_url }}" class="qlose-header__cart">
-      <cart-icon class="qlose-header__cart-icon">
-        <span>Cart</span>
-        <span aria-hidden="true">/</span>
-        {% render 'cart-bubble', limit: 100 %}
-      </cart-icon>
+  <div class="qlose-header__inner">
+    <a href="{{ routes.root_url }}" class="qlose-header__logo">
+      {%- if settings.logo != blank -%}
+        {{
+          settings.logo
+          | image_url: width: 400
+          | image_tag: widths: '200,400', alt: shop.name, class: 'qlose-header__logo-img'
+        }}
+      {%- else -%}
+        <img
+          src="{{ 'qlose-logo.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          width="400"
+          height="47"
+          class="qlose-header__logo-img"
+        >
+      {%- endif -%}
     </a>
+
+    <ul class="qlose-header__menu" id="QloseHeaderMenu" ref="menu">
+      {%- for link in section.settings.menu.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+
+    <button
+      class="qlose-header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="QloseHeaderMenu"
+      ref="toggle"
+    >
+      Menu
+    </button>
+
+    <div class="qlose-header__actions">
+      <a href="{{ routes.account_url }}">Account</a>
+      <a href="{{ routes.cart_url }}" class="qlose-header__cart">
+        <cart-icon class="qlose-header__cart-icon">
+          <span>Cart</span>
+          <span aria-hidden="true">/</span>
+          {% render 'cart-bubble', limit: 100 %}
+        </cart-icon>
+      </a>
+    </div>
   </div>
 </qlose-header>
 
 {% stylesheet %}
   .qlose-header {
+    display: block;
+    background: var(--qlose-off-white);
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  /* Same box as .qlose-section and .qlose-hero -- max-width and gutter on one
+     element -- so the logo sits on exactly the left edge of the hero copy. */
+  .qlose-header__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: var(--qlose-max);
+    margin-inline: auto;
     padding: 24px var(--qlose-gutter);
-    background: var(--qlose-off-white);
-    border-bottom: 1px solid var(--qlose-divider);
   }
 
   .qlose-header__logo-img {
@@ -155,8 +172,9 @@
   }
 
   @media (max-width: 900px) {
-    .qlose-header {
+    .qlose-header__inner {
       flex-wrap: wrap;
+      padding-block: 16px;
     }
 
     .qlose-header__toggle {
