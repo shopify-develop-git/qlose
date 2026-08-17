@@ -175,6 +175,14 @@
   @media (max-width: 900px) {
     .qlose-footer__top {
       grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* The tagline is a sentence, not a link list: at half of a phone's width
+       it sets to about ten characters a line. It takes the full row and lets
+       the three link columns keep the two-up grid. */
+    .qlose-footer__top > :first-child {
+      grid-column: 1 / -1;
     }
 
     .qlose-footer__bottom {
@@ -199,7 +207,7 @@
       "type": "richtext",
       "id": "legal",
       "label": "Legal lines",
-      "default": "<p>QLOSE LTD — REGISTERED IN ENGLAND & WALES, COMPANY NO. 17311111</p><p>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</p>"
+      "default": "<p>QLOSE LTD, REGISTERED IN ENGLAND & WALES, COMPANY NO. 17311111</p><p>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</p>"
     },
     {
       "type": "text",

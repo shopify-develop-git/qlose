@@ -1,19 +1,37 @@
 {%- comment -%} Ported from docs/design-source/index.html:57-69, 931-933 {%- endcomment -%}
 
-<div class="qlose-announce">
-  {%- for block in section.blocks -%}
-    <span class="qlose-announce__item" {{ block.shopify_attributes }}>
-      {{- block.settings.text -}}
-    </span>
-  {%- endfor -%}
-</div>
+<script src="{{ 'qlose-announcement-bar.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<qlose-announcement-bar class="qlose-announce">
+  <div
+    class="qlose-announce__track"
+    style="--qlose-announce-duration: {{ section.settings.duration }}s;"
+  >
+    {%- comment -%}
+      Two copies, the same technique as qlose-marquee: translateX(-50%) only
+      loops seamlessly against an exact duplicate. The second copy is
+      aria-hidden so a screen reader announces the messages once.
+    {%- endcomment -%}
+    {%- for i in (1..2) -%}
+      <div class="qlose-announce__set"{% if i == 2 %} aria-hidden="true"{% endif %}>
+        {%- for block in section.blocks -%}
+          <span class="qlose-announce__item" {{ block.shopify_attributes }}>
+            {{- block.settings.text -}}
+          </span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</qlose-announcement-bar>
 
 {% stylesheet %}
   .qlose-announce {
+    display: block;
     background: var(--qlose-black);
     color: var(--qlose-white);
-    text-align: center;
-    padding: 10px 20px;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
     font-family: var(--qlose-font-mono);
     font-size: 11px;
     letter-spacing: 0.15em;
@@ -21,12 +39,47 @@
     font-weight: 400;
   }
 
-  /* The source hardcodes a <span>—</span> between messages. Generating it
-     instead keeps the message count free. */
-  .qlose-announce__item + .qlose-announce__item::before {
+  .qlose-announce__track {
+    display: flex;
+    width: max-content;
+    animation: qlose-announce-scroll var(--qlose-announce-duration, 30s) linear infinite;
+  }
+
+  .qlose-announce__set {
+    display: flex;
+    align-items: center;
+  }
+
+  /* The source hardcodes a <span>—</span> between messages. Generating it keeps
+     the message count free, and hanging it off every item rather than off
+     item + item means the seam between the two copies is spaced like every
+     other join instead of running two messages together.
+
+     24px, not the source's 16px, because the source also has a literal space
+     either side of its dash. Our items are emitted with the whitespace
+     stripped, so that space has to be paid back in the margin. At 11px
+     JetBrains Mono with 0.15em tracking a space is ~8px, hence 16 + 8. */
+  .qlose-announce__item::after {
     content: '—';
     opacity: 0.4;
-    margin: 0 16px;
+    margin: 0 24px;
+  }
+
+  /* One cycle travels exactly one set, so the speed stays put however many
+     copies the component ends up cloning in. Falls back to -50%, correct for
+     the two copies Liquid renders, if the measurement never arrives. */
+  @keyframes qlose-announce-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-1 * var(--qlose-announce-step, 50%))); }
+  }
+
+  /* Stopped rather than slowed: this is small type moving across the top of
+     every page, which is exactly what the preference is asking us not to do.
+     The track rests at its start, so the messages read as a static row. */
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-announce__track {
+      animation: none;
+    }
   }
 {% endstylesheet %}
 
@@ -34,6 +87,18 @@
 {
   "name": "QLOSE announcement",
   "tag": "div",
+  "settings": [
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Scroll duration",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    }
+  ],
   "blocks": [
     {
       "type": "message",

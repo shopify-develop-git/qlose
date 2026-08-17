@@ -184,9 +184,21 @@
   }
 
   @media (max-width: 520px) {
+    /* Stacked, so space-between has a main axis to spread along and hands the
+       row's spare height to the gap between the name and the price. Packed to
+       the start instead; the gap is the only thing setting that distance.
+
+       The inset is on every row, not only the highlighted one. That row is a
+       filled block and its copy needs room off the edge of the fill, but with
+       the fill spanning the full width the padding only shows there anyway --
+       and matching it across the list keeps the numbers and prices on one rail
+       instead of stepping the highlighted row 20px right of its neighbours. */
     .qlose-plan {
       flex-direction: column;
       align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 20px;
     }
 
     .qlose-plan__price small {

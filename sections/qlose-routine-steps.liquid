@@ -89,13 +89,16 @@
     background: var(--qlose-off-white);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     min-height: 480px;
     overflow: hidden;
   }
 
+  /* Deliberately not flex: 1, which is what the source does. Letting the media
+     absorb the card's leftover height means a card with a two-line description
+     gets a shorter media box, so its divider -- and the title, copy and duration
+     under it -- sits higher than its neighbours'. Fixing the media height puts
+     every divider on one line across the row. */
   .qlose-step__media {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,11 +109,13 @@
     min-height: 240px;
   }
 
+  /* A set height rather than a cap: object-fit keeps the artwork's proportions
+     inside it, so a merchant uploading a landscape shot cannot shorten one card's
+     media box and knock the row out of alignment. */
   .qlose-step__img {
-    max-height: 200px;
+    height: 200px;
     max-width: 90%;
     width: auto;
-    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
     transition: transform 0.4s ease;
@@ -142,6 +147,9 @@
   }
 
   .qlose-step__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     padding: 24px 24px 32px;
   }
 
@@ -155,7 +163,10 @@
     letter-spacing: 0.02em;
   }
 
+  /* Pushes the duration to the bottom of the card, so those line up too
+     however long the copy runs. */
   .qlose-step__desc {
+    margin-bottom: auto;
     font-size: 13px;
     color: var(--qlose-graphite);
     line-height: 1.5;
@@ -204,8 +215,15 @@
     .qlose-step {
       flex: 0 0 78%;
       scroll-snap-align: start;
-      border-left: 1px solid var(--qlose-black);
       min-height: 420px;
+    }
+
+    /* Only the first. Every card already carries a right border, so putting a
+       left border on all of them draws two rules between each pair and the
+       joins come out twice the weight of the outer edges. The container's own
+       left border cannot serve here either -- it scrolls away with the track. */
+    .qlose-step:first-child {
+      border-left: 1px solid var(--qlose-black);
     }
   }
 {% endstylesheet %}
@@ -236,7 +254,7 @@
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "text", "id": "index", "label": "Index", "default": "— 01 / FLOSS" },
+        { "type": "text", "id": "index", "label": "Index", "default": "01 / FLOSS" },
         { "type": "image_picker", "id": "image", "label": "Image" },
         {
           "type": "text",

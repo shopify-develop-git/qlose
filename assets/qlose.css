@@ -31,13 +31,78 @@
   }
 }
 
-body {
+/* `html body`, not `body`, and the repetition is deliberate.
+
+   Horizon paints the page from its colour palette with an inline <style> in
+   the head -- `body { color: var(--color-foreground); background-color:
+   var(--color-background) }` -- rendered by snippets/color-palette.liquid.
+   That tag comes after our stylesheet link in layout/theme.liquid, so at equal
+   specificity it wins and the page lands on the stock white #ffffff instead of
+   the brand off-white.
+
+   The brand ground is fixed, not a merchant setting, the same call already
+   made for the typefaces, so the foundation asserts it with one extra
+   specificity step rather than by reordering the vendor's head.
+
+   Horizon's own surfaces -- cart drawer, predictive search, the stock
+   templates -- still paint from the palette in config/settings_data.json,
+   which is untouched stock. Aligning that palette to the brand is a separate,
+   wider change. */
+html body {
   font-family: var(--qlose-font-sans);
   background: var(--qlose-off-white);
   color: var(--qlose-ink);
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Heading and paragraph margins.
+
+   The source stylesheet opens with `* { margin: 0; padding: 0 }` and then adds
+   back every gap it wants. Horizon has no equivalent -- base.css zeroes heading
+   margins only for a few first-child and .text-block cases that never match our
+   markup -- so our sections, which were ported from a stylesheet that assumed
+   the reset, inherited the user-agent's margin-block on every heading and
+   paragraph that did not happen to declare one.
+
+   On body copy that is a few stray pixels. On a display heading it is not:
+   the UA margin is em-based, so .qlose-routine__heading at clamp(40px, 6vw,
+   96px) carries up to 80px of unasked-for space above and below.
+
+   Scoped to our own subtrees rather than applied globally, so Horizon's cart
+   drawer, predictive search and stock templates keep their own spacing. The
+   inner half is :where() and therefore weightless, so any section rule -- or
+   .qlose-prose below, which deliberately spaces admin-authored copy -- still
+   wins without needing a specificity fight. */
+[class^='qlose-'] :where(h1, h2, h3, h4, h5, h6, p),
+[class*=' qlose-'] :where(h1, h2, h3, h4, h5, h6, p) {
+  margin-block: 0;
+}
+
+/* Sticky header.
+
+   The design pins the nav and lets the announcement bar scroll away. A section
+   cannot express that itself: position: sticky is bounded by the containing
+   block, and every section in the header group is wrapped in a div that is
+   exactly as tall as the section, so a sticky header gets no travel at all and
+   simply scrolls off. Horizon reaches the same conclusion for its own header
+   and makes the whole group the sticky element, see the #header-group rule in
+   sections/header.liquid.
+
+   So the group sticks, pulled up by the height of the bar above the nav, which
+   assets/qlose-announcement-bar.js measures and publishes. The bar clears the
+   viewport, the nav lands at the top. With the variable at its 0px fallback --
+   no JavaScript, or no announcement bar at all -- the whole group pins, which
+   is the correct behaviour when there is nothing above the nav to scroll away.
+
+   #header-group belongs to layout/theme.liquid rather than to us, so this lives
+   in the foundation rather than in a section stylesheet: it is a fact about how
+   our header sits inside Horizon's shell, not about one section. */
+#header-group {
+  position: sticky;
+  top: calc(-1 * var(--qlose-announce-height, 0px));
+  z-index: 100;
 }
 
 /* Display headings.

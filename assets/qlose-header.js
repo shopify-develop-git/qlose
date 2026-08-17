@@ -13,6 +13,7 @@ import { Component } from '@theme/component';
  * @typedef {object} Refs
  * @property {HTMLElement} menu - The navigation list.
  * @property {HTMLButtonElement} toggle - The button that opens it.
+ * @property {HTMLElement} [scrim] - Backdrop shown behind the open menu.
  *
  * @extends {Component<Refs>}
  */
@@ -22,12 +23,14 @@ class QloseHeader extends Component {
   connectedCallback() {
     super.connectedCallback();
     this.refs.toggle.addEventListener('click', this.#onToggle);
+    this.refs.scrim?.addEventListener('click', this.#onScrimClick);
     document.addEventListener('keydown', this.#onKeydown);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.refs.toggle.removeEventListener('click', this.#onToggle);
+    this.refs.scrim?.removeEventListener('click', this.#onScrimClick);
     document.removeEventListener('keydown', this.#onKeydown);
   }
 
@@ -37,9 +40,21 @@ class QloseHeader extends Component {
 
   #setOpen(open) {
     this.refs.menu.classList.toggle('qlose-header__menu--open', open);
+    // The scrim is a sibling of the menu, so the open state is mirrored on the
+    // host for it to key off.
+    this.classList.toggle('qlose-header--open', open);
     this.refs.toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     this.refs.toggle.textContent = open ? 'Close' : 'Menu';
   }
+
+  // Tapping the dimmed page is the gesture people expect to dismiss with, and
+  // it is the only one available to a pointer once the backdrop covers
+  // everything. Focus goes back to the toggle, as it does on Escape.
+  #onScrimClick = () => {
+    if (!this.#isOpen) return;
+    this.#setOpen(false);
+    this.refs.toggle.focus();
+  };
 
   #onToggle = () => {
     this.#setOpen(!this.#isOpen);
