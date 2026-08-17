@@ -121,8 +121,12 @@
   /* The label carries the section, the count only annotates it: the source
      sets the first in black a size up and leaves the second muted. Inheriting
      both from the row made them read as one line of equal weight. */
+  /* Face, case and weight stated here rather than inherited from the row:
+     this is an h2, and any rule that lands on headings would otherwise take
+     one of them out from under it. */
   .qlose-articles__eyebrow {
     font-family: var(--qlose-font-mono);
+    text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.2em;
     font-weight: 500;
