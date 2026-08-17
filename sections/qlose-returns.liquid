@@ -1,0 +1,117 @@
+{%- comment -%}
+  Ported from docs/design-source/shipping.html, section .returns.
+
+  Its own section, where the port had this as a page hero followed by a rich
+  text block. The two do not describe it: the hero sets a headline at up to
+  160px against the 72px this asks for, and the rich text block turns the
+  run-in labels into ruled-off headings, which is a different document
+  entirely. Here each part is a paragraph opening with its subject in bold,
+  the way the source writes it -- "Unopened kits: every kit ships sealed..." --
+  and the whole runs on a 1000px measure with the quote ruled top and bottom
+  through the middle of it.
+{%- endcomment -%}
+
+<section class="qlose-returns">
+  {%- if section.settings.eyebrow_text != blank -%}
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+  {%- endif -%}
+
+  <h2 class="qlose-returns__heading qlose-display">
+    {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+  </h2>
+
+  {%- if section.settings.pullquote != blank -%}
+    <p class="qlose-returns__pullquote">{{ section.settings.pullquote }}</p>
+  {%- endif -%}
+
+  {%- for block in section.blocks -%}
+    <p class="qlose-returns__para" {{ block.shopify_attributes }}>
+      {%- if block.settings.label != blank -%}
+        <strong>{{ block.settings.label }}</strong>{{ ' ' }}
+      {%- endif -%}
+      {{- block.settings.text -}}
+    </p>
+  {%- endfor -%}
+</section>
+
+{% stylesheet %}
+  .qlose-returns {
+    padding: 100px var(--qlose-gutter);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .qlose-returns__heading {
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--qlose-black);
+    margin-bottom: 32px;
+  }
+
+  /* Ruled top and bottom, unlike the pull quote on the rich text section,
+     which only closes with one. This quote sits inside the passage rather
+     than opening it, so it is fenced on both sides. */
+  .qlose-returns__pullquote {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--qlose-black);
+    padding: 32px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-returns__para {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--qlose-graphite);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-returns {
+      padding-block: 40px;
+    }
+
+    .qlose-returns__pullquote {
+      font-size: 22px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE returns",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "02 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "RETURNS" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>RETURNS <em>&</em> REPLACEMENTS.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "text", "id": "pullquote", "label": "Pull quote" }
+  ],
+  "blocks": [
+    {
+      "type": "para",
+      "name": "Paragraph",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Run-in label", "info": "Set in bold at the head of the paragraph." },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE returns" }]
+}
+{% endschema %}

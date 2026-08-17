@@ -28,22 +28,26 @@
 {% stylesheet %}
   .qlose-info-cards {
     background: var(--qlose-bone);
-    padding: 100px var(--qlose-gutter);
+    padding: 80px var(--qlose-gutter);
     border-top: 1px solid var(--qlose-divider);
     border-bottom: 1px solid var(--qlose-divider);
   }
 
   .qlose-info-cards__inner {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
+  /* Ruled off from the cards below it, which is what separates this heading
+     from the ones that simply sit above their content. */
   .qlose-info-cards__heading {
-    font-size: clamp(32px, 5vw, 72px);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     color: var(--qlose-black);
-    margin-bottom: 60px;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--qlose-divider);
   }
 
   .qlose-info-cards__grid {
@@ -52,30 +56,33 @@
     gap: 32px;
   }
 
+  /* The divider, not black: these cards sit on bone and are held by a hairline
+     at 12% rather than drawn in full stroke. A solid black frame turned three
+     quiet cards into three boxes. */
   .qlose-info-card {
     background: var(--qlose-off-white);
     padding: 40px 32px;
-    border: 1px solid var(--qlose-black);
+    border: 1px solid var(--qlose-divider);
   }
 
   .qlose-info-card__num {
     font-family: var(--qlose-font-sans);
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 900;
     color: var(--qlose-accent);
-    line-height: 1;
+    line-height: 0.9;
     letter-spacing: -0.03em;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .qlose-info-card__title {
     font-family: var(--qlose-font-sans);
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     color: var(--qlose-black);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .qlose-info-card__text {
