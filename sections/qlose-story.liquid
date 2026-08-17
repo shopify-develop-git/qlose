@@ -111,8 +111,14 @@
       position: static;
     }
 
+    /* The type drops a quarter here, and the frame around it has to come with
+       it. The source sets 40px of padding inside the rules and 40px of margin
+       outside them and never revisits it, which on a phone leaves 80px above
+       and below a single line of 24px text. */
     .qlose-story__pullquote {
       font-size: 24px;
+      padding-block: 24px;
+      margin-block: 24px;
     }
   }
 {% endstylesheet %}
