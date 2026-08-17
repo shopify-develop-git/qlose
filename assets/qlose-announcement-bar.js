@@ -1,21 +1,25 @@
 import { Component } from '@theme/component';
 
 /**
- * Publishes the announcement bar's height as --qlose-announce-height.
+ * Auto-playing announcement ticker.
  *
- * The header has to pin while the announcement bar scrolls away, which is what
- * the design does. A section cannot do that on its own: position: sticky is
- * bounded by the containing block, and the header section's containing block is
- * #header-group, which is only as tall as this bar plus the header. So the
- * whole group is the sticky element, pulled up by exactly this height so the
- * bar clears the viewport and the header lands at the top. Horizon reaches the
- * same conclusion for its own header, see the #header-group rule in
- * sections/header.liquid.
+ * Two jobs, both of which need measurement, which is why this is a component
+ * rather than pure CSS.
  *
- * Measured rather than hardcoded because the bar wraps to two or three lines on
- * a narrow viewport. Without JavaScript the variable stays at its 0px fallback
- * and the whole group pins, including the bar, which is a reasonable degraded
- * state rather than a broken one.
+ * The loop. The track scrolls left by exactly one set and restarts, which reads
+ * as continuous only while a set follows the one leaving the viewport. Liquid
+ * renders two, enough for a phone and not enough for a wide monitor, so copies
+ * are cloned until the track covers the viewport plus one set. Translating by a
+ * measured set width rather than a percentage keeps the speed constant however
+ * many copies that turns out to be: one cycle is always one set.
+ *
+ * The header offset. The header group is the sticky element and is pulled up by
+ * this bar's height so the bar scrolls away while the nav pins, which needs the
+ * height as a number. It is measured rather than assumed because the bar wraps
+ * to two or three lines on a narrow viewport.
+ *
+ * Without JavaScript the CSS fallbacks apply: the bar sits still at 0px offset,
+ * so the whole group pins and the messages read as a static row.
  *
  * @extends {Component}
  */
@@ -24,9 +28,9 @@ class QloseAnnouncementBar extends Component {
 
   connectedCallback() {
     super.connectedCallback();
-    this.#observer = new ResizeObserver(() => this.#publish());
+    this.#observer = new ResizeObserver(() => this.#measure());
     this.#observer.observe(this);
-    this.#publish();
+    this.#measure();
   }
 
   disconnectedCallback() {
@@ -35,9 +39,32 @@ class QloseAnnouncementBar extends Component {
     document.documentElement.style.removeProperty('--qlose-announce-height');
   }
 
-  #publish() {
-    const height = this.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--qlose-announce-height', `${Math.round(height)}px`);
+  get #track() {
+    return this.querySelector('.qlose-announce__track');
+  }
+
+  #measure() {
+    document.documentElement.style.setProperty(
+      '--qlose-announce-height',
+      `${Math.round(this.getBoundingClientRect().height)}px`
+    );
+
+    const track = this.#track;
+    const set = track?.firstElementChild;
+    if (!track || !set) return;
+
+    const setWidth = set.getBoundingClientRect().width;
+    if (!setWidth) return;
+
+    // Enough copies that one set can leave the viewport with another behind it.
+    const wanted = Math.max(2, Math.ceil(window.innerWidth / setWidth) + 1);
+    for (let i = track.children.length; i < wanted; i++) {
+      const copy = /** @type {HTMLElement} */ (set.cloneNode(true));
+      copy.setAttribute('aria-hidden', 'true');
+      track.appendChild(copy);
+    }
+
+    track.style.setProperty('--qlose-announce-step', `${setWidth}px`);
   }
 }
 
