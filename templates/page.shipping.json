@@ -4,7 +4,7 @@
       "type": "qlose-page-hero",
       "settings": {
         "variant": "simple",
-        "meta_left": "SHIPPING — DELIVERY & RETURNS",
+        "meta_left": "SHIPPING, DELIVERY & RETURNS",
         "meta_right": "UK ONLY",
         "heading": "<p>SHIPPING <em>&amp;</em><br>RETURNS.</p>",
         "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.</p>"
@@ -50,7 +50,7 @@
         "r3"
       ],
       "settings": {
-        "eyebrow": "— UK Delivery Options",
+        "eyebrow": "UK Delivery Options",
         "col_method": "Delivery Method",
         "col_time": "Time",
         "col_cost": "Cost"
@@ -107,7 +107,7 @@
       "settings": {
         "use_page_content": false,
         "pullquote": "Oral care is personal. Once a kit's been opened, it belongs to you.",
-        "content": "<h2>Unopened kits</h2><p>Every kit ships sealed with a belly band carrying a perforated pull tab. If that tab is intact, you can cancel and return your kit within 14 days of delivery for a full refund, with a further 14 days to send it back. Email hello@getqlose.com with your order number and we'll share return instructions.</p><h2>Opened kits</h2><p>Once the perforated tab on the belly band is broken, the kit counts as opened. For hygiene reasons we can't accept returns or refunds on opened kits, as permitted under the Consumer Contracts Regulations 2013 for sealed goods that aren't suitable for return once unsealed.</p><h2>Refills</h2><p>Non-refundable once shipped. You can pause, skip, or cancel your subscription anytime from your account to prevent future orders.</p><h2>Damaged, incomplete or faulty</h2><p>If your kit arrives with anything wrong — a missing tool, damaged case, or a toothbrush that won't power on — email hello@getqlose.com within 14 days with your order number. We'll send a replacement, no returns needed. The electric toothbrush also carries a 12-month warranty from delivery. Your statutory rights in respect of faulty goods are unaffected by the hygiene-seal policy above.</p><h2>How to get in touch</h2><p>Email <a href=\"mailto:hello@getqlose.com\">hello@getqlose.com</a> with your order number. We reply within one working day.</p>"
+        "content": "<h2>Unopened kits</h2><p>Every kit ships sealed with a belly band carrying a perforated pull tab. If that tab is intact, you can cancel and return your kit within 14 days of delivery for a full refund, with a further 14 days to send it back. Email hello@getqlose.com with your order number and we'll share return instructions.</p><h2>Opened kits</h2><p>Once the perforated tab on the belly band is broken, the kit counts as opened. For hygiene reasons we can't accept returns or refunds on opened kits, as permitted under the Consumer Contracts Regulations 2013 for sealed goods that aren't suitable for return once unsealed.</p><h2>Refills</h2><p>Non-refundable once shipped. You can pause, skip, or cancel your subscription anytime from your account to prevent future orders.</p><h2>Damaged, incomplete or faulty</h2><p>If your kit arrives with anything wrong, a missing tool, damaged case, or a toothbrush that won't power on, email hello@getqlose.com within 14 days with your order number. We'll send a replacement, no returns needed. The electric toothbrush also carries a 12-month warranty from delivery. Your statutory rights in respect of faulty goods are unaffected by the hygiene-seal policy above.</p><h2>How to get in touch</h2><p>Email <a href=\"mailto:hello@getqlose.com\">hello@getqlose.com</a> with your order number. We reply within one working day.</p>"
       }
     },
     "waitlist": {
