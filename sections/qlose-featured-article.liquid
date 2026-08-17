@@ -35,7 +35,7 @@
 
       <div class="qlose-featured__content">
         <div class="qlose-featured__meta">
-          {%- if post.tags.size > 0 -%}— {{ post.tags.first | upcase }}{%- endif -%}
+          {%- if post.tags.size > 0 -%}{{ post.tags.first | upcase }}{%- endif -%}
           {%- if section.settings.read_time != blank -%} / {{ section.settings.read_time }}{%- endif -%}
         </div>
 

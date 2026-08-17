@@ -8,7 +8,7 @@
   <header class="qlose-article-page__header">
     <div class="qlose-article-page__meta">
       <span>
-        {%- if article.tags.size > 0 -%}— {{ article.tags.first | upcase }}{%- endif -%}
+        {%- if article.tags.size > 0 -%}{{ article.tags.first | upcase }}{%- endif -%}
       </span>
       <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
         {{- article.published_at | date: '%d %b %Y' | upcase -}}
