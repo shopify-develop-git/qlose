@@ -62,6 +62,7 @@
 {% stylesheet %}
   .qlose-header {
     display: block;
+    position: relative;
     background: var(--qlose-off-white);
     border-bottom: 1px solid var(--qlose-divider);
   }
@@ -171,24 +172,64 @@
     color: var(--qlose-black);
   }
 
+  /* The source wraps the bar and lets the toggle fall to a second line. That is
+     only invisible at the 900px it was checked against: at phone widths the
+     logo alone eats half the row, so the button drops below the logo and the
+     header grows to two storeys. The row stays on one line here, and the type
+     steps down to make it fit. */
   @media (max-width: 900px) {
     .qlose-header__inner {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      gap: 16px;
       padding-block: 16px;
+    }
+
+    /* The logo is the only thing here that can give: the links are held at
+       their content width by white-space, so at 320px it takes the squeeze
+       rather than the row overflowing into a horizontal scrollbar. */
+    .qlose-header__logo {
+      min-width: 0;
+      flex: 0 1 auto;
+    }
+
+    .qlose-header__logo-img {
+      height: 18px;
+      max-width: 100%;
+    }
+
+    .qlose-header__actions {
+      gap: 16px;
+      flex: none;
+    }
+
+    .qlose-header__menu a,
+    .qlose-header__actions a,
+    .qlose-header__cart-icon .cart-bubble__text {
+      white-space: nowrap;
     }
 
     .qlose-header__toggle {
       display: block;
       order: 3;
+      flex: none;
+      padding: 8px 0;
     }
 
+    /* Out of flow, so opening the menu lays it over the page instead of
+       pushing everything down. It hangs off the band rather than the inner
+       rail so the panel spans the full width, and the sticky header group it
+       sits in already carries the stacking context that puts it on top. */
     .qlose-header__menu {
       display: none;
-      order: 4;
-      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
       flex-direction: column;
       gap: 0;
-      padding-top: 16px;
+      padding: 0 var(--qlose-gutter) 16px;
+      background: var(--qlose-off-white);
+      border-bottom: 1px solid var(--qlose-divider);
     }
 
     .qlose-header__menu--open {
@@ -202,6 +243,29 @@
 
     .qlose-header__menu a {
       font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .qlose-header__logo-img {
+      height: 16px;
+    }
+
+    .qlose-header__inner {
+      gap: 12px;
+    }
+
+    .qlose-header__actions {
+      gap: 12px;
+    }
+
+    /* The bar only. The links inside the open panel keep their 14px, since
+       nothing there is competing for horizontal room. */
+    .qlose-header__actions a,
+    .qlose-header__toggle,
+    .qlose-header__cart-icon .cart-bubble__text {
+      font-size: 11px;
+      letter-spacing: 0.06em;
     }
   }
 {% endstylesheet %}
