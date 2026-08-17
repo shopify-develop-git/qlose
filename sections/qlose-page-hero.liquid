@@ -124,6 +124,20 @@
     color: var(--qlose-graphite);
   }
 
+  /* The longest of these -- the journal's, at forty-nine characters -- asks for
+     about 404px at 11px on 0.15em tracking, against roughly 335px of line on a
+     phone. It wrapped inside itself and pushed the date onto a third line, so
+     three lines of small caps stood where the design has one.
+     A size and a little tracking down brings it to 333px: the label holds one
+     line and the date takes the second. Shorter metas simply set tighter; none
+     of them changes shape. */
+  @media (max-width: 480px) {
+    .qlose-page-hero__meta {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+  }
+
   @media (max-width: 900px) {
     /* Asymmetric, as the desktop rule is: the heading needs air above it, and
        whatever follows supplies its own above itself. Symmetrical 40/40 left

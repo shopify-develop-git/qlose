@@ -169,6 +169,22 @@
       gap: 40px;
     }
   }
+
+  /* The date and the byline together ask for about 340px against roughly 335px
+     of line, so the row broke and left its slash separator dangling at the end
+     of the first line. A size and some tracking down holds them on one, the
+     same step the page hero's meta takes. */
+  @media (max-width: 480px) {
+    .qlose-featured__byline {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      gap: 12px;
+    }
+
+    .qlose-featured__byline > :not(:last-child)::after {
+      margin-left: 12px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
