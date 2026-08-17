@@ -27,8 +27,8 @@ import { Component } from '@theme/component';
  * @extends {Component}
  */
 class QloseAccordion extends Component {
-  /** @type {WeakMap<HTMLDetailsElement, number>} */
-  #fallbacks = new WeakMap();
+  /** One per panel with a close in flight, so it can be called off. */
+  #closing = new WeakMap();
 
   connectedCallback() {
     super.connectedCallback();
@@ -79,7 +79,7 @@ class QloseAccordion extends Component {
 
   /** @param {HTMLDetailsElement} details */
   #open(details) {
-    this.#clear(details);
+    this.#cancel(details);
     details.open = true;
   }
 
@@ -92,36 +92,52 @@ class QloseAccordion extends Component {
       return;
     }
 
+    this.#cancel(details);
+
+    const controller = new AbortController();
+    this.#closing.set(details, controller);
+
     panel.style.gridTemplateRows = '0fr';
     panel.style.paddingBottom = '0';
 
+    // `open` comes off before the inline styles do. The other way round, the
+    // stylesheet's [open] rule owns the row again for an instant with nothing
+    // overriding it, which is an instruction to expand.
     const settle = () => {
-      window.clearTimeout(this.#fallbacks.get(details));
-      this.#fallbacks.delete(details);
-      panel.removeEventListener('transitionend', onEnd);
       details.open = false;
-      panel.style.gridTemplateRows = '';
-      panel.style.paddingBottom = '';
+      this.#cancel(details);
     };
 
-    const onEnd = (event) => {
-      if (event.target === panel && event.propertyName === 'grid-template-rows') settle();
-    };
+    panel.addEventListener(
+      'transitionend',
+      (event) => {
+        if (event.target === panel && event.propertyName === 'grid-template-rows') settle();
+      },
+      { signal: controller.signal }
+    );
 
-    panel.addEventListener('transitionend', onEnd);
-    // If the transition never fires -- no transition declared, the tab in the
+    // If the transition never fires -- none declared, or the tab in the
     // background -- the panel would be left shut but still marked open.
-    this.#fallbacks.set(details, window.setTimeout(settle, 600));
+    const timer = window.setTimeout(settle, 600);
+    controller.signal.addEventListener('abort', () => window.clearTimeout(timer));
   }
 
-  /** Drops a close that is still in flight, so reopening starts from rest. */
-  #clear(details) {
-    const panel = this.#panel(details);
-    const timer = this.#fallbacks.get(details);
-    if (timer) {
-      window.clearTimeout(timer);
-      this.#fallbacks.delete(details);
+  /**
+   * Calls off a close in flight and puts the panel back under stylesheet
+   * control. Reopening mid-close otherwise left the old transitionend listener
+   * armed: it fired on the way *open* and pulled `open` straight back off,
+   * collapsing the panel the moment it had finished expanding.
+   *
+   * @param {HTMLDetailsElement} details
+   */
+  #cancel(details) {
+    const controller = this.#closing.get(details);
+    if (controller) {
+      controller.abort();
+      this.#closing.delete(details);
     }
+
+    const panel = this.#panel(details);
     if (panel) {
       panel.style.gridTemplateRows = '';
       panel.style.paddingBottom = '';
