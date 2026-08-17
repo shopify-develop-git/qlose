@@ -22,9 +22,6 @@
     "grid": {
       "type": "qlose-article-grid",
       "settings": {
-        "show_filters": true,
-        "filter_label": "Filter by topic",
-        "filter_all_label": "— All",
         "skip_featured": true,
         "eyebrow": "— Recent pieces",
         "count_label": "ARTICLES",
@@ -41,10 +38,18 @@
         "button_label": "Subscribe →",
         "success_text": "Thanks, you're on the list."
       }
+    },
+    "filters": {
+      "type": "qlose-article-filters",
+      "settings": {
+        "filter_label": "Filter by topic",
+        "filter_all_label": "— All"
+      }
     }
   },
   "order": [
     "hero",
+    "filters",
     "featured",
     "grid",
     "newsletter"
