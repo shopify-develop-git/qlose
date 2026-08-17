@@ -126,12 +126,17 @@
     scroll-margin-top: 100px;
   }
 
+  /* The rule under the heading is what separates one group from the next --
+     the questions themselves are ruled in hairline, so without it the page
+     reads as one long list rather than six sets. */
   .qlose-faq-page__group-heading {
     font-size: clamp(28px, 3vw, 40px);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     color: var(--qlose-black);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--qlose-black);
   }
 
   @media (max-width: 900px) {
