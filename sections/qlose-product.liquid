@@ -85,7 +85,8 @@
       <div class="qlose-product__meta">
         <span>
           {%- if section.settings.meta_label != blank -%}
-            <strong>{{ section.settings.meta_label }}</strong>{{ ' ' }}
+            <strong>{{ section.settings.meta_label }}</strong>
+            {%- if section.settings.meta_left != blank -%}{{ ' — ' }}{%- endif -%}
           {%- endif -%}
           {{- section.settings.meta_left -}}
         </span>

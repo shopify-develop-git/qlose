@@ -11,7 +11,8 @@
       <div class="qlose-page-hero__meta">
         <span>
           {%- if section.settings.meta_label != blank -%}
-            <strong>{{ section.settings.meta_label }}</strong>{{ ' ' }}
+            <strong>{{ section.settings.meta_label }}</strong>
+            {%- if section.settings.meta_left != blank -%}{{ ' — ' }}{%- endif -%}
           {%- endif -%}
           {{- section.settings.meta_left -}}
         </span>
@@ -100,6 +101,15 @@
     font-size: clamp(52px, 12vw, 200px);
     line-height: 0.85;
     letter-spacing: -0.05em;
+  }
+
+  /* The journal sets its lead wider and a size up, on tighter leading. It is
+     the only editorial hero carrying one -- About's has no subtext -- so this
+     lands there and nowhere else. */
+  .qlose-page-hero--editorial .qlose-page-hero__sub {
+    max-width: 700px;
+    font-size: 17px;
+    line-height: 1.5;
   }
 
   .qlose-page-hero--legal .qlose-page-hero__heading {
