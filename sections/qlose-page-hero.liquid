@@ -29,10 +29,17 @@
 </section>
 
 {% stylesheet %}
+  /* The source's .simple-hero measurements, which every page but About shares.
+     About runs wider and deeper and overrides both below. */
   .qlose-page-hero {
-    max-width: var(--qlose-max);
+    max-width: 1200px;
     margin-inline: auto;
-    padding: 80px var(--qlose-gutter) 60px;
+    padding: 80px var(--qlose-gutter) 40px;
+  }
+
+  .qlose-page-hero--editorial {
+    max-width: var(--qlose-max);
+    padding-bottom: 60px;
   }
 
   .qlose-page-hero__meta {
@@ -57,9 +64,12 @@
 
   .qlose-page-hero__heading {
     color: var(--qlose-black);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    font-size: clamp(40px, 7vw, 110px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    /* The source caps at 160px on a 10vw curve. Its 64px floor is kept off:
+       at 375px a heading like "QUESTIONS," would not fit the measure and would
+       break mid-word. Below ~440px only, this sits under the source. */
+    font-size: clamp(44px, 10vw, 160px);
   }
 
   .qlose-page-hero--legal {
@@ -79,9 +89,9 @@
   }
 
   .qlose-page-hero__sub {
-    margin-top: 24px;
-    max-width: 560px;
-    font-size: 15px;
+    margin-top: 32px;
+    max-width: 600px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--qlose-graphite);
   }
