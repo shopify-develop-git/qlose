@@ -4,7 +4,7 @@
       "type": "qlose-page-hero",
       "settings": {
         "variant": "simple",
-        "meta_left": "SUPPORT — FREQUENTLY ASKED",
+        "meta_left": "SUPPORT, FREQUENTLY ASKED",
         "meta_right": "UPDATED JULY 2026",
         "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>",
         "subtext": "<p>Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.</p>"
@@ -25,7 +25,7 @@
           "type": "question",
           "settings": {
             "question": "What comes in the QLOSE Kit?",
-            "answer": "<p>Five tools in a branded travel case: an angled floss handle with 20 replacement heads, a toothbrush, a tuft brush handle with four screw-in heads, a tongue brush, and a stainless steel tongue scraper. There are two versions — The Electric Kit (£59) comes with a USB-C rechargeable toothbrush, and The Manual Kit (£29) comes with a soft-bristle manual one. Everything else is the same.</p>",
+            "answer": "<p>Five tools in a branded travel case: an angled floss handle with 90 replacement heads, a toothbrush, a tuft brush handle with four screw-in heads, a tongue brush, and a stainless steel tongue scraper. There are two versions, The Electric Kit (£59) comes with a USB-C rechargeable toothbrush, and The Manual Kit (£29) comes with a soft-bristle manual one. Everything else is the same.</p>",
             "open": true
           }
         },
@@ -33,7 +33,7 @@
           "type": "question",
           "settings": {
             "question": "Do I need to use all five tools?",
-            "answer": "<p>Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>",
+            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>",
             "open": false
           }
         },
@@ -49,7 +49,7 @@
           "type": "question",
           "settings": {
             "question": "Is the kit good for sensitive teeth or gums?",
-            "answer": "<p>Yes — all bristles are soft-grade and gentle. The electric toothbrush also has a sensitive mode. If you have specific dental concerns, we recommend checking with your dentist before starting a new routine.</p>",
+            "answer": "<p>Yes, all bristles are soft-grade and gentle. The electric toothbrush also has a sensitive mode. If you have specific dental concerns, we recommend checking with your dentist before starting a new routine.</p>",
             "open": false
           }
         },
@@ -73,7 +73,7 @@
           "type": "question",
           "settings": {
             "question": "How does the subscription work?",
-            "answer": "<p>Your first box includes the full kit. After that, we send a refill every 90 days for £18. Each refill contains one replacement brush head or toothbrush, 20 floss heads, and four fresh tuft brush heads.</p>",
+            "answer": "<p>Your first box includes the full kit. After that, we send a refill every 90 days for £18. Each refill contains one replacement brush head or toothbrush, 90 floss heads, and four fresh tuft brush heads.</p>",
             "open": false
           }
         },
@@ -121,7 +121,7 @@
           "type": "question",
           "settings": {
             "question": "Do you ship internationally?",
-            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap — join our newsletter to be the first to know when we cross borders.</p>",
+            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.</p>",
             "open": false
           }
         },
@@ -161,7 +161,7 @@
           "type": "question",
           "settings": {
             "question": "Is the toothbrush waterproof?",
-            "answer": "<p>Yes — the toothbrush is rated IPX7, meaning it's fully waterproof and safe to use in the shower. Do not submerge the USB-C charging cable.</p>",
+            "answer": "<p>Yes, the toothbrush is rated IPX7, meaning it's fully waterproof and safe to use in the shower. Do not submerge the USB-C charging cable.</p>",
             "open": false
           }
         },
@@ -177,7 +177,7 @@
           "type": "question",
           "settings": {
             "question": "How do I replace the brush head?",
-            "answer": "<p>This applies to The Electric Kit. The head snaps off — pull it firmly upward from the handle, then press the new head down until it clicks into place. No tools needed. We recommend replacing every 90 days. Manual Kit subscribers receive a complete replacement toothbrush instead.</p>",
+            "answer": "<p>This applies to The Electric Kit. The head snaps off, pull it firmly upward from the handle, then press the new head down until it clicks into place. No tools needed. We recommend replacing every 90 days. Manual Kit subscribers receive a complete replacement toothbrush instead.</p>",
             "open": false
           }
         },
@@ -201,7 +201,7 @@
           "type": "question",
           "settings": {
             "question": "How often should I replace the tools?",
-            "answer": "<p>Brush head or toothbrush: every 90 days, in line with standard dental guidance. Floss heads: as you use them, twenty per refill. Tuft brush heads: four per refill, so you can swap roughly every three weeks — the handle is reusable and the head screws off. Tongue brush: every 90 days, replaced whole and included in every refill. Tongue scraper: stainless steel, not replaced — it stays with your kit.</p>",
+            "answer": "<p>Brush head or toothbrush: every 90 days, in line with standard dental guidance. Floss heads: as you use them, ninety per refill, one for each day. Tuft brush heads: four per refill, so you can swap roughly every three weeks, the handle is reusable and the head screws off. Tongue brush: every 90 days, replaced whole and included in every refill. Tongue scraper: stainless steel, not replaced, it stays with your kit.</p>",
             "open": false
           }
         },
@@ -217,7 +217,7 @@
           "type": "question",
           "settings": {
             "question": "Can I take the kit on a plane?",
-            "answer": "<p>Yes — the kit is compact and travel-friendly. The toothbrush battery is under airline lithium restrictions and safe for carry-on and checked luggage.</p>",
+            "answer": "<p>Yes, the kit is compact and travel-friendly. The toothbrush battery is under airline lithium restrictions and safe for carry-on and checked luggage.</p>",
             "open": false
           }
         },
@@ -249,7 +249,7 @@
           "type": "question",
           "settings": {
             "question": "Is the electric toothbrush covered by a warranty?",
-            "answer": "<p>Yes — 12 months from the date of delivery. If it develops a fault in that time, email hello@getqlose.com with your order number and we'll replace it. Your statutory rights under UK consumer law are in addition to this and are not affected.</p>",
+            "answer": "<p>Yes, 12 months from the date of delivery. If it develops a fault in that time, email hello@getqlose.com with your order number and we'll replace it. Your statutory rights under UK consumer law are in addition to this and are not affected.</p>",
             "open": false
           }
         },
@@ -296,7 +296,7 @@
         "q31"
       ],
       "settings": {
-        "nav_title": "— Jump to"
+        "nav_title": "Jump to"
       }
     },
     "stuck": {
