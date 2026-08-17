@@ -81,7 +81,7 @@
     "cross": {
       "type": "qlose-cross-sell",
       "settings": {
-        "eyebrow_index": "—",
+        "eyebrow_index": "",
         "eyebrow_text": "ALSO AVAILABLE",
         "heading": "<p>PREFER ELECTRIC?</p>",
         "text": "<p>The Electric Kit has the same five-step system with a USB-C rechargeable brush.</p>",
