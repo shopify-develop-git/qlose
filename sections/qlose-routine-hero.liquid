@@ -20,10 +20,17 @@
     margin-inline: auto;
   }
 
+  /* The two halves wrap rather than compress. Without it the row is a two-item
+     flex line with no way out: at 375px the pair asks for about 362px against
+     335px of line, so both spans shrink and each breaks inside itself, and a
+     one-line rule turns into a ragged block of four. Wrapping lets the second
+     half drop whole. */
   .qlose-routine-hero__meta {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 16px;
+    align-items: baseline;
+    gap: 6px 16px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--qlose-divider);
     margin-bottom: 40px;
@@ -32,6 +39,11 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--qlose-muted);
+  }
+
+  .qlose-routine-hero__meta > span {
+    flex: 0 0 auto;
+    max-width: 100%;
   }
 
   .qlose-routine-hero__meta strong {
@@ -53,6 +65,18 @@
     font-size: 18px;
     color: var(--qlose-graphite);
     line-height: 1.5;
+  }
+
+  /* Same step down the page hero's meta takes, and for the same reason: at
+     10px on 0.08em the pair comes to about 302px, which holds the rule on one
+     line on a 375px phone instead of two. Narrower than that it wraps, which is
+     what the rule above is for. */
+  @media (max-width: 480px) {
+    .qlose-routine-hero__meta {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
   }
 
   @media (max-width: 900px) {
