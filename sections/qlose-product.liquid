@@ -589,13 +589,15 @@
     color: var(--qlose-graphite);
   }
 
+  /* Inside the collapsing track, not on the container: see the note in
+     assets/qlose.css. */
   .qlose-detail__a > div {
     overflow: hidden;
+    padding-bottom: 20px;
   }
 
   .qlose-detail[open] .qlose-detail__a {
     grid-template-rows: 1fr;
-    padding-bottom: 20px;
   }
 
   /* The source drops the bullets and marks each line with a dash instead, the

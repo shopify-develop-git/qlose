@@ -297,13 +297,19 @@ qlose-accordion {
   line-height: 1.7;
 }
 
+/* The gap under an answer sits inside the collapsing track, on the clipped
+   wrapper, not on the grid container around it. On the container it is outside
+   what the row animates: closing would run the row down to nothing while the
+   padding held its full depth, then drop it in one step as `open` came off --
+   a jolt at the end of every close. Inside, it is clipped away with the rest
+   of the content and needs no animation of its own. */
 .qlose-faq__a > div {
   overflow: hidden;
+  padding-bottom: 28px;
 }
 
 .qlose-faq__item[open] .qlose-faq__a {
   grid-template-rows: 1fr;
-  padding-bottom: 28px;
 }
 
 
@@ -336,7 +342,7 @@ qlose-accordion {
   color: var(--qlose-accent);
 }
 
-.qlose-faq__item--light[open] .qlose-faq__a {
+.qlose-faq__item--light .qlose-faq__a > div {
   padding-bottom: 24px;
 }
 
