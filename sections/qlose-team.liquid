@@ -1,0 +1,78 @@
+{%- comment -%}
+  Ported from docs/design-source/about.html:section .team.
+
+  Its own section rather than another qlose-cta-band. The two look related --
+  both centred, both a heading over a paragraph -- but the CTA band is a closing
+  call to action: filled bone, ruled off at the top, carrying buttons. This one
+  is a passage of copy sitting on the page ground with no fill, no rule and no
+  button, on a wider rail and a smaller heading. Rendering it through the band
+  put it on a fill the design does not have and dropped its eyebrow.
+{%- endcomment -%}
+
+<section class="qlose-team">
+  {%- if section.settings.eyebrow_text != blank -%}
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+  {%- endif -%}
+
+  <h2 class="qlose-team__heading qlose-display">
+    {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+  </h2>
+
+  {%- if section.settings.text != blank -%}
+    <div class="qlose-team__text">{{ section.settings.text }}</div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .qlose-team {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: var(--qlose-section-pad) var(--qlose-gutter);
+    text-align: center;
+  }
+
+  .qlose-team__heading {
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 24px;
+  }
+
+  .qlose-team__text {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--qlose-graphite);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-team__text {
+      margin-bottom: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE team",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "05 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "WHO WE ARE" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>A SMALL TEAM,<br>BUILDING <em>quietly</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" }
+  ],
+  "presets": [{ "name": "QLOSE team" }]
+}
+{% endschema %}

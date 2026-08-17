@@ -31,7 +31,7 @@
 
 {% stylesheet %}
   .qlose-cta-band {
-    padding: 120px var(--qlose-gutter);
+    padding: var(--qlose-section-pad) var(--qlose-gutter);
   }
 
   .qlose-cta-band--light {
@@ -42,46 +42,49 @@
   .qlose-cta-band--dark {
     background: var(--qlose-black);
     color: var(--qlose-white);
-    padding-block: 140px;
+    padding-block: calc(var(--qlose-section-pad) + 20px);
   }
 
+  /* The measure sits on the heading and the copy separately, the way the source
+     writes it, rather than on one wrapper around both. On the dark band those
+     two differ -- a 1000px headline over a 600px paragraph -- which a single
+     wrapper cannot express. */
   .qlose-cta-band__inner {
-    max-width: 900px;
     margin: 0 auto;
     text-align: center;
   }
 
-  .qlose-cta-band--dark .qlose-cta-band__inner {
-    max-width: 1000px;
-  }
-
   .qlose-cta-band__heading {
-    font-size: clamp(36px, 5vw, 80px);
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 40px;
+    font-size: clamp(48px, 6vw, 96px);
     line-height: 0.9;
     letter-spacing: -0.04em;
     color: var(--qlose-black);
-    margin-bottom: 24px;
   }
 
   .qlose-cta-band--dark .qlose-cta-band__heading {
+    max-width: 1000px;
+    margin-bottom: 24px;
     color: var(--qlose-white);
-    font-size: clamp(40px, 7vw, 120px);
+    font-size: clamp(48px, 7vw, 120px);
     letter-spacing: -0.05em;
   }
 
   .qlose-cta-band__text {
+    max-width: 600px;
+    margin-inline: auto;
+    margin-bottom: 40px;
     font-size: 15px;
     line-height: 1.6;
     color: var(--qlose-graphite);
-    margin-bottom: 40px;
   }
 
   .qlose-cta-band--dark .qlose-cta-band__text {
     font-size: 16px;
     /* Source used rgba(255,255,255,0.7) = 7.4:1 on black, which passes. */
     color: rgba(255, 255, 255, 0.7);
-    max-width: 600px;
-    margin-inline: auto;
   }
 
   /* The primary button is black on black in the dark theme, so invert it. */
@@ -111,11 +114,7 @@
     flex-wrap: wrap;
   }
 
-  @media (max-width: 900px) {
-    .qlose-cta-band {
-      padding-block: 60px;
-    }
-  }
+
 {% endstylesheet %}
 
 {% schema %}
