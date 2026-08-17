@@ -21,7 +21,11 @@
 </section>
 
 {% stylesheet %}
+  /* Bone, not the page ground. The band is what separates the cross-sell from
+     the product above it; without the fill the rule at the top is doing that
+     work alone and the section reads as more of the same page. */
   .qlose-cross-sell {
+    background: var(--qlose-bone);
     padding: 100px var(--qlose-gutter);
     border-top: 1px solid var(--qlose-divider);
   }
@@ -33,11 +37,11 @@
   }
 
   .qlose-cross-sell__heading {
-    font-size: clamp(32px, 4vw, 56px);
+    font-size: clamp(40px, 5vw, 64px);
     line-height: 0.95;
     letter-spacing: -0.03em;
     color: var(--qlose-black);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .qlose-cross-sell__text {
@@ -49,7 +53,7 @@
 
   @media (max-width: 900px) {
     .qlose-cross-sell {
-      padding-block: 60px;
+      padding-block: var(--qlose-section-pad);
     }
   }
 {% endstylesheet %}
