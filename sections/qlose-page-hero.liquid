@@ -42,11 +42,19 @@
     padding-bottom: 60px;
   }
 
+  /* The pair only breaks apart when it has to. Left alone, flex would shrink
+     both halves and wrap each internally, giving two ragged stacks side by
+     side; not shrinking means the second half drops to its own line instead,
+     and only on the pages where the two do not fit -- the FAQ, the routine and
+     the journal, whose meta runs to 49 characters. Everywhere else the row is
+     untouched. max-width keeps that longest one wrapping inside the line
+     rather than pushing past it. */
   .qlose-page-hero__meta {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
-    gap: 16px;
+    gap: 6px 16px;
     margin-bottom: 40px;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--qlose-divider);
@@ -55,6 +63,11 @@
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--qlose-muted);
+  }
+
+  .qlose-page-hero__meta > span {
+    flex: 0 0 auto;
+    max-width: 100%;
   }
 
   .qlose-page-hero__meta strong {
