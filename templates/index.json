@@ -31,11 +31,11 @@
     "routine": {
       "type": "qlose-routine-steps",
       "blocks": {
-        "s1": { "type": "step", "settings": { "index": "01 / FLOSS", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
-        "s2": { "type": "step", "settings": { "index": "02 / BRUSH", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
-        "s3": { "type": "step", "settings": { "index": "03 / DETAIL", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
-        "s4": { "type": "step", "settings": { "index": "04 / TONGUE", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
-        "s5": { "type": "step", "settings": { "index": "05 / SCRAPE", "fallback_asset": "qlose-tool-tongue-scraper.png", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
+        "s1": { "type": "step", "settings": { "index": "— 01 / FLOSS", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
+        "s2": { "type": "step", "settings": { "index": "— 02 / BRUSH", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
+        "s3": { "type": "step", "settings": { "index": "— 03 / DETAIL", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
+        "s4": { "type": "step", "settings": { "index": "— 04 / TONGUE", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
+        "s5": { "type": "step", "settings": { "index": "— 05 / SCRAPE", "fallback_asset": "qlose-tool-tongue-scraper.png", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5"],
       "settings": {
@@ -48,9 +48,9 @@
     "statement": {
       "type": "qlose-statement",
       "settings": {
-        "eyebrow": "03 / THE PHILOSOPHY",
+        "eyebrow": "— 03 / THE PHILOSOPHY",
         "heading": "<p>ORAL CARE<br>ISN'T A <strong>CHORE</strong>.<br>IT'S A <em>ritual</em>.</p>",
-        "attribution": "QLOSE / MANIFESTO"
+        "attribution": "— QLOSE / MANIFESTO"
       }
     },
     "subscribe": {

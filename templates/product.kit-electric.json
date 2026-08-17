@@ -26,7 +26,7 @@
         "meta_right": "IN STOCK",
         "title": "<p>The Electric<br><em>clean</em> Mouth Kit.</p>",
         "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, USB-C rechargeable electric toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
-        "purchase_label": "Choose your plan",
+        "purchase_label": "— Choose your plan",
         "save_note": "Free UK shipping on subscriptions",
         "atc_label": "Add to cart, start my routine"
       }
@@ -34,11 +34,11 @@
     "tools": {
       "type": "qlose-tools-grid",
       "blocks": {
-        "x1": { "type": "tool", "settings": { "index": "01", "fallback_asset": "qlose-tool-floss-pick.png", "name": "Angled Floss Pick", "material": "Soft-touch handle, PTFE-coated floss thread" } },
-        "x2": { "type": "tool", "settings": { "index": "02", "fallback_asset": "qlose-tool-toothbrush.png", "name": "Electric Toothbrush", "material": "USB-C rechargeable, IPX7, 2-minute timer" } },
-        "x3": { "type": "tool", "settings": { "index": "03", "fallback_asset": "qlose-tool-tongue-brush.png", "name": "Tongue Brush", "material": "Soft bristles, ergonomic grip" } },
-        "x4": { "type": "tool", "settings": { "index": "04", "fallback_asset": "qlose-tool-tongue-scraper.png", "name": "Tongue Scraper", "material": "Medical-grade stainless steel" } },
-        "x5": { "type": "tool", "settings": { "index": "05", "fallback_asset": "qlose-tool-tuft-brush.png", "name": "Tuft Brush", "material": "Screw-in replaceable head, angled bristle tuft" } }
+        "x1": { "type": "tool", "settings": { "index": "— 01", "fallback_asset": "qlose-tool-floss-pick.png", "name": "Angled Floss Pick", "material": "Soft-touch handle, PTFE-coated floss thread" } },
+        "x2": { "type": "tool", "settings": { "index": "— 02", "fallback_asset": "qlose-tool-toothbrush.png", "name": "Electric Toothbrush", "material": "USB-C rechargeable, IPX7, 2-minute timer" } },
+        "x3": { "type": "tool", "settings": { "index": "— 03", "fallback_asset": "qlose-tool-tongue-brush.png", "name": "Tongue Brush", "material": "Soft bristles, ergonomic grip" } },
+        "x4": { "type": "tool", "settings": { "index": "— 04", "fallback_asset": "qlose-tool-tongue-scraper.png", "name": "Tongue Scraper", "material": "Medical-grade stainless steel" } },
+        "x5": { "type": "tool", "settings": { "index": "— 05", "fallback_asset": "qlose-tool-tuft-brush.png", "name": "Tuft Brush", "material": "Screw-in replaceable head, angled bristle tuft" } }
       },
       "block_order": ["x1", "x2", "x3", "x4", "x5"],
       "settings": {

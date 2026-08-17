@@ -93,10 +93,10 @@
         "fallback_asset": "qlose-tool-floss-pick.png",
         "image_alt": "Angled floss pick",
         "image_shape": "tall",
-        "eyebrow": "Step 01 / Between the teeth",
+        "eyebrow": "— Step 01 / Between the teeth",
         "heading": "<p>ANGLED<br>FLOSS <em>pick</em>.</p>",
         "text": "<p>Start where your toothbrush can't reach. The angled head lets you glide between every tooth, including the back molars that usually get missed. Flossing first clears the way for the brush to actually clean, not just push debris around.</p>",
-        "howto_title": "How to"
+        "howto_title": "— How to"
       }
     },
     "step2": {
@@ -146,10 +146,10 @@
         "fallback_asset": "qlose-tool-toothbrush.png",
         "image_alt": "Toothbrush",
         "image_shape": "slim",
-        "eyebrow": "Step 02 / Every surface",
+        "eyebrow": "— Step 02 / Every surface",
         "heading": "<p>BRUSH<br>YOUR <em>teeth</em>.</p>",
         "text": "<p>Now that the gaps are clear, the brush can do its real job. Hold at a 45-degree angle to the gums. Cover every surface: outer, inner, chewing. Ninety seconds, not the thirty most people give it.</p>",
-        "howto_title": "How to"
+        "howto_title": "— How to"
       }
     },
     "step3": {
@@ -192,10 +192,10 @@
         "fallback_asset": "qlose-tool-tuft-brush.png",
         "image_alt": "Tuft brush",
         "image_shape": "tall",
-        "eyebrow": "Step 03 / Precision finish",
+        "eyebrow": "— Step 03 / Precision finish",
         "heading": "<p>TUFT<br><em>detail</em>.</p>",
         "text": "<p>The final pass. The angled tuft brush reaches the tight spots your regular brush can't, behind the back molars, around dental work, along the gumline. A precision finish that leaves nothing behind. The head is small and works hard, so it wears faster than a toothbrush, screw on a fresh one roughly every three weeks.</p>",
-        "howto_title": "How to"
+        "howto_title": "— How to"
       }
     },
     "step4": {
@@ -238,10 +238,10 @@
         "fallback_asset": "qlose-tool-tongue-brush.png",
         "image_alt": "Tongue brush",
         "image_shape": "wide",
-        "eyebrow": "Step 04 / Loosen the coating",
+        "eyebrow": "— Step 04 / Loosen the coating",
         "heading": "<p>TONGUE<br><em>brush</em>.</p>",
         "text": "<p>Most people ignore the tongue. But most bad breath starts in the mouth, and a coated tongue is its single most common source. The soft bristles work into the small crevices, loosening the coating before you scrape it away.</p>",
-        "howto_title": "How to"
+        "howto_title": "— How to"
       }
     },
     "step5": {
@@ -284,10 +284,10 @@
         "fallback_asset": "qlose-tool-tongue-scraper.png",
         "image_alt": "Tongue scraper",
         "image_shape": "curved",
-        "eyebrow": "Step 05 / Lift it all off",
+        "eyebrow": "— Step 05 / Lift it all off",
         "heading": "<p>TONGUE<br><em>scrape</em>.</p>",
         "text": "<p>Everything the brush loosened, the scraper lifts off in one smooth pull. Stainless steel, U-shaped, one motion. This is the step that changes your morning breath.</p>",
-        "howto_title": "How to"
+        "howto_title": "— How to"
       }
     },
     "cta": {

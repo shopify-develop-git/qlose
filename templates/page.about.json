@@ -12,7 +12,7 @@
     "story": {
       "type": "qlose-story",
       "settings": {
-        "eyebrow": "The Story",
+        "eyebrow": "— The Story",
         "heading": "<p>WE MADE THE THING WE COULDN'T <em>find</em>.</p>",
         "body_before": "<p>QLOSE started with a simple frustration: everyone talks about the importance of oral care, but nobody sells you a complete routine. You buy your toothbrush at one shop, your floss at another, your tongue scraper on Amazon, and your tuft brush at the dentist. Then you keep them in a drawer, forget half of them, and wonder why your mouth doesn't feel as clean as it should.</p><p>So we built the kit. Five tools, chosen to work in sequence, arriving in one considered case. A complete routine, not a shelf full of half-remembered products.</p>",
         "pullquote": "\"The best routine is the one you actually do.\"",
@@ -53,7 +53,7 @@
         "v3"
       ],
       "settings": {
-        "eyebrow": "What we believe",
+        "eyebrow": "— What we believe",
         "heading": "<p>THREE THINGS,<br>ALWAYS <em>true</em>.</p>"
       }
     },
