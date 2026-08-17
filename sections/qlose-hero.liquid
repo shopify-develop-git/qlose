@@ -170,6 +170,33 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Two of these labels carry a price, so neither fits beside the other on a
+     phone and the row breaks into a ragged stack of differing widths. Stacked
+     to full width instead; the underline variant keeps its content width,
+     since a rule drawn across the whole screen reads as a divider. */
+  @media (max-width: 480px) {
+    .qlose-hero__cta {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    .qlose-hero__cta > span {
+      display: flex;
+    }
+
+    .qlose-hero__cta > span:has(.qlose-btn--underline) {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    .qlose-hero__cta .qlose-btn {
+      flex: 1;
+      text-align: center;
+      padding-inline: 16px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

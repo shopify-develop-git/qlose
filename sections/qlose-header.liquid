@@ -57,6 +57,14 @@
       </a>
     </div>
   </div>
+
+  {%- comment -%}
+    Backdrop for the open menu. Fixed to the viewport but sat at z-index -1
+    inside the sticky header group's stacking context, so it dims everything
+    the group paints over -- the whole page -- while the announcement bar and
+    the nav itself stay above it, unshaded.
+  {%- endcomment -%}
+  <div class="qlose-header__scrim" ref="scrim" aria-hidden="true"></div>
 </qlose-header>
 
 {% stylesheet %}
@@ -159,6 +167,25 @@
     letter-spacing: 0.1em;
   }
 
+  /* Never shown above the menu breakpoint: the toggle is hidden there, so the
+     open state cannot be reached, but a viewport resized while open would
+     otherwise leave the page dimmed with no way to clear it. */
+  .qlose-header__scrim {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgb(10 10 10 / 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-header__scrim {
+      transition: none;
+    }
+  }
+
   .qlose-header__toggle {
     display: none;
     background: none;
@@ -234,6 +261,11 @@
 
     .qlose-header__menu--open {
       display: flex;
+    }
+
+    .qlose-header--open .qlose-header__scrim {
+      opacity: 1;
+      visibility: visible;
     }
 
     .qlose-header__menu li {
