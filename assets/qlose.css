@@ -57,6 +57,29 @@ html body {
   text-rendering: optimizeLegibility;
 }
 
+/* Heading and paragraph margins.
+
+   The source stylesheet opens with `* { margin: 0; padding: 0 }` and then adds
+   back every gap it wants. Horizon has no equivalent -- base.css zeroes heading
+   margins only for a few first-child and .text-block cases that never match our
+   markup -- so our sections, which were ported from a stylesheet that assumed
+   the reset, inherited the user-agent's margin-block on every heading and
+   paragraph that did not happen to declare one.
+
+   On body copy that is a few stray pixels. On a display heading it is not:
+   the UA margin is em-based, so .qlose-routine__heading at clamp(40px, 6vw,
+   96px) carries up to 80px of unasked-for space above and below.
+
+   Scoped to our own subtrees rather than applied globally, so Horizon's cart
+   drawer, predictive search and stock templates keep their own spacing. The
+   inner half is :where() and therefore weightless, so any section rule -- or
+   .qlose-prose below, which deliberately spaces admin-authored copy -- still
+   wins without needing a specificity fight. */
+[class^='qlose-'] :where(h1, h2, h3, h4, h5, h6, p),
+[class*=' qlose-'] :where(h1, h2, h3, h4, h5, h6, p) {
+  margin-block: 0;
+}
+
 /* Sticky header.
 
    The design pins the nav and lets the announcement bar scroll away. A section
