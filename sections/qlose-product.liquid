@@ -640,6 +640,16 @@
   }
 
   @media (max-width: 600px) {
+    /* Two mono lines set side by side, about 420px of them, in a column that
+       is 335px wide on a phone. The source never revisits this: it has one
+       breakpoint and both lines still fit at it. Stacked, the shipping note
+       reads as a note under the label rather than as a squeezed second column. */
+    .qlose-product__purchase-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
     .qlose-product__trust {
       flex-direction: column;
       gap: 12px;
