@@ -1,0 +1,121 @@
+{%- comment -%}
+  Single article. The source set has no article page, so this is composed
+  from the system's own parts: the journal's editorial header treatment plus
+  the rich-text body typography from the legal pages.
+{%- endcomment -%}
+
+<article class="qlose-article-page">
+  <header class="qlose-article-page__header">
+    <div class="qlose-article-page__meta">
+      <span>
+        {%- if article.tags.size > 0 -%}{{ article.tags.first | upcase }}{%- endif -%}
+      </span>
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+        {{- article.published_at | date: '%d %b %Y' | upcase -}}
+      </time>
+    </div>
+
+    <h1 class="qlose-article-page__title qlose-display">{{ article.title }}</h1>
+
+    {%- if article.author != blank -%}
+      <p class="qlose-article-page__byline">By {{ article.author }}</p>
+    {%- endif -%}
+  </header>
+
+  {%- if article.image != blank -%}
+    <div class="qlose-article-page__cover">
+      {{
+        article.image
+        | image_url: width: 1600
+        | image_tag:
+          widths: '600,900,1200,1600',
+          sizes: '(max-width: 1000px) 92vw, 1000px',
+          fetchpriority: 'high',
+          class: 'qlose-article-page__cover-img',
+          alt: article.image.alt | default: article.title
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="qlose-article-page__body qlose-prose">
+    {{ article.content }}
+  </div>
+
+  {%- if blog.url != blank -%}
+    <nav class="qlose-article-page__back">
+      {%- render 'qlose-button', label: section.settings.back_label, url: blog.url, style: 'underline' -%}
+    </nav>
+  {%- endif -%}
+</article>
+
+{% stylesheet %}
+  .qlose-article-page {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 80px var(--qlose-gutter) 120px;
+  }
+
+  .qlose-article-page__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--qlose-divider);
+    margin-bottom: 32px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-article-page__title {
+    font-size: clamp(34px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-article-page__byline {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-top: 20px;
+  }
+
+  .qlose-article-page__cover {
+    margin: 48px 0;
+    background: var(--qlose-bone);
+  }
+
+  .qlose-article-page__cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .qlose-article-page__back {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-article-page {
+      padding-block: 40px 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE article",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "back_label", "label": "Back link label", "default": "← Back to the Journal" }
+  ],
+  "presets": [{ "name": "QLOSE article" }]
+}
+{% endschema %}

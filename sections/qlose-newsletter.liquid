@@ -1,0 +1,159 @@
+{%- comment -%}
+  Ported from docs/design-source/journal.html, section .newsletter. The
+  source had a decorative input; this is a real Shopify customer form, so a
+  submission actually creates a subscriber.
+{%- endcomment -%}
+
+<section class="qlose-newsletter">
+  <div class="qlose-newsletter__inner">
+    <h2 class="qlose-newsletter__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    {%- if section.settings.text != blank -%}
+      <div class="qlose-newsletter__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+
+    {%- form 'customer', class: 'qlose-newsletter__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      {%- comment -%}
+        A plain settable label rather than a translation key: every other
+        string in this theme is brand copy set in the editor, and borrowing
+        a Horizon locale key ties us to their key names.
+      {%- endcomment -%}
+      <label class="visually-hidden" for="QloseNewsletterEmail-{{ section.id }}">
+        {{ section.settings.email_label }}
+      </label>
+      <input
+        id="QloseNewsletterEmail-{{ section.id }}"
+        class="qlose-newsletter__input"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        placeholder="{{ section.settings.placeholder }}"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" class="qlose-btn qlose-btn--primary qlose-newsletter__submit">
+        {{ section.settings.button_label }}
+      </button>
+
+      {%- if form.errors -%}
+        <p class="qlose-newsletter__message qlose-newsletter__message--error" role="alert">
+          {{ form.errors.translated_fields.email }} {{ form.errors.messages.email }}
+        </p>
+      {%- elsif form.posted_successfully? -%}
+        <p class="qlose-newsletter__message" role="status">{{ section.settings.success_text }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-newsletter {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    padding: 120px var(--qlose-gutter);
+    text-align: center;
+  }
+
+  .qlose-newsletter__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .qlose-newsletter__heading {
+    font-size: clamp(32px, 5vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--qlose-white);
+    margin-bottom: 24px;
+  }
+
+  .qlose-newsletter__text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .qlose-newsletter__form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .qlose-newsletter__input {
+    flex: 1 1 320px;
+    max-width: 420px;
+    padding: 18px 20px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--qlose-white);
+    font-family: var(--qlose-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .qlose-newsletter__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .qlose-newsletter__input:focus-visible {
+    outline: 2px solid var(--qlose-accent);
+    outline-offset: 2px;
+  }
+
+  .qlose-newsletter .qlose-newsletter__submit {
+    background: var(--qlose-white);
+    color: var(--qlose-black);
+  }
+
+  .qlose-newsletter .qlose-newsletter__submit:hover {
+    background: var(--qlose-bone);
+  }
+
+  .qlose-newsletter__message {
+    flex: 1 0 100%;
+    margin-top: 16px;
+    font-family: var(--qlose-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .qlose-newsletter__message--error {
+    color: #f3a58c;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-newsletter {
+      padding-block: 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE newsletter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>NEW PIECES, IN YOUR <em>inbox</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "email_label", "label": "Email field label", "default": "Email address", "info": "Read by screen readers; the field itself shows the placeholder." },
+    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Subscribe →" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "Thanks, you're on the list." }
+  ],
+  "presets": [{ "name": "QLOSE newsletter" }]
+}
+{% endschema %}

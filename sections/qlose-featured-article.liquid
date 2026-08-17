@@ -1,0 +1,169 @@
+{%- comment -%}
+  Featured post. Ported from docs/design-source/journal.html, section
+  .featured. The source hardcoded one article; this pulls the newest post
+  from the blog, or a specific one if the client pins it.
+{%- endcomment -%}
+
+{%- liquid
+  assign target = blog
+  if section.settings.blog != blank
+    assign target = blogs[section.settings.blog]
+  endif
+  assign post = target.articles.first
+-%}
+
+{%- if post != blank -%}
+  <section class="qlose-featured">
+    <div class="qlose-featured__inner">
+      <a class="qlose-featured__visual" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
+        {%- if post.image != blank -%}
+          {{
+            post.image
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400,700,1000,1200',
+              sizes: '(max-width: 900px) 92vw, 50vw',
+              loading: 'lazy',
+              class: 'qlose-featured__img',
+              alt: post.image.alt | default: post.title
+          }}
+        {%- endif -%}
+        {%- if section.settings.badge != blank -%}
+          <span class="qlose-featured__badge">{{ section.settings.badge }}</span>
+        {%- endif -%}
+      </a>
+
+      <div class="qlose-featured__content">
+        <div class="qlose-featured__meta">
+          {%- if post.tags.size > 0 -%}{{ post.tags.first | upcase }}{%- endif -%}
+          {%- if section.settings.read_time != blank -%} / {{ section.settings.read_time }}{%- endif -%}
+        </div>
+
+        <h2 class="qlose-featured__heading qlose-display">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+
+        <p class="qlose-featured__excerpt">
+          {{- post.excerpt_or_content | strip_html | truncatewords: 55 -}}
+        </p>
+
+        <div class="qlose-featured__byline">
+          <time datetime="{{ post.published_at | date: '%Y-%m-%d' }}">
+            Published {{ post.published_at | date: '%-d %B %Y' }}
+          </time>
+          {%- if post.author != blank -%}<span>By {{ post.author }}</span>{%- endif -%}
+        </div>
+
+        {%- render 'qlose-button', label: section.settings.cta_label, url: post.url, style: 'underline' -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .qlose-featured {
+    padding: 60px var(--qlose-gutter);
+    max-width: var(--qlose-max);
+    margin: 0 auto;
+  }
+
+  .qlose-featured__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .qlose-featured__visual {
+    aspect-ratio: 4 / 3;
+    background: var(--qlose-accent-soft);
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .qlose-featured__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .qlose-featured__badge {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    padding: 8px 14px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .qlose-featured__meta,
+  .qlose-featured__byline {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-featured__meta {
+    margin-bottom: 24px;
+  }
+
+  .qlose-featured__byline {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 24px 0 32px;
+  }
+
+  .qlose-featured__heading {
+    font-size: clamp(32px, 4vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-featured__heading a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .qlose-featured__heading a:hover {
+    color: var(--qlose-accent-deep);
+  }
+
+  .qlose-featured__excerpt {
+    font-size: 16px;
+    color: var(--qlose-graphite);
+    line-height: 1.7;
+    margin-top: 24px;
+    max-width: 560px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-featured__inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE featured article",
+  "tag": "section",
+  "settings": [
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "Leave empty to use the current blog." },
+    { "type": "text", "id": "badge", "label": "Badge", "default": "FEATURED / 01" },
+    { "type": "text", "id": "read_time", "label": "Read time", "default": "8 MIN READ" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Read the piece →" }
+  ],
+  "presets": [{ "name": "QLOSE featured article" }]
+}
+{% endschema %}
