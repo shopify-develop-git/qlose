@@ -12,7 +12,7 @@
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
         "meta_right": "LONDON",
         "headline": "<p>EVERY <strong>TOOL</strong>.<br>THE RIGHT <em>order</em>.</p>",
-        "subtext": "<p>A five-piece oral care system, in two versions — manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>",
+        "subtext": "<p>A five-piece oral care system, in two versions, manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>",
         "tag": "THE KITS"
       }
     },
@@ -31,26 +31,26 @@
     "routine": {
       "type": "qlose-routine-steps",
       "blocks": {
-        "s1": { "type": "step", "settings": { "index": "— 01 / FLOSS", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap — even the back molars.", "duration": "30 SEC" } },
-        "s2": { "type": "step", "settings": { "index": "— 02 / BRUSH", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
-        "s3": { "type": "step", "settings": { "index": "— 03 / DETAIL", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
-        "s4": { "type": "step", "settings": { "index": "— 04 / TONGUE", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
-        "s5": { "type": "step", "settings": { "index": "— 05 / SCRAPE", "fallback_asset": "qlose-tool-tongue-scraper.png", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
+        "s1": { "type": "step", "settings": { "index": "01 / FLOSS", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
+        "s2": { "type": "step", "settings": { "index": "02 / BRUSH", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
+        "s3": { "type": "step", "settings": { "index": "03 / DETAIL", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
+        "s4": { "type": "step", "settings": { "index": "04 / TONGUE", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
+        "s5": { "type": "step", "settings": { "index": "05 / SCRAPE", "fallback_asset": "qlose-tool-tongue-scraper.png", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5"],
       "settings": {
         "eyebrow_index": "02 /",
         "eyebrow_text": "THE METHOD",
         "heading": "<p>FIVE STEPS.<br>ONE <em>system</em>.</p>",
-        "intro": "<p>This isn't a generic checklist. It's a sequence built around how each tool actually works — floss to disrupt, brush to clean, then a two-step finish on the tongue. Loosen first, then lift it all off.</p>"
+        "intro": "<p>This isn't a generic checklist. It's a sequence built around how each tool actually works, floss to disrupt, brush to clean, then a two-step finish on the tongue. Loosen first, then lift it all off.</p>"
       }
     },
     "statement": {
       "type": "qlose-statement",
       "settings": {
-        "eyebrow": "— 03 / THE PHILOSOPHY",
+        "eyebrow": "03 / THE PHILOSOPHY",
         "heading": "<p>ORAL CARE<br>ISN'T A <strong>CHORE</strong>.<br>IT'S A <em>ritual</em>.</p>",
-        "attribution": "— QLOSE / MANIFESTO"
+        "attribution": "QLOSE / MANIFESTO"
       }
     },
     "subscribe": {
@@ -65,7 +65,7 @@
         "eyebrow_index": "04 /",
         "eyebrow_text": "THE SUBSCRIPTION",
         "heading": "<p>TWO KITS.<br><em>one</em> SYSTEM.</p>",
-        "description": "<p>Same five-step routine, your choice of brush. Bristles wear out and floss runs low, so your subscription sends a fresh refill every 90 days for £18 — the same cadence dentists recommend for replacing a brush head.</p>",
+        "description": "<p>Same five-step routine, your choice of brush. Bristles wear out and floss runs low, so your subscription sends a fresh refill every 90 days for £18, the same cadence dentists recommend for replacing a brush head.</p>",
         "cta_label": "Choose your kit →",
         "cta_url": "/products/electric-kit"
       }
@@ -73,10 +73,10 @@
     "faq": {
       "type": "qlose-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "open": true, "question": "What comes in the starter kit?", "answer": "<p>The full five-tool system: angled floss pick, toothbrush, tuft brush, tongue brush, and stainless steel tongue scraper — all housed in a zippered travel case. Choose the Electric Kit for a USB-C rechargeable brush, or the Manual Kit for a soft-bristle manual one.</p>" } },
+        "q1": { "type": "question", "settings": { "open": true, "question": "What comes in the starter kit?", "answer": "<p>The full five-tool system: angled floss pick, toothbrush, tuft brush, tongue brush, and stainless steel tongue scraper, all housed in a zippered travel case. Choose the Electric Kit for a USB-C rechargeable brush, or the Manual Kit for a soft-bristle manual one.</p>" } },
         "q2": { "type": "question", "settings": { "question": "How does the subscription work?", "answer": "<p>You get the full kit once. After that, we send a refill every 90 days for £18, containing the parts that wear out. Your case and tongue scraper stay with you.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Do you ship internationally?", "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap — join our newsletter to be the first to know when we cross borders.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "Do I need to use all five tools?", "answer": "<p>Yes — that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "Do you ship internationally?", "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "Do I need to use all five tools?", "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>" } },
         "q5": { "type": "question", "settings": { "question": "Can I pause or cancel my subscription?", "answer": "<p>Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5"],
