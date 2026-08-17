@@ -1,0 +1,156 @@
+{%- comment -%} Ported from docs/design-source/electric-kit.html:673-733, 208-247 {%- endcomment -%}
+
+<section class="qlose-compare">
+  <div class="qlose-compare__header">
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+    <h2 class="qlose-compare__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+  </div>
+
+  {%- comment -%}
+    A real <table>, not the source's grid of divs: this is tabular data, and
+    a screen reader needs the row and column relationships to read a cell as
+    "Travel case, QLOSE kit, included".
+  {%- endcomment -%}
+  <table class="qlose-compare__table">
+    <thead>
+      <tr>
+        <th scope="col">{{ section.settings.col_feature }}</th>
+        <th scope="col">{{ section.settings.col_ours }}</th>
+        <th scope="col">{{ section.settings.col_theirs }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for block in section.blocks -%}
+        <tr {{ block.shopify_attributes }}>
+          <th scope="row">{{ block.settings.feature }}</th>
+          <td class="qlose-compare__ours"><span class="qlose-compare__check">{{ block.settings.ours }}</span></td>
+          <td><span class="qlose-compare__cross">{{ block.settings.theirs }}</span></td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+</section>
+
+{% stylesheet %}
+  .qlose-compare {
+    padding: 120px var(--qlose-gutter);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .qlose-compare__header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .qlose-compare__heading {
+    font-size: clamp(32px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-compare__table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--qlose-black);
+    border-left: 1px solid var(--qlose-black);
+    text-align: left;
+  }
+
+  .qlose-compare__table :is(th, td) {
+    padding: 20px 24px;
+    border-right: 1px solid var(--qlose-black);
+    border-bottom: 1px solid var(--qlose-black);
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: middle;
+  }
+
+  .qlose-compare__table thead th {
+    font-family: var(--qlose-font-sans);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+  }
+
+  .qlose-compare__table tbody th {
+    width: 42%;
+  }
+
+  .qlose-compare__ours {
+    background: var(--qlose-accent-soft);
+    font-weight: 500;
+  }
+
+  .qlose-compare__check {
+    color: var(--qlose-accent-deep);
+    font-weight: 700;
+  }
+
+  .qlose-compare__cross {
+    color: var(--qlose-muted);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-compare {
+      padding-block: 60px;
+    }
+
+    .qlose-compare__table :is(th, td) {
+      padding: 14px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .qlose-compare {
+      overflow-x: auto;
+    }
+
+    .qlose-compare__table {
+      min-width: 520px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE compare table",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "03 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "THE DIFFERENCE" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>WHY <em>complete</em> BEATS <em>separate</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "text", "id": "col_feature", "label": "Column 1 heading", "default": "FEATURE" },
+    { "type": "text", "id": "col_ours", "label": "Column 2 heading", "default": "QLOSE KIT" },
+    { "type": "text", "id": "col_theirs", "label": "Column 3 heading", "default": "SEPARATE TOOLS" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature" },
+        { "type": "text", "id": "ours", "label": "QLOSE" },
+        { "type": "text", "id": "theirs", "label": "Separate" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE compare table" }]
+}
+{% endschema %}

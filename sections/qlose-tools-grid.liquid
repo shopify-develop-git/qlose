@@ -1,0 +1,225 @@
+{%- comment -%} Ported from docs/design-source/electric-kit.html:546-671, 163-206 {%- endcomment -%}
+
+<section class="qlose-tools">
+  <div class="qlose-tools__inner">
+    <div class="qlose-tools__header">
+      <div>
+        {%- render 'qlose-eyebrow',
+            index: section.settings.eyebrow_index,
+            text: section.settings.eyebrow_text
+        -%}
+        <h2 class="qlose-tools__heading qlose-display">
+          {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+        </h2>
+      </div>
+      <div class="qlose-tools__intro">{{ section.settings.intro }}</div>
+    </div>
+
+    <div class="qlose-tools__grid">
+      {%- for block in section.blocks -%}
+        <article class="qlose-tool" {{ block.shopify_attributes }}>
+          <div class="qlose-tool__media">
+            <div class="qlose-tool__media-inner">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 600
+                  | image_tag:
+                    widths: '200,400,600',
+                    sizes: '(max-width: 700px) 45vw, 18vw',
+                    loading: 'lazy',
+                    alt: block.settings.name
+                }}
+              {%- elsif block.settings.fallback_asset != blank -%}
+                <img
+                  src="{{ block.settings.fallback_asset | asset_url }}"
+                  alt="{{ block.settings.name }}"
+                  loading="lazy"
+                  width="400"
+                  height="800"
+                >
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="qlose-tool__index">{{ block.settings.index }}</div>
+          <h3 class="qlose-tool__name">{{ block.settings.name }}</h3>
+          <p class="qlose-tool__material">{{ block.settings.material }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-tools {
+    background: var(--qlose-bone);
+    padding: 120px var(--qlose-gutter);
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-tools__inner {
+    max-width: var(--qlose-max);
+    margin: 0 auto;
+  }
+
+  .qlose-tools__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-tools__heading {
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-tools__intro {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    padding-bottom: 8px;
+  }
+
+  .qlose-tools__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+
+  .qlose-tool {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qlose-tool__media {
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(180deg, var(--qlose-bone) 0%, var(--qlose-off-white) 100%);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+
+  .qlose-tool:hover .qlose-tool__media {
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+  }
+
+  .qlose-tool__media-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+
+  .qlose-tool__media-inner img {
+    max-width: 75%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.28));
+    transition: transform 0.4s ease;
+  }
+
+  .qlose-tool:hover .qlose-tool__media-inner img {
+    transform: translateY(-8px) scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-tool__media,
+    .qlose-tool__media-inner img {
+      transition: none;
+    }
+
+    .qlose-tool:hover .qlose-tool__media-inner img {
+      transform: none;
+    }
+  }
+
+  .qlose-tool__index {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--qlose-muted);
+    margin-bottom: 8px;
+  }
+
+  .qlose-tool__name {
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--qlose-black);
+    margin-bottom: 8px;
+  }
+
+  .qlose-tool__material {
+    font-size: 12px;
+    color: var(--qlose-muted);
+    line-height: 1.5;
+  }
+
+  /* The source drops straight to one column at 900px. */
+  @media (max-width: 1200px) {
+    .qlose-tools__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .qlose-tools {
+      padding-block: 60px;
+    }
+
+    .qlose-tools__header {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .qlose-tools__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE tools grid",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "02 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "WHAT'S INSIDE" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>FIVE TOOLS. ONE <em>system</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "intro", "label": "Intro" }
+  ],
+  "blocks": [
+    {
+      "type": "tool",
+      "name": "Tool",
+      "settings": [
+        { "type": "text", "id": "index", "label": "Index", "default": "01" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_asset", "label": "Bundled asset filename", "default": "qlose-tool-floss-pick.png" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Angled Floss Pick" },
+        { "type": "text", "id": "material", "label": "Material" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE tools grid" }]
+}
+{% endschema %}

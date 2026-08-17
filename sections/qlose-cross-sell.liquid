@@ -1,0 +1,77 @@
+{%- comment -%} Ported from docs/design-source/electric-kit.html:275-282 {%- endcomment -%}
+
+<section class="qlose-cross-sell">
+  <div class="qlose-cross-sell__inner">
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+    <h2 class="qlose-cross-sell__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+    {%- if section.settings.text != blank -%}
+      <div class="qlose-cross-sell__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- render 'qlose-button',
+        label: section.settings.cta_label,
+        url: section.settings.cta_url,
+        style: 'ghost'
+    -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-cross-sell {
+    padding: 100px var(--qlose-gutter);
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-cross-sell__inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .qlose-cross-sell__heading {
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--qlose-black);
+    margin-bottom: 16px;
+  }
+
+  .qlose-cross-sell__text {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-cross-sell {
+      padding-block: 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE cross sell",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "ALSO AVAILABLE" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>PREFER MANUAL?</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "View The Manual Kit, £29 →" },
+    { "type": "url", "id": "cta_url", "label": "Button link" }
+  ],
+  "presets": [{ "name": "QLOSE cross sell" }]
+}
+{% endschema %}

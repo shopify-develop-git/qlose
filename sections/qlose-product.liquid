@@ -1,0 +1,704 @@
+{%- comment -%}
+  Product page main. Ported from docs/design-source/electric-kit.html:192-545
+  (styles) and :24-161 (markup).
+
+  Settings-driven so both kits and the refills product share one section and
+  differ only in their template JSON.
+{%- endcomment -%}
+
+{%- liquid
+  assign product = section.settings.product | default: product
+  assign variant = product.selected_or_first_available_variant
+  assign form_id = 'QloseProductForm-' | append: section.id
+
+  assign can_add_to_cart = false
+  if variant and variant.available
+    assign can_add_to_cart = true
+    assign add_to_cart_text = section.settings.atc_label | default: 'actions.add_to_cart' | t
+  elsif variant
+    assign add_to_cart_text = 'products.product.sold_out' | t
+  else
+    assign add_to_cart_text = 'products.product.unavailable' | t
+  endif
+-%}
+
+<script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<script src="{{ 'qlose-plan-selector.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<div class="qlose-product">
+  <nav class="qlose-product__breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a> /
+    <a href="{{ routes.all_products_collection_url }}">Shop</a> /
+    <span class="qlose-product__breadcrumb-current">
+      {{- section.settings.breadcrumb_label | default: product.title | default: 'Product' -}}
+    </span>
+  </nav>
+
+  <div class="qlose-product__main">
+    <div class="qlose-product__gallery">
+      <div class="qlose-product__stage">
+        {%- if section.settings.tag != blank -%}
+          <div class="qlose-product__tag">{{ section.settings.tag }}</div>
+        {%- endif -%}
+
+        {%- if product.featured_media != blank -%}
+          {{
+            product.featured_media
+            | image_url: width: 1400
+            | image_tag:
+              widths: '500,800,1100,1400',
+              sizes: '(max-width: 900px) 92vw, 45vw',
+              fetchpriority: 'high',
+              class: 'qlose-product__stage-img',
+              alt: product.featured_media.alt | default: product.title
+          }}
+        {%- else -%}
+          <img
+            src="{{ section.settings.fallback_image | default: 'qlose-kit-case-closed.png' | asset_url }}"
+            alt="{{ product.title | default: shop.name }}"
+            width="800"
+            height="278"
+            fetchpriority="high"
+            class="qlose-product__stage-img"
+          >
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="qlose-product__thumbs">
+          {%- for media in product.media limit: 4 -%}
+            <div class="qlose-product__thumb{% if forloop.first %} qlose-product__thumb--active{% endif %}">
+              {{
+                media
+                | image_url: width: 300
+                | image_tag: widths: '150,300', loading: 'lazy', alt: media.alt | default: product.title
+              }}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="qlose-product__info">
+      <div class="qlose-product__meta">
+        <span><strong>{{ section.settings.meta_left }}</strong></span>
+        <span>
+          {%- if variant.available -%}
+            {{- section.settings.meta_right | default: 'IN STOCK' -}}
+          {%- else -%}
+            SOLD OUT
+          {%- endif -%}
+        </span>
+      </div>
+
+      <h1 class="qlose-product__title qlose-display">
+        {%- if section.settings.title != blank -%}
+          {{- section.settings.title | replace: '<p>', '' | replace: '</p>', '' -}}
+        {%- else -%}
+          {{- product.title | default: 'Product' -}}
+        {%- endif -%}
+      </h1>
+
+      <div class="qlose-product__desc">
+        {%- if section.settings.description != blank -%}
+          {{ section.settings.description }}
+        {%- else -%}
+          {{ product.description }}
+        {%- endif -%}
+      </div>
+
+      <div class="qlose-product__purchase-header">
+        <div class="qlose-product__purchase-label">{{ section.settings.purchase_label }}</div>
+        {%- if section.settings.save_note != blank -%}
+          <div class="qlose-product__save-note">{{ section.settings.save_note }}</div>
+        {%- endif -%}
+      </div>
+
+      <product-form-component
+        data-section-id="{{ section.id }}"
+        data-product-id="{{ product.id }}"
+        data-product-url="{{ product.url }}"
+        on:submit="/handleSubmit"
+      >
+        <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+
+        {%- form 'product', product, id: form_id, data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" ref="variantId" value="{{ variant.id }}">
+
+          {%- assign plan_blocks = section.blocks | where: 'type', 'plan' -%}
+          {%- if plan_blocks.size > 0 -%}
+            <qlose-plan-selector class="qlose-plans" role="radiogroup" aria-label="Purchase options">
+              <input type="hidden" name="selling_plan" ref="sellingPlanInput" value="{{ plan_blocks.first.settings.selling_plan_id }}">
+
+              {%- for block in plan_blocks -%}
+                <div
+                  class="qlose-plan{% if forloop.first %} qlose-plan--active{% endif %}"
+                  role="radio"
+                  aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                  tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                  data-selling-plan="{{ block.settings.selling_plan_id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="qlose-plan__info">
+                    <span class="qlose-plan__radio" aria-hidden="true"></span>
+                    <span class="qlose-plan__details">
+                      <span class="qlose-plan__label">
+                        {{ block.settings.label }}
+                        {%- if block.settings.badge != blank -%}
+                          <span class="qlose-plan__badge">{{ block.settings.badge }}</span>
+                        {%- endif -%}
+                      </span>
+                      <span class="qlose-plan__sub">{{ block.settings.sub }}</span>
+                    </span>
+                  </div>
+                  <div class="qlose-plan__price">
+                    {%- if block.settings.price != blank -%}
+                      {{ block.settings.price }}
+                    {%- else -%}
+                      {{ variant.price | money }}
+                    {%- endif -%}
+                    <span class="qlose-plan__price-note">{{ block.settings.price_note }}</span>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </qlose-plan-selector>
+          {%- endif -%}
+
+          {%- render 'add-to-cart-button',
+              can_add_to_cart: can_add_to_cart,
+              add_to_cart_text: add_to_cart_text,
+              product: product,
+              show_icon: false,
+              class: 'qlose-atc'
+          -%}
+        {%- endform -%}
+      </product-form-component>
+
+      {%- assign trust_blocks = section.blocks | where: 'type', 'trust' -%}
+      {%- if trust_blocks.size > 0 -%}
+        <div class="qlose-product__trust">
+          {%- for block in trust_blocks -%}
+            <div class="qlose-product__trust-item" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title }}</strong>{{ block.settings.text }}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- assign detail_blocks = section.blocks | where: 'type', 'detail' -%}
+      {%- if detail_blocks.size > 0 -%}
+        <div class="qlose-product__details">
+          {%- for block in detail_blocks -%}
+            <details
+              class="qlose-detail"
+              {% if block.settings.open %}open{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <summary class="qlose-detail__q">{{ block.settings.heading }}</summary>
+              <div class="qlose-detail__a"><div>{{ block.settings.content }}</div></div>
+            </details>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .qlose-product {
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+    padding: 40px var(--qlose-gutter) 100px;
+  }
+
+  .qlose-product__breadcrumb {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+    margin-bottom: 40px;
+  }
+
+  .qlose-product__breadcrumb a {
+    color: var(--qlose-muted);
+    text-decoration: none;
+  }
+
+  .qlose-product__breadcrumb a:hover {
+    color: var(--qlose-black);
+  }
+
+  .qlose-product__breadcrumb-current {
+    color: var(--qlose-black);
+  }
+
+  .qlose-product__main {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .qlose-product__gallery {
+    position: sticky;
+    top: 100px;
+  }
+
+  .qlose-product__stage {
+    aspect-ratio: 1;
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+    position: relative;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .qlose-product__stage-img {
+    max-width: 88%;
+    max-height: 60%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.35));
+  }
+
+  .qlose-product__tag {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    padding: 10px 16px;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .qlose-product__thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .qlose-product__thumb {
+    aspect-ratio: 1;
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .qlose-product__thumb--active {
+    border-color: var(--qlose-black);
+  }
+
+  .qlose-product__thumb img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .qlose-product__info {
+    padding-top: 20px;
+  }
+
+  .qlose-product__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--qlose-divider);
+    margin-bottom: 24px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-product__meta strong {
+    color: var(--qlose-black);
+    font-weight: 500;
+  }
+
+  .qlose-product__title {
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 20px;
+  }
+
+  .qlose-product__desc {
+    font-size: 15px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  .qlose-product__purchase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .qlose-product__purchase-label {
+    color: var(--qlose-black);
+  }
+
+  .qlose-product__save-note {
+    color: var(--qlose-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .qlose-plans {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--qlose-black);
+  }
+
+  .qlose-plan {
+    border-bottom: 1px solid var(--qlose-black);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: padding 0.2s, background 0.2s;
+  }
+
+  .qlose-plan--active {
+    padding-inline: 20px;
+    background: var(--qlose-bone);
+  }
+
+  .qlose-plan__info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .qlose-plan__radio {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--qlose-black);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .qlose-plan--active .qlose-plan__radio::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--qlose-black);
+    border-radius: 50%;
+  }
+
+  .qlose-plan__details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qlose-plan__label {
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--qlose-black);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .qlose-plan__badge {
+    display: inline-block;
+    background: var(--qlose-accent);
+    color: var(--qlose-white);
+    font-family: var(--qlose-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .qlose-plan__sub {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .qlose-plan__price {
+    font-family: var(--qlose-font-sans);
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--qlose-black);
+    letter-spacing: -0.02em;
+    text-align: right;
+  }
+
+  .qlose-plan__price-note {
+    font-size: 11px;
+    color: var(--qlose-muted);
+    font-family: var(--qlose-font-mono);
+    font-weight: 400;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Horizon's .button carries the theme's own look; the design calls for a
+     full-width black bar, so we override inside this section only. */
+  .qlose-product .qlose-atc {
+    width: 100%;
+    padding: 22px;
+    font-family: var(--qlose-font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+  }
+
+  .qlose-product .qlose-atc:hover:not([disabled]) {
+    background: var(--qlose-graphite);
+  }
+
+  .qlose-product .qlose-atc[disabled] {
+    background: var(--qlose-muted);
+    cursor: not-allowed;
+  }
+
+  .qlose-product__trust {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+    margin-bottom: 40px;
+  }
+
+  .qlose-product__trust-item {
+    text-align: center;
+    flex: 1;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--qlose-graphite);
+    line-height: 1.5;
+  }
+
+  .qlose-product__trust-item strong {
+    color: var(--qlose-black);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .qlose-product__details {
+    padding-top: 20px;
+  }
+
+  .qlose-detail {
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-detail:last-of-type {
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-detail__q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    cursor: pointer;
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+    list-style: none;
+  }
+
+  .qlose-detail__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .qlose-detail__q::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 300;
+    flex: none;
+    transition: transform 0.3s;
+  }
+
+  .qlose-detail[open] .qlose-detail__q::after {
+    transform: rotate(45deg);
+  }
+
+  /* Same fix as the FAQ: the source capped this at max-height and clipped
+     the longer specs lists. */
+  .qlose-detail__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-detail__a > div {
+    overflow: hidden;
+  }
+
+  .qlose-detail[open] .qlose-detail__a {
+    grid-template-rows: 1fr;
+    padding-bottom: 20px;
+  }
+
+  .qlose-detail__a ul {
+    margin: 0 0 0 18px;
+  }
+
+  .qlose-detail__a li {
+    margin-bottom: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-detail__a,
+    .qlose-detail__q::after,
+    .qlose-plan {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .qlose-product__main {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .qlose-product__gallery {
+      position: static;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .qlose-product__trust {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .qlose-plan {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .qlose-plan__price,
+    .qlose-plan__price-note {
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE product",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Leave empty to use the current product." },
+    { "type": "text", "id": "breadcrumb_label", "label": "Breadcrumb label" },
+    { "type": "text", "id": "tag", "label": "Corner tag", "default": "01 / KIT" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "qlose-kit-case-closed.png" },
+    { "type": "text", "id": "meta_left", "label": "Meta left", "default": "THE ELECTRIC KIT, MODEL 02" },
+    { "type": "text", "id": "meta_right", "label": "Meta right (in stock)", "default": "IN STOCK" },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "info": "Falls back to the product title. Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "description", "label": "Description", "info": "Falls back to the product description." },
+    { "type": "text", "id": "purchase_label", "label": "Purchase label", "default": "Choose your plan" },
+    { "type": "text", "id": "save_note", "label": "Save note", "default": "Free UK shipping on subscriptions" },
+    { "type": "text", "id": "atc_label", "label": "Add to cart label", "default": "Add to cart, start my routine" }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Purchase plan",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Kit + refills" },
+        { "type": "text", "id": "badge", "label": "Badge" },
+        { "type": "text", "id": "sub", "label": "Subtitle" },
+        { "type": "text", "id": "price", "label": "Price override", "info": "Leave empty to use the variant price." },
+        { "type": "text", "id": "price_note", "label": "Price note" },
+        {
+          "type": "text",
+          "id": "selling_plan_id",
+          "label": "Selling plan ID",
+          "info": "Leave empty for a one-time purchase. Fill in once a subscription app is connected."
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust signal",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Free UK Shipping" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On subscriptions" }
+      ]
+    },
+    {
+      "type": "detail",
+      "name": "Detail",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "What's inside" },
+        { "type": "richtext", "id": "content", "label": "Content" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE product" }]
+}
+{% endschema %}
