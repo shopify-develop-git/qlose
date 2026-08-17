@@ -91,9 +91,6 @@
     font-size: clamp(44px, 10vw, 160px);
   }
 
-  .qlose-page-hero--legal {
-    border-bottom: 1px solid var(--qlose-divider);
-  }
 
   /* about.html and routine.html both open on a full-bleed editorial
      headline, roughly double the simple variant. */
@@ -112,9 +109,6 @@
     line-height: 1.5;
   }
 
-  .qlose-page-hero--legal .qlose-page-hero__heading {
-    font-size: clamp(36px, 5vw, 72px);
-  }
 
   .qlose-page-hero__sub {
     margin-top: 32px;
@@ -158,23 +152,48 @@
       "id": "variant",
       "label": "Variant",
       "options": [
-        { "value": "simple", "label": "Simple" },
-        { "value": "legal", "label": "Legal" },
-        { "value": "editorial", "label": "Editorial" }
+        {
+          "value": "simple",
+          "label": "Simple"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial"
+        }
       ],
       "default": "simple"
     },
-    { "type": "text", "id": "meta_label", "label": "Meta label" },
-    { "type": "text", "id": "meta_left", "label": "Meta left" },
-    { "type": "text", "id": "meta_right", "label": "Meta right" },
+    {
+      "type": "text",
+      "id": "meta_label",
+      "label": "Meta label"
+    },
+    {
+      "type": "text",
+      "id": "meta_left",
+      "label": "Meta left"
+    },
+    {
+      "type": "text",
+      "id": "meta_right",
+      "label": "Meta right"
+    },
     {
       "type": "richtext",
       "id": "heading",
       "label": "Heading",
       "info": "Falls back to the page title when empty. Italic renders as the serif accent, bold as the stroked outline."
     },
-    { "type": "richtext", "id": "subtext", "label": "Subtext" }
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext"
+    }
   ],
-  "presets": [{ "name": "QLOSE page hero" }]
+  "presets": [
+    {
+      "name": "QLOSE page hero"
+    }
+  ]
 }
 {% endschema %}

@@ -1,14 +1,12 @@
 {
   "sections": {
     "hero": {
-      "type": "qlose-page-hero",
+      "type": "qlose-legal-hero",
       "settings": {
-        "meta_label": "LEGAL",
-        "variant": "legal",
-        "meta_left": "RETURNS",
-        "meta_right": "",
+        "meta": "LEGAL — RETURNS",
         "heading": "<p>RETURNS &amp;<br><em>cancellations</em>.</p>",
-        "subtext": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p><p>Last updated: 18 July 2026</p>"
+        "lead": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p>",
+        "updated": "Last updated: 18 July 2026"
       }
     },
     "body": {

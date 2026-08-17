@@ -1,14 +1,12 @@
 {
   "sections": {
     "hero": {
-      "type": "qlose-page-hero",
+      "type": "qlose-legal-hero",
       "settings": {
-        "meta_label": "LEGAL",
-        "variant": "legal",
-        "meta_left": "PRIVACY",
-        "meta_right": "",
+        "meta": "LEGAL — PRIVACY",
         "heading": "<p>PRIVACY<br><em>policy</em>.</p>",
-        "subtext": "<p>How Qlose collects, uses and protects your personal information, and the rights you have over it.</p><p>Last updated: 18 July 2026</p>"
+        "lead": "<p>How Qlose collects, uses and protects your personal information, and the rights you have over it.</p>",
+        "updated": "Last updated: 18 July 2026"
       }
     },
     "body": {

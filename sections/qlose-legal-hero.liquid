@@ -1,0 +1,101 @@
+{%- comment -%}
+  Ported from docs/design-source/privacy.html, terms.html and returns.html,
+  section .legal-hero.
+
+  Its own section rather than a variant of the page hero. The two only look
+  alike: this one sets its meta as a single line rather than a row split left
+  and right, carries a second meta line under the lead for the revision date,
+  runs on a 900px measure to match the legal body beneath it rather than the
+  1200px the other pages use, and closes with a rule. Expressing all of that as
+  conditionals inside the page hero would have left that section answering to
+  two layouts at once.
+{%- endcomment -%}
+
+<section class="qlose-legal-hero">
+  {%- if section.settings.meta != blank -%}
+    <div class="qlose-legal-hero__meta">{{ section.settings.meta }}</div>
+  {%- endif -%}
+
+  <h1 class="qlose-legal-hero__heading qlose-display">
+    {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+  </h1>
+
+  {%- if section.settings.lead != blank -%}
+    <div class="qlose-legal-hero__lead">{{ section.settings.lead }}</div>
+  {%- endif -%}
+
+  {%- if section.settings.updated != blank -%}
+    <p class="qlose-legal-hero__meta qlose-legal-hero__updated">{{ section.settings.updated }}</p>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  /* 900px, the measure the legal body below it uses: these pages are one column
+     of reading from the heading down, so the hero cannot sit on a wider rail
+     than the text it introduces. */
+  .qlose-legal-hero {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 60px var(--qlose-gutter) 40px;
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-legal-hero__meta {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  .qlose-legal-hero__heading {
+    margin-block: 24px;
+    font-size: clamp(40px, 7vw, 92px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+  }
+
+  .qlose-legal-hero__lead {
+    max-width: 620px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--qlose-graphite);
+  }
+
+  /* The revision date is a note about the document, not part of its
+     introduction, so it takes the meta face rather than the lead's. */
+  .qlose-legal-hero__updated {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-legal-hero {
+      padding: 40px var(--qlose-gutter) 32px;
+    }
+
+    .qlose-legal-hero__heading {
+      margin-block: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE legal hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "meta", "label": "Meta line", "default": "LEGAL — PRIVACY" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>PRIVACY <em>policy</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "lead", "label": "Lead" },
+    { "type": "text", "id": "updated", "label": "Last updated" }
+  ],
+  "presets": [{ "name": "QLOSE legal hero" }]
+}
+{% endschema %}
