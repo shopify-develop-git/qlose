@@ -289,10 +289,7 @@ qlose-accordion {
 .qlose-faq__a {
   display: grid;
   grid-template-rows: 0fr;
-  /* The padding rides along. Left out of the transition it snapped to full
-     depth the instant the panel opened, so the row finished sliding into a
-     gap that had already appeared -- the jolt at the end of the open. */
-  transition: grid-template-rows 0.35s ease, padding-bottom 0.35s ease;
+  transition: grid-template-rows 0.35s ease;
   color: var(--qlose-graphite);
   font-size: 15px;
   line-height: 1.7;
