@@ -1,15 +1,18 @@
 {%- comment -%} Ported from docs/design-source/index.html:57-69, 931-933 {%- endcomment -%}
 
-<div class="qlose-announce">
+<script src="{{ 'qlose-announcement-bar.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<qlose-announcement-bar class="qlose-announce">
   {%- for block in section.blocks -%}
     <span class="qlose-announce__item" {{ block.shopify_attributes }}>
       {{- block.settings.text -}}
     </span>
   {%- endfor -%}
-</div>
+</qlose-announcement-bar>
 
 {% stylesheet %}
   .qlose-announce {
+    display: block;
     background: var(--qlose-black);
     color: var(--qlose-white);
     text-align: center;
@@ -22,11 +25,17 @@
   }
 
   /* The source hardcodes a <span>—</span> between messages. Generating it
-     instead keeps the message count free. */
+     instead keeps the message count free.
+
+     24px, not the source's 16px, because the source also has a literal space
+     either side of its dash: `MESSAGE <span>—</span> MESSAGE`. Our items are
+     emitted with the whitespace stripped, so that space has to be paid back in
+     the margin or the line reads noticeably tighter than the design. At 11px
+     JetBrains Mono with 0.15em tracking a space is ~8px, hence 16 + 8. */
   .qlose-announce__item + .qlose-announce__item::before {
     content: '—';
     opacity: 0.4;
-    margin: 0 16px;
+    margin: 0 24px;
   }
 {% endstylesheet %}
 
