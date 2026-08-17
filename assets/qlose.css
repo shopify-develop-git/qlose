@@ -230,6 +230,11 @@ summary:focus-visible,
   }
 }
 
+/* A custom element is inline by default, and these wrap block content. */
+qlose-accordion {
+  display: block;
+}
+
 /* Disclosure accordion.
 
    Lives here rather than in qlose-faq.liquid because more than one section

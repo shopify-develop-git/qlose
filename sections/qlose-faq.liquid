@@ -1,5 +1,7 @@
 {%- comment -%} Ported from docs/design-source/index.html:737-793, 1115-1139 {%- endcomment -%}
 
+<script src="{{ 'qlose-accordion.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
 <section class="qlose-faq qlose-section">
   {%- if section.settings.eyebrow_text != blank -%}
     {%- render 'qlose-eyebrow',
@@ -17,16 +19,18 @@
     markup was unreachable by keyboard and announced no state. Native
     disclosure gives both for free, with no JavaScript at all.
   {%- endcomment -%}
-  {%- for block in section.blocks -%}
-    <details
-      class="qlose-faq__item"
-      {% if block.settings.open %}open{% endif %}
-      {{ block.shopify_attributes }}
-    >
-      <summary class="qlose-faq__q">{{ block.settings.question }}</summary>
-      <div class="qlose-faq__a"><div>{{ block.settings.answer }}</div></div>
-    </details>
-  {%- endfor -%}
+  <qlose-accordion>
+    {%- for block in section.blocks -%}
+      <details
+        class="qlose-faq__item"
+        {% if block.settings.open %}open{% endif %}
+        {{ block.shopify_attributes }}
+      >
+        <summary class="qlose-faq__q">{{ block.settings.question }}</summary>
+        <div class="qlose-faq__a"><div>{{ block.settings.answer }}</div></div>
+      </details>
+    {%- endfor -%}
+  </qlose-accordion>
 </section>
 
 {% stylesheet %}

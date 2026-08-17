@@ -10,6 +10,8 @@
   after it belongs to that set until the next "group".
 {%- endcomment -%}
 
+<script src="{{ 'qlose-accordion.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
 <div class="qlose-faq-page">
   <aside class="qlose-faq-page__nav">
     <h2 class="qlose-faq-page__nav-title">{{ section.settings.nav_title }}</h2>
@@ -42,19 +44,21 @@
             {{- block.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
           </h2>
 
-          {%- for entry in section.blocks offset: forloop.index -%}
-            {%- if entry.type == 'group' -%}
-              {%- break -%}
-            {%- endif -%}
-            <details
-              class="qlose-faq__item"
-              {% if entry.settings.open %}open{% endif %}
-              {{ entry.shopify_attributes }}
-            >
-              <summary class="qlose-faq__q">{{ entry.settings.question }}</summary>
-              <div class="qlose-faq__a"><div>{{ entry.settings.answer }}</div></div>
-            </details>
-          {%- endfor -%}
+          <qlose-accordion>
+            {%- for entry in section.blocks offset: forloop.index -%}
+              {%- if entry.type == 'group' -%}
+                {%- break -%}
+              {%- endif -%}
+              <details
+                class="qlose-faq__item"
+                {% if entry.settings.open %}open{% endif %}
+                {{ entry.shopify_attributes }}
+              >
+                <summary class="qlose-faq__q">{{ entry.settings.question }}</summary>
+                <div class="qlose-faq__a"><div>{{ entry.settings.answer }}</div></div>
+              </details>
+            {%- endfor -%}
+          </qlose-accordion>
         </section>
       {%- endif -%}
     {%- endfor -%}

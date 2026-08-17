@@ -6,6 +6,8 @@
   differ only in their template JSON.
 {%- endcomment -%}
 
+<script src="{{ 'qlose-accordion.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
 {%- liquid
   assign product = section.settings.product | default: product
   assign variant = product.selected_or_first_available_variant
@@ -187,7 +189,7 @@
 
       {%- assign detail_blocks = section.blocks | where: 'type', 'detail' -%}
       {%- if detail_blocks.size > 0 -%}
-        <div class="qlose-product__details">
+        <qlose-accordion class="qlose-product__details">
           {%- for block in detail_blocks -%}
             <details
               class="qlose-detail"
@@ -198,7 +200,7 @@
               <div class="qlose-detail__a"><div>{{ block.settings.content }}</div></div>
             </details>
           {%- endfor -%}
-        </div>
+        </qlose-accordion>
       {%- endif -%}
     </div>
   </div>
