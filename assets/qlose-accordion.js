@@ -27,8 +27,8 @@ import { Component } from '@theme/component';
  * @extends {Component}
  */
 class QloseAccordion extends Component {
-  /** One per panel with a close in flight, so it can be called off. */
-  #closing = new WeakMap();
+  /** One per panel with an open or close in flight, so it can be called off. */
+  #pending = new WeakMap();
 
   connectedCallback() {
     super.connectedCallback();
@@ -114,10 +114,26 @@ class QloseAccordion extends Component {
     panel.style.setProperty('--qlose-accordion-duration', `${this.#duration(panel)}ms`);
     panel.style.gridTemplateRows = '0fr';
     panel.style.paddingBottom = '0';
-    // Reading a layout property commits the shut state as the starting frame.
-    void panel.offsetHeight;
-    panel.style.gridTemplateRows = '';
-    panel.style.paddingBottom = '';
+
+    // Two frames, not a forced reflow. Reading a layout property flushes style
+    // and layout, but the browser is still free to fold the shut state and the
+    // release that follows into one recalculation, and a transition needs the
+    // shut state to have been a rendered frame of its own. A panel that had
+    // been opened once already got away with it -- hence an animation that
+    // worked on every open but the first one after a panel came back into
+    // rendering, which is exactly when a group had all its panels shut.
+    const controller = new AbortController();
+    this.#pending.set(details, controller);
+
+    requestAnimationFrame(() => {
+      if (controller.signal.aborted) return;
+      requestAnimationFrame(() => {
+        if (controller.signal.aborted) return;
+        panel.style.gridTemplateRows = '';
+        panel.style.paddingBottom = '';
+        this.#pending.delete(details);
+      });
+    });
   }
 
   /** @param {HTMLDetailsElement} details */
@@ -132,7 +148,7 @@ class QloseAccordion extends Component {
     this.#cancel(details);
 
     const controller = new AbortController();
-    this.#closing.set(details, controller);
+    this.#pending.set(details, controller);
 
     const duration = this.#duration(panel);
     panel.style.setProperty('--qlose-accordion-duration', `${duration}ms`);
@@ -170,10 +186,10 @@ class QloseAccordion extends Component {
    * @param {HTMLDetailsElement} details
    */
   #cancel(details) {
-    const controller = this.#closing.get(details);
+    const controller = this.#pending.get(details);
     if (controller) {
       controller.abort();
-      this.#closing.delete(details);
+      this.#pending.delete(details);
     }
 
     const panel = this.#panel(details);
