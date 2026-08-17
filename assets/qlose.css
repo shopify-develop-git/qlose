@@ -353,36 +353,41 @@ qlose-accordion {
 
 /* Prose.
 
-   Body typography for any admin-authored or long-form copy: the legal
-   pages, the shipping returns block, and article bodies. Lives here for the
-   same reason the accordion does -- more than one section renders it, and a
-   section must not style classes it does not own. */
-.qlose-prose :is(h2, h3) {
+   Body typography for any admin-authored or long-form copy: the legal pages,
+   the shipping returns block, and article bodies. Lives here for the same
+   reason the accordion does -- more than one section renders it, and a section
+   must not style classes it does not own. */
+
+/* The two levels are not variations on one heading. h2 opens a numbered
+   section and is ruled off from the one before it; h3 is a run-in subheading
+   inside that section, set at body size and not in caps. The port had them
+   sharing a rule, which lost both the division between sections and the
+   difference in rank. */
+.qlose-prose h2 {
   font-family: var(--qlose-font-sans);
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   color: var(--qlose-black);
-  margin-top: 48px;
-  margin-bottom: 16px;
-}
-
-.qlose-prose h2 {
-  font-size: 22px;
+  margin: 56px 0 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--qlose-divider);
 }
 
 .qlose-prose h3 {
-  font-size: 17px;
+  font-family: var(--qlose-font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--qlose-black);
+  margin: 28px 0 10px;
 }
 
 .qlose-prose :is(p, li) {
   font-size: 15px;
   line-height: 1.75;
   color: var(--qlose-graphite);
-}
-
-.qlose-prose p {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 /* padding, not margin: the user agent's own padding-inline-start of 40px stays
@@ -394,12 +399,6 @@ qlose-accordion {
   padding-left: 20px;
 }
 
-.qlose-prose li {
-  margin-bottom: 8px;
-}
-
 .qlose-prose a {
   color: var(--qlose-accent-deep);
 }
-
-
