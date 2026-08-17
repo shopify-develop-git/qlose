@@ -31,6 +31,13 @@ const CLOSE_SCALE = 0.8;
  * from a previous style that does not exist. The stylesheet keeps its
  * transition, which is what a panel gets if this script never runs.
  *
+ * Height in pixels, not the grid row the stylesheet uses. Animating between 0fr
+ * and 1fr makes the browser resolve the fraction against available space on
+ * every frame, which on a long page drops enough of them to be seen -- the
+ * close, running down through the whole document, showed it worst. A pixel
+ * height interpolates directly. The row underneath stays at 1fr and the clipped
+ * wrapper inside it takes whatever height the animation is holding.
+ *
  * @extends {Component}
  */
 class QloseAccordion extends Component {
@@ -129,7 +136,7 @@ class QloseAccordion extends Component {
 
     this.#takeOver(panel);
     const animation = panel.animate(
-      [{ gridTemplateRows: '0fr' }, { gridTemplateRows: '1fr' }],
+      [{ height: '0px' }, { height: `${panel.scrollHeight}px` }],
       { duration: this.#duration(panel), easing: EASING_OPEN }
     );
 
@@ -153,7 +160,7 @@ class QloseAccordion extends Component {
     // springs back to the [open] rule for the instant before the attribute
     // comes off, which reads as a flicker at the end of every close.
     const animation = panel.animate(
-      [{ gridTemplateRows: '1fr' }, { gridTemplateRows: '0fr' }],
+      [{ height: `${panel.getBoundingClientRect().height}px` }, { height: '0px' }],
       {
         duration: Math.round(this.#duration(panel) * CLOSE_SCALE),
         easing: EASING_CLOSE,

@@ -286,9 +286,14 @@ qlose-accordion {
 /* The source caps the answer at max-height: 300px, which silently clips
    the longer answers. A grid row from 0fr to 1fr animates to content
    height with no cap. */
+/* The panel clips as well as the wrapper inside it. `1fr` carries an
+ automatic minimum of the content's own height, so while the animation
+ holds the panel shorter than that the row does not shrink with it and the
+ answer would otherwise spill past the summary below. */
 .qlose-faq__a {
   display: grid;
   grid-template-rows: 0fr;
+  overflow: hidden;
   /* What a panel gets without JavaScript. With the script, the component
      animates both directions itself and sets the length from the content. */
   transition: grid-template-rows 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
