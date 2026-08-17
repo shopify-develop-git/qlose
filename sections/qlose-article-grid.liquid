@@ -18,7 +18,11 @@
 <section class="qlose-articles">
   <div class="qlose-articles__inner">
     <div class="qlose-articles__header">
-      <div class="qlose-articles__eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- comment -%}
+        h2, not the source's h3: the cards below are h3, so a label above them
+        at the same level flattens the outline. The size comes from the class.
+      {%- endcomment -%}
+      <h2 class="qlose-articles__eyebrow">{{ section.settings.eyebrow }}</h2>
       <div class="qlose-articles__count">
         {{ target.articles_count }} {{ section.settings.count_label }}
       </div>
@@ -94,7 +98,7 @@
 
 {% stylesheet %}
   .qlose-articles {
-    padding: 60px var(--qlose-gutter) 120px;
+    padding: 80px var(--qlose-gutter) 120px;
     max-width: var(--qlose-max);
     margin: 0 auto;
   }
@@ -105,11 +109,23 @@
     align-items: baseline;
     gap: 16px;
     margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--qlose-divider);
     font-family: var(--qlose-font-mono);
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--qlose-muted);
+  }
+
+  /* The label carries the section, the count only annotates it: the source
+     sets the first in black a size up and leaves the second muted. Inheriting
+     both from the row made them read as one line of equal weight. */
+  .qlose-articles__eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    color: var(--qlose-black);
   }
 
   .qlose-articles__grid {
