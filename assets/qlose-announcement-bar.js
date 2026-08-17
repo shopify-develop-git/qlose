@@ -6,12 +6,14 @@ import { Component } from '@theme/component';
  * Two jobs, both of which need measurement, which is why this is a component
  * rather than pure CSS.
  *
- * The loop. The track scrolls left by exactly one set and restarts, which reads
- * as continuous only while a set follows the one leaving the viewport. Liquid
- * renders two, enough for a phone and not enough for a wide monitor, so copies
- * are cloned until the track covers the viewport plus one set. Translating by a
- * measured set width rather than a percentage keeps the speed constant however
- * many copies that turns out to be: one cycle is always one set.
+ * The loop, which runs on a phone only. The track scrolls left by exactly one
+ * set and restarts, which reads as continuous only while a set follows the one
+ * leaving the viewport. Liquid renders two, enough for a narrow screen and not
+ * enough for a wide one, so copies are cloned until the track covers the
+ * viewport plus one set. Translating by a measured set width rather than a
+ * percentage keeps the speed constant however many copies that turns out to be:
+ * one cycle is always one set. Above the breakpoint the messages clear the bar
+ * on their own, so the row sits still and none of this runs.
  *
  * The header offset. The header group is the sticky element and is pulled up by
  * this bar's height so the bar scrolls away while the nav pins, which needs the
@@ -48,6 +50,10 @@ class QloseAnnouncementBar extends Component {
       '--qlose-announce-height',
       `${Math.round(this.getBoundingClientRect().height)}px`
     );
+
+    // The loop only runs on a phone, where the row will not fit; above that the
+    // bar is a static centred line and there is nothing to clone for.
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
 
     const track = this.#track;
     const set = track?.firstElementChild;

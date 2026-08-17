@@ -39,15 +39,30 @@
     font-weight: 400;
   }
 
+  /* Static above the phone breakpoint. The three messages clear the bar on a
+     desktop with room to spare, and a ticker that has nothing to reveal is
+     just movement across the top of every page. The source has no motion here
+     at all; it earns its place only where the row will not fit. */
   .qlose-announce__track {
     display: flex;
-    width: max-content;
-    animation: qlose-announce-scroll var(--qlose-announce-duration, 30s) linear infinite;
+    justify-content: center;
   }
 
   .qlose-announce__set {
     display: flex;
     align-items: center;
+  }
+
+  /* The duplicate Liquid renders, and any the component clones, exist for the
+     loop. With the loop off they would just repeat the messages. */
+  .qlose-announce__set:nth-child(n + 2) {
+    display: none;
+  }
+
+  /* A separator between messages, not after the last one -- true only while
+     the row is a row and not a loop. */
+  .qlose-announce__item:last-child::after {
+    content: none;
   }
 
   /* The source hardcodes a <span>—</span> between messages. Generating it keeps
@@ -71,6 +86,25 @@
   @keyframes qlose-announce-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(calc(-1 * var(--qlose-announce-step, 50%))); }
+  }
+
+  /* Stopped rather than slowed: this is small type moving across the top of
+     every page, which is exactly what the preference is asking us not to do.
+     The track rests at its start, so the messages read as a static row. */
+  @media (max-width: 900px) {
+    .qlose-announce__track {
+      width: max-content;
+      justify-content: flex-start;
+      animation: qlose-announce-scroll var(--qlose-announce-duration, 30s) linear infinite;
+    }
+
+    .qlose-announce__set:nth-child(n + 2) {
+      display: flex;
+    }
+
+    .qlose-announce__item:last-child::after {
+      content: '—';
+    }
   }
 
   /* Stopped rather than slowed: this is small type moving across the top of
