@@ -596,12 +596,28 @@
     padding-bottom: 20px;
   }
 
+  /* The source drops the bullets and marks each line with a dash instead, the
+     same motif the eyebrows carry. Ours kept the browser's list, where an 18px
+     margin sits on top of the user agent's 40px padding, so the specs stood
+     nearly 60px in from the copy above them. */
   .qlose-detail__a ul {
-    margin: 0 0 0 18px;
+    list-style: none;
+    margin: 0;
+    /* The source sits flush; a little indent sets the list off from the copy
+       above it without putting it back where the browser had it. */
+    padding: 0 0 0 12px;
   }
 
   .qlose-detail__a li {
-    margin-bottom: 6px;
+    position: relative;
+    padding: 4px 0 4px 16px;
+  }
+
+  .qlose-detail__a li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--qlose-muted);
   }
 
   @media (prefers-reduced-motion: reduce) {

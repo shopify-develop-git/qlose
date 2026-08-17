@@ -341,9 +341,13 @@ summary:focus-visible,
   margin-bottom: 16px;
 }
 
+/* padding, not margin: the user agent's own padding-inline-start of 40px stays
+   under a margin and the list ends up about 60px in. The source indents these
+   by 20px and no more. */
 .qlose-prose ul,
 .qlose-prose ol {
-  margin: 0 0 16px 20px;
+  margin: 0 0 20px;
+  padding-left: 20px;
 }
 
 .qlose-prose li {
