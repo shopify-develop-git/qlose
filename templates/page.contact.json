@@ -4,50 +4,97 @@
       "type": "qlose-page-hero",
       "settings": {
         "variant": "simple",
-        "meta_left": "SUPPORT — CONTACT",
-        "meta_right": "REPLY WITHIN ONE WORKING DAY",
+        "meta_left": "CONTACT, GET IN TOUCH",
+        "meta_right": "MON-FRI, 9-5 GMT",
         "heading": "<p>SAY <em>hello</em>.</p>",
-        "subtext": "<p>Questions about the kit, an order, or your subscription — we read every message.</p>"
+        "subtext": "<p>We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.</p>"
       }
     },
     "form": {
       "type": "qlose-contact-form",
-      "settings": {
-        "eyebrow_index": "01 /",
-        "eyebrow_text": "GET IN TOUCH",
-        "text": "<p>Whatever it is — a question before you buy, something wrong with an order, or a change to your refill schedule — send it here. We're a small team in London and we answer everything ourselves.</p>",
-        "email_label": "— Or email us",
-        "email": "hello@getqlose.com",
-        "order_placeholder": "If your message is about an order",
-        "button_label": "Send message",
-        "success_text": "Thanks — we reply within one working day."
-      }
-    },
-    "faq_cta": {
-      "type": "qlose-cta-band",
       "blocks": {
-        "b1": {
-          "type": "cta",
+        "m1": {
+          "type": "method",
           "settings": {
-            "label": "Read the FAQ →",
-            "url": "/pages/faq",
-            "style": "primary"
+            "index": "01 / EMAIL",
+            "title": "General enquiries",
+            "text": "Questions about the kit, your subscription, or anything else. We reply within one working day.",
+            "email": "hello@getqlose.com"
+          }
+        },
+        "m2": {
+          "type": "method",
+          "settings": {
+            "index": "02 / SUPPORT",
+            "title": "Order help",
+            "text": "Missing a delivery, need to change your shipping address, or have a technical issue with the toothbrush.",
+            "email": "support@getqlose.com"
+          }
+        },
+        "m3": {
+          "type": "method",
+          "settings": {
+            "index": "03 / PRESS",
+            "title": "Media & Press",
+            "text": "Writing about us? Making a video? We'd love to help. Assets, quotes, and interview requests all welcome.",
+            "email": "press@getqlose.com"
+          }
+        },
+        "m4": {
+          "type": "method",
+          "settings": {
+            "index": "04 / WHOLESALE",
+            "title": "Wholesale & Retail",
+            "text": "Interested in stocking QLOSE at your dental practice, hotel, or shop? Get in touch and we'll send a wholesale pack.",
+            "email": "wholesale@getqlose.com"
           }
         }
       },
-      "block_order": [
-        "b1"
-      ],
+      "block_order": ["m1", "m2", "m3", "m4"],
       "settings": {
-        "theme": "light",
-        "heading": "<p>MAYBE IT'S ALREADY <em>answered</em>.</p>",
-        "text": "<p>Most questions about the kit, the subscription and shipping are covered in the FAQ.</p>"
+        "methods_title": "Ways to reach us",
+        "heading": "<p>Send a <em>message</em>.</p>",
+        "lead": "<p>Fill this in and we'll get back to you within one working day. If it's urgent, email us directly.</p>",
+        "subject_options": "General enquiry\nQuestion about my order\nSubscription help\nProduct feedback\nPress or partnerships\nWholesale enquiry\nOther",
+        "name_placeholder": "Alex Morgan",
+        "email_placeholder": "alex@example.com",
+        "order_placeholder": "#QL-1234",
+        "body_placeholder": "Tell us what's on your mind...",
+        "button_label": "Send message →",
+        "form_note": "We reply within 1 working day",
+        "success_text": "Thanks, we reply within one working day."
+      }
+    },
+    "office": {
+      "type": "qlose-office-details",
+      "blocks": {
+        "o1": {
+          "type": "detail",
+          "settings": {
+            "label": "Registered Office",
+            "value": "QLOSE Ltd\n8 Shepherd Market, No. 613\nLondon W1J 7JY, United Kingdom"
+          }
+        },
+        "o2": {
+          "type": "detail",
+          "settings": {
+            "label": "Company Number",
+            "value": "17311111\nRegistered in England\n& Wales"
+          }
+        },
+        "o3": {
+          "type": "detail",
+          "settings": {
+            "label": "Response Time",
+            "value": "Within 1 working day\nMonday to Friday\n9am to 5pm GMT"
+          }
+        }
+      },
+      "block_order": ["o1", "o2", "o3"],
+      "settings": {
+        "heading": "<p>THE <em>details</em>.</p>"
       }
     }
   },
-  "order": [
-    "hero",
-    "form",
-    "faq_cta"
-  ]
+  "order": ["hero", "form", "office"]
 }

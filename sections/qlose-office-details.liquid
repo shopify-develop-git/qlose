@@ -1,0 +1,110 @@
+{%- comment -%}
+  Ported from docs/design-source/contact.html:569-593.
+
+  Closing band on the contact page: registered office, company number and
+  response time, set on black. Values are plain textareas rather than richtext
+  because each is a short stack of lines, and newline_to_br keeps the client
+  typing addresses the way they read rather than writing <br> by hand.
+{%- endcomment -%}
+
+<section class="qlose-office">
+  <div class="qlose-office__inner">
+    <h2 class="qlose-office__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-office__grid">
+      {%- for block in section.blocks -%}
+        <div class="qlose-office__item" {{ block.shopify_attributes }}>
+          <span class="qlose-office__label">{{ block.settings.label }}</span>
+          <span class="qlose-office__value">{{ block.settings.value | newline_to_br }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-office {
+    padding: 80px var(--qlose-gutter);
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    text-align: center;
+    border-top: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-office__inner {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .qlose-office__heading {
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+
+  .qlose-office__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .qlose-office__label {
+    display: block;
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+  }
+
+  .qlose-office__value {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--qlose-white);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-office {
+      padding-block: 40px;
+    }
+
+    .qlose-office__grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE office details",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>THE <em>details</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Detail",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Registered Office" },
+        { "type": "textarea", "id": "value", "label": "Value", "info": "One line per row." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE office details" }]
+}
+{% endschema %}
