@@ -1,0 +1,132 @@
+{%- comment -%} Ported from docs/design-source/refills.html:192-252 {%- endcomment -%}
+
+<section class="qlose-refill-hero">
+  <div class="qlose-refill-hero__content">
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+    <h1 class="qlose-refill-hero__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h1>
+    <div class="qlose-refill-hero__text">{{ section.settings.text }}</div>
+    <div class="qlose-refill-hero__cta">
+      {%- for block in section.blocks -%}
+        <span {{ block.shopify_attributes }}>
+          {%- render 'qlose-button',
+              label: block.settings.label,
+              url: block.settings.url,
+              style: block.settings.style
+          -%}
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="qlose-refill-hero__visual">
+    <div class="qlose-refill-hero__numeral">{{ section.settings.numeral }}</div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .qlose-refill-hero {
+    padding: 80px var(--qlose-gutter);
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .qlose-refill-hero__heading {
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--qlose-black);
+    margin-bottom: 32px;
+  }
+
+  .qlose-refill-hero__text {
+    font-size: 17px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .qlose-refill-hero__cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .qlose-refill-hero__visual {
+    aspect-ratio: 1;
+    background: var(--qlose-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qlose-refill-hero__numeral {
+    font-family: var(--qlose-font-sans);
+    font-size: clamp(160px, 26vw, 400px);
+    font-weight: 900;
+    color: var(--qlose-black);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-refill-hero {
+      grid-template-columns: 1fr;
+      padding-block: 40px;
+      gap: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE refill hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "02 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "REFILLS" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>REFILLS, ON <em>time</em>.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "numeral", "label": "Large numeral", "default": "90" }
+  ],
+  "blocks": [
+    {
+      "type": "cta",
+      "name": "Button",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Electric Kit, £59" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "ghost", "label": "Ghost" },
+            { "value": "underline", "label": "Underline" }
+          ],
+          "default": "primary"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE refill hero" }]
+}
+{% endschema %}

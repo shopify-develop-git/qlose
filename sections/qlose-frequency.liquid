@@ -1,0 +1,227 @@
+{%- comment -%} Ported from docs/design-source/refills.html:369-479 {%- endcomment -%}
+
+<section class="qlose-frequency">
+  <div class="qlose-frequency__inner">
+    {%- render 'qlose-eyebrow',
+        index: section.settings.eyebrow_index,
+        text: section.settings.eyebrow_text
+    -%}
+    <h2 class="qlose-frequency__heading qlose-display">
+      {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
+    </h2>
+
+    <div class="qlose-frequency__grid qlose-frequency__grid--{{ section.blocks.size }}">
+      {%- for block in section.blocks -%}
+        <div class="qlose-freq-card" {{ block.shopify_attributes }}>
+          <div class="qlose-freq-card__num">{{ block.settings.number }}</div>
+          <div class="qlose-freq-card__unit">{{ block.settings.unit }}</div>
+          <p class="qlose-freq-card__desc">{{ block.settings.description }}</p>
+          <div class="qlose-freq-card__price">
+            {{ block.settings.price }}
+            <small>{{ block.settings.price_note }}</small>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="qlose-frequency__footnote">{{ section.settings.footnote }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- if section.settings.quote != blank -%}
+  <aside class="qlose-refill-note">
+    <blockquote class="qlose-refill-note__quote">{{ section.settings.quote }}</blockquote>
+    {%- if section.settings.quote_attribution != blank -%}
+      <p class="qlose-refill-note__attribution">{{ section.settings.quote_attribution }}</p>
+    {%- endif -%}
+  </aside>
+{%- endif -%}
+
+{% stylesheet %}
+  .qlose-frequency {
+    background: var(--qlose-bone);
+    padding: 120px var(--qlose-gutter);
+    border-top: 1px solid var(--qlose-divider);
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
+  .qlose-frequency__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .qlose-frequency .qlose-eyebrow {
+    text-align: center;
+  }
+
+  .qlose-frequency__heading {
+    font-size: clamp(36px, 6vw, 84px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--qlose-black);
+    margin-bottom: 60px;
+  }
+
+  .qlose-frequency__grid {
+    display: grid;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+
+  .qlose-frequency__grid--1 {
+    max-width: 340px;
+    grid-template-columns: 1fr;
+  }
+
+  .qlose-frequency__grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .qlose-frequency__grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .qlose-freq-card {
+    background: var(--qlose-off-white);
+    padding: 48px 32px;
+    text-align: center;
+    border: 2px solid var(--qlose-black);
+  }
+
+  .qlose-freq-card__num {
+    font-family: var(--qlose-font-sans);
+    font-size: clamp(72px, 10vw, 120px);
+    font-weight: 900;
+    color: var(--qlose-black);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+
+  .qlose-freq-card__unit {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .qlose-freq-card__desc {
+    font-size: 14px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .qlose-freq-card__price {
+    font-family: var(--qlose-font-sans);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--qlose-black);
+    letter-spacing: -0.02em;
+  }
+
+  .qlose-freq-card__price small {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    color: var(--qlose-muted);
+    display: block;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .qlose-frequency__footnote {
+    font-size: 14px;
+    color: var(--qlose-graphite);
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .qlose-refill-note {
+    padding: 80px var(--qlose-gutter);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .qlose-refill-note__quote {
+    font-family: var(--qlose-font-serif);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    color: var(--qlose-black);
+    margin: 0 0 16px;
+    font-weight: 400;
+  }
+
+  .qlose-refill-note__attribution {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    color: var(--qlose-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-frequency {
+      padding-block: 60px;
+    }
+
+    .qlose-frequency__grid--2,
+    .qlose-frequency__grid--3 {
+      grid-template-columns: 1fr;
+    }
+
+    .qlose-refill-note {
+      padding-block: 50px;
+    }
+
+    .qlose-refill-note__quote {
+      font-size: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE frequency",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "04 /" },
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "YOUR CADENCE" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>EVERY <em>ninety</em> DAYS.</p>",
+      "info": "Italic renders as the serif accent, bold as the stroked outline."
+    },
+    { "type": "richtext", "id": "footnote", "label": "Footnote" },
+    { "type": "text", "id": "quote", "label": "Closing quote" },
+    { "type": "text", "id": "quote_attribution", "label": "Quote attribution" }
+  ],
+  "blocks": [
+    {
+      "type": "cadence",
+      "name": "Cadence",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "90" },
+        { "type": "text", "id": "unit", "label": "Unit", "default": "DAYS" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "price", "label": "Price", "default": "£18" },
+        { "type": "text", "id": "price_note", "label": "Price note", "default": "PER BOX" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "QLOSE frequency" }]
+}
+{% endschema %}
