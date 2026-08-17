@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "CONTACT",
         "variant": "simple",
-        "meta_left": "CONTACT, GET IN TOUCH",
+        "meta_left": "GET IN TOUCH",
         "meta_right": "MON-FRI, 9-5 GMT",
         "heading": "<p>SAY <em>hello</em>.</p>",
         "subtext": "<p>We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.</p>"
@@ -50,7 +51,12 @@
           }
         }
       },
-      "block_order": ["m1", "m2", "m3", "m4"],
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
       "settings": {
         "methods_title": "— Ways to reach us",
         "heading": "<p>Send a <em>message</em>.</p>",
@@ -90,11 +96,19 @@
           }
         }
       },
-      "block_order": ["o1", "o2", "o3"],
+      "block_order": [
+        "o1",
+        "o2",
+        "o3"
+      ],
       "settings": {
         "heading": "<p>THE <em>details</em>.</p>"
       }
     }
   },
-  "order": ["hero", "form", "office"]
+  "order": [
+    "hero",
+    "form",
+    "office"
+  ]
 }

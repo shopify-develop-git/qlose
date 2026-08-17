@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "ABOUT QLOSE",
         "variant": "editorial",
-        "meta_left": "ABOUT QLOSE",
+        "meta_left": "",
         "meta_right": "LONDON",
         "heading": "<p>A BETTER<br><strong>ROUTINE</strong>.<br>A BETTER <em>brand</em>.</p>"
       }

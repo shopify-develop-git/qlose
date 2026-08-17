@@ -83,7 +83,12 @@
 
     <div class="qlose-product__info">
       <div class="qlose-product__meta">
-        <span><strong>{{ section.settings.meta_left }}</strong></span>
+        <span>
+          {%- if section.settings.meta_label != blank -%}
+            <strong>{{ section.settings.meta_label }}</strong>{{ ' ' }}
+          {%- endif -%}
+          {{- section.settings.meta_left -}}
+        </span>
         <span>
           {%- if variant.available -%}
             {{- section.settings.meta_right | default: 'IN STOCK' -}}
@@ -680,6 +685,7 @@
     { "type": "text", "id": "breadcrumb_label", "label": "Breadcrumb label" },
     { "type": "text", "id": "tag", "label": "Corner tag", "default": "01 / KIT" },
     { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "qlose-kit-case-closed.png" },
+    { "type": "text", "id": "meta_label", "label": "Meta label" },
     { "type": "text", "id": "meta_left", "label": "Meta left", "default": "THE ELECTRIC KIT, MODEL 02" },
     { "type": "text", "id": "meta_right", "label": "Meta right (in stock)", "default": "IN STOCK" },
     {

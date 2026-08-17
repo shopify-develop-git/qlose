@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "SHIPPING",
         "variant": "simple",
-        "meta_left": "SHIPPING, DELIVERY & RETURNS",
+        "meta_left": "DELIVERY & RETURNS",
         "meta_right": "UK ONLY",
         "heading": "<p>SHIPPING <em>&amp;</em><br>RETURNS.</p>",
         "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.</p>"
@@ -96,8 +97,9 @@
     "returns_head": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "02 /",
         "variant": "simple",
-        "meta_left": "02 /",
+        "meta_left": "",
         "meta_right": "RETURNS",
         "heading": "<p>RETURNS <em>&amp;</em><br>REPLACEMENTS.</p>"
       }

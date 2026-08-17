@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "THE JOURNAL",
         "variant": "editorial",
-        "meta_left": "THE JOURNAL, WRITINGS ON RITUAL, CARE, AND METHOD",
+        "meta_left": "WRITINGS ON RITUAL, CARE, AND METHOD",
         "meta_right": "UPDATED WEEKLY",
         "heading": "<p>THE<br><em>journal</em>.</p>",
         "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>"

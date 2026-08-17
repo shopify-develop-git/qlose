@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "LEGAL",
         "variant": "legal",
-        "meta_left": "LEGAL, RETURNS",
+        "meta_left": "RETURNS",
         "meta_right": "",
         "heading": "<p>RETURNS &amp;<br><em>cancellations</em>.</p>",
         "subtext": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p><p>Last updated: 18 July 2026</p>"

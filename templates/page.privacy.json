@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "LEGAL",
         "variant": "legal",
-        "meta_left": "LEGAL, PRIVACY",
+        "meta_left": "PRIVACY",
         "meta_right": "",
         "heading": "<p>PRIVACY<br><em>policy</em>.</p>",
         "subtext": "<p>How Qlose collects, uses and protects your personal information, and the rights you have over it.</p><p>Last updated: 18 July 2026</p>"

@@ -9,7 +9,12 @@
   <div class="qlose-page-hero__inner">
     {%- if section.settings.meta_left != blank or section.settings.meta_right != blank -%}
       <div class="qlose-page-hero__meta">
-        <span><strong>{{ section.settings.meta_left }}</strong></span>
+        <span>
+          {%- if section.settings.meta_label != blank -%}
+            <strong>{{ section.settings.meta_label }}</strong>{{ ' ' }}
+          {%- endif -%}
+          {{- section.settings.meta_left -}}
+        </span>
         <span>{{ section.settings.meta_right }}</span>
       </div>
     {%- endif -%}
@@ -135,6 +140,7 @@
       ],
       "default": "simple"
     },
+    { "type": "text", "id": "meta_label", "label": "Meta label" },
     { "type": "text", "id": "meta_left", "label": "Meta left" },
     { "type": "text", "id": "meta_right", "label": "Meta right" },
     {

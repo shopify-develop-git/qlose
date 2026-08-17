@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "LEGAL",
         "variant": "legal",
-        "meta_left": "LEGAL, TERMS OF SALE",
+        "meta_left": "TERMS OF SALE",
         "meta_right": "",
         "heading": "<p>TERMS &amp;<br><em>conditions</em>.</p>",
         "subtext": "<p>The terms on which we sell our products to you. Please read them before placing an order.</p><p>Last updated: 18 July 2026</p>"

@@ -3,8 +3,9 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
+        "meta_label": "SUPPORT",
         "variant": "simple",
-        "meta_left": "SUPPORT, FREQUENTLY ASKED",
+        "meta_left": "FREQUENTLY ASKED",
         "meta_right": "UPDATED JULY 2026",
         "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>",
         "subtext": "<p>Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.</p>"
