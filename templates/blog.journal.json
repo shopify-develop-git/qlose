@@ -4,7 +4,7 @@
       "type": "qlose-page-hero",
       "settings": {
         "variant": "editorial",
-        "meta_left": "THE JOURNAL — WRITINGS ON RITUAL, CARE, AND METHOD",
+        "meta_left": "THE JOURNAL, WRITINGS ON RITUAL, CARE, AND METHOD",
         "meta_right": "UPDATED WEEKLY",
         "heading": "<p>THE<br><em>journal</em>.</p>",
         "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>"
@@ -23,9 +23,9 @@
       "settings": {
         "show_filters": true,
         "filter_label": "Filter by topic",
-        "filter_all_label": "— All",
+        "filter_all_label": "All",
         "skip_featured": true,
-        "eyebrow": "— Recent pieces",
+        "eyebrow": "Recent pieces",
         "count_label": "ARTICLES",
         "per_page": 12,
         "empty_text": "No pieces published yet."
@@ -38,7 +38,7 @@
         "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>",
         "placeholder": "your@email.com",
         "button_label": "Subscribe →",
-        "success_text": "Thanks — you're on the list."
+        "success_text": "Thanks, you're on the list."
       }
     }
   },

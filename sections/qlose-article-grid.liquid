@@ -82,7 +82,7 @@
                 </p>
 
                 <time class="qlose-article__date" datetime="{{ post.published_at | date: '%Y-%m-%d' }}">
-                  — {{ post.published_at | date: '%d %b %Y' | upcase }}
+                  {{ post.published_at | date: '%d %b %Y' | upcase }}
                 </time>
               </a>
             </article>
@@ -278,9 +278,9 @@
     { "type": "blog", "id": "blog", "label": "Blog", "info": "Leave empty to use the current blog." },
     { "type": "checkbox", "id": "show_filters", "label": "Show tag filters", "default": true },
     { "type": "text", "id": "filter_label", "label": "Filter nav label", "default": "Filter by topic" },
-    { "type": "text", "id": "filter_all_label", "label": "All label", "default": "— All" },
+    { "type": "text", "id": "filter_all_label", "label": "All label", "default": "All" },
     { "type": "checkbox", "id": "skip_featured", "label": "Skip the newest post", "default": true, "info": "On when a featured section above already shows it." },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— Recent pieces" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Recent pieces" },
     { "type": "text", "id": "count_label", "label": "Count label", "default": "ARTICLES" },
     { "type": "range", "id": "per_page", "label": "Posts per page", "min": 3, "max": 24, "step": 3, "default": 12 },
     { "type": "text", "id": "empty_text", "label": "Empty state", "default": "No pieces published yet." }
