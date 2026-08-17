@@ -17,7 +17,13 @@
 
 <section class="qlose-articles">
   <div class="qlose-articles__inner">
-    {%- if section.settings.show_filters and target.all_tags.size > 0 -%}
+    {%- comment -%}
+      Shown whenever the setting is on, not only once the blog has tags. "All"
+      is a real state on its own -- it is where the reader already is -- and
+      the row is part of the page's structure rather than something that
+      appears once enough articles have been filed.
+    {%- endcomment -%}
+    {%- if section.settings.show_filters -%}
       <nav class="qlose-articles__filters" aria-label="{{ section.settings.filter_label }}">
         <a
           class="qlose-articles__filter{% if current_tags == blank %} qlose-articles__filter--active{% endif %}"
@@ -114,11 +120,14 @@
     margin: 0 auto;
   }
 
+  /* A band ruled top and bottom, scrolling sideways rather than wrapping: with
+     six categories on a phone a wrapped row turns into two ragged lines. */
   .qlose-articles__filters {
     display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding-bottom: 24px;
+    gap: 32px;
+    overflow-x: auto;
+    padding-block: 32px;
+    border-top: 1px solid var(--qlose-divider);
     border-bottom: 1px solid var(--qlose-divider);
     margin-bottom: 40px;
   }
@@ -130,11 +139,24 @@
     text-transform: uppercase;
     color: var(--qlose-muted);
     text-decoration: none;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
+  /* The current category is marked by the accent rule under it, not by colour
+     alone -- the source draws the same underline on hover. */
   .qlose-articles__filter:hover,
   .qlose-articles__filter--active {
     color: var(--qlose-black);
+    border-bottom-color: var(--qlose-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-articles__filter {
+      transition: none;
+    }
   }
 
   .qlose-articles__header {
