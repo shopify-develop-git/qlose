@@ -51,6 +51,20 @@ class QloseAccordion extends Component {
     );
   }
 
+  /**
+   * How long the row should take, given how far it has to go. One fixed length
+   * cannot serve both a two-line answer and a twenty-line one -- the short
+   * panel drags and the long one still feels hurried -- so the distance sets
+   * it, held between a floor and a ceiling so nothing snaps or crawls.
+   *
+   * @param {HTMLElement} panel
+   */
+  #duration(panel) {
+    const content = panel.firstElementChild;
+    const height = content instanceof HTMLElement ? content.scrollHeight : 0;
+    return Math.round(Math.min(420, Math.max(200, 150 + height * 0.35)));
+  }
+
   /** @param {HTMLDetailsElement} details */
   #panel(details) {
     return /** @type {HTMLElement | null} */ (details.querySelector(':scope > *:not(summary)'));
@@ -97,6 +111,7 @@ class QloseAccordion extends Component {
     }
 
     details.open = true;
+    panel.style.setProperty('--qlose-accordion-duration', `${this.#duration(panel)}ms`);
     panel.style.gridTemplateRows = '0fr';
     panel.style.paddingBottom = '0';
     // Reading a layout property commits the shut state as the starting frame.
@@ -119,6 +134,8 @@ class QloseAccordion extends Component {
     const controller = new AbortController();
     this.#closing.set(details, controller);
 
+    const duration = this.#duration(panel);
+    panel.style.setProperty('--qlose-accordion-duration', `${duration}ms`);
     panel.style.gridTemplateRows = '0fr';
     panel.style.paddingBottom = '0';
 
@@ -140,7 +157,7 @@ class QloseAccordion extends Component {
 
     // If the transition never fires -- none declared, or the tab in the
     // background -- the panel would be left shut but still marked open.
-    const timer = window.setTimeout(settle, 600);
+    const timer = window.setTimeout(settle, duration + 200);
     controller.signal.addEventListener('abort', () => window.clearTimeout(timer));
   }
 
@@ -163,6 +180,7 @@ class QloseAccordion extends Component {
     if (panel) {
       panel.style.gridTemplateRows = '';
       panel.style.paddingBottom = '';
+      panel.style.removeProperty('--qlose-accordion-duration');
     }
   }
 }
