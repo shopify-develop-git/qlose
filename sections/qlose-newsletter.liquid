@@ -96,12 +96,18 @@
     border-bottom: 1px solid var(--qlose-white);
   }
 
-  .qlose-newsletter__input {
+  /* Two classes, not one. Horizon paints every text input from the theme
+     palette with `input:not([type='checkbox'], [type='radio'])`, and :not()
+     lends that selector the weight of its argument -- 0-1-1, above a single
+     class. Left at one class the field came out as a white filled box. */
+  .qlose-newsletter__field .qlose-newsletter__input {
     flex: 1;
     min-width: 0;
     padding: 12px 0;
     background: transparent;
+    background-color: transparent;
     border: none;
+    border-radius: 0;
     color: var(--qlose-white);
     font-family: var(--qlose-font-sans);
     font-size: 14px;

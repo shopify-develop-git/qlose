@@ -23,7 +23,7 @@
       "type": "qlose-article-grid",
       "settings": {
         "skip_featured": true,
-        "eyebrow": "— Recent pieces",
+        "eyebrow": "Recent pieces",
         "count_label": "ARTICLES",
         "per_page": 12,
         "empty_text": "No pieces published yet."
