@@ -44,6 +44,20 @@
     border-top: none;
   }
 
+  /* Body text on the legal pages, set to the client's instruction rather than
+     to the source: 22.4px of leading and no gap between paragraphs. The source
+     asks for 1.75 and 14px, which is what .qlose-prose still carries for the
+     article body and the returns block on shipping. Stated on both classes so
+     it wins on weight rather than on the order the two stylesheets happen to
+     load in. */
+  .qlose-legal-body.qlose-prose :is(p, li) {
+    line-height: 22.4px;
+  }
+
+  .qlose-legal-body.qlose-prose p {
+    margin-bottom: 0;
+  }
+
   /* A callout inside the document: bone, with the accent down its left edge.
      Set a step smaller than the body, since it interrupts rather than
      continues it. */
