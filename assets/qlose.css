@@ -362,11 +362,21 @@ qlose-accordion {
    section and is ruled off from the one before it; h3 is a run-in subheading
    inside that section, set at body size and not in caps. The port had them
    sharing a rule, which lost both the division between sections and the
-   difference in rank. */
+   difference in rank.
+
+   Both restate the body's line height, which the source leaves them to inherit
+   and which they would inherit here too, were Horizon not in the way: its
+   typography presets set one on the bare `h1`-`h6` selectors, and a declaration
+   -- however weak -- always beats an inherited value. So a prose heading was
+   being set at `--line-height--display-tight`, which is 1, and h3 at 1.1. Those
+   are display figures, for a 92px word standing alone; on a 22px section
+   heading that wraps, the two lines touch. Stated here rather than by unsetting
+   Horizon's variables, which serve every other heading in the theme. */
 .qlose-prose h2 {
   font-family: var(--qlose-font-sans);
   font-size: 22px;
   font-weight: 800;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   color: var(--qlose-black);
@@ -379,6 +389,7 @@ qlose-accordion {
   font-family: var(--qlose-font-sans);
   font-size: 15px;
   font-weight: 700;
+  line-height: 1.4;
   color: var(--qlose-black);
   margin: 28px 0 10px;
 }
