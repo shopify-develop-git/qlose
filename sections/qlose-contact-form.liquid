@@ -1,5 +1,5 @@
 {%- comment -%}
-  Ported from docs/design-source/contact.html:483-566.
+  Ported from docs/design-source/contact.html:492-567.
 
   The client had no contact design when this branch was first written, so the
   page was assembled from the system's own parts. Their 2026-08-17 set adds a
@@ -57,8 +57,8 @@
           id="QloseContactName-{{ section.id }}"
           type="text"
           name="contact[name]"
-          value="{{ form.name }}"
-          placeholder="{{ section.settings.name_placeholder }}"
+          value="{{ form.name | escape }}"
+          placeholder="{{ section.settings.name_placeholder | escape }}"
           autocomplete="name"
           required
         >
@@ -72,14 +72,14 @@
           id="QloseContactEmail-{{ section.id }}"
           type="email"
           name="contact[email]"
-          value="{{ form.email }}"
-          placeholder="{{ section.settings.email_placeholder }}"
+          value="{{ form.email | escape }}"
+          placeholder="{{ section.settings.email_placeholder | escape }}"
           autocomplete="email"
           required
         >
       </div>
 
-      {%- assign subjects = section.settings.subject_options | newline_to_br | split: '<br />' -%}
+      {%- assign subjects = section.settings.subject_options | newline_to_br | strip_newlines | split: '<br />' -%}
       {%- if subjects.size > 0 -%}
         <div class="qlose-contact__field">
           <label for="QloseContactSubject-{{ section.id }}">What's this about?</label>
@@ -87,7 +87,7 @@
             {%- for subject in subjects -%}
               {%- assign option = subject | strip -%}
               {%- if option != blank -%}
-                <option value="{{ option | escape }}">{{ option }}</option>
+                <option value="{{ option | escape }}">{{ option | escape }}</option>
               {%- endif -%}
             {%- endfor -%}
           </select>
@@ -100,7 +100,7 @@
           id="QloseContactOrder-{{ section.id }}"
           type="text"
           name="contact[order number]"
-          placeholder="{{ section.settings.order_placeholder }}"
+          placeholder="{{ section.settings.order_placeholder | escape }}"
         >
       </div>
 
@@ -112,7 +112,7 @@
           id="QloseContactBody-{{ section.id }}"
           name="contact[body]"
           rows="7"
-          placeholder="{{ section.settings.body_placeholder }}"
+          placeholder="{{ section.settings.body_placeholder | escape }}"
           required
         >{{ form.body }}</textarea>
       </div>

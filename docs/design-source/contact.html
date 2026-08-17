@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — QLOSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --bone: #eae7de;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --graphite: #2a2a2a;
+    --muted: #888;
+    --divider: rgba(10,10,10,0.12);
+    --accent: #c65a3d;
+    --accent-soft: #f0dcd0;
+    --accent-deep: #a04627;
+  }
+  
+  .logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .logo-img-mega {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+
+  /* Announcement bar */
+  .announce {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .announce span { opacity: 0.4; margin: 0 16px; }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo::after { content: ''; }
+  .nav-menu { display: flex; gap: 40px; list-style: none; }
+  .nav-menu a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-icons { display: flex; gap: 24px; }
+  .nav-icons a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 18px 32px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--graphite); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-underline {
+    color: var(--black);
+    padding: 0;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 4px;
+  }
+
+  /* Section eyebrows */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow strong { color: var(--black); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 32px;
+  }
+  .foot-inner { max-width: 1500px; margin: 0 auto; }
+  .foot-mega {
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .foot-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 12px; }
+  .foot-col a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+
+  .simple-hero {
+    padding: 80px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .simple-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .simple-hero-meta strong { color: var(--black); font-weight: 500; }
+  .simple-hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(64px, 10vw, 160px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+  .simple-hero h1 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .simple-hero-lead {
+    max-width: 600px;
+    font-size: 16px;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  /* Contact grid */
+  .contact-wrap {
+    padding: 60px 40px 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* Contact methods sidebar */
+  .contact-methods h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-weight: 400;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .contact-method {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .contact-method .method-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .contact-method h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .contact-method p {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .contact-method .method-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--black);
+    letter-spacing: 0.05em;
+  }
+  .contact-method a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Form section */
+  .contact-form-wrap {
+    background: var(--bone);
+    padding: 48px;
+    border: 1px solid var(--divider);
+  }
+  .contact-form-wrap h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .contact-form-wrap h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .contact-form-wrap .form-lead {
+    font-size: 14px;
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 500;
+  }
+  .form-field label .required {
+    color: var(--accent);
+    margin-left: 4px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--off-white);
+    border: 1px solid var(--divider);
+    padding: 14px 16px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    color: var(--black);
+    transition: border-color 0.2s;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--black);
+  }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 140px;
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.5;
+  }
+  .form-submit {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 20px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--graphite); }
+  .form-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* Office details */
+  .office {
+    padding: 80px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    border-top: 1px solid var(--divider);
+  }
+  .office-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .office h2 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 40px;
+  }
+  .office h2 .serif-italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .office-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+  .office-detail-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .office-detail-item .value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--white);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-menu { display: none; }
+    .simple-hero, .office { padding: 40px 20px; }
+    .contact-wrap { grid-template-columns: 1fr; padding: 40px 20px 60px; gap: 40px; }
+    .contact-form-wrap { padding: 32px 24px; }
+    .office-details { grid-template-columns: 1fr; gap: 24px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="announce">
+  FREE SHIPPING ON FIRST BOX <span>—</span> SKIP OR CANCEL ANYTIME <span>—</span> UK
+</div>
+
+<nav>
+  <div class="logo"><a href="/"><img class="logo-img" src="data:BASE64" alt="QLOSE"></a></div>
+  <ul class="nav-menu">
+    <li><a href="/products/the-kit">The Kit</a></li>
+    <li><a href="/pages/routine">The Routine</a></li>
+    <li><a href="/products/refills">Refills</a></li>
+    <li><a href="/blogs/journal">Journal</a></li>
+    <li><a href="/pages/about">About</a></li>
+  </ul>
+  <div class="nav-icons">
+    <a href="/account">Account</a>
+    <a href="/cart">Cart / 0</a>
+  </div>
+</nav>
+
+<section class="simple-hero">
+  <div class="simple-hero-meta">
+    <span><strong>CONTACT</strong> — GET IN TOUCH</span>
+    <span>MON-FRI, 9-5 GMT</span>
+  </div>
+  <h1>SAY <span class="serif-italic">hello</span>.</h1>
+  <p class="simple-hero-lead">We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.</p>
+</section>
+
+<div class="contact-wrap">
+  <aside class="contact-methods">
+    <h2>— Ways to reach us</h2>
+
+    <div class="contact-method">
+      <div class="method-num">— 01 / EMAIL</div>
+      <h3>General enquiries</h3>
+      <p>Questions about the kit, your subscription, or anything else. We reply within one working day.</p>
+      <div class="method-detail"><a href="mailto:hello@getqlose.com">hello@getqlose.com</a></div>
+    </div>
+
+    <div class="contact-method">
+      <div class="method-num">— 02 / SUPPORT</div>
+      <h3>Order help</h3>
+      <p>Missing a delivery, need to change your shipping address, or have a technical issue with the toothbrush.</p>
+      <div class="method-detail"><a href="mailto:support@getqlose.com">support@getqlose.com</a></div>
+    </div>
+
+    <div class="contact-method">
+      <div class="method-num">— 03 / PRESS</div>
+      <h3>Media & Press</h3>
+      <p>Writing about us? Making a video? We'd love to help. Assets, quotes, and interview requests all welcome.</p>
+      <div class="method-detail"><a href="mailto:press@getqlose.com">press@getqlose.com</a></div>
+    </div>
+
+    <div class="contact-method">
+      <div class="method-num">— 04 / WHOLESALE</div>
+      <h3>Wholesale & Retail</h3>
+      <p>Interested in stocking QLOSE at your dental practice, hotel, or shop? Get in touch and we'll send a wholesale pack.</p>
+      <div class="method-detail"><a href="mailto:wholesale@getqlose.com">wholesale@getqlose.com</a></div>
+    </div>
+  </aside>
+
+  <div class="contact-form-wrap">
+    <h2>Send a <span class="serif-italic">message</span>.</h2>
+    <p class="form-lead">Fill this in and we'll get back to you within one working day. If it's urgent, email us directly.</p>
+
+    <form class="contact-form">
+      <div class="form-field">
+        <label>Your name<span class="required">*</span></label>
+        <input type="text" placeholder="Alex Morgan" required>
+      </div>
+
+      <div class="form-field">
+        <label>Email<span class="required">*</span></label>
+        <input type="email" placeholder="alex@example.com" required>
+      </div>
+
+      <div class="form-field">
+        <label>What's this about?</label>
+        <select>
+          <option>General enquiry</option>
+          <option>Question about my order</option>
+          <option>Subscription help</option>
+          <option>Product feedback</option>
+          <option>Press or partnerships</option>
+          <option>Wholesale enquiry</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label>Order number (if relevant)</label>
+        <input type="text" placeholder="#QL-1234">
+      </div>
+
+      <div class="form-field">
+        <label>Message<span class="required">*</span></label>
+        <textarea placeholder="Tell us what's on your mind..." required></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Send message →</button>
+      <p class="form-note">— We reply within 1 working day</p>
+    </form>
+  </div>
+</div>
+
+<section class="office">
+  <div class="office-inner">
+    <h2>THE <span class="serif-italic">details</span>.</h2>
+
+    <div class="office-details">
+      <div class="office-detail-item">
+        <span class="label">— Registered Office</span>
+        <span class="value">QLOSE Ltd<br>8 Shepherd Market, No. 613<br>London W1J 7JY, United Kingdom</span>
+      </div>
+
+      <div class="office-detail-item">
+        <span class="label">— Company Number</span>
+        <span class="value">17311111<br>Registered in England<br>& Wales</span>
+      </div>
+
+      <div class="office-detail-item">
+        <span class="label">— Response Time</span>
+        <span class="value">Within 1 working day<br>Monday to Friday<br>9am — 5pm GMT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mega">
+      <img class="logo-img-mega" src="data:BASE64" alt="QLOSE">
+    </div>
+    <div class="foot-top">
+      <div>
+        <p class="foot-tagline">A better routine, delivered. Made for people who take the small rituals seriously. Est. London, 2026.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/products/the-kit">The Kit</a></li>
+          <li><a href="/products/refills">Refills</a></li>
+          <li><a href="/products/gift-card">Gift Card</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/pages/routine">The Routine</a></li>
+          <li><a href="/blogs/journal">Journal</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/account">Manage Sub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>QLOSE LTD, REGISTERED IN ENGLAND &amp; WALES, COMPANY NO. 17311111</div>
+      <div>REGISTERED OFFICE: 8 SHEPHERD MARKET, NO. 613, LONDON W1J 7JY</div>
+      <div><a href="mailto:hello@getqlose.com">HELLO@GETQLOSE.COM</a></div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 QLOSE LTD / ALL RIGHTS RESERVED</div>
+      <div>INSTAGRAM / TIKTOK / PINTEREST</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
