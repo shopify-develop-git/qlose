@@ -15,6 +15,11 @@
     A real <table>, not the source's grid of divs: this is tabular data, and
     a screen reader needs the row and column relationships to read a cell as
     "Travel case, QLOSE kit, included".
+
+    Each cell also carries its column's name. It is hidden on a desktop, where
+    the table head supplies it, and shown on a phone, where the table restacks
+    into one card per row and the head is gone. Exactly one of the two is ever
+    in the accessibility tree.
   {%- endcomment -%}
   <table class="qlose-compare__table">
     <thead>
@@ -28,8 +33,14 @@
       {%- for block in section.blocks -%}
         <tr {{ block.shopify_attributes }}>
           <th scope="row">{{ block.settings.feature }}</th>
-          <td class="qlose-compare__ours"><span class="qlose-compare__check">{{ block.settings.ours }}</span></td>
-          <td><span class="qlose-compare__cross">{{ block.settings.theirs }}</span></td>
+          <td class="qlose-compare__ours">
+            <span class="qlose-compare__label">{{ section.settings.col_ours }}</span>
+            <span class="qlose-compare__check">{{ block.settings.ours }}</span>
+          </td>
+          <td>
+            <span class="qlose-compare__label">{{ section.settings.col_theirs }}</span>
+            <span class="qlose-compare__cross">{{ block.settings.theirs }}</span>
+          </td>
         </tr>
       {%- endfor -%}
     </tbody>
@@ -100,6 +111,10 @@
     color: var(--qlose-muted);
   }
 
+  .qlose-compare__label {
+    display: none;
+  }
+
   @media (max-width: 900px) {
     .qlose-compare {
       padding-block: 60px;
@@ -111,13 +126,64 @@
     }
   }
 
+  /* Three columns of 14px copy do not fit a phone, and scrolling the table
+     sideways took the centred heading with it, since the scroll container was
+     the whole section. Each row becomes a card instead: the feature as its
+     head, then one line per column with the column's name against its value. */
   @media (max-width: 600px) {
-    .qlose-compare {
-      overflow-x: auto;
+    .qlose-compare__table {
+      display: block;
+      border: none;
     }
 
-    .qlose-compare__table {
-      min-width: 520px;
+    .qlose-compare__table thead {
+      display: none;
+    }
+
+    .qlose-compare__table tbody,
+    .qlose-compare__table tr {
+      display: block;
+    }
+
+    .qlose-compare__table tr {
+      border: 1px solid var(--qlose-black);
+      /* Adjacent cards share one rule rather than stacking two. */
+      margin-bottom: -1px;
+    }
+
+    .qlose-compare__table :is(th, td) {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      width: auto;
+      border: none;
+      padding: 12px 16px;
+    }
+
+    .qlose-compare__table tbody th {
+      font-family: var(--qlose-font-sans);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--qlose-black);
+      color: var(--qlose-white);
+    }
+
+    .qlose-compare__table td + td,
+    .qlose-compare__table tbody th + td {
+      border-top: 1px solid var(--qlose-divider);
+    }
+
+    .qlose-compare__label {
+      display: block;
+      flex: none;
+      font-family: var(--qlose-font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--qlose-muted);
     }
   }
 {% endstylesheet %}
