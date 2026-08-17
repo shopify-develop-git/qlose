@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "hero": {
+      "type": "qlose-page-hero",
+      "settings": {
+        "variant": "legal",
+        "meta_left": "LEGAL, RETURNS",
+        "meta_right": "",
+        "heading": "<p>RETURNS &amp;<br><em>cancellations</em>.</p>",
+        "subtext": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p><p>Last updated: 18 July 2026</p>"
+      }
+    },
+    "body": {
+      "type": "qlose-rich-text",
+      "settings": {
+        "use_page_content": true,
+        "content": "<h2>1. Your legal right to cancel</h2> <p>Under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 you have the right to cancel an online order within 14 days of receiving it, without giving a reason. You then have a further 14 days to send the goods back to us.</p> <h2>2. The hygiene seal, please read before opening</h2> <p>This is permitted under the Regulations, which allow the right to cancel to be disapplied for sealed goods that are not suitable for return once unsealed, for reasons of health protection or hygiene. Oral care products fall into that category.</p> <p>This does not affect your rights if an item is faulty, damaged or not as described. Those rights apply whether or not the seal has been broken, see section 5.</p> <h2>3. Returning an unopened kit</h2> <ul> <li>Email <a href=\"mailto:hello@getqlose.com\">hello@getqlose.com</a> within 14 days of delivery, with your order number.</li> <li>We will confirm the return address and instructions.</li> <li>The kit must be complete, in its original packaging, with the perforated tab unbroken.</li> <li>Send it back within 14 days of telling us you want to cancel.</li> </ul> <p>You pay the cost of returning the item unless it is faulty or was sent in error. We recommend using a tracked service, as we cannot refund a parcel we do not receive.</p> <h2>4. Refills</h2> <p>Refills contain consumable hygiene items and are non-refundable once dispatched. You can pause, skip or cancel your subscription at any time from your account to prevent future orders. If you cancel before an order is processed, you will not be charged for it.</p> <h2>5. Faulty, damaged or incorrect items</h2> <p>If your order arrives damaged, incomplete, or with a fault, a missing tool, a damaged case, or a toothbrush that will not power on, email us with your order number and, if you can, a photograph. We will send a replacement and you will not usually need to return anything.</p> <p>Under the Consumer Rights Act 2015, if a fault appears within 30 days of delivery you can ask for a full refund. After 30 days we will repair or replace the item, and if that is not possible you may be entitled to a refund.</p> <p>The electric toothbrush also carries a 12-month Qlose warranty from delivery, which sits on top of your statutory rights and does not replace them.</p> <h2>6. Refunds</h2> <p>We will refund you using the same payment method you used to pay. Where you have cancelled an unopened kit, we will refund within 14 days of receiving the goods back, or within 14 days of you providing proof of postage, whichever is earlier.</p> <p>We refund the price you paid plus standard outbound delivery. If you chose express delivery, we refund the standard rate only. Where a return is due to a fault or our error, we refund your return postage too.</p> <p>We may reduce your refund to reflect any reduction in the value of the goods caused by handling beyond what is necessary to establish their nature and characteristics.</p> <h2>7. Cancelling a subscription</h2> <p>You can cancel at any time from your account. There is no minimum term and no cancellation fee. Cancelling stops future deliveries; it does not automatically refund an order that has already been processed or dispatched.</p> <h2>8. How to reach us</h2> <p>Email <a href=\"mailto:hello@getqlose.com\">hello@getqlose.com</a> with your order number. We aim to reply within one working day.</p> <p>Qlose Ltd, 8 Shepherd Market, No. 613, London W1J 7JY. Company number 17311111.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "body"
+  ]
+}
