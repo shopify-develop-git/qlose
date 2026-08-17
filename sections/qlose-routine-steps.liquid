@@ -215,8 +215,15 @@
     .qlose-step {
       flex: 0 0 78%;
       scroll-snap-align: start;
-      border-left: 1px solid var(--qlose-black);
       min-height: 420px;
+    }
+
+    /* Only the first. Every card already carries a right border, so putting a
+       left border on all of them draws two rules between each pair and the
+       joins come out twice the weight of the outer edges. The container's own
+       left border cannot serve here either -- it scrolls away with the track. */
+    .qlose-step:first-child {
+      border-left: 1px solid var(--qlose-black);
     }
   }
 {% endstylesheet %}
