@@ -50,7 +50,7 @@
                 {%- break -%}
               {%- endif -%}
               <details
-                class="qlose-faq__item"
+                class="qlose-faq__item qlose-faq__item--light"
                 {% if entry.settings.open %}open{% endif %}
                 {{ entry.shopify_attributes }}
               >
@@ -102,6 +102,10 @@
     border-top: 1px solid var(--qlose-divider);
   }
 
+  .qlose-faq-page__nav li:last-child {
+    border-bottom: 1px solid var(--qlose-divider);
+  }
+
   .qlose-faq-page__nav a {
     font-family: var(--qlose-font-sans);
     font-size: 13px;
@@ -117,13 +121,13 @@
   }
 
   .qlose-faq-page__group {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     /* Anchor jumps otherwise land under the sticky header. */
-    scroll-margin-top: 110px;
+    scroll-margin-top: 100px;
   }
 
   .qlose-faq-page__group-heading {
-    font-size: clamp(28px, 4vw, 48px);
+    font-size: clamp(28px, 3vw, 40px);
     line-height: 0.95;
     letter-spacing: -0.03em;
     color: var(--qlose-black);

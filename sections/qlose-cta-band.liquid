@@ -5,7 +5,9 @@
   rather than two near-identical sections.
 {%- endcomment -%}
 
-<section class="qlose-cta-band qlose-cta-band--{{ section.settings.theme }}">
+<section
+  class="qlose-cta-band qlose-cta-band--{{ section.settings.theme }}{% if section.settings.size == 'compact' %} qlose-cta-band--compact{% endif %}"
+>
   <div class="qlose-cta-band__inner">
     <h2 class="qlose-cta-band__heading qlose-display">
       {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
@@ -87,6 +89,32 @@
     color: rgba(255, 255, 255, 0.7);
   }
 
+  /* The FAQ page closes on a shorter band than the Routine page does: same
+     ingredients, two thirds the depth, and type a size down. A modifier rather
+     than a third theme, so the pages already using this section keep their
+     measurements untouched. */
+  .qlose-cta-band--compact {
+    padding-block: 80px;
+  }
+
+  .qlose-cta-band--compact .qlose-cta-band__heading {
+    font-size: clamp(36px, 5vw, 72px);
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+
+  .qlose-cta-band--compact .qlose-cta-band__text {
+    max-width: 500px;
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .qlose-cta-band--compact {
+      padding-block: 60px;
+    }
+  }
+
   /* The primary button is black on black in the dark theme, so invert it. */
   .qlose-cta-band--dark .qlose-btn--primary {
     background: var(--qlose-white);
@@ -122,6 +150,16 @@
   "name": "QLOSE CTA band",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "regular", "label": "Regular" },
+        { "value": "compact", "label": "Compact" }
+      ],
+      "default": "regular"
+    },
     {
       "type": "select",
       "id": "theme",

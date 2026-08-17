@@ -312,6 +312,32 @@ qlose-accordion {
   }
 }
 
+/* A lighter cut of the same accordion, which the FAQ page uses: a hairline
+   rule instead of a full one, tighter rows, smaller questions and an accent
+   plus. Same markup, so it rides on a modifier rather than a second set of
+   classes. */
+.qlose-faq__item--light {
+  border-top-color: var(--qlose-divider);
+}
+
+.qlose-faq__item--light:last-of-type {
+  border-bottom-color: var(--qlose-divider);
+}
+
+.qlose-faq__item--light .qlose-faq__q {
+  padding: 24px 0;
+  font-size: 17px;
+}
+
+.qlose-faq__item--light .qlose-faq__q::after {
+  font-size: 24px;
+  color: var(--qlose-accent);
+}
+
+.qlose-faq__item--light[open] .qlose-faq__a {
+  padding-bottom: 24px;
+}
+
 /* Prose.
 
    Body typography for any admin-authored or long-form copy: the legal

@@ -315,9 +315,10 @@
         "b1"
       ],
       "settings": {
-        "theme": "dark",
         "heading": "<p>STILL <em>stuck</em>?</p>",
-        "text": "<p>We're a small team but we read every message. Get in touch and we'll get back to you within one working day.</p>"
+        "text": "<p>We're a small team but we read every message. Get in touch and we'll get back to you within one working day.</p>",
+        "theme": "dark",
+        "size": "compact"
       }
     }
   },
