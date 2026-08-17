@@ -87,8 +87,11 @@
   }
 
   @media (max-width: 900px) {
+    /* Asymmetric, as the desktop rule is: the heading needs air above it, and
+       whatever follows supplies its own above itself. Symmetrical 40/40 left
+       about 100px of empty ground under the headline on a phone. */
     .qlose-page-hero {
-      padding-block: 40px;
+      padding-block: 40px 24px;
     }
   }
 {% endstylesheet %}

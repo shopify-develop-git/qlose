@@ -31,7 +31,7 @@
 
 {% stylesheet %}
   .qlose-cta-band {
-    padding: 120px var(--qlose-gutter);
+    padding: var(--qlose-section-pad) var(--qlose-gutter);
   }
 
   .qlose-cta-band--light {
@@ -42,7 +42,7 @@
   .qlose-cta-band--dark {
     background: var(--qlose-black);
     color: var(--qlose-white);
-    padding-block: 140px;
+    padding-block: calc(var(--qlose-section-pad) + 20px);
   }
 
   /* The measure sits on the heading and the copy separately, the way the source
@@ -114,11 +114,7 @@
     flex-wrap: wrap;
   }
 
-  @media (max-width: 900px) {
-    .qlose-cta-band {
-      padding-block: 60px;
-    }
-  }
+
 {% endstylesheet %}
 
 {% schema %}

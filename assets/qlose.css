@@ -23,11 +23,17 @@
 
   --qlose-gutter: 40px;
   --qlose-max: 1500px;
+  /* The vertical rhythm between sections, in one place. The source hardcodes
+     it per section and halves it at its single 900px breakpoint, which leaves
+     a phone with ~100px of dead ground at every seam -- read as a mistake
+     rather than as air. */
+  --qlose-section-pad: 120px;
 }
 
 @media (max-width: 900px) {
   :root {
     --qlose-gutter: 20px;
+    --qlose-section-pad: 48px;
   }
 }
 
@@ -150,13 +156,7 @@ html body {
 .qlose-section {
   max-width: var(--qlose-max);
   margin-inline: auto;
-  padding: 120px var(--qlose-gutter);
-}
-
-@media (max-width: 900px) {
-  .qlose-section {
-    padding-block: 60px;
-  }
+  padding: var(--qlose-section-pad) var(--qlose-gutter);
 }
 
 .qlose-eyebrow {
