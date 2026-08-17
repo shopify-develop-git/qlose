@@ -1,6 +1,13 @@
 import { Component } from '@theme/component';
 
-const EASING = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+/* Opening eases out -- away quickly, settling into place. Closing eases in, the
+   other way about: it gives before it goes, rather than dropping at once and
+   then crawling the last of the way, which is what one curve in both
+   directions produced. Closing also runs a little shorter; a panel on its way
+   out does not need to be watched. */
+const EASING_OPEN = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+const EASING_CLOSE = 'cubic-bezier(0.4, 0, 0.85, 0.35)';
+const CLOSE_SCALE = 0.8;
 
 /**
  * Exclusive disclosure group with an animated open and close.
@@ -123,7 +130,7 @@ class QloseAccordion extends Component {
     this.#takeOver(panel);
     const animation = panel.animate(
       [{ gridTemplateRows: '0fr' }, { gridTemplateRows: '1fr' }],
-      { duration: this.#duration(panel), easing: EASING }
+      { duration: this.#duration(panel), easing: EASING_OPEN }
     );
 
     this.#running.set(details, animation);
@@ -147,7 +154,11 @@ class QloseAccordion extends Component {
     // comes off, which reads as a flicker at the end of every close.
     const animation = panel.animate(
       [{ gridTemplateRows: '1fr' }, { gridTemplateRows: '0fr' }],
-      { duration: this.#duration(panel), easing: EASING, fill: 'forwards' }
+      {
+        duration: Math.round(this.#duration(panel) * CLOSE_SCALE),
+        easing: EASING_CLOSE,
+        fill: 'forwards',
+      }
     );
 
     this.#running.set(details, animation);
