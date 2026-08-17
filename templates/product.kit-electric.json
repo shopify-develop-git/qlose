@@ -86,7 +86,7 @@
     "cross": {
       "type": "qlose-cross-sell",
       "settings": {
-        "eyebrow_index": "—",
+        "eyebrow_index": "",
         "eyebrow_text": "ALSO AVAILABLE",
         "heading": "<p>PREFER MANUAL?</p>",
         "text": "<p>The Manual Kit has the same five-step system without the rechargeable brush.</p>",
