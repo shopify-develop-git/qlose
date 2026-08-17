@@ -1,145 +1,100 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
-          "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "title",
-        "content"
-      ],
+    "hero": {
+      "type": "qlose-page-hero",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "variant": "simple",
+        "meta_left": "CONTACT, GET IN TOUCH",
+        "meta_right": "MON-FRI, 9-5 GMT",
+        "heading": "<p>SAY <em>hello</em>.</p>",
+        "subtext": "<p>We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.</p>"
       }
     },
     "form": {
-      "type": "section",
+      "type": "qlose-contact-form",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "m1": {
+          "type": "method",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "input_style": "default",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "index": "01 / EMAIL",
+            "title": "General enquiries",
+            "text": "Questions about the kit, your subscription, or anything else. We reply within one working day.",
+            "email": "hello@getqlose.com"
+          }
+        },
+        "m2": {
+          "type": "method",
+          "settings": {
+            "index": "02 / SUPPORT",
+            "title": "Order help",
+            "text": "Missing a delivery, need to change your shipping address, or have a technical issue with the toothbrush.",
+            "email": "support@getqlose.com"
+          }
+        },
+        "m3": {
+          "type": "method",
+          "settings": {
+            "index": "03 / PRESS",
+            "title": "Media & Press",
+            "text": "Writing about us? Making a video? We'd love to help. Assets, quotes, and interview requests all welcome.",
+            "email": "press@getqlose.com"
+          }
+        },
+        "m4": {
+          "type": "method",
+          "settings": {
+            "index": "04 / WHOLESALE",
+            "title": "Wholesale & Retail",
+            "text": "Interested in stocking QLOSE at your dental practice, hotel, or shop? Get in touch and we'll send a wholesale pack.",
+            "email": "wholesale@getqlose.com"
+          }
         }
       },
-      "block_order": [
-        "contact_form_UwiCkQ"
-      ],
-      "name": "t:names.contact_form",
+      "block_order": ["m1", "m2", "m3", "m4"],
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "methods_title": "Ways to reach us",
+        "heading": "<p>Send a <em>message</em>.</p>",
+        "lead": "<p>Fill this in and we'll get back to you within one working day. If it's urgent, email us directly.</p>",
+        "subject_options": "General enquiry\nQuestion about my order\nSubscription help\nProduct feedback\nPress or partnerships\nWholesale enquiry\nOther",
+        "name_placeholder": "Alex Morgan",
+        "email_placeholder": "alex@example.com",
+        "order_placeholder": "#QL-1234",
+        "body_placeholder": "Tell us what's on your mind...",
+        "button_label": "Send message →",
+        "form_note": "We reply within 1 working day",
+        "success_text": "Thanks, we reply within one working day."
+      }
+    },
+    "office": {
+      "type": "qlose-office-details",
+      "blocks": {
+        "o1": {
+          "type": "detail",
+          "settings": {
+            "label": "Registered Office",
+            "value": "QLOSE Ltd\n8 Shepherd Market, No. 613\nLondon W1J 7JY, United Kingdom"
+          }
+        },
+        "o2": {
+          "type": "detail",
+          "settings": {
+            "label": "Company Number",
+            "value": "17311111\nRegistered in England\n& Wales"
+          }
+        },
+        "o3": {
+          "type": "detail",
+          "settings": {
+            "label": "Response Time",
+            "value": "Within 1 working day\nMonday to Friday\n9am to 5pm GMT"
+          }
+        }
+      },
+      "block_order": ["o1", "o2", "o3"],
+      "settings": {
+        "heading": "<p>THE <em>details</em>.</p>"
       }
     }
   },
-  "order": [
-    "main",
-    "form"
-  ]
+  "order": ["hero", "form", "office"]
 }
