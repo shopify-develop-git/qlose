@@ -131,9 +131,14 @@
     cursor: pointer;
   }
 
-  /* The source drops focus styling entirely; keeping a ring, as everywhere
-     else in this theme, since the field has no border of its own to shade. */
-  .qlose-newsletter__input:focus-visible,
+  /* No ring on the field, by request. The white rule under it stays put, so
+     the input is not entirely unmarked when focused, though it does not change
+     on focus either. The submit keeps its ring. */
+  .qlose-newsletter__field .qlose-newsletter__input:focus,
+  .qlose-newsletter__field .qlose-newsletter__input:focus-visible {
+    outline: none;
+  }
+
   .qlose-newsletter__submit:focus-visible {
     outline: 2px solid var(--qlose-accent);
     outline-offset: 4px;
