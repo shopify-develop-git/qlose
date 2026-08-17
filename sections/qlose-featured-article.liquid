@@ -54,7 +54,7 @@
           {%- if post.author != blank -%}<span>By {{ post.author }}</span>{%- endif -%}
         </div>
 
-        {%- render 'qlose-button', label: section.settings.cta_label, url: post.url, style: 'underline' -%}
+        {%- render 'qlose-button', label: section.settings.cta_label, url: post.url, style: 'ghost' -%}
       </div>
     </div>
   </section>
@@ -89,11 +89,12 @@
     display: block;
   }
 
+  /* Top right and set in black, as the source has it. */
   .qlose-featured__badge {
     position: absolute;
     top: 24px;
-    left: 24px;
-    background: var(--qlose-accent);
+    right: 24px;
+    background: var(--qlose-black);
     color: var(--qlose-white);
     padding: 8px 14px;
     font-family: var(--qlose-font-mono);
@@ -102,31 +103,24 @@
     text-transform: uppercase;
   }
 
-  .qlose-featured__meta,
-  .qlose-featured__byline {
+  /* Mono in the accent. With only a margin here it fell back to the body face
+     and read as a stray line of copy. */
+  .qlose-featured__meta {
     font-family: var(--qlose-font-mono);
     font-size: 11px;
-    letter-spacing: 0.15em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--qlose-muted);
-  }
-
-  .qlose-featured__meta {
+    color: var(--qlose-accent);
     margin-bottom: 24px;
   }
 
-  .qlose-featured__byline {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin: 24px 0 32px;
-  }
-
   .qlose-featured__heading {
-    font-size: clamp(32px, 4vw, 60px);
+    font-size: clamp(36px, 4.5vw, 64px);
     line-height: 0.95;
     letter-spacing: -0.03em;
     color: var(--qlose-black);
+    margin-bottom: 24px;
   }
 
   .qlose-featured__heading a {
@@ -139,17 +133,40 @@
   }
 
   .qlose-featured__excerpt {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--qlose-graphite);
-    line-height: 1.7;
-    margin-top: 24px;
-    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  .qlose-featured__byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  /* The source separates the byline's parts with a faint slash. */
+  .qlose-featured__byline > :not(:last-child)::after {
+    content: '/';
+    margin-left: 16px;
+    opacity: 0.4;
   }
 
   @media (max-width: 900px) {
+    .qlose-featured {
+      padding: 40px var(--qlose-gutter);
+    }
+
     .qlose-featured__inner {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 40px;
     }
   }
 {% endstylesheet %}

@@ -25,19 +25,26 @@
       <label class="visually-hidden" for="QloseNewsletterEmail-{{ section.id }}">
         {{ section.settings.email_label }}
       </label>
-      <input
-        id="QloseNewsletterEmail-{{ section.id }}"
-        class="qlose-newsletter__input"
-        type="email"
-        name="contact[email]"
-        value="{{ form.email }}"
-        placeholder="{{ section.settings.placeholder }}"
-        autocomplete="email"
-        required
-      >
-      <button type="submit" class="qlose-btn qlose-btn--primary qlose-newsletter__submit">
-        {{ section.settings.button_label }}
-      </button>
+      {%- comment -%}
+        The field and its submit share one underline, so they need a row of
+        their own -- the form also carries the validation message, which must
+        not sit inside that rule.
+      {%- endcomment -%}
+      <div class="qlose-newsletter__field">
+        <input
+          id="QloseNewsletterEmail-{{ section.id }}"
+          class="qlose-newsletter__input"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          placeholder="{{ section.settings.placeholder }}"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" class="qlose-newsletter__submit">
+          {{ section.settings.button_label }}
+        </button>
+      </div>
 
       {%- if form.errors -%}
         <p class="qlose-newsletter__message qlose-newsletter__message--error" role="alert">
@@ -58,13 +65,8 @@
     text-align: center;
   }
 
-  .qlose-newsletter__inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
   .qlose-newsletter__heading {
-    font-size: clamp(32px, 5vw, 80px);
+    font-size: clamp(40px, 5vw, 80px);
     line-height: 0.95;
     letter-spacing: -0.04em;
     color: var(--qlose-white);
@@ -72,52 +74,68 @@
   }
 
   .qlose-newsletter__text {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-size: 15px;
     line-height: 1.6;
-    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
   }
 
+  /* One underlined line, not a bordered box beside a filled button: the field
+     and its submit share a single rule along the bottom, which is how the
+     source draws it. */
   .qlose-newsletter__form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .qlose-newsletter__field {
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--qlose-white);
   }
 
   .qlose-newsletter__input {
-    flex: 1 1 320px;
-    max-width: 420px;
-    padding: 18px 20px;
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: none;
     color: var(--qlose-white);
-    font-family: var(--qlose-font-mono);
-    font-size: 13px;
-    letter-spacing: 0.05em;
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
   }
 
   .qlose-newsletter__input::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
 
-  .qlose-newsletter__input:focus-visible {
+  .qlose-newsletter__submit {
+    flex: none;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    color: var(--qlose-white);
+    font-family: var(--qlose-font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* The source drops focus styling entirely; keeping a ring, as everywhere
+     else in this theme, since the field has no border of its own to shade. */
+  .qlose-newsletter__input:focus-visible,
+  .qlose-newsletter__submit:focus-visible {
     outline: 2px solid var(--qlose-accent);
-    outline-offset: 2px;
-  }
-
-  .qlose-newsletter .qlose-newsletter__submit {
-    background: var(--qlose-white);
-    color: var(--qlose-black);
-  }
-
-  .qlose-newsletter .qlose-newsletter__submit:hover {
-    background: var(--qlose-bone);
+    outline-offset: 4px;
   }
 
   .qlose-newsletter__message {
-    flex: 1 0 100%;
-    margin-top: 16px;
+    max-width: 500px;
+    margin: 16px auto 0;
     font-family: var(--qlose-font-mono);
     font-size: 12px;
     letter-spacing: 0.1em;
@@ -131,7 +149,7 @@
 
   @media (max-width: 900px) {
     .qlose-newsletter {
-      padding-block: 60px;
+      padding: 40px var(--qlose-gutter);
     }
   }
 {% endstylesheet %}

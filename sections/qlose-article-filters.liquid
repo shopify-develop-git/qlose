@@ -35,8 +35,13 @@
 
 {% stylesheet %}
   /* Ruled top and bottom, scrolling sideways rather than wrapping: six
-     categories on a phone would otherwise break into two ragged lines. */
+     categories on a phone would otherwise break into two ragged lines. The
+     rules run with the content rail rather than edge to edge, since the source
+     puts them on the same element that carries the max-width. */
   .qlose-articles__filters {
+    max-width: var(--qlose-max);
+    margin-inline: auto;
+    padding: 32px var(--qlose-gutter);
     border-top: 1px solid var(--qlose-divider);
     border-bottom: 1px solid var(--qlose-divider);
     overflow-x: auto;
@@ -45,9 +50,6 @@
   .qlose-articles__filters-inner {
     display: flex;
     gap: 32px;
-    max-width: var(--qlose-max);
-    margin-inline: auto;
-    padding: 32px var(--qlose-gutter);
   }
 
   .qlose-articles__filter {
