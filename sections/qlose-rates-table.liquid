@@ -19,17 +19,18 @@
     </thead>
     <tbody>
       {%- for block in section.blocks -%}
-        <tr {{ block.shopify_attributes }}>
+        <tr
+          class="qlose-rates__row{% if block.settings.free %} qlose-rates__row--highlight{% endif %}"
+          {{ block.shopify_attributes }}
+        >
           <th scope="row">
             <span class="qlose-rates__name">{{ block.settings.name }}</span>
             {%- if block.settings.carrier != blank -%}
               <span class="qlose-rates__carrier">{{ block.settings.carrier }}</span>
             {%- endif -%}
           </th>
-          <td>{{ block.settings.time }}</td>
-          <td class="qlose-rates__cost{% if block.settings.free %} qlose-rates__cost--free{% endif %}">
-            {{- block.settings.cost -}}
-          </td>
+          <td><span class="qlose-rates__name">{{ block.settings.time }}</span></td>
+          <td><span class="qlose-rates__cost">{{ block.settings.cost }}</span></td>
         </tr>
       {%- endfor -%}
     </tbody>
@@ -38,22 +39,30 @@
 
 {% stylesheet %}
   .qlose-rates {
-    padding: 60px var(--qlose-gutter) 40px;
-    max-width: 1100px;
+    padding: 60px var(--qlose-gutter);
+    max-width: 1200px;
     margin: 0 auto;
   }
 
+  /* The source wraps this line in <strong>, so it reads black at 500 rather
+     than muted. */
   .qlose-rates__eyebrow {
     font-family: var(--qlose-font-mono);
     font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--qlose-muted);
+    color: var(--qlose-black);
     margin-bottom: 24px;
   }
 
+  /* The source lays this out as a grid of divs on 2fr 1fr 1fr. A table keeps
+     the same measure -- fixed layout with the columns declared -- and lets a
+     screen reader read a cell as "Next-Day Delivery, cost, £6.50", which the
+     divs cannot say. */
   .qlose-rates__table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     border-top: 1px solid var(--qlose-black);
     border-left: 1px solid var(--qlose-black);
@@ -61,30 +70,46 @@
   }
 
   .qlose-rates__table :is(th, td) {
-    padding: 20px 24px;
+    padding: 24px 28px;
     border-right: 1px solid var(--qlose-black);
     border-bottom: 1px solid var(--qlose-black);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     vertical-align: middle;
   }
 
+  .qlose-rates__table thead th:first-child {
+    width: 50%;
+  }
+
+  .qlose-rates__table thead th:not(:first-child) {
+    width: 25%;
+  }
+
   .qlose-rates__table thead th {
-    font-family: var(--qlose-font-sans);
-    font-weight: 800;
+    font-family: var(--qlose-font-mono);
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 12px;
+    letter-spacing: 0.15em;
+    font-size: 11px;
     background: var(--qlose-black);
     color: var(--qlose-white);
   }
 
+  /* The whole row carries the highlight, not the price alone. */
+  .qlose-rates__row--highlight :is(th, td) {
+    background: var(--qlose-accent-soft);
+  }
+
+  /* Both the method and the time are set in this face: in the source the time
+     column uses the same .rate-name as the method. */
   .qlose-rates__name {
     display: block;
     font-family: var(--qlose-font-sans);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+    font-size: 15px;
     color: var(--qlose-black);
   }
 
@@ -101,24 +126,33 @@
   .qlose-rates__cost {
     font-family: var(--qlose-font-sans);
     font-weight: 900;
-    font-size: 18px;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--qlose-black);
   }
 
-  .qlose-rates__cost--free {
-    color: var(--qlose-accent-deep);
+  @media (max-width: 900px) {
+    .qlose-rates {
+      padding-block: 40px;
+    }
   }
 
+  /* Three columns of this copy will not sit in a phone's width, and the source
+     has no answer for it: its cells carry data-label attributes for a stacked
+     layout that no rule ever reads. Scrolling sideways keeps the table a table
+     -- the row comparison is the whole point of it -- rather than breaking it
+     into three cards that have to be read in turn. */
   @media (max-width: 700px) {
     .qlose-rates {
       overflow-x: auto;
     }
 
     .qlose-rates__table {
-      min-width: 520px;
+      min-width: 560px;
     }
 
     .qlose-rates__table :is(th, td) {
-      padding: 14px;
+      padding: 16px 18px;
     }
   }
 {% endstylesheet %}
@@ -142,7 +176,7 @@
         { "type": "text", "id": "carrier", "label": "Carrier" },
         { "type": "text", "id": "time", "label": "Time" },
         { "type": "text", "id": "cost", "label": "Cost" },
-        { "type": "checkbox", "id": "free", "label": "Highlight as free", "default": false }
+        { "type": "checkbox", "id": "free", "label": "Highlight this row", "default": false }
       ]
     }
   ],
