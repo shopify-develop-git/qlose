@@ -95,24 +95,15 @@
       }
     },
     "waitlist": {
-      "type": "qlose-cta-band",
-      "blocks": {
-        "b1": {
-          "type": "cta",
-          "settings": {
-            "label": "Notify me →",
-            "url": "/pages/contact",
-            "style": "primary"
-          }
-        }
-      },
-      "block_order": [
-        "b1"
-      ],
+      "type": "qlose-newsletter",
       "settings": {
-        "theme": "dark",
+        "variant": "waitlist",
         "heading": "<p>SHIPPING <em>outside</em><br>THE UK?</p>",
-        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.</p>"
+        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.</p>",
+        "email_label": "Email address",
+        "placeholder": "Your email address",
+        "button_label": "Notify me →",
+        "success_text": "Thanks, we'll let you know."
       }
     },
     "returns": {

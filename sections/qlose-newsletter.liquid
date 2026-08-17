@@ -1,10 +1,14 @@
 {%- comment -%}
-  Ported from docs/design-source/journal.html, section .newsletter. The
-  source had a decorative input; this is a real Shopify customer form, so a
-  submission actually creates a subscriber.
+  Ported from docs/design-source/journal.html, section .newsletter, and
+  shipping.html, section .waitlist. The source had a decorative input; this is
+  a real Shopify customer form, so a submission actually creates a subscriber.
+
+  The two sources draw the same thing -- black ground, centred, one underlined
+  line holding the field and its submit -- and differ only in the four values
+  the waitlist modifier below carries. They are one section rather than two.
 {%- endcomment -%}
 
-<section class="qlose-newsletter">
+<section class="qlose-newsletter qlose-newsletter--{{ section.settings.variant }}">
   <div class="qlose-newsletter__inner">
     <h2 class="qlose-newsletter__heading qlose-display">
       {{- section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -}}
@@ -158,9 +162,29 @@
     color: #f3a58c;
   }
 
+  /* shipping.html's waitlist. Everything below the heading is shared; these
+     are the four values the source sets differently there. */
+  .qlose-newsletter--waitlist {
+    padding-block: 100px;
+  }
+
+  .qlose-newsletter--waitlist .qlose-newsletter__heading {
+    line-height: 0.9;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .qlose-newsletter--waitlist .qlose-newsletter__text {
+    font-size: 16px;
+  }
+
   @media (max-width: 900px) {
     .qlose-newsletter {
       padding: 40px var(--qlose-gutter);
+    }
+
+    .qlose-newsletter--waitlist {
+      padding-block: 40px;
     }
   }
 {% endstylesheet %}
@@ -170,6 +194,16 @@
   "name": "QLOSE newsletter",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Variant",
+      "options": [
+        { "value": "journal", "label": "Journal newsletter" },
+        { "value": "waitlist", "label": "Waitlist" }
+      ],
+      "default": "journal"
+    },
     {
       "type": "richtext",
       "id": "heading",
