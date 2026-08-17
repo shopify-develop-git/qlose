@@ -1,0 +1,91 @@
+{%- comment -%}
+  Ported from docs/design-source/privacy.html, terms.html and returns.html,
+  section .legal-body.
+
+  The frame only: the measure, the rhythm and the one rule the prose face in
+  the foundation cannot state for itself. The documents live in snippets, one
+  per policy, written as HTML rather than held in a settings field.
+
+  Separate from qlose-rich-text, which stays what it is: a section that renders
+  whatever copy the admin holds, wherever a page needs a passage of prose. A
+  legal document is not that. It is fixed text that changes rarely and
+  deliberately, and when it does change the change should be visible in a diff
+  and reviewable like any other, rather than landing as one unreadable line
+  inside a JSON template.
+{%- endcomment -%}
+
+<section class="qlose-legal-body qlose-prose">
+  {%- case section.settings.document -%}
+    {%- when 'privacy' -%}
+      {%- render 'qlose-legal-privacy' -%}
+    {%- when 'terms' -%}
+      {%- render 'qlose-legal-terms' -%}
+    {%- when 'returns' -%}
+      {%- render 'qlose-legal-returns' -%}
+  {%- endcase -%}
+</section>
+
+{% stylesheet %}
+  .qlose-legal-body {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 60px var(--qlose-gutter) 100px;
+  }
+
+  /* The prose face rules off every section heading and hangs 56px of air above
+     the rule. The first heading needs neither: the hero above it closes with a
+     rule of its own, so leaving this one on draws two lines a stride apart with
+     nothing in between. Structural rather than :first-of-type, which the source
+     uses -- here it has to be the first heading *and* the first thing in the
+     document, so a policy that ever opened with a paragraph keeps its rules. */
+  .qlose-legal-body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  /* A callout inside the document: bone, with the accent down its left edge.
+     Set a step smaller than the body, since it interrupts rather than
+     continues it. */
+  .qlose-legal-body__notice {
+    background: var(--qlose-bone);
+    border-left: 3px solid var(--qlose-accent);
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-legal-body__notice strong {
+    color: var(--qlose-black);
+  }
+
+  @media (max-width: 900px) {
+    .qlose-legal-body {
+      padding: 40px var(--qlose-gutter) 60px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "QLOSE legal body",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "document",
+      "label": "Document",
+      "options": [
+        { "value": "privacy", "label": "Privacy policy" },
+        { "value": "terms", "label": "Terms of sale" },
+        { "value": "returns", "label": "Returns and cancellations" }
+      ],
+      "default": "privacy",
+      "info": "The wording lives in the theme, in snippets/qlose-legal-*.liquid. Editing the page body in the admin will not change it."
+    }
+  ],
+  "presets": [{ "name": "QLOSE legal body" }]
+}
+{% endschema %}
