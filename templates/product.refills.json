@@ -3,8 +3,8 @@
     "hero": {
       "type": "qlose-refill-hero",
       "blocks": {
-        "b1": { "type": "cta", "settings": { "label": "Electric Kit — £59", "url": "/products/electric-kit", "style": "primary" } },
-        "b2": { "type": "cta", "settings": { "label": "Manual Kit — £29", "url": "/products/manual-kit", "style": "ghost" } }
+        "b1": { "type": "cta", "settings": { "label": "Electric Kit, £59", "url": "/products/electric-kit", "style": "primary" } },
+        "b2": { "type": "cta", "settings": { "label": "Manual Kit, £29", "url": "/products/manual-kit", "style": "ghost" } }
       },
       "block_order": ["b1", "b2"],
       "settings": {
@@ -18,10 +18,10 @@
     "contents": {
       "type": "qlose-refill-contents",
       "blocks": {
-        "i1": { "type": "item", "settings": { "index": "— 01", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush head or toothbrush", "text": "Electric Kit refills contain one replacement brush head. Manual Kit refills contain one replacement toothbrush." } },
-        "i2": { "type": "item", "settings": { "index": "— 02", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Floss Heads × 20", "text": "Twenty replacement heads for your angled floss handle." } },
-        "i3": { "type": "item", "settings": { "index": "— 03", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush Heads × 4", "text": "Tuft heads wear faster than a toothbrush — swap one roughly every three weeks. Four covers your cycle. The handle stays with you." } },
-        "i4": { "type": "item", "settings": { "index": "— 04", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "text": "Bristles flatten with use and stop lifting the coating properly. A fresh one every 90 days, replaced whole — there is no separate head." } }
+        "i1": { "type": "item", "settings": { "index": "01", "fallback_asset": "qlose-tool-toothbrush.png", "title": "Brush head or toothbrush", "text": "Electric Kit refills contain one replacement brush head. Manual Kit refills contain one replacement toothbrush." } },
+        "i2": { "type": "item", "settings": { "index": "02", "fallback_asset": "qlose-tool-floss-pick.png", "title": "Floss Heads × 90", "text": "Ninety replacement heads, one for each day, for your angled floss handle." } },
+        "i3": { "type": "item", "settings": { "index": "03", "fallback_asset": "qlose-tool-tuft-brush.png", "title": "Tuft Brush Heads × 4", "text": "Tuft heads wear faster than a toothbrush, swap one roughly every three weeks. Four covers your cycle. The handle stays with you." } },
+        "i4": { "type": "item", "settings": { "index": "04", "fallback_asset": "qlose-tool-tongue-brush.png", "title": "Tongue Brush", "text": "Bristles flatten with use and stop lifting the coating properly. You replace the whole tool every 90 days, a fresh tongue brush in every box." } }
       },
       "block_order": ["i1", "i2", "i3", "i4"],
       "settings": {
@@ -34,7 +34,7 @@
     "frequency": {
       "type": "qlose-frequency",
       "blocks": {
-        "c1": { "type": "cadence", "settings": { "number": "90", "unit": "— DAYS", "description": "Every 90 days — the interval dentists recommend for replacing a brush head.", "price": "£18", "price_note": "PER BOX" } }
+        "c1": { "type": "cadence", "settings": { "number": "90", "unit": "DAYS", "description": "Every 90 days, the interval dentists recommend for replacing a brush head.", "price": "£18", "price_note": "PER BOX" } }
       },
       "block_order": ["c1"],
       "settings": {
@@ -43,7 +43,7 @@
         "heading": "<p>EVERY<br><em>ninety</em> DAYS.</p>",
         "footnote": "<p>Pause anytime. Skip a delivery from your account. Cancel whenever you like. No calls, no forms.</p>",
         "quote": "You don't want to think about oral care. So we think about it for you.",
-        "quote_attribution": "— QLOSE / THE PHILOSOPHY"
+        "quote_attribution": "QLOSE / THE PHILOSOPHY"
       }
     }
   },
