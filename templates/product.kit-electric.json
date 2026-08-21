@@ -137,6 +137,7 @@
         "x1": {
           "type": "tool",
           "settings": {
+            "image": "shopify://shopify/files/tool-01-floss-pick.png",
             "index": "— 01",
             "name": "Angled Floss Pick",
             "material": "Soft-touch handle, PTFE-coated floss thread"
@@ -145,6 +146,7 @@
         "x2": {
           "type": "tool",
           "settings": {
+            "image": "shopify://shopify/files/tool-02-toothbrush.png",
             "index": "— 02",
             "name": "Electric Toothbrush",
             "material": "USB-C rechargeable, IPX7, 2-minute timer"
@@ -153,6 +155,7 @@
         "x3": {
           "type": "tool",
           "settings": {
+            "image": "shopify://shopify/files/tool-04-tongue-brush.png",
             "index": "— 03",
             "name": "Tongue Brush",
             "material": "Soft bristles, ergonomic grip"
@@ -161,6 +164,7 @@
         "x4": {
           "type": "tool",
           "settings": {
+            "image": "shopify://shopify/files/tool-05-tongue-scraper.png",
             "index": "— 04",
             "name": "Tongue Scraper",
             "material": "Medical-grade stainless steel"
@@ -169,6 +173,7 @@
         "x5": {
           "type": "tool",
           "settings": {
+            "image": "shopify://shopify/files/tool-03-tuft-brush.png",
             "index": "— 05",
             "name": "Tuft Brush",
             "material": "Screw-in replaceable head, angled bristle tuft"

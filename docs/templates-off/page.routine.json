@@ -90,6 +90,7 @@
       "settings": {
         "reverse": false,
         "tag": "01 / 30 SEC",
+        "image": "shopify://shopify/files/tool-01-floss-pick.png",
         "image_alt": "Angled floss pick",
         "image_shape": "tall",
         "eyebrow": "— Step 01 / Between the teeth",
@@ -142,6 +143,7 @@
       "settings": {
         "reverse": true,
         "tag": "02 / 90 SEC",
+        "image": "shopify://shopify/files/tool-02-toothbrush.png",
         "image_alt": "Toothbrush",
         "image_shape": "slim",
         "eyebrow": "— Step 02 / Every surface",
@@ -187,6 +189,7 @@
       "settings": {
         "reverse": false,
         "tag": "03 / 30 SEC",
+        "image": "shopify://shopify/files/tool-03-tuft-brush.png",
         "image_alt": "Tuft brush",
         "image_shape": "tall",
         "eyebrow": "— Step 03 / Precision finish",
@@ -232,6 +235,7 @@
       "settings": {
         "reverse": true,
         "tag": "04 / 15 SEC",
+        "image": "shopify://shopify/files/tool-04-tongue-brush.png",
         "image_alt": "Tongue brush",
         "image_shape": "wide",
         "eyebrow": "— Step 04 / Loosen the coating",
@@ -277,6 +281,7 @@
       "settings": {
         "reverse": false,
         "tag": "05 / 15 SEC",
+        "image": "shopify://shopify/files/tool-05-tongue-scraper.png",
         "image_alt": "Tongue scraper",
         "image_shape": "curved",
         "eyebrow": "— Step 05 / Lift it all off",
