@@ -2,21 +2,32 @@ import { Component } from '@theme/component';
 import { trapFocus, removeTrapFocus } from '@theme/focus';
 import { isClickedOutside, lockScroll, onAnimationEnd, unlockScroll } from '@theme/utilities';
 
-/** Viewport width below which the drawer opens as a modal overlay (no squeeze). */
-const MODAL_BREAKPOINT = 990;
+/**
+ * The widths at which the drawer opens as a modal overlay rather than as a
+ * sidebar that pushes the page aside.
+ *
+ * Horizon ships `(max-width: 989px)`: an overlay on a phone, a sidebar on a
+ * desktop, where opening the cart adds a 400px margin to `.page-wrapper` and
+ * the whole document slides left to make room. QLOSE lays the drawer over the
+ * page at every width, so this matches everywhere. Nothing else changes --
+ * modal mode is the path the narrow viewport has always taken, and it brings
+ * the native backdrop, the scroll lock and the dialog's own focus trap with
+ * it. The squeeze coordination in snippets/theme-drawer.liquid came out with
+ * this change; there is no longer a width at which it would fire.
+ */
+const MODAL_QUERY = '(min-width: 0px)';
 
 /**
  * A drawer that opens from the right side.
  *
- * On wide viewports (≥ 990px) the drawer squeezes page content alongside it.
- * The panel is a non-modal dialog (`show()`); we install a focus trap via
- * `trapFocus()` so Tab cycles within the drawer, mirroring the modal-mode
- * a11y contract. Focus moves to the close button on open and returns to
- * the trigger on close.
+ * The drawer overlays the page with a backdrop. The panel is a modal dialog
+ * (`showModal()`) — native focus trap, scroll-lock, and ARIA semantics. Focus
+ * moves to the close button on open and returns to the trigger on close.
  *
- * On narrow viewports (< 990px) the drawer overlays with a backdrop. The
- * panel is a modal dialog (`showModal()`) — native focus trap, scroll-lock,
- * and ARIA semantics. Same focus-on-close-button + restore-on-close UX.
+ * The sidebar mode below is kept intact, and is what runs if MODAL_QUERY is
+ * ever narrowed again: a non-modal dialog (`show()`) alongside a squeezed
+ * page, with a focus trap installed by hand to mirror the modal a11y
+ * contract.
  *
  * Dispatches {@link DrawerOpenEvent} and {@link DrawerCloseEvent}.
  *
@@ -43,7 +54,7 @@ export class ThemeDrawer extends Component {
   #previouslyFocused = null;
 
   /** @type {MediaQueryList} */
-  #modalQuery = window.matchMedia(`(max-width: ${MODAL_BREAKPOINT - 1}px)`);
+  #modalQuery = window.matchMedia(MODAL_QUERY);
 
   /**
    * @returns {boolean} Whether the drawer is currently open.
@@ -56,8 +67,8 @@ export class ThemeDrawer extends Component {
     super.connectedCallback();
     this.#modalQuery.addEventListener('change', this.#onModalBreakpointChange);
 
-    // Sync the static stack counter with any --drawer-stack-order set by the
-    // synchronous restore script (which runs before this module loads).
+    // Sync the static stack counter with any --drawer-stack-order already on
+    // this element, so a drawer that reconnects keeps its place in the stack.
     const restoredOrder = Number(this.style.getPropertyValue('--drawer-stack-order') || 0);
     if (restoredOrder > ThemeDrawer.#stackOrder) {
       ThemeDrawer.#stackOrder = restoredOrder;
@@ -69,12 +80,11 @@ export class ThemeDrawer extends Component {
   }
 
   /**
-   * Restore path: the inline script in theme-drawer.liquid set [open] on
-   * <theme-drawer> + <dialog> before this module loaded. The dialog is
-   * already visible — we just wire close listeners. We deliberately skip
-   * trapFocus and focus moves: the user is loading a fresh page and
-   * expects focus on main content, not inside a drawer left over from
-   * the previous session.
+   * Reconnect path: the element arrived already carrying [open], so the
+   * dialog is visible and open() was never called for it — we just wire the
+   * close listeners. trapFocus and focus moves are deliberately skipped:
+   * nothing about a reconnect is a fresh request to open, and pulling focus
+   * into the drawer would take it from wherever the reader left it.
    */
   #onRestore() {
     const { panel } = this.refs;

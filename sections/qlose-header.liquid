@@ -45,13 +45,41 @@
 
     <div class="qlose-header__actions">
       <a href="{{ routes.account_url }}">Account</a>
-      <a href="{{ routes.cart_url }}" class="qlose-header__cart">
+      {%- comment -%}
+        A button rather than a link wherever the drawer exists: the cart opens
+        beside the reader instead of taking them off whatever they were
+        reading. On /cart there is no drawer -- cart-drawer.liquid declines to
+        render one there -- so the same control stays an anchor, which is also
+        where it lands if the drawer's module never loads.
+
+        `on:click` is read by a document-level listener in component.js, so it
+        binds from anywhere on the page; `#cart-drawer` resolves by id to the
+        <theme-drawer> and calls its toggle().
+      {%- endcomment -%}
+      {%- capture cart_label -%}
         <cart-icon class="qlose-header__cart-icon">
           <span>Cart</span>
           <span aria-hidden="true">/</span>
           {% render 'cart-bubble', limit: 100 %}
         </cart-icon>
-      </a>
+      {%- endcapture -%}
+
+      {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+        <button
+          type="button"
+          class="qlose-header__cart"
+          on:click="#cart-drawer/toggle"
+          aria-haspopup="dialog"
+          aria-controls="cart-drawer"
+          aria-label="{{ 'accessibility.cart' | t }}"
+        >
+          {{ cart_label }}
+        </button>
+      {%- else -%}
+        <a href="{{ routes.cart_url }}" class="qlose-header__cart">
+          {{ cart_label }}
+        </a>
+      {%- endif -%}
     </div>
   </div>
 
@@ -98,7 +126,8 @@
   }
 
   .qlose-header__menu a,
-  .qlose-header__actions a {
+  .qlose-header__actions a,
+  .qlose-header__actions .qlose-header__cart {
     color: var(--qlose-black);
     text-decoration: none;
     font-size: 12px;
@@ -106,6 +135,16 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-family: var(--qlose-font-sans);
+  }
+
+  /* The cart control is a <button> when it opens the drawer and an <a> when
+     it does not; this makes the button carry no trace of being one. */
+  .qlose-header__actions button.qlose-header__cart {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    line-height: inherit;
   }
 
   .qlose-header__actions {

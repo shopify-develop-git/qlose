@@ -1,0 +1,316 @@
+{% doc %}
+  QLOSE styling for the cart drawer.
+
+  The drawer's markup comes from Horizon -- cart-drawer, cart-products,
+  cart-summary and cart-items-component -- and those snippets paint from the
+  palette in config/settings_data.json, which is stock. Left alone the drawer
+  opens over a bespoke page in Inter with 14px rounded corners, which is how
+  it read before this file existed.
+
+  So this restyles by selector rather than by forking those four snippets:
+  they stay updatable, and everything the drawer looks like lives in one file
+  that is ours. Every rule is scoped under #cart-drawer, which also settles
+  the cascade -- an id outweighs the class selectors it is overriding, whatever
+  order Shopify bundles the stylesheets in.
+
+  Rendered once from layout/theme.liquid, next to the drawer itself.
+
+  @example
+  {% render 'qlose-cart-drawer-styles' %}
+{% enddoc %}
+
+{% stylesheet %}
+  /* The scrollbar is the page's, and hiding it is what the scroll lock does
+     while the drawer is open. Reserving its width permanently costs ~15px of
+     gutter and keeps the page from stepping sideways at the moment the drawer
+     opens -- which is the whole point of an overlay. Both scrollers: the
+     document scrolls on a phone, .page-wrapper takes over at 990px. */
+  html,
+  .page-wrapper {
+    scrollbar-gutter: stable;
+  }
+
+  #cart-drawer .theme-drawer__dialog {
+    --theme-drawer-width: 440px;
+    --theme-drawer-padding: 32px;
+
+    /* Horizon's own child rules read these two, so the brand ground is set
+       once here rather than repeated on every surface below. */
+    --color-background: var(--qlose-off-white);
+    --color-foreground: var(--qlose-black);
+
+    background: var(--qlose-off-white);
+    color: var(--qlose-ink);
+    border-left: 1px solid var(--qlose-black);
+    font-family: var(--qlose-font-sans);
+  }
+
+  #cart-drawer .theme-drawer__dialog::backdrop {
+    background: rgba(10, 10, 10, 0.45);
+  }
+
+  /* ── Header ─────────────────────────────────────────────────────────── */
+
+  #cart-drawer .theme-drawer__header {
+    padding: 26px var(--theme-drawer-padding);
+    border-bottom: 1px solid var(--qlose-black);
+  }
+
+  #cart-drawer .theme-drawer__title {
+    gap: 8px;
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+  }
+
+  /* The count reads "CART / 3", the way the header link already writes it,
+     rather than as a pill -- there is no filled shape anywhere in this design
+     that is not a button or the corner tag. */
+  #cart-drawer .theme-drawer__badge {
+    min-width: 0;
+    height: auto;
+    padding-inline: 0;
+    border-radius: 0;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .theme-drawer__badge::before {
+    content: '/ ';
+  }
+
+  #cart-drawer .theme-drawer__close-button {
+    --private-button-size: 28px;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+    color: var(--qlose-black);
+  }
+
+  #cart-drawer .theme-drawer__close-button:hover:not(:active) {
+    background: none;
+    color: var(--qlose-accent);
+  }
+
+  /* ── Line items ─────────────────────────────────────────────────────── */
+
+  #cart-drawer .cart-drawer__items {
+    padding-block-start: 24px;
+  }
+
+  #cart-drawer .cart-items__table-row {
+    border-bottom-color: var(--qlose-divider);
+  }
+
+  /* The catalogue photographs are wide -- the kit case is 1400x487 -- and
+     Horizon crops them square, which of that image is a rectangle of black.
+     Fitting the whole thing inside the frame the product page already uses
+     keeps the thumbnail recognisable as the thing that was just added. */
+  #cart-drawer .cart-items__media-container {
+    background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
+  }
+
+  #cart-drawer .cart-items__media-image {
+    border: none;
+    border-radius: 0;
+    object-fit: contain;
+    padding: 6px;
+  }
+
+  #cart-drawer .cart-items__title {
+    font-family: var(--qlose-font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+    text-decoration: none;
+  }
+
+  #cart-drawer .cart-items__title:hover {
+    color: var(--qlose-accent);
+  }
+
+  /* Two prices sit in every row: the line total in its own cell on the right,
+     and the price of one below the title. They were the same weight, which
+     made the row read as two figures competing rather than as a total with
+     its workings under it. */
+  #cart-drawer .cart-items__price {
+    font-family: var(--qlose-font-sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--qlose-black);
+  }
+
+  #cart-drawer .cart-items__unit-price-wrapper {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .cart-items__variants-wrapper {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .quantity-selector {
+    border: 1px solid var(--qlose-black);
+    border-radius: 0;
+    background: none;
+    font-family: var(--qlose-font-mono);
+    font-size: 12px;
+    color: var(--qlose-black);
+  }
+
+  #cart-drawer .quantity-selector input {
+    font-family: var(--qlose-font-mono);
+    font-size: 12px;
+    color: var(--qlose-black);
+    background: none;
+  }
+
+  #cart-drawer .cart-items__remove {
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .cart-items__remove:hover {
+    color: var(--qlose-accent);
+  }
+
+  /* ── Summary ────────────────────────────────────────────────────────── */
+
+  #cart-drawer .cart-drawer__summary {
+    --cart-drawer-summary-padding: var(--theme-drawer-padding);
+
+    gap: 20px;
+    border-top: 1px solid var(--qlose-black);
+    background: var(--qlose-off-white);
+  }
+
+  #cart-drawer .cart-discount__summary,
+  #cart-drawer .cart-discount__label,
+  #cart-drawer .cart-totals__total-label {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--qlose-black);
+  }
+
+  #cart-drawer .cart-discount__input {
+    border-radius: 0;
+    border: 1px solid var(--qlose-black);
+    background: var(--qlose-white);
+    font-family: var(--qlose-font-mono);
+    font-size: 12px;
+  }
+
+  #cart-drawer .cart-totals__total-value {
+    font-family: var(--qlose-font-sans);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--qlose-black);
+  }
+
+  #cart-drawer .cart-totals__tax-note,
+  #cart-drawer .cart-totals__tax-note small {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .cart-drawer__summary .cart__summary-totals:not(:has(.cart__subtotal-container:empty)) {
+    border-block-start-color: var(--qlose-divider);
+  }
+
+  /* The same button as the one that filled the cart, to the letter -- see
+     .qlose-atc in sections/qlose-product.liquid. */
+  #cart-drawer .cart__checkout-button {
+    width: 100%;
+    padding: 22px;
+    font-family: var(--qlose-font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    border: none;
+    border-radius: 0;
+    transition: background 0.2s;
+  }
+
+  #cart-drawer .cart__checkout-button:hover:not([disabled]) {
+    background: var(--qlose-graphite);
+  }
+
+  /* ── Empty ──────────────────────────────────────────────────────────── */
+
+  #cart-drawer .cart-drawer--empty .theme-drawer__title,
+  #cart-drawer .cart-drawer__content .theme-drawer__title {
+    font-family: var(--qlose-font-serif);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--qlose-black);
+  }
+
+  /* The empty drawer's own call to action, and the "have an account" line
+     under it -- the only two things left in the panel once the items go. */
+  #cart-drawer .cart-drawer--empty .button,
+  #cart-drawer cart-drawer-component:not(:has(.cart-form)) .button {
+    padding: 18px 32px;
+    font-family: var(--qlose-font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+    border: none;
+    border-radius: 0;
+  }
+
+  #cart-drawer .cart-drawer--empty .button:hover,
+  #cart-drawer cart-drawer-component:not(:has(.cart-form)) .button:hover {
+    background: var(--qlose-graphite);
+  }
+
+  #cart-drawer .cart-drawer__items p,
+  #cart-drawer .cart-drawer__items p a {
+    font-family: var(--qlose-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--qlose-muted);
+  }
+
+  #cart-drawer .cart-drawer__items p a {
+    color: var(--qlose-black);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #cart-drawer .cart__checkout-button,
+    #cart-drawer .cart-items__title,
+    #cart-drawer .theme-drawer__close-button {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
