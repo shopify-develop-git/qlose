@@ -63,6 +63,18 @@
       {% paginate collection.products by products_per_page %}
         {% capture children %}
           {% for product in collection.products %}
+            {%- comment -%}
+              Refill boxes are carried into the cart by a kit's subscription
+              plan, never chosen from a shelf, and they have to stay published
+              to the Online Store for the cart to accept them at all. Published
+              is what puts them in /collections/all, so they come out here --
+              the one place the catalogue would otherwise offer them as
+              something to buy on their own. Their product pages redirect; see
+              templates/product.refill.liquid.
+            {%- endcomment -%}
+            {%- if product.tags contains 'refill' -%}
+              {%- continue -%}
+            {%- endif -%}
             <li
               id="{{ section.id }}-{{ product.id }}"
               class="product-grid__item product-grid__item--{{ forloop.index0 }}"

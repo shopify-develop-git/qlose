@@ -6,6 +6,32 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {%- comment -%}
+      Refill boxes are carried into the cart by a kit's subscription plan and
+      are never chosen from a shelf, but a subscription line has to name a real
+      product, and a product Shopify will put in a cart has to be published to
+      the Online Store -- which gives it a URL whether anyone wants one or not.
+
+      So the URL exists and this is what happens at it: nothing to read, and a
+      move on to the page that does explain refills. Written here rather than
+      as a product template because a template has to be picked per product in
+      the admin, from the published theme's list, and the tag is already doing
+      the same job in sections/main-collection.liquid. One rule, one tag, no
+      chance of a new refill product arriving without it.
+
+      First thing in the head, before anything renders. noindex keeps the URL
+      out of search; replace() leaves no history entry for Back to fall into.
+    {%- endcomment -%}
+    {%- if product.tags contains 'refill' -%}
+      {%- assign refills_url = pages.refills.url | default: routes.root_url -%}
+      <meta name="robots" content="noindex, nofollow">
+      <meta http-equiv="refresh" content="0; url={{ refills_url }}">
+      <link rel="canonical" href="{{ shop.url }}{{ refills_url }}">
+      <script>
+        window.location.replace({{ refills_url | json }});
+      </script>
+    {%- endif -%}
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"

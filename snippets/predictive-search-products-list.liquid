@@ -65,6 +65,9 @@
           {% endfor %}
         {% else %}
           {% for product in products limit: limit %}
+            {%- if product.tags contains 'refill' -%}
+              {%- continue -%}
+            {%- endif -%}
             <li
               class="predictive-search-results__card predictive-search-results__card--product"
               ref="recentlyViewedItems[]"
@@ -92,7 +95,17 @@
       {% liquid
         assign limit = limit | default: 8
       %}
+      {%- comment -%}
+        Same rule as sections/main-collection.liquid: a refill box is not
+        something to go and buy, so it is not something to suggest. This only
+        reaches the lists Liquid renders -- the panel's resting state and
+        recently viewed. Suggestions for a typed query come back from
+        Shopify's own search API and would have to be excluded there.
+      {%- endcomment -%}
       {% for product in products limit: limit %}
+        {%- if product.tags contains 'refill' -%}
+          {%- continue -%}
+        {%- endif -%}
         <li
           class="predictive-search-results__card predictive-search-results__card--product"
           ref="resultsItems[]"
