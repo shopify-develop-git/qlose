@@ -202,9 +202,14 @@
 
           {%- assign plan_blocks = section.blocks | where: 'type', 'plan' -%}
           {%- if plan_blocks.size > 0 -%}
+            {%- comment -%}
+              No hidden selling_plan input here any more. The kit is bought
+              once; what recurs is a refill box, which is its own product with
+              its own price, so the plan belongs to that line and not to this
+              one. A plan block that names a refill variant makes the button
+              add two lines -- see assets/qlose-plan-selector.js.
+            {%- endcomment -%}
             <qlose-plan-selector class="qlose-plans" role="radiogroup" aria-label="Purchase options">
-              <input type="hidden" name="selling_plan" ref="sellingPlanInput" value="{{ plan_blocks.first.settings.selling_plan_id }}">
-
               {%- for block in plan_blocks -%}
                 <div
                   class="qlose-plan{% if forloop.first %} qlose-plan--active{% endif %}"
@@ -212,6 +217,7 @@
                   aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
                   tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
                   data-selling-plan="{{ block.settings.selling_plan_id }}"
+                  data-refill-variant="{{ block.settings.refill_variant_id }}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="qlose-plan__info">
@@ -890,9 +896,15 @@
         { "type": "text", "id": "price_note", "label": "Price note" },
         {
           "type": "text",
+          "id": "refill_variant_id",
+          "label": "Refill variant ID",
+          "info": "The refill box added alongside the kit on this plan. Leave empty for a kit on its own."
+        },
+        {
+          "type": "text",
           "id": "selling_plan_id",
           "label": "Selling plan ID",
-          "info": "Leave empty for a one-time purchase. Fill in once a subscription app is connected."
+          "info": "The selling plan the refill line is bought on. Both fields are needed for a subscription; either one alone adds nothing."
         }
       ]
     },

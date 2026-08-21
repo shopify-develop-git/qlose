@@ -11,7 +11,8 @@
             "sub": "Refills arrive automatically every 90 days",
             "price": "£29",
             "price_note": "then £18 / 90 days",
-            "selling_plan_id": ""
+            "refill_variant_id": "53851627716955",
+            "selling_plan_id": "694688186715"
           }
         },
         "plan2": {
