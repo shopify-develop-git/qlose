@@ -54,15 +54,6 @@
               class: 'qlose-product__stage-img',
               alt: product.featured_media.alt | default: product.title
           }}
-        {%- else -%}
-          <img
-            src="{{ section.settings.fallback_image | default: 'qlose-kit-case-closed.png' | asset_url }}"
-            alt="{{ product.title | default: shop.name }}"
-            width="800"
-            height="278"
-            fetchpriority="high"
-            class="qlose-product__stage-img"
-          >
         {%- endif -%}
       </div>
 
@@ -690,7 +681,6 @@
     { "type": "product", "id": "product", "label": "Product", "info": "Leave empty to use the current product." },
     { "type": "text", "id": "breadcrumb_label", "label": "Breadcrumb label" },
     { "type": "text", "id": "tag", "label": "Corner tag", "default": "01 / KIT" },
-    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "qlose-kit-case-closed.png" },
     { "type": "text", "id": "meta_label", "label": "Meta label" },
     { "type": "text", "id": "meta_left", "label": "Meta left", "default": "THE ELECTRIC KIT, MODEL 02" },
     { "type": "text", "id": "meta_right", "label": "Meta right (in stock)", "default": "IN STOCK" },

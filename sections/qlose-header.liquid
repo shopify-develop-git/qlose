@@ -12,21 +12,18 @@
 {%- endcomment -%}
 <qlose-header class="qlose-header">
   <div class="qlose-header__inner">
-    <a href="{{ routes.root_url }}" class="qlose-header__logo">
+    <a href="{{ routes.root_url }}" class="qlose-header__logo" aria-label="{{ shop.name }}">
+      {%- comment -%}
+        settings.logo, set once in theme settings, so the header follows the
+        shop rather than the template. Nothing draws if it is unset -- the link
+        stays, and the shop name is still announced by the aria-label.
+      {%- endcomment -%}
       {%- if settings.logo != blank -%}
         {{
           settings.logo
-          | image_url: width: 400
-          | image_tag: widths: '200,400', alt: shop.name, class: 'qlose-header__logo-img'
+          | image_url: width: 800
+          | image_tag: widths: '200,400,800', alt: shop.name, class: 'qlose-header__logo-img'
         }}
-      {%- else -%}
-        <img
-          src="{{ 'qlose-logo.png' | asset_url }}"
-          alt="{{ shop.name }}"
-          width="400"
-          height="47"
-          class="qlose-header__logo-img"
-        >
       {%- endif -%}
     </a>
 

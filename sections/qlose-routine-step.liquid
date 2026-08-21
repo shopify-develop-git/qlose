@@ -32,15 +32,6 @@
           class: img_class,
           alt: section.settings.image_alt
       }}
-    {%- elsif section.settings.fallback_asset != blank -%}
-      <img
-        src="{{ section.settings.fallback_asset | asset_url }}"
-        alt="{{ section.settings.image_alt }}"
-        loading="lazy"
-        width="400"
-        height="800"
-        class="{{ img_class | strip }}"
-      >
     {%- endif -%}
   </div>
 
@@ -249,7 +240,6 @@
     { "type": "checkbox", "id": "reverse", "label": "Image on the right", "default": false },
     { "type": "text", "id": "tag", "label": "Corner tag", "default": "01 / 30 SEC" },
     { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "text", "id": "fallback_asset", "label": "Bundled asset filename", "default": "qlose-tool-floss-pick.png" },
     { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Angled floss pick" },
     {
       "type": "select",

@@ -49,15 +49,6 @@
             class: 'qlose-hero__img',
             alt: section.settings.image.alt | default: shop.name
         }}
-      {%- else -%}
-        <img
-          src="{{ 'qlose-kit-case-closed.png' | asset_url }}"
-          alt="QLOSE kit case"
-          width="800"
-          height="278"
-          fetchpriority="high"
-          class="qlose-hero__img"
-        >
       {%- endif -%}
     </div>
   </div>

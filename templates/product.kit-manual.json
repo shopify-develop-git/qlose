@@ -98,7 +98,6 @@
         "meta_label": "THE MANUAL KIT",
         "breadcrumb_label": "The Manual Kit",
         "tag": "01 / KIT",
-        "fallback_image": "qlose-kit-case-closed.png",
         "meta_left": "MODEL 01",
         "meta_right": "IN STOCK",
         "title": "<p>The Manual<br><em>clean</em> Mouth Kit.</p>",
@@ -115,7 +114,6 @@
           "type": "tool",
           "settings": {
             "index": "— 01",
-            "fallback_asset": "qlose-tool-floss-pick.png",
             "name": "Angled Floss Pick",
             "material": "Soft-touch handle, PTFE-coated floss thread"
           }
@@ -124,7 +122,6 @@
           "type": "tool",
           "settings": {
             "index": "— 02",
-            "fallback_asset": "qlose-tool-toothbrush.png",
             "name": "Manual Toothbrush",
             "material": "Soft bristles, ergonomic handle"
           }
@@ -133,7 +130,6 @@
           "type": "tool",
           "settings": {
             "index": "— 03",
-            "fallback_asset": "qlose-tool-tongue-brush.png",
             "name": "Tongue Brush",
             "material": "Soft bristles, ergonomic grip"
           }
@@ -142,7 +138,6 @@
           "type": "tool",
           "settings": {
             "index": "— 04",
-            "fallback_asset": "qlose-tool-tongue-scraper.png",
             "name": "Tongue Scraper",
             "material": "Medical-grade stainless steel"
           }
@@ -151,7 +146,6 @@
           "type": "tool",
           "settings": {
             "index": "— 05",
-            "fallback_asset": "qlose-tool-tuft-brush.png",
             "name": "Tuft Brush",
             "material": "Screw-in replaceable head, angled bristle tuft"
           }

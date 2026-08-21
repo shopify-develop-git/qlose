@@ -2,16 +2,27 @@
 
 <footer class="qlose-footer">
   <div class="qlose-footer__inner">
-    <div class="qlose-footer__mega">
-      <img
-        src="{{ 'qlose-logo-mega.png' | asset_url }}"
-        alt="{{ shop.name }}"
-        width="1200"
-        height="142"
-        loading="lazy"
-        class="qlose-footer__mega-img"
-      >
-    </div>
+    {%- comment -%}
+      The mega logo is its own picker rather than settings.logo, which the
+      header uses. Both draw the same mark, but this one is set across the full
+      width of the page while the header sets it 24px tall, so it needs a file
+      several times the resolution -- and a shop that ever wanted a wordmark
+      here and a monogram in the header can have one.
+    {%- endcomment -%}
+    {%- if section.settings.logo_mega != blank -%}
+      <div class="qlose-footer__mega">
+        {{
+          section.settings.logo_mega
+          | image_url: width: 2400
+          | image_tag:
+            widths: '800,1200,1800,2400',
+            sizes: '100vw',
+            loading: 'lazy',
+            class: 'qlose-footer__mega-img',
+            alt: shop.name
+        }}
+      </div>
+    {%- endif -%}
 
     <div class="qlose-footer__top">
       <div>
@@ -197,6 +208,12 @@
   "name": "QLOSE footer",
   "tag": "div",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_mega",
+      "label": "Footer logo",
+      "info": "Set across the full width of the page. Upload at 2400px wide or more, on a transparent background."
+    },
     {
       "type": "text",
       "id": "tagline",
