@@ -24,7 +24,30 @@
   </div>
 
   <div class="qlose-refill-hero__visual">
-    <div class="qlose-refill-hero__numeral">{{ section.settings.numeral }}</div>
+    {%- comment -%}
+      The design fills this square with the numeral, and that is what it holds
+      until someone sets a photograph. Same arrangement as the homepage plan
+      teaser: a picture if there is one, the numeral if there is not, and never
+      a bare panel of colour.
+    {%- endcomment -%}
+    {%- if section.settings.image != blank -%}
+      {%- assign visual_alt = section.settings.image.alt
+        | default: section.settings.eyebrow_text
+        | default: shop.name
+      -%}
+      {{
+        section.settings.image
+        | image_url: width: 1200
+        | image_tag:
+          widths: '400,700,1000,1200',
+          sizes: '(max-width: 900px) 92vw, 45vw',
+          fetchpriority: 'high',
+          class: 'qlose-refill-hero__img',
+          alt: visual_alt
+      }}
+    {%- else -%}
+      <div class="qlose-refill-hero__numeral">{{ section.settings.numeral }}</div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -70,6 +93,14 @@
     justify-content: center;
   }
 
+  .qlose-refill-hero__img {
+    max-width: 78%;
+    max-height: 78%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
   .qlose-refill-hero__numeral {
     font-family: var(--qlose-font-sans);
     font-size: clamp(160px, 26vw, 400px);
@@ -103,7 +134,19 @@
       "info": "Italic renders as the serif accent, bold as the stroked outline."
     },
     { "type": "richtext", "id": "text", "label": "Text" },
-    { "type": "text", "id": "numeral", "label": "Large numeral", "default": "90" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Fills the square instead of the numeral. Leave empty to keep the numeral."
+    },
+    {
+      "type": "text",
+      "id": "numeral",
+      "label": "Large numeral",
+      "default": "90",
+      "info": "Shown when no image is set."
+    }
   ],
   "blocks": [
     {
