@@ -13,10 +13,28 @@
   assign variant = product.selected_or_first_available_variant
   assign form_id = 'QloseProductForm-' | append: section.id
 
+  assign gallery_media = product.media
+
+  comment
+    Which frame opens. Shopify puts the featured media first as a rule, but a
+    theme cannot rely on that: the featured image is a product setting of its
+    own, and nothing stops it pointing at the third file.
+  endcomment
+  assign gallery_start = 0
+  for media in gallery_media
+    if media.id == product.featured_media.id
+      assign gallery_start = forloop.index0
+      break
+    endif
+  endfor
+
   assign can_add_to_cart = false
   if variant and variant.available
     assign can_add_to_cart = true
-    assign add_to_cart_text = section.settings.atc_label | default: 'actions.add_to_cart' | t
+    assign add_to_cart_text = section.settings.atc_label
+    if add_to_cart_text == blank
+      assign add_to_cart_text = 'actions.add_to_cart' | t
+    endif
   elsif variant
     assign add_to_cart_text = 'products.product.sold_out' | t
   else
@@ -26,6 +44,7 @@
 
 <script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <script src="{{ 'qlose-plan-selector.js' | asset_url }}" type="module" fetchpriority="low"></script>
+<script src="{{ 'qlose-gallery.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
 <div class="qlose-product">
   <nav class="qlose-product__breadcrumb" aria-label="Breadcrumb">
@@ -37,40 +56,97 @@
   </nav>
 
   <div class="qlose-product__main">
-    <div class="qlose-product__gallery">
+    <qlose-gallery class="qlose-product__gallery">
       <div class="qlose-product__stage">
         {%- if section.settings.tag != blank -%}
           <div class="qlose-product__tag">{{ section.settings.tag }}</div>
         {%- endif -%}
 
-        {%- if product.featured_media != blank -%}
-          {{
-            product.featured_media
-            | image_url: width: 1400
-            | image_tag:
-              widths: '500,800,1100,1400',
-              sizes: '(max-width: 900px) 92vw, 45vw',
-              fetchpriority: 'high',
-              class: 'qlose-product__stage-img',
-              alt: product.featured_media.alt | default: product.title
-          }}
+        {%- if gallery_media.size > 0 -%}
+          <div class="qlose-product__slides">
+            {%- for media in gallery_media -%}
+              {%- liquid
+                assign is_open = false
+                if forloop.index0 == gallery_start
+                  assign is_open = true
+                endif
+
+                comment
+                  Only the frame that opens is worth the network early. The rest
+                  are behind a click, and a product with eight images would
+                  otherwise put eight full-width files in front of the page.
+                endcomment
+                assign media_loading = 'lazy'
+                assign media_priority = 'auto'
+                if is_open
+                  assign media_loading = 'eager'
+                  assign media_priority = 'high'
+                endif
+
+                assign media_alt = media.alt | default: product.title
+              -%}
+              <div
+                class="qlose-product__slide{% if is_open %} qlose-product__slide--active{% endif %}"
+                {%- unless is_open %} aria-hidden="true"{% endunless -%}
+              >
+                {{
+                  media
+                  | image_url: width: 1400
+                  | image_tag:
+                    widths: '500,800,1100,1400',
+                    sizes: '(max-width: 900px) 92vw, 45vw',
+                    loading: media_loading,
+                    fetchpriority: media_priority,
+                    class: 'qlose-product__stage-img',
+                    alt: media_alt
+                }}
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if gallery_media.size > 1 -%}
+            <button
+              type="button"
+              class="qlose-product__arrow qlose-product__arrow--prev"
+              data-step="-1"
+              aria-label="{{ 'accessibility.slideshow_previous' | t }}"
+            ></button>
+            <button
+              type="button"
+              class="qlose-product__arrow qlose-product__arrow--next"
+              data-step="1"
+              aria-label="{{ 'accessibility.slideshow_next' | t }}"
+            ></button>
+          {%- endif -%}
         {%- endif -%}
       </div>
 
-      {%- if product.media.size > 1 -%}
+      {%- if gallery_media.size > 1 -%}
         <div class="qlose-product__thumbs">
-          {%- for media in product.media limit: 4 -%}
-            <div class="qlose-product__thumb{% if forloop.first %} qlose-product__thumb--active{% endif %}">
-              {{
-                media
-                | image_url: width: 300
-                | image_tag: widths: '150,300', loading: 'lazy', alt: media.alt | default: product.title
-              }}
-            </div>
+          {%- for media in gallery_media -%}
+            {%- liquid
+              assign is_open = false
+              if forloop.index0 == gallery_start
+                assign is_open = true
+              endif
+              assign thumb_label = 'accessibility.slide_status' | t: index: forloop.index, length: gallery_media.size
+            -%}
+            <button
+              type="button"
+              class="qlose-product__thumb{% if is_open %} qlose-product__thumb--active{% endif %}"
+              aria-label="{{ thumb_label }}"
+              {%- if is_open %} aria-current="true"{% endif -%}
+            >
+              {%- comment -%}
+                The button carries the label, so the image inside it is
+                decorative -- announced twice, it reads as two controls.
+              {%- endcomment -%}
+              {{ media | image_url: width: 300 | image_tag: widths: '150,300', loading: 'lazy', alt: '' }}
+            </button>
           {%- endfor -%}
         </div>
       {%- endif -%}
-    </div>
+    </qlose-gallery>
 
     <div class="qlose-product__info">
       <div class="qlose-product__meta">
@@ -240,6 +316,7 @@
   }
 
   .qlose-product__gallery {
+    display: block;
     position: sticky;
     top: 100px;
   }
@@ -253,6 +330,29 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+  }
+
+  /* Every frame is stacked in the same square and only one is opaque. Laying
+     them out side by side and sliding the strip would be the other way to do
+     it, but the image inside is rotated and carries a drop shadow well past
+     its own edge -- a neighbour would show at the seam before it was due. */
+  .qlose-product__slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .qlose-product__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  .qlose-product__slide--active {
+    opacity: 1;
   }
 
   .qlose-product__stage-img {
@@ -279,6 +379,79 @@
     z-index: 2;
   }
 
+  /* Kept off the frame until it is wanted: the product photograph is the whole
+     of this square, and two boxes sitting over it permanently would be the
+     first thing seen. Hidden with opacity rather than display so they fade,
+     which also means pointer-events has to come off with them -- a transparent
+     button still takes the click otherwise. */
+  .qlose-product__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--qlose-white);
+    color: var(--qlose-black);
+    border: 1px solid var(--qlose-black);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease, background 200ms ease, color 200ms ease;
+  }
+
+  .qlose-product__arrow--prev {
+    left: 20px;
+  }
+
+  .qlose-product__arrow--next {
+    right: 20px;
+  }
+
+  .qlose-product__stage:hover .qlose-product__arrow,
+  .qlose-product__arrow:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .qlose-product__arrow:hover {
+    background: var(--qlose-black);
+    color: var(--qlose-white);
+  }
+
+  /* A chevron drawn from two borders. The design carries no icon set -- every
+     mark on the page is either type or a rule -- and a corner turned out of
+     the same 1px stroke as the button's own edge belongs to it. */
+  .qlose-product__arrow::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+  }
+
+  .qlose-product__arrow--prev::before {
+    transform: rotate(-135deg);
+    margin-left: 4px;
+  }
+
+  .qlose-product__arrow--next::before {
+    transform: rotate(45deg);
+    margin-right: 4px;
+  }
+
+  /* Nothing hovers on a phone, so there they simply stay. */
+  @media (hover: none) {
+    .qlose-product__arrow {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
   .qlose-product__thumbs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -293,9 +466,16 @@
     align-items: center;
     justify-content: center;
     padding: 8px;
+    cursor: pointer;
+    transition: border-color 200ms ease;
   }
 
-  .qlose-product__thumb--active {
+  .qlose-product__thumb:hover {
+    border-color: var(--qlose-divider);
+  }
+
+  .qlose-product__thumb--active,
+  .qlose-product__thumb--active:hover {
     border-color: var(--qlose-black);
   }
 
@@ -629,7 +809,10 @@
   @media (prefers-reduced-motion: reduce) {
     .qlose-detail__a,
     .qlose-detail__q::after,
-    .qlose-plan {
+    .qlose-plan,
+    .qlose-product__slide,
+    .qlose-product__arrow,
+    .qlose-product__thumb {
       transition: none;
     }
   }
