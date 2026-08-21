@@ -9,7 +9,7 @@
       },
       "block_order": ["b1", "b2", "b3"],
       "settings": {
-        "image": "shopify://shopify/files/hero-kit-case.png",
+        "image": "shopify://shop_images/hero-kit-case.png",
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
         "meta_right": "LONDON",
         "headline": "<p>EVERY <strong>TOOL</strong>.<br>THE RIGHT <em>order</em>.</p>",
@@ -32,11 +32,11 @@
     "routine": {
       "type": "qlose-routine-steps",
       "blocks": {
-        "s1": { "type": "step", "settings": { "image": "shopify://shopify/files/tool-01-floss-pick.png", "index": "— 01 / FLOSS", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
-        "s2": { "type": "step", "settings": { "image": "shopify://shopify/files/tool-02-toothbrush.png", "index": "— 02 / BRUSH", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
-        "s3": { "type": "step", "settings": { "image": "shopify://shopify/files/tool-03-tuft-brush.png", "index": "— 03 / DETAIL", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
-        "s4": { "type": "step", "settings": { "image": "shopify://shopify/files/tool-04-tongue-brush.png", "index": "— 04 / TONGUE", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
-        "s5": { "type": "step", "settings": { "image": "shopify://shopify/files/tool-05-tongue-scraper.png", "index": "— 05 / SCRAPE", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
+        "s1": { "type": "step", "settings": { "image": "shopify://shop_images/tool-01-floss-pick.png", "index": "— 01 / FLOSS", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
+        "s2": { "type": "step", "settings": { "image": "shopify://shop_images/tool-02-toothbrush.png", "index": "— 02 / BRUSH", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
+        "s3": { "type": "step", "settings": { "image": "shopify://shop_images/tool-03-tuft-brush.png", "index": "— 03 / DETAIL", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
+        "s4": { "type": "step", "settings": { "image": "shopify://shop_images/tool-04-tongue-brush.png", "index": "— 04 / TONGUE", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
+        "s5": { "type": "step", "settings": { "image": "shopify://shop_images/tool-05-tongue-scraper.png", "index": "— 05 / SCRAPE", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5"],
       "settings": {
