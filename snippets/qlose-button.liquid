@@ -2,6 +2,7 @@
   @param {string} label - Button text.
   @param [url] - {string} Destination. Renders a <span> when blank.
   @param [style] - {string} One of primary, ghost, underline. Defaults to primary.
+  @param [ref] - {string} Component ref name, for sections whose JS moves the link.
 {%- enddoc -%}
 
 {%- liquid
@@ -9,7 +10,7 @@
 -%}
 
 {%- if url != blank -%}
-  <a href="{{ url }}" class="qlose-btn qlose-btn--{{ variant }}">{{ label }}</a>
+  <a href="{{ url }}" class="qlose-btn qlose-btn--{{ variant }}"{% if ref != blank %} ref="{{ ref }}"{% endif %}>{{ label }}</a>
 {%- else -%}
   <span class="qlose-btn qlose-btn--{{ variant }}">{{ label }}</span>
 {%- endif -%}

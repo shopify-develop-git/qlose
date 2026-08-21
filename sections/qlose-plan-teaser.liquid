@@ -1,8 +1,159 @@
 {%- comment -%} Ported from docs/design-source/index.html:520-661, 1076-1110 {%- endcomment -%}
 
-<section class="qlose-subscribe qlose-section">
+<script src="{{ 'qlose-plan-teaser.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  comment
+    Which plan opens selected: the first one ticked as preselected, or failing
+    that the first one there is. The square shows one photo and the button
+    carries one href, so the choice has to resolve to a single row here rather
+    than being painted on each block independently.
+  endcomment
+  assign selected_id = ''
+  assign first_id = ''
+  for block in section.blocks
+    if block.settings.product == blank and block.settings.label == blank and block.settings.price == blank
+      continue
+    endif
+    if first_id == blank
+      assign first_id = block.id
+    endif
+    if block.settings.highlight and selected_id == blank
+      assign selected_id = block.id
+    endif
+  endfor
+  if selected_id == blank
+    assign selected_id = first_id
+  endif
+
+  comment
+    One pass, two strings. The frame on the left and the row on the right are
+    the same plan seen twice, and building them together is what keeps the pair
+    in step -- a block dropped from one loop and kept in the other would slide
+    every following photo one plan out of place. The left column also has to be
+    written to the page before the loop that fills it would otherwise run.
+  endcomment
+  assign frames_html = ''
+  assign rows_html = ''
+  assign cta_url = section.settings.cta_url
+-%}
+
+{%- for block in section.blocks -%}
+  {%- liquid
+    comment
+      Nothing to show and nowhere to go: the placeholder row this section is
+      meant to be rid of.
+    endcomment
+    if block.settings.product == blank and block.settings.label == blank and block.settings.price == blank
+      continue
+    endif
+
+    assign plan_product = block.settings.product
+
+    assign plan_label = block.settings.label
+    if plan_label == blank
+      assign plan_label = plan_product.title
+    endif
+
+    comment
+      money_without_trailing_zeros, not money: the shop formats GBP to two
+      decimals and this price is set in a 32px display face, where a trailing
+      .00 is noise the design never carried.
+    endcomment
+    assign plan_price = block.settings.price
+    if plan_price == blank and plan_product != blank
+      assign plan_price = plan_product.price | money_without_trailing_zeros
+    endif
+
+    assign is_selected = false
+    if block.id == selected_id
+      assign is_selected = true
+    endif
+
+    comment
+      The button follows the selection. Left unset in the editor it lands on
+      the plan the section opens with, so the link cannot outlive a handle
+      change; the component moves it from there as the selection moves.
+    endcomment
+    if is_selected and cta_url == blank
+      assign cta_url = plan_product.url
+    endif
+
+    assign frame_image = plan_product.featured_image
+    assign frame_alt = frame_image.alt | default: plan_product.title
+  -%}
+
+  {%- capture frame -%}
+    <div
+      class="qlose-subscribe__frame{% if is_selected %} qlose-subscribe__frame--active{% endif %}"
+      data-plan-frame="{{ block.id }}"
+      {%- unless is_selected %} aria-hidden="true"{% endunless -%}
+    >
+      {%- if frame_image != blank -%}
+        {{
+          frame_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '400,700,1000,1200',
+            sizes: '(max-width: 900px) 92vw, 45vw',
+            loading: 'lazy',
+            class: 'qlose-subscribe__img',
+            alt: frame_alt
+        }}
+      {%- else -%}
+        {%- comment -%}
+          No photo to put in the square, so the design's numeral holds it
+          rather than leaving a flat panel of colour.
+        {%- endcomment -%}
+        <div class="qlose-subscribe__numeral">{{ section.settings.numeral }}</div>
+      {%- endif -%}
+    </div>
+  {%- endcapture -%}
+
+  {%- capture row -%}
+    <div
+      class="qlose-plan{% if is_selected %} qlose-plan--active{% endif %}"
+      role="radio"
+      aria-checked="{% if is_selected %}true{% else %}false{% endif %}"
+      tabindex="{% if is_selected %}0{% else %}-1{% endif %}"
+      data-plan="{{ block.id }}"
+      data-plan-url="{{ plan_product.url }}"
+      {{ block.shopify_attributes }}
+    >
+      <div class="qlose-plan__info">
+        <div class="qlose-plan__number">{{ block.settings.number }}</div>
+        <div>
+          <div class="qlose-plan__label">
+            {{ plan_label }}
+            {%- if block.settings.badge != blank -%}
+              <span class="qlose-plan__badge">{{ block.settings.badge }}</span>
+            {%- endif -%}
+          </div>
+          <div class="qlose-plan__sub">{{ block.settings.sub }}</div>
+        </div>
+      </div>
+      <div class="qlose-plan__price">
+        {{ plan_price }}
+        <small>{{ block.settings.price_note }}</small>
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- liquid
+    assign frames_html = frames_html | append: frame
+    assign rows_html = rows_html | append: row
+  -%}
+{%- endfor -%}
+
+<qlose-plan-teaser class="qlose-subscribe qlose-section">
   <div class="qlose-subscribe__visual">
-    <div class="qlose-subscribe__numeral">{{ section.settings.numeral }}</div>
+    {%- if frames_html != blank -%}
+      {{ frames_html }}
+    {%- else -%}
+      <div class="qlose-subscribe__frame qlose-subscribe__frame--active">
+        <div class="qlose-subscribe__numeral">{{ section.settings.numeral }}</div>
+      </div>
+    {%- endif -%}
   </div>
 
   <div>
@@ -18,43 +169,20 @@
     <div class="qlose-subscribe__desc">{{ section.settings.description }}</div>
 
     {%- comment -%}
-      A showcase, not a form. The interactive plan selector belongs on the
-      product page, where it has a variant and a selling plan to bind to.
-      .qlose-plan--active here is purely a visual accent, so no JS.
+      A choice, not a form. Picking a row swaps the photo beside it and points
+      the button at that kit; the interactive plan selector that binds a
+      variant and a selling plan belongs on the product page.
     {%- endcomment -%}
-    <div class="qlose-plans">
-      {%- for block in section.blocks -%}
-        <div
-          class="qlose-plan{% if block.settings.highlight %} qlose-plan--active{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <div class="qlose-plan__info">
-            <div class="qlose-plan__number">{{ block.settings.number }}</div>
-            <div>
-              <div class="qlose-plan__label">
-                {{ block.settings.label }}
-                {%- if block.settings.badge != blank -%}
-                  <span class="qlose-plan__badge">{{ block.settings.badge }}</span>
-                {%- endif -%}
-              </div>
-              <div class="qlose-plan__sub">{{ block.settings.sub }}</div>
-            </div>
-          </div>
-          <div class="qlose-plan__price">
-            {{ block.settings.price }}
-            <small>{{ block.settings.price_note }}</small>
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
+    <div class="qlose-plans" role="radiogroup" aria-label="Kits">{{ rows_html }}</div>
 
     {%- render 'qlose-button',
         label: section.settings.cta_label,
-        url: section.settings.cta_url,
-        style: 'primary'
+        url: cta_url,
+        style: 'primary',
+        ref: 'cta'
     -%}
   </div>
-</section>
+</qlose-plan-teaser>
 
 {% stylesheet %}
   .qlose-subscribe {
@@ -64,12 +192,37 @@
     align-items: center;
   }
 
+  /* The square is now a stage: every plan's photo sits in it at once, stacked
+     and transparent, and only one is opaque. Loading them together is what
+     makes the switch instant -- a frame fetched on the click would flash the
+     empty panel first. */
   .qlose-subscribe__visual {
+    position: relative;
     aspect-ratio: 1;
     background: var(--qlose-accent-soft);
+    overflow: hidden;
+  }
+
+  .qlose-subscribe__frame {
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  .qlose-subscribe__frame--active {
+    opacity: 1;
+  }
+
+  .qlose-subscribe__img {
+    max-width: 78%;
+    max-height: 78%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
   .qlose-subscribe__numeral {
@@ -104,6 +257,8 @@
     border-top: 1px solid var(--qlose-black);
   }
 
+  /* Selectable, so the hover from the design source is owed: it insets the row
+     into a bone block, the same treatment the selected row wears. */
   .qlose-plan {
     border-bottom: 1px solid var(--qlose-black);
     padding: 24px 0;
@@ -111,6 +266,13 @@
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+    cursor: pointer;
+    transition: padding 0.2s, background-color 0.2s;
+  }
+
+  .qlose-plan:hover {
+    padding-inline: 20px;
+    background: var(--qlose-bone);
   }
 
   .qlose-plan--active {
@@ -176,6 +338,13 @@
     vertical-align: middle;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .qlose-subscribe__frame,
+    .qlose-plan {
+      transition: none;
+    }
+  }
+
   @media (max-width: 900px) {
     .qlose-subscribe {
       grid-template-columns: 1fr;
@@ -212,7 +381,13 @@
   "name": "QLOSE plan teaser",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "numeral", "label": "Large numeral", "default": "90" },
+    {
+      "type": "text",
+      "id": "numeral",
+      "label": "Large numeral",
+      "default": "90",
+      "info": "Fills the square when the selected plan's product has no image."
+    },
     { "type": "text", "id": "eyebrow_index", "label": "Eyebrow index", "default": "04 /" },
     { "type": "text", "id": "eyebrow_text", "label": "Eyebrow text", "default": "THE SUBSCRIPTION" },
     {
@@ -224,20 +399,37 @@
     },
     { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Same five-step routine, your choice of brush.</p>" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Choose your kit →" },
-    { "type": "url", "id": "cta_url", "label": "Button link" }
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link",
+      "info": "Leave empty to link to the highlighted plan's product."
+    }
   ],
   "blocks": [
     {
       "type": "plan",
       "name": "Plan",
       "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Links the row, and fills the label and price unless they are set below."
+        },
         { "type": "text", "id": "number", "label": "Number", "default": "01" },
-        { "type": "text", "id": "label", "label": "Label", "default": "The Electric Kit" },
+        { "type": "text", "id": "label", "label": "Label", "info": "Leave empty to use the product title." },
         { "type": "text", "id": "badge", "label": "Badge" },
         { "type": "text", "id": "sub", "label": "Subtitle" },
-        { "type": "text", "id": "price", "label": "Price", "default": "£59" },
+        { "type": "text", "id": "price", "label": "Price", "info": "Leave empty to use the product price." },
         { "type": "text", "id": "price_note", "label": "Price note" },
-        { "type": "checkbox", "id": "highlight", "label": "Highlight", "default": false }
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Selected by default",
+          "info": "The plan the section opens on. If several are ticked, the first one wins.",
+          "default": false
+        }
       ]
     }
   ],

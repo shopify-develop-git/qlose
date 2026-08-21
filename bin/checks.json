@@ -116,8 +116,15 @@
     "path": "/",
     "contains": [
       "qlose-plans",
-      "The Electric Kit",
-      "THEN £18 / 90 DAYS"
+      "<qlose-plan-teaser",
+      "qlose-subscribe__frame qlose-subscribe__frame--active",
+      "qlose-subscribe__img",
+      "data-plan-url=\"/products/electric-kit\"",
+      "data-plan-url=\"/products/manual-kit\"",
+      "The Electric Clean Mouth Kit",
+      "£59",
+      "THEN £18 / 90 DAYS",
+      "class=\"qlose-btn qlose-btn--primary\" ref=\"cta\""
     ],
     "absent": []
   },
