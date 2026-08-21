@@ -1,7 +1,12 @@
 # Templates held back
 
-Page templates that are finished, or nearly, but should not be part of the
-theme yet.
+Nothing is held back at the moment -- every page template is in `templates/`
+and offered in the admin. This note stays because the technique is worth
+keeping, and because of what it does *not* do, which is written up under
+"What holding one back cannot undo" below.
+
+The rest describes the technique for a page template that is finished, or
+nearly, but should not be part of the theme yet.
 
 Shopify builds the list of page templates by scanning `templates/`. There is no
 flag that hides one: a `page.<suffix>.json` sitting in that folder is offered in
@@ -47,3 +52,16 @@ Note that a template is not a URL. `page.about.json` only takes effect when a
 page in the admin is assigned the "about" suffix, so holding one back does not
 remove a page that already exists; it removes the option to point one at this
 design.
+
+## What holding one back cannot undo
+
+Moving a template out of `templates/` stops it being *uploaded*. It does not
+delete the copy already sitting in the theme on the store: the GitHub
+integration adds and updates files, and leaves removed ones where they are.
+
+So a template held back after it has been pushed once keeps being offered in
+the admin, at whatever version was last uploaded -- a stale copy the repo has
+no further say over. Deleting it from the theme as well, through the admin's
+code editor or `shopify theme delete-file`, is a separate step.
+
+Hold a template back before its first push and the question never arises.
