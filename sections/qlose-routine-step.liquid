@@ -21,17 +21,25 @@
       qlose-routine-step__img qlose-routine-step__img--{{ section.settings.image_shape }}
     {%- endcapture -%}
 
+    {%- comment -%}
+      The photograph is laid inside this box rather than in the square itself.
+      Every shape below sets the image as a share of its frame's height, and a
+      square drawn by aspect-ratio alone does not always hand its children a
+      height to take a share of -- see the note on the frame in the stylesheet.
+    {%- endcomment -%}
     {%- if section.settings.image != blank -%}
-      {{
-        section.settings.image
-        | image_url: width: 900
-        | image_tag:
-          widths: '300,600,900',
-          sizes: '(max-width: 900px) 88vw, 40vw',
-          loading: 'lazy',
-          class: img_class,
-          alt: section.settings.image_alt
-      }}
+      <div class="qlose-routine-step__frame">
+        {{
+          section.settings.image
+          | image_url: width: 900
+          | image_tag:
+            widths: '300,600,900',
+            sizes: '(max-width: 900px) 88vw, 40vw',
+            loading: 'lazy',
+            class: img_class,
+            alt: section.settings.image_alt
+        }}
+      </div>
     {%- endif -%}
   </div>
 
@@ -80,10 +88,27 @@
     background: linear-gradient(180deg, var(--qlose-bone) 0%, var(--qlose-off-white) 100%);
     position: relative;
     overflow: hidden;
+  }
+
+  /* The square holds its shape from aspect-ratio, with nothing in it to give
+     it a height of its own -- and a height arrived at that way is one WebKit
+     will not let a child take a percentage of. The shapes below are all
+     percentages of it: on iOS every one of them fell back to the photograph's
+     own height, and the tool renders are tall, one of them twelve to one. A
+     brush 1300px long inside a 353px frame is the middle quarter of a handle
+     at four times life size, which is what a phone was showing.
+
+     Absolute is what settles it: a box positioned against the square is given
+     a resolved height whatever the square arrived at its own by, and the
+     percentages have something real to measure. The 32px inset is the padding
+     the square used to carry, so the frame the photograph is sized against is
+     the same box it always was, on every screen. */
+  .qlose-routine-step__frame {
+    position: absolute;
+    inset: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
   }
 
   .qlose-routine-step__tag {

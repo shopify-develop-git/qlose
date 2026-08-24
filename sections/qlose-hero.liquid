@@ -123,7 +123,16 @@
     justify-content: center;
   }
 
+  /* Centred against the frame rather than by the flex box around it: the
+     cap below is a share of a height the frame takes from aspect-ratio alone,
+     and WebKit hands a child no percentage of one of those. Where the cap is
+     lost the photograph keeps its own height, which for a tall file is several
+     times the square. inset with auto margins centres it and the percentages
+     resolve. See sections/qlose-routine-step.liquid for the long version. */
   .qlose-hero__img {
+    position: absolute;
+    inset: 0;
+    margin: auto;
     max-width: 88%;
     max-height: 60%;
     width: auto;

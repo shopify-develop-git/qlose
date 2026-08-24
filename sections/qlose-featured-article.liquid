@@ -82,7 +82,14 @@
     display: block;
   }
 
+  /* Positioned against the frame rather than stretched to 100% of it, for the
+     reason set out in sections/qlose-routine-step.liquid: a height that came
+     from aspect-ratio is one WebKit will not let a child take a percentage of,
+     and a cover image that loses its height crops from the top instead of the
+     middle. */
   .qlose-featured__img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

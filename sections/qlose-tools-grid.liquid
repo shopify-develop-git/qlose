@@ -110,9 +110,14 @@
     background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
   }
 
+  /* Positioned against the 3:4 frame rather than stretched to 100% of it. A
+     percentage of a height that aspect-ratio alone decided is a percentage
+     WebKit leaves unresolved, and the tool renders below it are tall enough
+     that losing the cap shows one at several times its size. Same reasoning
+     as the frame in sections/qlose-routine-step.liquid. */
   .qlose-tool__media-inner {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
