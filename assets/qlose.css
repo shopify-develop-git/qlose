@@ -190,6 +190,11 @@ html body {
 .qlose-btn--primary {
   background: var(--qlose-black);
   color: var(--qlose-white);
+  /* Ghost carries a 1px border and primary did not, so the two sat 2px apart
+     in height wherever they stand side by side -- each edge of the taller one
+     showing past the shorter. A border the colour of the fill is invisible
+     and makes both buttons the same box. */
+  border: 1px solid var(--qlose-black);
 }
 
 .qlose-btn--primary:hover {
