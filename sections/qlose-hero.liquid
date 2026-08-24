@@ -91,8 +91,15 @@
 
   .qlose-hero__headline {
     /* Source min was 72px, which overflows a 320px viewport on the word
-       "EVERY" and gives the whole page a horizontal scrollbar. */
-    font-size: clamp(56px, 12vw, 180px);
+       "EVERY" and gives the whole page a horizontal scrollbar.
+
+       The max came down from 180px. Five lines at 0.85 leading make the
+       headline four and a quarter times its own font size, so 180px stood
+       765px tall and pushed the sentence, the buttons and the product past
+       the fold on every laptop -- the loudest thing on the page was also the
+       only thing on it. At 104px the whole hero lands in one screen and the
+       type still reads as the display face it is. */
+    font-size: clamp(52px, 8.5vw, 104px);
     line-height: 0.85;
     letter-spacing: -0.05em;
     color: var(--qlose-black);
@@ -110,12 +117,29 @@
   .qlose-hero__cta {
     display: flex;
     gap: 12px;
-    align-items: center;
+    /* Centring lined up the boxes, which are not the same height as each
+       other and nothing like the height of the text link -- so the three
+       labels sat on three different lines. Baseline lines up the words,
+       which is what the eye actually reads along. */
+    align-items: baseline;
     flex-wrap: wrap;
   }
 
+  /* Two buttons are the choice; the link is the way out of making it. Twice
+     the gap keeps it from reading as a third button. */
+  .qlose-hero__cta > span:has(.qlose-btn--underline) {
+    margin-left: 12px;
+  }
+
   .qlose-hero__visual {
-    aspect-ratio: 4 / 5;
+    /* Was 4/5. On a wide screen the column is around 580px, so the portrait
+       frame stood over 700px tall -- half again the height of the headline,
+       sentence and buttons put together, and the bottom of it fell past the
+       fold. Square keeps the frame the tallest thing in the row without
+       making the row taller than the screen. The case itself is unaffected:
+       it is held by max-width, not max-height, so shortening the frame
+       crops nothing. */
+    aspect-ratio: 1 / 1;
     background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
     position: relative;
     display: flex;
@@ -187,8 +211,9 @@
     }
 
     .qlose-hero__cta > span:has(.qlose-btn--underline) {
-      align-self: flex-start;
-      margin-top: 4px;
+      align-self: center;
+      margin-left: 0;
+      margin-top: 6px;
     }
 
     .qlose-hero__cta .qlose-btn {
