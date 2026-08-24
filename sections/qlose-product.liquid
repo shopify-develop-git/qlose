@@ -140,8 +140,21 @@
               {%- comment -%}
                 The button carries the label, so the image inside it is
                 decorative -- announced twice, it reads as two controls.
+
+                sizes matters here beyond the download. An <img> that carries a
+                srcset and no sizes is read as 100vw wide, and that width is
+                what the browser hands the layout as the image's own -- four of
+                them in a row asked for four screens of track below.
               {%- endcomment -%}
-              {{ media | image_url: width: 300 | image_tag: widths: '150,300', loading: 'lazy', alt: '' }}
+              {{
+                media
+                | image_url: width: 300
+                | image_tag:
+                  widths: '150,300',
+                  sizes: '(max-width: 1000px) 22vw, 11vw',
+                  loading: 'lazy',
+                  alt: ''
+              }}
             </button>
           {%- endfor -%}
         </div>
@@ -316,7 +329,10 @@
 
   .qlose-product__main {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    /* minmax(0, ...) rather than a bare fr on both of these. A bare fr floors
+       a column at the widest thing inside it and will grow the page rather
+       than wrap, which on a phone is a document wider than the screen. */
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 60px;
     align-items: start;
   }
@@ -458,20 +474,28 @@
     }
   }
 
+  /* Four frames across the gallery, and the arithmetic has to hold on a
+     phone: a bare 1fr track carries an automatic floor of its content's own
+     width, and the content is a photograph. WebKit takes that floor at the
+     image's full reported width, so the strip stood several screens wide and
+     took the whole document sideways with it -- visible on an iPhone and on
+     nothing else, since every browser on iOS is WebKit underneath. minmax(0)
+     on the track and min-width on the button remove the floor from both
+     halves of the pair; the frame is a quarter of the column, and the
+     photograph fits itself to that. */
   .qlose-product__thumbs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
   }
 
   .qlose-product__thumb {
     aspect-ratio: 1;
+    min-width: 0;
     background: linear-gradient(180deg, var(--qlose-accent-soft) 0%, var(--qlose-bone) 100%);
     border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
+    position: relative;
+    padding: 0;
     cursor: pointer;
     transition: border-color 200ms ease;
   }
@@ -485,11 +509,20 @@
     border-color: var(--qlose-black);
   }
 
+  /* Laid into the square rather than centred inside it, and sized off the
+     square rather than off itself. The frames are product media, which is any
+     shape the shop uploads -- the tool renders are tall and narrow, one of
+     them 300 x 3636 -- and centring one with a percentage cap asks the browser
+     to measure a box against a height the box itself is deciding. Where that
+     circle is left unresolved the photograph keeps its own height, and a
+     twelve-to-one render inside an 80px frame is around 900px of it. Out of
+     flow the question does not arise: the frame is a square, the inset is
+     measured from the square, and contain fits the media to what is left. */
   .qlose-product__thumb img {
-    max-width: 90%;
-    max-height: 90%;
-    width: auto;
-    height: auto;
+    position: absolute;
+    inset: 10%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
   }
 
@@ -825,7 +858,7 @@
 
   @media (max-width: 1000px) {
     .qlose-product__main {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 40px;
     }
 

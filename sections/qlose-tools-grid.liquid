@@ -79,15 +79,22 @@
     padding-bottom: 8px;
   }
 
+  /* minmax(0, 1fr) and min-width, the pair. A bare fr track is floored at
+     the width of the widest thing in it, and a grid item is floored at its own
+     contents in turn -- here a photograph, which reports a width of its own
+     and holds the column open at it. Two of those side by side are wider than
+     a phone, and the page scrolls sideways rather than the cards getting
+     smaller. Same floor, same fix, as the gallery on this page. */
   .qlose-tools__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 24px;
   }
 
   .qlose-tool {
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
 
   .qlose-tool__media {
@@ -163,7 +170,7 @@
 
   /* The source drops straight to one column at 900px. */
   @media (max-width: 1200px) {
-    .qlose-tools__grid { grid-template-columns: repeat(3, 1fr); }
+    .qlose-tools__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
   @media (max-width: 900px) {
@@ -179,7 +186,7 @@
   }
 
   @media (max-width: 700px) {
-    .qlose-tools__grid { grid-template-columns: repeat(2, 1fr); }
+    .qlose-tools__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 {% endstylesheet %}
 
