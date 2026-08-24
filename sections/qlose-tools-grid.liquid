@@ -39,6 +39,27 @@
         </article>
       {%- endfor -%}
     </div>
+
+    {%- comment -%}
+      Back up to the product rather than off to the shop: this section sits
+      below the buy box on a page the shopper is already on, so the five tools
+      end where they started. Plain anchor, no script -- the theme sets
+      scroll-behavior on the document, so the jump is already a scroll.
+
+      A url set in the editor wins, which is what the section needs if it is
+      ever placed on a page that carries no product.
+    {%- endcomment -%}
+    {%- if section.settings.cta_label != blank -%}
+      {%- liquid
+        assign cta_url = section.settings.cta_url
+        if cta_url == blank
+          assign cta_url = '#qlose-product'
+        endif
+      -%}
+      <div class="qlose-tools__cta">
+        {%- render 'qlose-button', label: section.settings.cta_label, url: cta_url, style: 'primary' -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -149,6 +170,17 @@
     }
   }
 
+  /* Centred under the grid rather than set beside the intro: it is the answer
+     to the five tools above it, and it reads as one only after they have been
+     seen. The cross-sell further down the same page is a ghost button on the
+     same bone ground, so the filled one here keeps the order of the two
+     obvious. */
+  .qlose-tools__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
   .qlose-tool__index {
     font-family: var(--qlose-font-mono);
     font-size: 10px;
@@ -188,6 +220,10 @@
       gap: 24px;
       margin-bottom: 40px;
     }
+
+    .qlose-tools__cta {
+      margin-top: 40px;
+    }
   }
 
   @media (max-width: 700px) {
@@ -209,7 +245,14 @@
       "default": "<p>FIVE TOOLS. ONE <em>system</em>.</p>",
       "info": "Italic renders as the serif accent, bold as the stroked outline."
     },
-    { "type": "richtext", "id": "intro", "label": "Intro" }
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop now" },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link",
+      "info": "Leave empty to scroll back up to the product on this page. Clear the label to drop the button."
+    }
   ],
   "blocks": [
     {

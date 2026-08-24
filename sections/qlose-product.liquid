@@ -46,7 +46,13 @@
 <script src="{{ 'qlose-plan-selector.js' | asset_url }}" type="module" fetchpriority="low"></script>
 <script src="{{ 'qlose-gallery.js' | asset_url }}" type="module" fetchpriority="low"></script>
 
-<div class="qlose-product">
+{%- comment -%}
+  The id is what the tools grid's button scrolls back up to. A fixed name
+  rather than section.id: the button is rendered by a different section, which
+  has no way of knowing this one's generated id, and a page carries one product
+  section by definition.
+{%- endcomment -%}
+<div class="qlose-product" id="qlose-product">
   <nav class="qlose-product__breadcrumb" aria-label="Breadcrumb">
     <a href="{{ routes.root_url }}">Home</a> /
     <a href="{{ routes.all_products_collection_url }}">Shop</a> /
@@ -317,6 +323,9 @@
     max-width: var(--qlose-max);
     margin-inline: auto;
     padding: 40px var(--qlose-gutter) 100px;
+    /* Anchor jumps otherwise land under the sticky header, the same allowance
+       the FAQ page makes for its group links. */
+    scroll-margin-top: 100px;
   }
 
   .qlose-product__breadcrumb {
