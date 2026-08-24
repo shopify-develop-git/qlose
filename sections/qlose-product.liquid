@@ -216,12 +216,27 @@
           {%- assign plan_blocks = section.blocks | where: 'type', 'plan' -%}
           {%- if plan_blocks.size > 0 -%}
             {%- comment -%}
-              No hidden selling_plan input here any more. The kit is bought
-              once; what recurs is a refill box, which is its own product with
-              its own price, so the plan belongs to that line and not to this
-              one. A plan block that names a refill variant makes the button
-              add two lines -- see assets/qlose-plan-selector.js.
+              The subscription is back on the kit's own line. One line item on
+              a selling plan: twenty-nine pounds the first cycle, eighteen
+              after, because the subscription app swaps the kit for its refill
+              box once the contract exists. The form posts a selling_plan and
+              nothing else -- no second line, no second request, no cart that
+              can be left holding half a bundle.
+
+              The plan id is read off the product rather than typed into a
+              setting. Reinstalling the subscription app mints new ids, and a
+              stale id in a template is a subscription that has quietly
+              stopped being one.
             {%- endcomment -%}
+            {%- assign subscription_plan = product.selling_plan_groups.first.selling_plans.first -%}
+            {%- if subscription_plan -%}
+              {%- assign first_plan = plan_blocks.first -%}
+              {%- if first_plan.settings.subscription -%}
+                <input type="hidden" name="selling_plan" data-plan-input value="{{ subscription_plan.id }}">
+              {%- else -%}
+                <input type="hidden" name="selling_plan" data-plan-input value="" disabled>
+              {%- endif -%}
+            {%- endif -%}
             <qlose-plan-selector class="qlose-plans" role="radiogroup" aria-label="Purchase options">
               {%- for block in plan_blocks -%}
                 <div
@@ -229,8 +244,7 @@
                   role="radio"
                   aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
                   tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
-                  data-selling-plan="{{ block.settings.selling_plan_id }}"
-                  data-refill-variant="{{ block.settings.refill_variant_id }}"
+                  data-selling-plan="{% if block.settings.subscription %}{{ subscription_plan.id }}{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="qlose-plan__info">
@@ -928,16 +942,11 @@
         { "type": "text", "id": "price", "label": "Price override", "info": "Leave empty to use the variant price." },
         { "type": "text", "id": "price_note", "label": "Price note" },
         {
-          "type": "text",
-          "id": "refill_variant_id",
-          "label": "Refill variant ID",
-          "info": "The refill box added alongside the kit on this plan. Leave empty for a kit on its own."
-        },
-        {
-          "type": "text",
-          "id": "selling_plan_id",
-          "label": "Selling plan ID",
-          "info": "The selling plan the refill line is bought on. Both fields are needed for a subscription; either one alone adds nothing."
+          "type": "checkbox",
+          "id": "subscription",
+          "label": "Buy this plan as a subscription",
+          "default": false,
+          "info": "Uses the product's own selling plan, so there is no id to keep in step with the subscription app. Leave off for a one-time purchase."
         }
       ]
     },

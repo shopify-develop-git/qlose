@@ -11,8 +11,7 @@
             "sub": "Refills arrive automatically every 90 days",
             "price": "£59",
             "price_note": "then £18 / 90 days",
-            "refill_variant_id": "53851603173723",
-            "selling_plan_id": "694688186715"
+            "subscription": true
           }
         },
         "plan2": {
@@ -21,8 +20,7 @@
             "label": "Kit only",
             "sub": "No refills, no subscription",
             "price": "£59",
-            "price_note": "one payment",
-            "selling_plan_id": ""
+            "price_note": "one payment"
           }
         },
         "t1": {
