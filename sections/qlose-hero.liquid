@@ -1,5 +1,11 @@
 {%- comment -%} Ported from docs/design-source/index.html:114-257, 952-977 {%- endcomment -%}
 
+{%- liquid
+  assign cta_blocks = section.blocks | where: 'type', 'cta'
+  assign trust_blocks = section.blocks | where: 'type', 'trust'
+  assign sticky_cta = cta_blocks | first
+-%}
+
 <section class="qlose-hero">
   <div class="qlose-hero__meta">
     <span><strong>{{ section.settings.meta_left }}</strong></span>
@@ -7,17 +13,33 @@
   </div>
 
   <div class="qlose-hero__main">
-    <div>
+    <div class="qlose-hero__copy">
       {%- comment -%}
         The <p> wrapper richtext adds is stripped: <p> inside <h1> is invalid.
       {%- endcomment -%}
       <h1 class="qlose-hero__headline qlose-display">
         {{- section.settings.headline | replace: '<p>', '' | replace: '</p>', '' -}}
       </h1>
-      <div class="qlose-hero__sub">{{ section.settings.subtext }}</div>
+
+      {%- comment -%}
+        Two versions of the sentence under the headline. On a phone the hero
+        has to make its case in one screen, so a shorter, price-carrying line
+        can be set for small screens; when it is blank the long one shows
+        everywhere.
+      {%- endcomment -%}
+      <div class="qlose-hero__sub{% if section.settings.subtext_mobile != blank %} qlose-hero__sub--desktop{% endif %}">
+        {{ section.settings.subtext }}
+      </div>
+      {%- if section.settings.subtext_mobile != blank -%}
+        <p class="qlose-hero__sub qlose-hero__sub--mobile">{{ section.settings.subtext_mobile }}</p>
+      {%- endif -%}
+
       <div class="qlose-hero__cta">
-        {%- for block in section.blocks -%}
-          <span {{ block.shopify_attributes }}>
+        {%- for block in cta_blocks -%}
+          <span
+            class="qlose-hero__cta-item{% if block.settings.hide_mobile %} qlose-hero__cta-item--desktop{% endif %}"
+            {{ block.shopify_attributes }}
+          >
             {%- render 'qlose-button',
                 label: block.settings.label,
                 url: block.settings.url,
@@ -26,6 +48,25 @@
           </span>
         {%- endfor -%}
       </div>
+
+      {%- comment -%}
+        Reasons to trust the buttons, right under them: delivery, the
+        subscription's exit, where the kit is made. Facts, not slogans; each
+        one is a merchant-editable block so a claim can be removed the day it
+        stops being true.
+      {%- endcomment -%}
+      {%- if trust_blocks.size > 0 -%}
+        <ul class="qlose-hero__trust" role="list">
+          {%- for block in trust_blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <svg class="qlose-hero__check" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+                <path d="M2 6.2l2.6 2.6L10 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
     </div>
 
     <div class="qlose-hero__visual">
@@ -52,6 +93,23 @@
       {%- endif -%}
     </div>
   </div>
+
+  {%- comment -%}
+    Phone-only buy bar. It slides in once the hero's buttons have scrolled off
+    the top, so the next step is always one thumb away while the page is
+    making its case, and it never covers the buttons it duplicates. Same
+    label and link as the first button, so there is one thing to keep in sync.
+  {%- endcomment -%}
+  {%- if section.settings.sticky_mobile and sticky_cta and sticky_cta.settings.url != blank -%}
+    <div class="qlose-hero__sticky" data-qlose-sticky aria-hidden="true">
+      {%- if section.settings.sticky_text != blank -%}
+        <span class="qlose-hero__sticky-text">{{ section.settings.sticky_text }}</span>
+      {%- endif -%}
+      <a href="{{ sticky_cta.settings.url }}" class="qlose-btn qlose-btn--primary" tabindex="-1">
+        {{- sticky_cta.settings.label -}}
+      </a>
+    </div>
+  {%- endif -%}
 </section>
 
 {% stylesheet %}
@@ -114,6 +172,10 @@
     line-height: 1.6;
   }
 
+  .qlose-hero__sub--mobile {
+    display: none;
+  }
+
   .qlose-hero__cta {
     display: flex;
     gap: 12px;
@@ -129,6 +191,34 @@
      the gap keeps it from reading as a third button. */
   .qlose-hero__cta > span:has(.qlose-btn--underline) {
     margin-left: 12px;
+  }
+
+  .qlose-hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--qlose-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--qlose-graphite);
+  }
+
+  .qlose-hero__trust li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.3;
+  }
+
+  .qlose-hero__check {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    color: var(--qlose-accent);
   }
 
   .qlose-hero__visual {
@@ -179,19 +269,123 @@
     text-transform: uppercase;
   }
 
+  /* The buy bar exists only on small screens; see the 900px block. Off
+     screen by transform rather than display so it can slide in. */
+  .qlose-hero__sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px var(--qlose-gutter) calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--qlose-off-white);
+    border-top: 1px solid var(--qlose-divider);
+    box-shadow: 0 -12px 30px rgba(10, 10, 10, 0.08);
+    transform: translateY(110%);
+    transition: transform 0.25s ease;
+  }
+
+  .qlose-hero__sticky.is-visible {
+    transform: none;
+  }
+
+  .qlose-hero__sticky-text {
+    font-family: var(--qlose-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--qlose-graphite);
+    line-height: 1.35;
+  }
+
+  .qlose-hero__sticky .qlose-btn {
+    flex: none;
+    padding: 14px 20px;
+    white-space: nowrap;
+  }
+
   @media (max-width: 1100px) {
     .qlose-hero__main {
       gap: 40px;
     }
   }
 
+  /* Small screens: the product first.
+
+     Stacked in source order the phone opened on a meta line, a four-line
+     headline, a paragraph and three buttons, and the case did not appear
+     until a screen and a half down -- a shop with nothing for sale in the
+     window. The grid wrapper dissolves (display: contents) so the frame, the
+     meta line and the copy are siblings of one column and can be ordered:
+     picture, one-line positioning, headline, short sentence, buttons, trust.
+     Everything is sized so the first button sits inside the first screen of
+     an ordinary phone with the header above it. */
   @media (max-width: 900px) {
     .qlose-hero {
-      padding-block: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      padding-block: 16px 48px;
     }
 
     .qlose-hero__main {
-      grid-template-columns: 1fr;
+      display: contents;
+    }
+
+    .qlose-hero__visual {
+      order: -1;
+      aspect-ratio: 4 / 3;
+      /* Capped against the screen, not the column: a tablet column is 780px
+         wide, and 4:3 of that is a frame taller than the copy under it. On a
+         short phone the cap is what keeps the first button on screen one. */
+      max-height: min(38vh, 420px);
+      margin-bottom: 16px;
+    }
+
+    .qlose-hero__img {
+      max-width: 84%;
+      max-height: 74%;
+      filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.3));
+    }
+
+    .qlose-hero__tag {
+      top: 16px;
+      right: 16px;
+      padding: 8px 12px;
+    }
+
+    .qlose-hero__meta {
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      font-size: 10px;
+    }
+
+    .qlose-hero__headline {
+      font-size: clamp(40px, 11.5vw, 64px);
+      margin-bottom: 14px;
+    }
+
+    .qlose-hero__sub {
+      margin-bottom: 18px;
+    }
+
+    .qlose-hero__sub--desktop {
+      display: none;
+    }
+
+    .qlose-hero__sub--mobile {
+      display: block;
+    }
+
+    .qlose-hero__trust {
+      margin-top: 20px;
+    }
+
+    .qlose-hero__sticky {
+      display: flex;
     }
   }
 
@@ -221,8 +415,50 @@
       text-align: center;
       padding-inline: 16px;
     }
+
+    .qlose-hero__trust {
+      flex-direction: column;
+      gap: 9px;
+    }
+  }
+
+  /* After the stacking rules above, which set display on the same spans and
+     would otherwise win on specificity. */
+  @media (max-width: 900px) {
+    .qlose-hero__cta > span.qlose-hero__cta-item--desktop {
+      display: none;
+    }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const bar = document.querySelector('[data-qlose-sticky]');
+    const anchor = document.querySelector('.qlose-hero__cta');
+    if (!bar || !anchor || !('IntersectionObserver' in window)) return;
+
+    const small = window.matchMedia('(max-width: 900px)');
+    const link = bar.querySelector('a');
+
+    const show = (on) => {
+      bar.classList.toggle('is-visible', on);
+      bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+      if (link) link.tabIndex = on ? 0 : -1;
+    };
+
+    // Visible only once the hero's own buttons have gone past the top of
+    // the screen, never while they are still below it.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const passed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        show(passed && small.matches);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(anchor);
+    small.addEventListener('change', () => { if (!small.matches) show(false); });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
@@ -243,8 +479,23 @@
       "label": "Subtext",
       "default": "<p>A five-piece oral care system, in two versions, manual or electric.</p>"
     },
+    {
+      "type": "textarea",
+      "id": "subtext_mobile",
+      "label": "Subtext on phones",
+      "info": "Shown instead of the subtext on screens under 900px. Keep it to two lines and put the price in it. Leave empty to show the same subtext everywhere."
+    },
     { "type": "image_picker", "id": "image", "label": "Hero image" },
-    { "type": "text", "id": "tag", "label": "Corner tag", "default": "THE KITS" }
+    { "type": "text", "id": "tag", "label": "Corner tag", "default": "THE KITS" },
+    { "type": "header", "content": "Phone buy bar" },
+    {
+      "type": "checkbox",
+      "id": "sticky_mobile",
+      "label": "Show a buy bar on phones once the buttons scroll away",
+      "default": true,
+      "info": "Uses the first button's label and link."
+    },
+    { "type": "text", "id": "sticky_text", "label": "Buy bar text", "default": "Two kits, from £29" }
   ],
   "blocks": [
     {
@@ -264,7 +515,22 @@
             { "value": "underline", "label": "Underline" }
           ],
           "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_mobile",
+          "label": "Hide on phones",
+          "default": false,
+          "info": "Keeps the first screen of a phone to the actions that sell."
         }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust line",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Free UK delivery on subscriptions" }
       ]
     }
   ],
