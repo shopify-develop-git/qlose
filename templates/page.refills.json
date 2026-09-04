@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,7 +16,7 @@
           "type": "cta",
           "settings": {
             "label": "Electric Kit, £59",
-            "url": "/products/electric-kit",
+            "url": "\/products\/electric-kit",
             "style": "primary"
           }
         },
@@ -15,7 +24,7 @@
           "type": "cta",
           "settings": {
             "label": "Manual Kit, £29",
-            "url": "/products/manual-kit",
+            "url": "\/products\/manual-kit",
             "style": "ghost"
           }
         }
@@ -25,11 +34,12 @@
         "b2"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "02 \/",
         "eyebrow_text": "REFILLS",
-        "heading": "<p>REFILLS,<br>ON <em>time</em>.</p>",
-        "text": "<p>Bristles wear out. Floss picks run low. Instead of remembering to reorder, we send replacements on the schedule that fits your routine.</p>",
-        "numeral": "90"
+        "heading": "<p>REFILLS,<br>ON <em>time<\/em>.<\/p>",
+        "text": "<p>Bristles wear out. Floss picks run low. Instead of remembering to reorder, we send replacements on the schedule that fits your routine.<\/p>",
+        "numeral": "90",
+        "image": "shopify:\/\/shop_images\/qlose-refill-electric-brush-head.png"
       }
     },
     "contents": {
@@ -38,6 +48,7 @@
         "i1": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/qlose-refill-electric-brush-head.png",
             "index": "— 01",
             "title": "Brush head or toothbrush",
             "text": "Electric Kit refills contain one replacement brush head. Manual Kit refills contain one replacement toothbrush."
@@ -46,6 +57,7 @@
         "i2": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/qlose-refill-floss-heads.png",
             "index": "— 02",
             "title": "Floss Heads × 90",
             "text": "Ninety replacement heads, one for each day, for your angled floss handle."
@@ -54,6 +66,7 @@
         "i3": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/qlose-refill-tuft-heads.png",
             "index": "— 03",
             "title": "Tuft Brush Heads × 4",
             "text": "Tuft heads wear faster than a toothbrush, swap one roughly every three weeks. Four covers your cycle. The handle stays with you."
@@ -62,6 +75,7 @@
         "i4": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/qlose-tool-04-tongue-brush.png",
             "index": "— 04",
             "title": "Tongue Brush",
             "text": "Bristles flatten with use and stop lifting the coating properly. You replace the whole tool every 90 days, a fresh tongue brush in every box."
@@ -75,11 +89,11 @@
         "i4"
       ],
       "settings": {
-        "eyebrow_index": "03 /",
+        "eyebrow_index": "03 \/",
         "eyebrow_text": "WHAT ARRIVES",
-        "heading": "<p>WHAT'S IN A<br><em>refill</em> BOX.</p>",
-        "intro": "<p>Just the parts that wear out. Your case, handles and stainless steel tongue scraper are built to stay with you.</p>",
-        "footnote": "<p>Your refill is matched to the kit you own. Refills can be bought as a one-off or on subscription, subscription is cheaper and includes free UK delivery.</p>"
+        "heading": "<p>WHAT'S IN A<br><em>refill<\/em> BOX.<\/p>",
+        "intro": "<p>Just the parts that wear out. Your case, handles and stainless steel tongue scraper are built to stay with you.<\/p>",
+        "footnote": "<p>Your refill is matched to the kit you own. Refills can be bought as a one-off or on subscription, subscription is cheaper and includes free UK delivery.<\/p>"
       }
     },
     "frequency": {
@@ -100,12 +114,12 @@
         "c1"
       ],
       "settings": {
-        "eyebrow_index": "04 /",
+        "eyebrow_index": "04 \/",
         "eyebrow_text": "YOUR CADENCE",
-        "heading": "<p>EVERY<br><em>ninety</em> DAYS.</p>",
-        "footnote": "<p>Pause anytime. Skip a delivery from your account. Cancel whenever you like. No calls, no forms.</p>",
+        "heading": "<p>EVERY<br><em>ninety<\/em> DAYS.<\/p>",
+        "footnote": "<p>Pause anytime. Skip a delivery from your account. Cancel whenever you like. No calls, no forms.<\/p>",
         "quote": "\"You don't want to think about oral care.\nSo we think about it for you.\"",
-        "quote_attribution": "— QLOSE / THE PHILOSOPHY"
+        "quote_attribution": "— QLOSE \/ THE PHILOSOPHY"
       }
     }
   },

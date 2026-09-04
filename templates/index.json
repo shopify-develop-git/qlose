@@ -1,44 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "qlose-hero",
       "blocks": {
-        "b1": { "type": "cta", "settings": { "label": "Electric Kit / £59", "url": "/products/electric-kit", "style": "primary" } },
-        "b2": { "type": "cta", "settings": { "label": "Manual Kit / £29", "url": "/products/manual-kit", "style": "ghost" } },
-        "b3": { "type": "cta", "settings": { "label": "See how it works →", "url": "/pages/routine", "style": "underline" } }
+        "b1": {
+          "type": "cta",
+          "settings": {
+            "label": "Electric Kit / £59",
+            "url": "/products/electric-kit",
+            "style": "primary"
+          }
+        },
+        "b2": {
+          "type": "cta",
+          "settings": {
+            "label": "Manual Kit / £29",
+            "url": "/products/manual-kit",
+            "style": "ghost"
+          }
+        },
+        "b3": {
+          "type": "cta",
+          "settings": {
+            "label": "See how it works →",
+            "url": "/pages/routine",
+            "style": "underline",
+            "hide_mobile": true
+          }
+        },
+        "t1": {
+          "type": "trust",
+          "settings": {
+            "text": "Free UK delivery on subscriptions"
+          }
+        },
+        "t2": {
+          "type": "trust",
+          "settings": {
+            "text": "Pause, skip or cancel anytime"
+          }
+        },
+        "t3": {
+          "type": "trust",
+          "settings": {
+            "text": "Assembled in London"
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
-        "image": "shopify://shop_images/hero-kit-case.png",
+        "image": "shopify://shop_images/qlose-hero-kit-case.png",
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
         "meta_right": "LONDON",
         "headline": "<p>EVERY <strong>TOOL</strong>.<br>THE RIGHT <em>order</em>.</p>",
         "subtext": "<p>A five-piece oral care system, in two versions, manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>",
-        "tag": "THE KITS"
+        "tag": "5 TOOLS · 1 CASE",
+        "subtext_mobile": "Five precision tools in one case, used in the order that works. Manual £29 or electric £59, with fresh refills every 90 days.",
+        "sticky_mobile": true,
+        "sticky_text": "Two kits, from £29"
       }
     },
     "marquee": {
       "type": "qlose-marquee",
       "blocks": {
-        "w1": { "type": "word", "settings": { "text": "PICK" } },
-        "w2": { "type": "word", "settings": { "text": "BRUSH" } },
-        "w3": { "type": "word", "settings": { "text": "TUFT" } },
-        "w4": { "type": "word", "settings": { "text": "TONGUE" } },
-        "w5": { "type": "word", "settings": { "text": "SCRAPE" } }
+        "w1": {
+          "type": "word",
+          "settings": {
+            "text": "PICK"
+          }
+        },
+        "w2": {
+          "type": "word",
+          "settings": {
+            "text": "BRUSH"
+          }
+        },
+        "w3": {
+          "type": "word",
+          "settings": {
+            "text": "TUFT"
+          }
+        },
+        "w4": {
+          "type": "word",
+          "settings": {
+            "text": "TONGUE"
+          }
+        },
+        "w5": {
+          "type": "word",
+          "settings": {
+            "text": "SCRAPE"
+          }
+        }
       },
-      "block_order": ["w1", "w2", "w3", "w4", "w5"],
-      "settings": { "duration": 35 }
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5"
+      ],
+      "settings": {
+        "duration": 35
+      }
     },
     "routine": {
       "type": "qlose-routine-steps",
       "blocks": {
-        "s1": { "type": "step", "settings": { "image": "shopify://shop_images/tool-01-floss-pick.png", "index": "— 01 / FLOSS", "title": "Angled Floss Pick", "description": "Start between the teeth. Reach every gap, even the back molars.", "duration": "30 SEC" } },
-        "s2": { "type": "step", "settings": { "image": "shopify://shop_images/tool-02-toothbrush.png", "index": "— 02 / BRUSH", "title": "Brush Teeth", "description": "Every surface. 45° angle. No missed corners.", "duration": "90 SEC" } },
-        "s3": { "type": "step", "settings": { "image": "shopify://shop_images/tool-03-tuft-brush.png", "index": "— 03 / DETAIL", "title": "Tuft Brush", "description": "Precision finish. Behind the back teeth and around tight spots.", "duration": "30 SEC" } },
-        "s4": { "type": "step", "settings": { "image": "shopify://shop_images/tool-04-tongue-brush.png", "index": "— 04 / TONGUE", "title": "Tongue Brush", "description": "Loosen the coating. Bristles work into the crevices.", "duration": "15 SEC" } },
-        "s5": { "type": "step", "settings": { "image": "shopify://shop_images/tool-05-tongue-scraper.png", "index": "— 05 / SCRAPE", "title": "Tongue Scraper", "description": "One smooth pull lifts everything you loosened.", "duration": "15 SEC" } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/qlose-tool-01-floss-pick.png",
+            "index": "— 01 / FLOSS",
+            "title": "Angled Floss Pick",
+            "description": "Start between the teeth. Reach every gap, even the back molars.",
+            "duration": "30 SEC"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/qlose-tool-02-toothbrush-electric.png",
+            "index": "— 02 / BRUSH",
+            "title": "Brush Teeth",
+            "description": "Every surface. 45° angle. No missed corners.",
+            "duration": "90 SEC"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/qlose-tool-03-tuft-brush.png",
+            "index": "— 03 / DETAIL",
+            "title": "Tuft Brush",
+            "description": "Precision finish. Behind the back teeth and around tight spots.",
+            "duration": "30 SEC"
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/qlose-tool-04-tongue-brush.png",
+            "index": "— 04 / TONGUE",
+            "title": "Tongue Brush",
+            "description": "Loosen the coating. Bristles work into the crevices.",
+            "duration": "15 SEC"
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/qlose-tool-05-tongue-scraper.png",
+            "index": "— 05 / SCRAPE",
+            "title": "Tongue Scraper",
+            "description": "One smooth pull lifts everything you loosened.",
+            "duration": "15 SEC"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
       "settings": {
         "eyebrow_index": "02 /",
         "eyebrow_text": "THE METHOD",
@@ -57,10 +200,32 @@
     "subscribe": {
       "type": "qlose-plan-teaser",
       "blocks": {
-        "p1": { "type": "plan", "settings": { "product": "electric-kit", "number": "01", "badge": "Popular", "sub": "Five tools, USB-C rechargeable brush", "price_note": "THEN £18 / 90 DAYS", "highlight": true } },
-        "p2": { "type": "plan", "settings": { "product": "manual-kit", "number": "02", "sub": "Five tools, soft-bristle manual brush", "price_note": "THEN £18 / 90 DAYS", "highlight": false } }
+        "p1": {
+          "type": "plan",
+          "settings": {
+            "product": "electric-kit",
+            "number": "01",
+            "badge": "Popular",
+            "sub": "Five tools, USB-C rechargeable brush",
+            "price_note": "THEN £18 / 90 DAYS",
+            "highlight": true
+          }
+        },
+        "p2": {
+          "type": "plan",
+          "settings": {
+            "product": "manual-kit",
+            "number": "02",
+            "sub": "Five tools, soft-bristle manual brush",
+            "price_note": "THEN £18 / 90 DAYS",
+            "highlight": false
+          }
+        }
       },
-      "block_order": ["p1", "p2"],
+      "block_order": [
+        "p1",
+        "p2"
+      ],
       "settings": {
         "numeral": "90",
         "eyebrow_index": "04 /",
@@ -73,13 +238,50 @@
     "faq": {
       "type": "qlose-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "open": true, "question": "What comes in the starter kit?", "answer": "<p>The full five-tool system: angled floss pick, toothbrush, tuft brush, tongue brush, and stainless steel tongue scraper, all housed in a zippered travel case. Choose the Electric Kit for a USB-C rechargeable brush, or the Manual Kit for a soft-bristle manual one.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "How does the subscription work?", "answer": "<p>You get the full kit once. After that, we send a refill every 90 days for £18, containing the parts that wear out. Your case and tongue scraper stay with you.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Do you ship internationally?", "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "Do I need to use all five tools?", "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "Can I pause or cancel my subscription?", "answer": "<p>Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</p>" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "open": true,
+            "question": "What comes in the starter kit?",
+            "answer": "<p>The full five-tool system: angled floss pick, toothbrush, tuft brush, tongue brush, and stainless steel tongue scraper, all housed in a zippered travel case. Choose the Electric Kit for a USB-C rechargeable brush, or the Manual Kit for a soft-bristle manual one.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How does the subscription work?",
+            "answer": "<p>You get the full kit once. After that, we send a refill every 90 days for £18, containing the parts that wear out. Your case and tongue scraper stay with you.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to use all five tools?",
+            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I pause or cancel my subscription?",
+            "answer": "<p>Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</p>"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
       "settings": {
         "eyebrow_index": "05 /",
         "eyebrow_text": "THE DETAILS",
@@ -87,5 +289,12 @@
       }
     }
   },
-  "order": ["hero", "marquee", "routine", "statement", "subscribe", "faq"]
+  "order": [
+    "hero",
+    "marquee",
+    "routine",
+    "statement",
+    "subscribe",
+    "faq"
+  ]
 }

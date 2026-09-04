@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "main-blog",
@@ -15,7 +16,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.blog.title }}</h1>",
+            "text": "<h1>{{ closest.blog.title }}<\/h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",

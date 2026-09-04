@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -9,8 +18,8 @@
     "newsletter": {
       "type": "qlose-newsletter",
       "settings": {
-        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox</em>.</p>",
-        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>",
+        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox<\/em>.<\/p>",
+        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.<\/p>",
         "placeholder": "your@email.com",
         "button_label": "Subscribe →",
         "success_text": "Thanks, you're on the list."

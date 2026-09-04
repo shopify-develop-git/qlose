@@ -1,11 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "qlose-legal-hero",
       "settings": {
         "meta": "LEGAL — RETURNS",
-        "heading": "<p>RETURNS &amp;<br><em>cancellations</em>.</p>",
-        "lead": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.</p>",
+        "heading": "<p>RETURNS &amp;<br><em>cancellations<\/em>.<\/p>",
+        "lead": "<p>Your right to cancel, how our hygiene seal works, and what happens if something is wrong with your order.<\/p>",
         "updated": "Last updated: 18 July 2026"
       }
     },

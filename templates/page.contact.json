@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,8 +16,8 @@
         "variant": "simple",
         "meta_left": "GET IN TOUCH",
         "meta_right": "MON-FRI, 9-5 GMT",
-        "heading": "<p>SAY <em>hello</em>.</p>",
-        "subtext": "<p>We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.</p>"
+        "heading": "<p>SAY <em>hello<\/em>.<\/p>",
+        "subtext": "<p>We're a small team but we read every message. Whether it's a question, a problem, or just a thought, we'd love to hear from you.<\/p>"
       }
     },
     "form": {
@@ -17,7 +26,7 @@
         "m1": {
           "type": "method",
           "settings": {
-            "index": "— 01 / EMAIL",
+            "index": "— 01 \/ EMAIL",
             "title": "General enquiries",
             "text": "Questions about the kit, your subscription, or anything else. We reply within one working day.",
             "email": "hello@getqlose.com"
@@ -26,7 +35,7 @@
         "m2": {
           "type": "method",
           "settings": {
-            "index": "— 02 / SUPPORT",
+            "index": "— 02 \/ SUPPORT",
             "title": "Order help",
             "text": "Missing a delivery, need to change your shipping address, or have a technical issue with the toothbrush.",
             "email": "support@getqlose.com"
@@ -35,7 +44,7 @@
         "m3": {
           "type": "method",
           "settings": {
-            "index": "— 03 / PRESS",
+            "index": "— 03 \/ PRESS",
             "title": "Media & Press",
             "text": "Writing about us? Making a video? We'd love to help. Assets, quotes, and interview requests all welcome.",
             "email": "press@getqlose.com"
@@ -44,7 +53,7 @@
         "m4": {
           "type": "method",
           "settings": {
-            "index": "— 04 / WHOLESALE",
+            "index": "— 04 \/ WHOLESALE",
             "title": "Wholesale & Retail",
             "text": "Interested in stocking QLOSE at your dental practice, hotel, or shop? Get in touch and we'll send a wholesale pack.",
             "email": "wholesale@getqlose.com"
@@ -59,8 +68,8 @@
       ],
       "settings": {
         "methods_title": "— Ways to reach us",
-        "heading": "<p>Send a <em>message</em>.</p>",
-        "lead": "<p>Fill this in and we'll get back to you within one working day. If it's urgent, email us directly.</p>",
+        "heading": "<p>Send a <em>message<\/em>.<\/p>",
+        "lead": "<p>Fill this in and we'll get back to you within one working day. If it's urgent, email us directly.<\/p>",
         "subject_options": "General enquiry\nQuestion about my order\nSubscription help\nProduct feedback\nPress or partnerships\nWholesale enquiry\nOther",
         "name_placeholder": "Alex Morgan",
         "email_placeholder": "alex@example.com",
@@ -102,7 +111,7 @@
         "o3"
       ],
       "settings": {
-        "heading": "<p>THE <em>details</em>.</p>"
+        "heading": "<p>THE <em>details<\/em>.<\/p>"
       }
     }
   },

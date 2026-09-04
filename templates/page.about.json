@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,17 +16,17 @@
         "variant": "editorial",
         "meta_left": "",
         "meta_right": "LONDON",
-        "heading": "<p>A BETTER<br><strong>ROUTINE</strong>.<br>A BETTER <em>brand</em>.</p>"
+        "heading": "<p>A BETTER<br><strong>ROUTINE<\/strong>.<br>A BETTER <em>brand<\/em>.<\/p>"
       }
     },
     "story": {
       "type": "qlose-story",
       "settings": {
         "eyebrow": "— The Story",
-        "heading": "<p>WE MADE THE THING WE COULDN'T <em>find</em>.</p>",
-        "body_before": "<p>QLOSE started with a simple frustration: everyone talks about the importance of oral care, but nobody sells you a complete routine. You buy your toothbrush at one shop, your floss at another, your tongue scraper on Amazon, and your tuft brush at the dentist. Then you keep them in a drawer, forget half of them, and wonder why your mouth doesn't feel as clean as it should.</p><p>So we built the kit. Five tools, chosen to work in sequence, arriving in one considered case. A complete routine, not a shelf full of half-remembered products.</p>",
+        "heading": "<p>WE MADE THE THING WE COULDN'T <em>find<\/em>.<\/p>",
+        "body_before": "<p>QLOSE started with a simple frustration: everyone talks about the importance of oral care, but nobody sells you a complete routine. You buy your toothbrush at one shop, your floss at another, your tongue scraper on Amazon, and your tuft brush at the dentist. Then you keep them in a drawer, forget half of them, and wonder why your mouth doesn't feel as clean as it should.<\/p><p>So we built the kit. Five tools, chosen to work in sequence, arriving in one considered case. A complete routine, not a shelf full of half-remembered products.<\/p>",
         "pullquote": "\"The best routine is the one you actually do.\"",
-        "body_after": "<p>We designed QLOSE around a single belief: oral care is a ritual, not a chore. When the tools are beautiful, when they're right there when you need them, when the routine has a clear order, you actually do it. And when you actually do it, you notice the difference.</p><p>The kit is built in the UK. The subscription sends a fresh refill every 90 days, so you never think about running out. And every design decision, from the case to the sequence to the way the tools feel in your hand, is intentional.</p><p>We're a small brand starting in London. This is the beginning.</p>"
+        "body_after": "<p>We designed QLOSE around a single belief: oral care is a ritual, not a chore. When the tools are beautiful, when they're right there when you need them, when the routine has a clear order, you actually do it. And when you actually do it, you notice the difference.<\/p><p>The kit is built in the UK. The subscription sends a fresh refill every 90 days, so you never think about running out. And every design decision, from the case to the sequence to the way the tools feel in your hand, is intentional.<\/p><p>We're a small brand starting in London. This is the beginning.<\/p>"
       }
     },
     "values": {
@@ -55,16 +64,16 @@
       ],
       "settings": {
         "eyebrow": "— What we believe",
-        "heading": "<p>THREE THINGS,<br>ALWAYS <em>true</em>.</p>"
+        "heading": "<p>THREE THINGS,<br>ALWAYS <em>true<\/em>.<\/p>"
       }
     },
     "team": {
       "type": "qlose-team",
       "settings": {
-        "eyebrow_index": "05 /",
+        "eyebrow_index": "05 \/",
         "eyebrow_text": "WHO WE ARE",
-        "heading": "<p>A SMALL TEAM,<br>BUILDING <em>quietly</em>.</p>",
-        "text": "<p>QLOSE is a small independent brand based in London. We work with makers and manufacturers who share our values, quality, honesty, restraint. No investors, no growth-at-all-costs pressure. Just the routine, delivered well.</p>"
+        "heading": "<p>A SMALL TEAM,<br>BUILDING <em>quietly<\/em>.<\/p>",
+        "text": "<p>QLOSE is a small independent brand based in London. We work with makers and manufacturers who share our values, quality, honesty, restraint. No investors, no growth-at-all-costs pressure. Just the routine, delivered well.<\/p>"
       }
     },
     "cta": {
@@ -74,7 +83,7 @@
           "type": "cta",
           "settings": {
             "label": "Get the kit, £29",
-            "url": "/products/manual-kit",
+            "url": "\/products\/manual-kit",
             "style": "primary"
           }
         }
@@ -84,7 +93,7 @@
       ],
       "settings": {
         "theme": "light",
-        "heading": "<p>READY TO START YOUR<br><em>routine</em>?</p>"
+        "heading": "<p>READY TO START YOUR<br><em>routine<\/em>?<\/p>"
       }
     }
   },

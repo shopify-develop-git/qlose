@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,8 +16,8 @@
         "variant": "simple",
         "meta_left": "FREQUENTLY ASKED",
         "meta_right": "UPDATED JULY 2026",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>",
-        "subtext": "<p>Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.</p>"
+        "heading": "<p>QUESTIONS,<br><em>answered<\/em>.<\/p>",
+        "subtext": "<p>Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.<\/p>"
       }
     },
     "groups": {
@@ -19,14 +28,14 @@
           "settings": {
             "anchor": "product",
             "nav_label": "The Kit",
-            "heading": "<p>The <em>kit</em>.</p>"
+            "heading": "<p>The <em>kit<\/em>.<\/p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "What comes in the QLOSE Kit?",
-            "answer": "<p>Five tools in a branded travel case: an angled floss handle with 90 replacement heads, a toothbrush, a tuft brush handle with four screw-in heads, a tongue brush, and a stainless steel tongue scraper. There are two versions, The Electric Kit (£59) comes with a USB-C rechargeable toothbrush, and The Manual Kit (£29) comes with a soft-bristle manual one. Everything else is the same.</p>",
+            "answer": "<p>Five tools in a branded travel case: an angled floss handle with 90 replacement heads, a toothbrush, a tuft brush handle with four screw-in heads, a tongue brush, and a stainless steel tongue scraper. There are two versions, The Electric Kit (£59) comes with a USB-C rechargeable toothbrush, and The Manual Kit (£29) comes with a soft-bristle manual one. Everything else is the same.<\/p>",
             "open": true
           }
         },
@@ -34,7 +43,7 @@
           "type": "question",
           "settings": {
             "question": "Do I need to use all five tools?",
-            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.</p>",
+            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short (under 90 seconds), and together they add up to a genuinely complete clean.<\/p>",
             "open": false
           }
         },
@@ -42,7 +51,7 @@
           "type": "question",
           "settings": {
             "question": "What materials are the tools made from?",
-            "answer": "<p>Medical-grade stainless steel tongue scraper. Soft-touch BPA-free plastic handles. DuPont nylon bristles on the toothbrush head. Soft bristles on the tongue brush. Durable EVA foam case with fabric interior.</p>",
+            "answer": "<p>Medical-grade stainless steel tongue scraper. Soft-touch BPA-free plastic handles. DuPont nylon bristles on the toothbrush head. Soft bristles on the tongue brush. Durable EVA foam case with fabric interior.<\/p>",
             "open": false
           }
         },
@@ -50,7 +59,7 @@
           "type": "question",
           "settings": {
             "question": "Is the kit good for sensitive teeth or gums?",
-            "answer": "<p>Yes, all bristles are soft-grade and gentle. The electric toothbrush also has a sensitive mode. If you have specific dental concerns, we recommend checking with your dentist before starting a new routine.</p>",
+            "answer": "<p>Yes, all bristles are soft-grade and gentle. The electric toothbrush also has a sensitive mode. If you have specific dental concerns, we recommend checking with your dentist before starting a new routine.<\/p>",
             "open": false
           }
         },
@@ -58,7 +67,7 @@
           "type": "question",
           "settings": {
             "question": "Can children use the kit?",
-            "answer": "<p>The kit is designed for adults. For children over 8, adult supervision is recommended. Not suitable for children under 3.</p>",
+            "answer": "<p>The kit is designed for adults. For children over 8, adult supervision is recommended. Not suitable for children under 3.<\/p>",
             "open": false
           }
         },
@@ -67,14 +76,14 @@
           "settings": {
             "anchor": "subscription",
             "nav_label": "Subscription",
-            "heading": "<p>The <em>subscription</em>.</p>"
+            "heading": "<p>The <em>subscription<\/em>.<\/p>"
           }
         },
         "q8": {
           "type": "question",
           "settings": {
             "question": "How does the subscription work?",
-            "answer": "<p>Your first box includes the full kit. After that, we send a refill every 90 days for £18. Each refill contains one replacement brush head or toothbrush, 90 floss heads, and four fresh tuft brush heads.</p>",
+            "answer": "<p>Your first box includes the full kit. After that, we send a refill every 90 days for £18. Each refill contains one replacement brush head or toothbrush, 90 floss heads, and four fresh tuft brush heads.<\/p>",
             "open": false
           }
         },
@@ -82,7 +91,7 @@
           "type": "question",
           "settings": {
             "question": "Can I pause or cancel my subscription?",
-            "answer": "<p>Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.</p>",
+            "answer": "<p>Anytime. Log into your account and pause, skip a delivery, change your refill frequency, or cancel entirely. No calls, no forms, no friction.<\/p>",
             "open": false
           }
         },
@@ -90,7 +99,7 @@
           "type": "question",
           "settings": {
             "question": "Can I change how often refills arrive?",
-            "answer": "<p>We ship on a single 90-day cadence, which matches standard dental guidance on replacing a brush head. If you need a delivery sooner or later, you can skip a delivery or bring one forward from your account at any time.</p>",
+            "answer": "<p>We ship on a single 90-day cadence, which matches standard dental guidance on replacing a brush head. If you need a delivery sooner or later, you can skip a delivery or bring one forward from your account at any time.<\/p>",
             "open": false
           }
         },
@@ -98,7 +107,7 @@
           "type": "question",
           "settings": {
             "question": "When am I charged?",
-            "answer": "<p>You're charged when each refill ships, not before. Your account shows exactly when the next payment is due, so there are no surprises.</p>",
+            "answer": "<p>You're charged when each refill ships, not before. Your account shows exactly when the next payment is due, so there are no surprises.<\/p>",
             "open": false
           }
         },
@@ -106,7 +115,7 @@
           "type": "question",
           "settings": {
             "question": "Can I subscribe without buying the full kit?",
-            "answer": "<p>Not yet. The subscription is designed to keep your existing QLOSE kit fresh. If you already have the tools you need, get in touch and we'll figure something out.</p>",
+            "answer": "<p>Not yet. The subscription is designed to keep your existing QLOSE kit fresh. If you already have the tools you need, get in touch and we'll figure something out.<\/p>",
             "open": false
           }
         },
@@ -115,14 +124,14 @@
           "settings": {
             "anchor": "shipping",
             "nav_label": "Shipping",
-            "heading": "<p>Shipping.</p>"
+            "heading": "<p>Shipping.<\/p>"
           }
         },
         "q14": {
           "type": "question",
           "settings": {
             "question": "Do you ship internationally?",
-            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.</p>",
+            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap, join our newsletter to be the first to know when we cross borders.<\/p>",
             "open": false
           }
         },
@@ -130,7 +139,7 @@
           "type": "question",
           "settings": {
             "question": "How much does shipping cost?",
-            "answer": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard, or £6.50 express.</p>",
+            "answer": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard, or £6.50 express.<\/p>",
             "open": false
           }
         },
@@ -138,7 +147,7 @@
           "type": "question",
           "settings": {
             "question": "How long does delivery take?",
-            "answer": "<p>Orders placed by 2pm ship the same day. Delivery within 2-3 working days via Royal Mail tracked. You'll receive tracking as soon as it ships.</p>",
+            "answer": "<p>Orders placed by 2pm ship the same day. Delivery within 2-3 working days via Royal Mail tracked. You'll receive tracking as soon as it ships.<\/p>",
             "open": false
           }
         },
@@ -146,7 +155,7 @@
           "type": "question",
           "settings": {
             "question": "What if I'm not home for delivery?",
-            "answer": "<p>Royal Mail will leave a card and either try again or hold the parcel at your local post office for pickup. You can also give delivery instructions when placing your order.</p>",
+            "answer": "<p>Royal Mail will leave a card and either try again or hold the parcel at your local post office for pickup. You can also give delivery instructions when placing your order.<\/p>",
             "open": false
           }
         },
@@ -155,14 +164,14 @@
           "settings": {
             "anchor": "toothbrush",
             "nav_label": "Electric Toothbrush",
-            "heading": "<p>Electric <em>toothbrush</em>.</p>"
+            "heading": "<p>Electric <em>toothbrush<\/em>.<\/p>"
           }
         },
         "q19": {
           "type": "question",
           "settings": {
             "question": "Is the toothbrush waterproof?",
-            "answer": "<p>Yes, the toothbrush is rated IPX7, meaning it's fully waterproof and safe to use in the shower. Do not submerge the USB-C charging cable.</p>",
+            "answer": "<p>Yes, the toothbrush is rated IPX7, meaning it's fully waterproof and safe to use in the shower. Do not submerge the USB-C charging cable.<\/p>",
             "open": false
           }
         },
@@ -170,7 +179,7 @@
           "type": "question",
           "settings": {
             "question": "How long does the battery last?",
-            "answer": "<p>Around 30 days of twice-daily brushing on a full charge. Charging via USB-C takes approximately 3 hours from empty to full. The charging cable is included; a mains plug is not.</p>",
+            "answer": "<p>Around 30 days of twice-daily brushing on a full charge. Charging via USB-C takes approximately 3 hours from empty to full. The charging cable is included; a mains plug is not.<\/p>",
             "open": false
           }
         },
@@ -178,7 +187,7 @@
           "type": "question",
           "settings": {
             "question": "How do I replace the brush head?",
-            "answer": "<p>This applies to The Electric Kit. The head snaps off, pull it firmly upward from the handle, then press the new head down until it clicks into place. No tools needed. We recommend replacing every 90 days. Manual Kit subscribers receive a complete replacement toothbrush instead.</p>",
+            "answer": "<p>This applies to The Electric Kit. The head snaps off, pull it firmly upward from the handle, then press the new head down until it clicks into place. No tools needed. We recommend replacing every 90 days. Manual Kit subscribers receive a complete replacement toothbrush instead.<\/p>",
             "open": false
           }
         },
@@ -186,7 +195,7 @@
           "type": "question",
           "settings": {
             "question": "How does the two-minute timer work?",
-            "answer": "<p>The toothbrush runs a single two-minute cleaning cycle, pausing briefly every 30 seconds to prompt you to move to the next area of your mouth. It switches off automatically at the end of the cycle.</p>",
+            "answer": "<p>The toothbrush runs a single two-minute cleaning cycle, pausing briefly every 30 seconds to prompt you to move to the next area of your mouth. It switches off automatically at the end of the cycle.<\/p>",
             "open": false
           }
         },
@@ -195,14 +204,14 @@
           "settings": {
             "anchor": "care",
             "nav_label": "Care & Use",
-            "heading": "<p>Care <em>&</em> use.</p>"
+            "heading": "<p>Care <em>&<\/em> use.<\/p>"
           }
         },
         "q24": {
           "type": "question",
           "settings": {
             "question": "How often should I replace the tools?",
-            "answer": "<p>Brush head or toothbrush: every 90 days, in line with standard dental guidance. Floss heads: as you use them, ninety per refill, one for each day. Tuft brush heads: four per refill, so you can swap roughly every three weeks, the handle is reusable and the head screws off. Tongue brush: every 90 days, replaced whole and included in every refill. Tongue scraper: stainless steel, not replaced, it stays with your kit.</p>",
+            "answer": "<p>Brush head or toothbrush: every 90 days, in line with standard dental guidance. Floss heads: as you use them, ninety per refill, one for each day. Tuft brush heads: four per refill, so you can swap roughly every three weeks, the handle is reusable and the head screws off. Tongue brush: every 90 days, replaced whole and included in every refill. Tongue scraper: stainless steel, not replaced, it stays with your kit.<\/p>",
             "open": false
           }
         },
@@ -210,7 +219,7 @@
           "type": "question",
           "settings": {
             "question": "How do I clean the tools?",
-            "answer": "<p>Rinse each tool with warm water after use. Store dry in the case. The stainless steel scraper can be sanitised occasionally with rubbing alcohol.</p>",
+            "answer": "<p>Rinse each tool with warm water after use. Store dry in the case. The stainless steel scraper can be sanitised occasionally with rubbing alcohol.<\/p>",
             "open": false
           }
         },
@@ -218,7 +227,7 @@
           "type": "question",
           "settings": {
             "question": "Can I take the kit on a plane?",
-            "answer": "<p>Yes, the kit is compact and travel-friendly. The toothbrush battery is under airline lithium restrictions and safe for carry-on and checked luggage.</p>",
+            "answer": "<p>Yes, the kit is compact and travel-friendly. The toothbrush battery is under airline lithium restrictions and safe for carry-on and checked luggage.<\/p>",
             "open": false
           }
         },
@@ -227,14 +236,14 @@
           "settings": {
             "anchor": "account",
             "nav_label": "Account",
-            "heading": "<p>Account <em>&</em> billing.</p>"
+            "heading": "<p>Account <em>&<\/em> billing.<\/p>"
           }
         },
         "q28": {
           "type": "question",
           "settings": {
             "question": "How do I update my payment method?",
-            "answer": "<p>Log into your account, go to Subscription Settings, and update your card details. Changes apply to your next billing cycle.</p>",
+            "answer": "<p>Log into your account, go to Subscription Settings, and update your card details. Changes apply to your next billing cycle.<\/p>",
             "open": false
           }
         },
@@ -242,7 +251,7 @@
           "type": "question",
           "settings": {
             "question": "How do I change my shipping address?",
-            "answer": "<p>Update it in your account before your next scheduled shipment. If your order has already been packed, contact us and we'll do our best to redirect.</p>",
+            "answer": "<p>Update it in your account before your next scheduled shipment. If your order has already been packed, contact us and we'll do our best to redirect.<\/p>",
             "open": false
           }
         },
@@ -250,7 +259,7 @@
           "type": "question",
           "settings": {
             "question": "Is the electric toothbrush covered by a warranty?",
-            "answer": "<p>Yes, 12 months from the date of delivery. If it develops a fault in that time, email hello@getqlose.com with your order number and we'll replace it. Your statutory rights under UK consumer law are in addition to this and are not affected.</p>",
+            "answer": "<p>Yes, 12 months from the date of delivery. If it develops a fault in that time, email hello@getqlose.com with your order number and we'll replace it. Your statutory rights under UK consumer law are in addition to this and are not affected.<\/p>",
             "open": false
           }
         },
@@ -258,7 +267,7 @@
           "type": "question",
           "settings": {
             "question": "Do you offer refunds?",
-            "answer": "<p>Every kit is sealed with a belly band and a perforated pull tab. If the seal is intact, you can return your kit within 14 days of delivery for a full refund. Once the tab is broken the kit counts as opened and, for hygiene reasons, cannot be returned. Refills are non-refundable once shipped. None of this affects your statutory rights if an item is faulty.</p>",
+            "answer": "<p>Every kit is sealed with a belly band and a perforated pull tab. If the seal is intact, you can return your kit within 14 days of delivery for a full refund. Once the tab is broken the kit counts as opened and, for hygiene reasons, cannot be returned. Refills are non-refundable once shipped. None of this affects your statutory rights if an item is faulty.<\/p>",
             "open": false
           }
         }
@@ -307,7 +316,7 @@
           "type": "cta",
           "settings": {
             "label": "Contact us →",
-            "url": "/pages/contact",
+            "url": "\/pages\/contact",
             "style": "primary"
           }
         }
@@ -316,8 +325,8 @@
         "b1"
       ],
       "settings": {
-        "heading": "<p>STILL <em>stuck</em>?</p>",
-        "text": "<p>We're a small team but we read every message. Get in touch and we'll get back to you within one working day.</p>",
+        "heading": "<p>STILL <em>stuck<\/em>?<\/p>",
+        "text": "<p>We're a small team but we read every message. Get in touch and we'll get back to you within one working day.<\/p>",
         "theme": "dark",
         "size": "compact"
       }
