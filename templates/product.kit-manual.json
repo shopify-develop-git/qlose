@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -10,7 +19,7 @@
             "badge": "Popular",
             "sub": "Refills arrive automatically every 90 days",
             "price": "£29",
-            "price_note": "then £18 / 90 days",
+            "price_note": "then £18 \/ 90 days",
             "subscription": true
           }
         },
@@ -49,35 +58,35 @@
           "settings": {
             "open": true,
             "heading": "What's inside",
-            "content": "<ul><li>Soft-bristle manual toothbrush</li><li>Angled floss handle + 90 replacement floss heads</li><li>Tongue brush with soft bristles</li><li>Stainless steel tongue scraper</li><li>Tuft brush handle + 4 screw-in heads</li><li>QLOSE zip-close travel case</li></ul>"
+            "content": "<ul><li>Soft-bristle manual toothbrush<\/li><li>Angled floss handle + 90 replacement floss heads<\/li><li>Tongue brush with soft bristles<\/li><li>Stainless steel tongue scraper<\/li><li>Tuft brush handle + 4 screw-in heads<\/li><li>QLOSE zip-close travel case<\/li><\/ul>"
           }
         },
         "d2": {
           "type": "detail",
           "settings": {
             "heading": "Materials",
-            "content": "<p>Medical-grade stainless steel scraper, BPA-free soft-touch handles, soft toothbrush and tongue brush bristles. Case is durable EVA foam with fabric interior.</p>"
+            "content": "<p>Medical-grade stainless steel scraper, BPA-free soft-touch handles, soft toothbrush and tongue brush bristles. Case is durable EVA foam with fabric interior.<\/p>"
           }
         },
         "d3": {
           "type": "detail",
           "settings": {
             "heading": "How the subscription works",
-            "content": "<p>Your first box includes the full kit for £29. Every 90 days we send a fresh refill, a replacement toothbrush, 90 floss heads, four tuft brush heads and a tongue brush, for £18. Ninety days matches standard dental guidance on replacing a brush head. Tuft heads wear faster and are designed to be swapped roughly every three weeks, which is why four are included. Pause, skip, or cancel anytime from your account. No calls, no forms.</p>"
+            "content": "<p>Your first box includes the full kit for £29. Every 90 days we send a fresh refill, a replacement toothbrush, 90 floss heads, four tuft brush heads and a tongue brush, for £18. Ninety days matches standard dental guidance on replacing a brush head. Tuft heads wear faster and are designed to be swapped roughly every three weeks, which is why four are included. Pause, skip, or cancel anytime from your account. No calls, no forms.<\/p>"
           }
         },
         "d4": {
           "type": "detail",
           "settings": {
             "heading": "Returns and hygiene seal",
-            "content": "<p>Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>"
+            "content": "<p>Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.<\/p>"
           }
         },
         "d5": {
           "type": "detail",
           "settings": {
             "heading": "Shipping",
-            "content": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.</p>"
+            "content": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.<\/p>"
           }
         }
       },
@@ -96,11 +105,11 @@
       "settings": {
         "meta_label": "THE MANUAL KIT",
         "breadcrumb_label": "The Manual Kit",
-        "tag": "01 / KIT",
+        "tag": "01 \/ KIT",
         "meta_left": "MODEL 01",
         "meta_right": "IN STOCK",
-        "title": "<p>The Manual<br><em>clean</em> Mouth Kit.</p>",
-        "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, soft-bristle manual toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
+        "title": "<p>The Manual<br><em>clean<\/em> Mouth Kit.<\/p>",
+        "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, soft-bristle manual toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.<\/p>",
         "purchase_label": "— Choose your plan",
         "save_note": "Free UK shipping on subscriptions",
         "atc_label": "Add to cart, start my routine"
@@ -112,7 +121,7 @@
         "x1": {
           "type": "tool",
           "settings": {
-            "image": "shopify://shop_images/tool-01-floss-pick.png",
+            "image": "shopify:\/\/shop_images\/qlose-tool-01-floss-pick.png",
             "index": "— 01",
             "name": "Angled Floss Pick",
             "material": "Soft-touch handle, PTFE-coated floss thread"
@@ -121,7 +130,7 @@
         "x2": {
           "type": "tool",
           "settings": {
-            "image": "shopify://shop_images/tool-02-toothbrush.png",
+            "image": "shopify:\/\/shop_images\/qlose-tool-02-toothbrush-manual.png",
             "index": "— 02",
             "name": "Manual Toothbrush",
             "material": "Soft bristles, ergonomic handle"
@@ -130,7 +139,7 @@
         "x3": {
           "type": "tool",
           "settings": {
-            "image": "shopify://shop_images/tool-04-tongue-brush.png",
+            "image": "shopify:\/\/shop_images\/qlose-tool-04-tongue-brush.png",
             "index": "— 03",
             "name": "Tongue Brush",
             "material": "Soft bristles, ergonomic grip"
@@ -139,7 +148,7 @@
         "x4": {
           "type": "tool",
           "settings": {
-            "image": "shopify://shop_images/tool-05-tongue-scraper.png",
+            "image": "shopify:\/\/shop_images\/qlose-tool-05-tongue-scraper.png",
             "index": "— 04",
             "name": "Tongue Scraper",
             "material": "Medical-grade stainless steel"
@@ -148,7 +157,7 @@
         "x5": {
           "type": "tool",
           "settings": {
-            "image": "shopify://shop_images/tool-03-tuft-brush.png",
+            "image": "shopify:\/\/shop_images\/qlose-tool-03-tuft-brush.png",
             "index": "— 05",
             "name": "Tuft Brush",
             "material": "Screw-in replaceable head, angled bristle tuft"
@@ -163,10 +172,10 @@
         "x5"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "02 \/",
         "eyebrow_text": "WHAT'S INSIDE",
-        "heading": "<p>FIVE TOOLS.<br>ONE <em>system</em>.</p>",
-        "intro": "<p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.</p>"
+        "heading": "<p>FIVE TOOLS.<br>ONE <em>system<\/em>.<\/p>",
+        "intro": "<p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.<\/p>"
       }
     },
     "compare": {
@@ -221,9 +230,9 @@
         "r5"
       ],
       "settings": {
-        "eyebrow_index": "03 /",
+        "eyebrow_index": "03 \/",
         "eyebrow_text": "THE DIFFERENCE",
-        "heading": "<p>WHY <em>complete</em> BEATS <em>separate</em>.</p>",
+        "heading": "<p>WHY <em>complete<\/em> BEATS <em>separate<\/em>.<\/p>",
         "col_feature": "FEATURE",
         "col_ours": "QLOSE KIT",
         "col_theirs": "SEPARATE TOOLS"
@@ -237,21 +246,21 @@
           "settings": {
             "open": true,
             "question": "Can I pause or cancel my subscription?",
-            "answer": "<p>Yes, anytime. Log into your account, and you can pause, skip a delivery, change your frequency, or cancel entirely. No calls, no forms.</p>"
+            "answer": "<p>Yes, anytime. Log into your account, and you can pause, skip a delivery, change your frequency, or cancel entirely. No calls, no forms.<\/p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
             "question": "Do you ship internationally?",
-            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap.</p>"
+            "answer": "<p>Not yet. We're UK-only for now while we build the brand at home. International shipping is on the roadmap.<\/p>"
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Do I need to use all five tools?",
-            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short, and together they add up to a complete clean.</p>"
+            "answer": "<p>Yes, that's the point. Each tool plays a specific role, and the routine only works as a system. Every step is short, and together they add up to a complete clean.<\/p>"
           }
         }
       },
@@ -261,9 +270,9 @@
         "q3"
       ],
       "settings": {
-        "eyebrow_index": "04 /",
+        "eyebrow_index": "04 \/",
         "eyebrow_text": "THE DETAILS",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
+        "heading": "<p>QUESTIONS,<br><em>answered<\/em>.<\/p>"
       }
     },
     "cross": {
@@ -271,10 +280,10 @@
       "settings": {
         "eyebrow_index": "",
         "eyebrow_text": "ALSO AVAILABLE",
-        "heading": "<p>PREFER ELECTRIC?</p>",
-        "text": "<p>The Electric Kit has the same five-step system with a USB-C rechargeable brush.</p>",
+        "heading": "<p>PREFER ELECTRIC?<\/p>",
+        "text": "<p>The Electric Kit has the same five-step system with a USB-C rechargeable brush.<\/p>",
         "cta_label": "View The Electric Kit, £59 →",
-        "cta_url": "/products/electric-kit"
+        "cta_url": "\/products\/electric-kit"
       }
     }
   },

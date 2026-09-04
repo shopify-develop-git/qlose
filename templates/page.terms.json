@@ -1,11 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "qlose-legal-hero",
       "settings": {
         "meta": "LEGAL — TERMS OF SALE",
-        "heading": "<p>TERMS &amp;<br><em>conditions</em>.</p>",
-        "lead": "<p>The terms on which we sell our products to you. Please read them before placing an order.</p>",
+        "heading": "<p>TERMS &amp;<br><em>conditions<\/em>.<\/p>",
+        "lead": "<p>The terms on which we sell our products to you. Please read them before placing an order.<\/p>",
         "updated": "Last updated: 18 July 2026"
       }
     },

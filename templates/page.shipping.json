@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,8 +16,8 @@
         "variant": "simple",
         "meta_left": "DELIVERY & RETURNS",
         "meta_right": "UK ONLY",
-        "heading": "<p>SHIPPING <em>&amp;</em><br>RETURNS.</p>",
-        "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.</p>"
+        "heading": "<p>SHIPPING <em>&amp;<\/em><br>RETURNS.<\/p>",
+        "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.<\/p>"
       }
     },
     "rates": {
@@ -91,15 +100,15 @@
         "c3"
       ],
       "settings": {
-        "heading": "<p>HOW IT <em>works</em>.</p>"
+        "heading": "<p>HOW IT <em>works<\/em>.<\/p>"
       }
     },
     "waitlist": {
       "type": "qlose-newsletter",
       "settings": {
         "variant": "waitlist",
-        "heading": "<p>SHIPPING <em>outside</em><br>THE UK?</p>",
-        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.</p>",
+        "heading": "<p>SHIPPING <em>outside<\/em><br>THE UK?<\/p>",
+        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.<\/p>",
         "email_label": "Email address",
         "placeholder": "Your email address",
         "button_label": "Notify me →",
@@ -153,9 +162,9 @@
         "p5"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "02 \/",
         "eyebrow_text": "RETURNS",
-        "heading": "<p>RETURNS <em>&amp;</em> REPLACEMENTS.</p>",
+        "heading": "<p>RETURNS <em>&amp;<\/em> REPLACEMENTS.<\/p>",
         "pullquote": "\"Oral care is personal. Once a kit's been opened, it belongs to you.\""
       }
     }

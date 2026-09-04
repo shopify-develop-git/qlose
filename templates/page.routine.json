@@ -1,12 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "qlose-routine-hero",
       "settings": {
         "meta_left": "THE METHOD",
-        "meta_right": "THE COMPLETE ROUTINE / 3 MINUTES",
-        "heading": "<p>THE FIVE-<br><strong>STEP</strong><br><em>clean</em>.</p>",
-        "lead": "<p>Most people brush and call it done. A real clean happens when every tool works in sequence, floss to disrupt, brush to clean, then a two-step finish on the tongue.</p>"
+        "meta_right": "THE COMPLETE ROUTINE \/ 3 MINUTES",
+        "heading": "<p>THE FIVE-<br><strong>STEP<\/strong><br><em>clean<\/em>.<\/p>",
+        "lead": "<p>Most people brush and call it done. A real clean happens when every tool works in sequence, floss to disrupt, brush to clean, then a two-step finish on the tongue.<\/p>"
       }
     },
     "stats": {
@@ -89,13 +98,13 @@
       ],
       "settings": {
         "reverse": false,
-        "tag": "01 / 30 SEC",
-        "image": "shopify://shop_images/tool-01-floss-pick.png",
+        "tag": "01 \/ 30 SEC",
+        "image": "shopify:\/\/shop_images\/qlose-tool-01-floss-pick.png",
         "image_alt": "Angled floss pick",
         "image_shape": "tall",
-        "eyebrow": "— Step 01 / Between the teeth",
-        "heading": "<p>ANGLED<br>FLOSS <em>pick</em>.</p>",
-        "text": "<p>Start where your toothbrush can't reach. The angled head lets you glide between every tooth, including the back molars that usually get missed. Flossing first clears the way for the brush to actually clean, not just push debris around.</p>",
+        "eyebrow": "— Step 01 \/ Between the teeth",
+        "heading": "<p>ANGLED<br>FLOSS <em>pick<\/em>.<\/p>",
+        "text": "<p>Start where your toothbrush can't reach. The angled head lets you glide between every tooth, including the back molars that usually get missed. Flossing first clears the way for the brush to actually clean, not just push debris around.<\/p>",
         "howto_title": "How to"
       }
     },
@@ -142,13 +151,13 @@
       ],
       "settings": {
         "reverse": true,
-        "tag": "02 / 90 SEC",
-        "image": "shopify://shop_images/tool-02-toothbrush.png",
+        "tag": "02 \/ 90 SEC",
+        "image": "shopify:\/\/shop_images\/qlose-tool-02-toothbrush-electric.png",
         "image_alt": "Toothbrush",
         "image_shape": "slim",
-        "eyebrow": "— Step 02 / Every surface",
-        "heading": "<p>BRUSH<br>YOUR <em>teeth</em>.</p>",
-        "text": "<p>Now that the gaps are clear, the brush can do its real job. Hold at a 45-degree angle to the gums. Cover every surface: outer, inner, chewing. Ninety seconds, not the thirty most people give it.</p>",
+        "eyebrow": "— Step 02 \/ Every surface",
+        "heading": "<p>BRUSH<br>YOUR <em>teeth<\/em>.<\/p>",
+        "text": "<p>Now that the gaps are clear, the brush can do its real job. Hold at a 45-degree angle to the gums. Cover every surface: outer, inner, chewing. Ninety seconds, not the thirty most people give it.<\/p>",
         "howto_title": "How to"
       }
     },
@@ -188,13 +197,13 @@
       ],
       "settings": {
         "reverse": false,
-        "tag": "03 / 30 SEC",
-        "image": "shopify://shop_images/tool-03-tuft-brush.png",
+        "tag": "03 \/ 30 SEC",
+        "image": "shopify:\/\/shop_images\/qlose-tool-03-tuft-brush.png",
         "image_alt": "Tuft brush",
         "image_shape": "tall",
-        "eyebrow": "— Step 03 / Precision finish",
-        "heading": "<p>TUFT<br><em>detail</em>.</p>",
-        "text": "<p>The final pass. The angled tuft brush reaches the tight spots your regular brush can't, behind the back molars, around dental work, along the gumline. A precision finish that leaves nothing behind. The head is small and works hard, so it wears faster than a toothbrush, screw on a fresh one roughly every three weeks.</p>",
+        "eyebrow": "— Step 03 \/ Precision finish",
+        "heading": "<p>TUFT<br><em>detail<\/em>.<\/p>",
+        "text": "<p>The final pass. The angled tuft brush reaches the tight spots your regular brush can't, behind the back molars, around dental work, along the gumline. A precision finish that leaves nothing behind. The head is small and works hard, so it wears faster than a toothbrush, screw on a fresh one roughly every three weeks.<\/p>",
         "howto_title": "How to"
       }
     },
@@ -234,13 +243,13 @@
       ],
       "settings": {
         "reverse": true,
-        "tag": "04 / 15 SEC",
-        "image": "shopify://shop_images/tool-04-tongue-brush.png",
+        "tag": "04 \/ 15 SEC",
+        "image": "shopify:\/\/shop_images\/qlose-tool-04-tongue-brush.png",
         "image_alt": "Tongue brush",
         "image_shape": "wide",
-        "eyebrow": "— Step 04 / Loosen the coating",
-        "heading": "<p>TONGUE<br><em>brush</em>.</p>",
-        "text": "<p>Most people ignore the tongue. But most bad breath starts in the mouth, and a coated tongue is its single most common source. The soft bristles work into the small crevices, loosening the coating before you scrape it away.</p>",
+        "eyebrow": "— Step 04 \/ Loosen the coating",
+        "heading": "<p>TONGUE<br><em>brush<\/em>.<\/p>",
+        "text": "<p>Most people ignore the tongue. But most bad breath starts in the mouth, and a coated tongue is its single most common source. The soft bristles work into the small crevices, loosening the coating before you scrape it away.<\/p>",
         "howto_title": "How to"
       }
     },
@@ -280,13 +289,13 @@
       ],
       "settings": {
         "reverse": false,
-        "tag": "05 / 15 SEC",
-        "image": "shopify://shop_images/tool-05-tongue-scraper.png",
+        "tag": "05 \/ 15 SEC",
+        "image": "shopify:\/\/shop_images\/qlose-tool-05-tongue-scraper.png",
         "image_alt": "Tongue scraper",
         "image_shape": "curved",
-        "eyebrow": "— Step 05 / Lift it all off",
-        "heading": "<p>TONGUE<br><em>scrape</em>.</p>",
-        "text": "<p>Everything the brush loosened, the scraper lifts off in one smooth pull. Stainless steel, U-shaped, one motion. This is the step that changes your morning breath.</p>",
+        "eyebrow": "— Step 05 \/ Lift it all off",
+        "heading": "<p>TONGUE<br><em>scrape<\/em>.<\/p>",
+        "text": "<p>Everything the brush loosened, the scraper lifts off in one smooth pull. Stainless steel, U-shaped, one motion. This is the step that changes your morning breath.<\/p>",
         "howto_title": "How to"
       }
     },
@@ -297,7 +306,7 @@
           "type": "cta",
           "settings": {
             "label": "Get the kit, £29",
-            "url": "/products/manual-kit",
+            "url": "\/products\/manual-kit",
             "style": "primary"
           }
         }
@@ -306,8 +315,8 @@
         "b1"
       ],
       "settings": {
-        "heading": "<p>THE ROUTINE<br>IS <em>the</em> PRODUCT.</p>",
-        "text": "<p>You could buy each of these tools separately. But the point of QLOSE is that they arrive together, live together in the case, and become the ritual you actually stick with.</p>",
+        "heading": "<p>THE ROUTINE<br>IS <em>the<\/em> PRODUCT.<\/p>",
+        "text": "<p>You could buy each of these tools separately. But the point of QLOSE is that they arrive together, live together in the case, and become the ritual you actually stick with.<\/p>",
         "theme": "dark"
       }
     }
