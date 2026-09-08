@@ -67,14 +67,13 @@
         "t3"
       ],
       "custom_css": [
-        ".qlose-hero{display:flex;flex-direction:column}",
+        ".qlose-hero{display:flex;flex-direction:column;padding-top:0}",
         ".qlose-hero__main,.qlose-hero__copy{display:contents}",
-        ".qlose-hero__meta{order:1}",
-        ".qlose-hero__visual{order:2;aspect-ratio:2/1;max-height:none;overflow:hidden;margin:0 calc(var(--qlose-gutter)*-1) 32px}",
-        ".qlose-hero__cta{order:3;margin-bottom:44px}",
-        ".qlose-hero__headline{order:4}",
-        ".qlose-hero__sub{order:5}",
-        ".qlose-hero__img{inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;transform:none}"
+        ".qlose-hero__meta{order:-3;position:relative;z-index:2;border:0;margin:0 0 -42px;padding:26px 0 0}",
+        ".qlose-hero__visual{order:-2;aspect-ratio:3/1;max-height:none;margin:0 calc(var(--qlose-gutter)*-1) 32px}",
+        ".qlose-hero__cta{order:-1;margin-bottom:44px}",
+        ".qlose-hero__tag{z-index:1}",
+        ".qlose-hero__img{width:80%;height:auto;max-width:none;max-height:none;transform:none}"
       ],
       "settings": {
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
@@ -82,7 +81,7 @@
         "headline": "<p>EVERY <strong>TOOL</strong>.<br/>THE RIGHT <em>order</em>.</p>",
         "subtext": "<p>A five-piece oral care system, in two versions, manual or electric. Precision tools designed to work in sequence. Made for people who take the small rituals seriously.</p>",
         "subtext_mobile": "Five precision tools in one case, used in the order that works. Manual £29 or electric £59, with fresh refills every 90 days.",
-        "image": "shopify://shop_images/qlose-hero-kit-case.png",
+        "image": "shopify://shop_images/qlose-case-logo-with-dot.png",
         "tag": "5 TOOLS · 1 CASE",
         "sticky_mobile": true,
         "sticky_text": "Two kits, from £29"
