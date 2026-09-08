@@ -248,11 +248,11 @@
       "settings": {
         "reverse": true,
         "tag": "04 / 15 SEC",
-        "image": "shopify://shop_images/qlose-tool-04-tongue-brush.png",
+        "image": "shopify://shop_images/qlose-gal-04-tongue-brush.jpg",
         "image_alt": "Tongue brush",
         "image_shape": "wide",
         "eyebrow": "— Step 04 / Loosen the coating",
-        "heading": "<p>TONGUE<br><em>brush</em>.</p>",
+        "heading": "<p>TONGUE<br/><em>brush</em>.</p>",
         "text": "<p>Most people ignore the tongue. But most bad breath starts in the mouth, and a coated tongue is its single most common source. The soft bristles work into the small crevices, loosening the coating before you scrape it away.</p>",
         "howto_title": "How to"
       }
