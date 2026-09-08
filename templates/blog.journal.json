@@ -29,6 +29,10 @@
     },
     "filters": {
       "type": "qlose-article-filters",
+      "custom_css": [
+        ".qlose-articles__filters{padding-block:20px}",
+        ".qlose-articles__filter{font-size:13px}"
+      ],
       "settings": {
         "blog": "",
         "filter_label": "Filter by topic",
@@ -38,10 +42,10 @@
     "featured": {
       "type": "qlose-featured-article",
       "custom_css": [
-        ".qlose-featured{padding-top:16px}",
-        ".qlose-featured__inner{align-items:start}",
-        ".qlose-featured__meta{font-size:14px;margin-bottom:20px}",
-        ".qlose-featured__byline{font-size:12px}"
+        ".qlose-featured {padding-top: 16px;}",
+        ".qlose-featured__inner {align-items: start;}",
+        ".qlose-featured__meta {font-size: 14px; margin-bottom: 20px;}",
+        ".qlose-featured__byline {font-size: 12px;}"
       ],
       "settings": {
         "blog": "",
