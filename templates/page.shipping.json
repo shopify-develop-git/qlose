@@ -12,12 +12,12 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
-        "meta_label": "SHIPPING",
         "variant": "simple",
+        "meta_label": "SHIPPING",
         "meta_left": "DELIVERY & RETURNS",
         "meta_right": "UK ONLY",
-        "heading": "<p>SHIPPING <em>&amp;<\/em><br>RETURNS.<\/p>",
-        "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.<\/p>"
+        "heading": "<p>SHIPPING <em>&</em><br/>RETURNS.</p>",
+        "subtext": "<p>Straight answers on delivery times, costs, and what happens if the kit isn't right for you. We ship UK-only for now.</p>"
       }
     },
     "rates": {
@@ -29,7 +29,7 @@
             "name": "Subscription Delivery",
             "carrier": "Royal Mail Tracked 48",
             "time": "2-3 Working Days",
-            "cost": "FREE",
+            "cost": "£3.50",
             "free": true
           }
         },
@@ -100,19 +100,9 @@
         "c3"
       ],
       "settings": {
-        "heading": "<p>HOW IT <em>works<\/em>.<\/p>"
-      }
-    },
-    "waitlist": {
-      "type": "qlose-newsletter",
-      "settings": {
-        "variant": "waitlist",
-        "heading": "<p>SHIPPING <em>outside<\/em><br>THE UK?<\/p>",
-        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.<\/p>",
-        "email_label": "Email address",
-        "placeholder": "Your email address",
-        "button_label": "Notify me →",
-        "success_text": "Thanks, we'll let you know."
+        "eyebrow_index": "",
+        "eyebrow_text": "",
+        "heading": "<p>HOW IT <em>works</em>.</p>"
       }
     },
     "returns": {
@@ -162,10 +152,22 @@
         "p5"
       ],
       "settings": {
-        "eyebrow_index": "02 \/",
+        "eyebrow_index": "02 /",
         "eyebrow_text": "RETURNS",
-        "heading": "<p>RETURNS <em>&amp;<\/em> REPLACEMENTS.<\/p>",
+        "heading": "<p>RETURNS <em>&amp;</em> REPLACEMENTS.</p>",
         "pullquote": "\"Oral care is personal. Once a kit's been opened, it belongs to you.\""
+      }
+    },
+    "waitlist": {
+      "type": "qlose-newsletter",
+      "settings": {
+        "variant": "waitlist",
+        "heading": "<p>SHIPPING <em>outside</em><br>THE UK?</p>",
+        "text": "<p>We're UK-only for launch. Join the waitlist to be the first to know when we ship internationally.</p>",
+        "email_label": "Email address",
+        "placeholder": "Your email address",
+        "button_label": "Notify me →",
+        "success_text": "Thanks, we'll let you know."
       }
     }
   },

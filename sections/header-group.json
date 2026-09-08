@@ -17,7 +17,7 @@
         "m1": {
           "type": "message",
           "settings": {
-            "text": "FREE UK SHIPPING ON SUBSCRIPTIONS"
+            "text": "tracked 48 SHIPPING"
           }
         },
         "m2": {
@@ -38,7 +38,9 @@
         "m2",
         "m3"
       ],
-      "settings": {}
+      "settings": {
+        "duration": 30
+      }
     },
     "qlose_header": {
       "type": "qlose-header",
