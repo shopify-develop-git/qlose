@@ -12,8 +12,8 @@
     "hero": {
       "type": "qlose-routine-hero",
       "custom_css": [
-        ".qlose-routine-hero{padding-top:16px}",
-        ".qlose-routine-hero__meta{font-size:14px}"
+        ".qlose-routine-hero {padding-top: 16px;}",
+        ".qlose-routine-hero__meta {font-size: 14px;}"
       ],
       "settings": {
         "meta_left": "THE METHOD",
@@ -155,12 +155,12 @@
       ],
       "settings": {
         "reverse": true,
-        "tag": "02 / 90 SEC",
+        "tag": "02 / 90+ SEC",
         "image": "shopify://shop_images/qlose-tool-02-toothbrush-electric.png",
         "image_alt": "Toothbrush",
         "image_shape": "slim",
         "eyebrow": "— Step 02 / Every surface",
-        "heading": "<p>BRUSH<br>YOUR <em>teeth</em>.</p>",
+        "heading": "<p>BRUSH<br/>YOUR <em>teeth</em>.</p>",
         "text": "<p>Now that the gaps are clear, the brush can do its real job. Hold at a 45-degree angle to the gums. Cover every surface: outer, inner, chewing. Ninety seconds, not the thirty most people give it.</p>",
         "howto_title": "How to"
       }
