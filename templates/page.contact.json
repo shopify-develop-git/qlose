@@ -12,10 +12,10 @@
     "hero": {
       "type": "qlose-page-hero",
       "custom_css": [
-        ".qlose-page-hero{padding-top:16px}",
-        ".qlose-page-hero--editorial{padding-bottom:32px}",
-        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
-        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+        ".qlose-page-hero {padding-top: 16px;}",
+        ".qlose-page-hero--editorial {padding-bottom: 32px;}",
+        ".qlose-page-hero__meta {font-size: 14px; margin-bottom: 28px; padding-bottom: 18px;}",
+        "@media (max-width: 480px) {.qlose-page-hero__meta {font-size: 11px; letter-spacing: 0.08em; }}"
       ],
       "settings": {
         "variant": "simple",
@@ -71,6 +71,11 @@
         "m2",
         "m3",
         "m4"
+      ],
+      "custom_css": [
+        ".qlose-contact__methods-title {font-size: 14px;}",
+        ".qlose-contact__methods-title{font-size:14px}",
+        ".qlose-contact-method__num{font-size:12px}"
       ],
       "settings": {
         "methods_title": "— Ways to reach us",
