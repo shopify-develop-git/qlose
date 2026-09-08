@@ -100,6 +100,7 @@
         "h3",
         "h4"
       ],
+      "custom_css": [],
       "settings": {
         "reverse": false,
         "tag": "01 / 30 SEC",
@@ -244,6 +245,10 @@
         "h2",
         "h3",
         "h4"
+      ],
+      "custom_css": [
+        ".qlose-routine-step__frame{inset:0}",
+        ".qlose-routine-step__img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}"
       ],
       "settings": {
         "reverse": true,
