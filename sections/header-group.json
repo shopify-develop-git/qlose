@@ -45,9 +45,9 @@
     "qlose_header": {
       "type": "qlose-header",
       "custom_css": [
-        ".qlose-header__logo-img{height:30px}",
-        "@media(max-width:900px){.qlose-header__logo-img{height:24px}}",
-        "@media(max-width:480px){.qlose-header__logo-img{height:20px}}"
+        ".qlose-header__logo-img {height: 30px;}",
+        "@media (max-width: 900px) {.qlose-header__logo-img {height: 24px; }}",
+        "@media (max-width: 480px) {.qlose-header__logo-img {height: 20px; }}"
       ],
       "settings": {
         "menu": "main-menu"

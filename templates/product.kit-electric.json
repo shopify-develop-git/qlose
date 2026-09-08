@@ -142,7 +142,8 @@
         ".qlose-product__info {padding-top: 0;}",
         ".qlose-detail__a ul {list-style: disc; padding-left: 28px;}",
         ".qlose-detail__a li {padding-left: 0;}",
-        ".qlose-detail__a li::before {color: transparent;}"
+        ".qlose-detail__a li::before {color: transparent;}",
+        ".qlose-product__meta{font-size:14px}"
       ],
       "settings": {
         "product": "",
