@@ -66,7 +66,16 @@
         "t2",
         "t3"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".qlose-hero{display:flex;flex-direction:column}",
+        ".qlose-hero__main,.qlose-hero__copy{display:contents}",
+        ".qlose-hero__meta{order:1}",
+        ".qlose-hero__visual{order:2;aspect-ratio:2/1;max-height:none;overflow:hidden;margin:0 calc(var(--qlose-gutter)*-1) 32px}",
+        ".qlose-hero__cta{order:3;margin-bottom:44px}",
+        ".qlose-hero__headline{order:4}",
+        ".qlose-hero__sub{order:5}",
+        ".qlose-hero__img{inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;transform:none}"
+      ],
       "settings": {
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
         "meta_right": "LONDON",
