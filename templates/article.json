@@ -11,6 +11,12 @@
   "sections": {
     "main": {
       "type": "qlose-article",
+      "custom_css": [
+        ".qlose-article-page{padding-top:16px}",
+        ".qlose-article-page__meta,.qlose-article-page__byline{font-size:14px}",
+        ".qlose-article-page__cover{margin:32px 0}",
+        ".qlose-article-page__byline{display:none}"
+      ],
       "settings": {
         "back_label": "← Back to the Journal"
       }
@@ -18,8 +24,10 @@
     "newsletter": {
       "type": "qlose-newsletter",
       "settings": {
-        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox<\/em>.<\/p>",
-        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.<\/p>",
+        "variant": "journal",
+        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox</em>.</p>",
+        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>",
+        "email_label": "Email address",
         "placeholder": "your@email.com",
         "button_label": "Subscribe →",
         "success_text": "Thanks, you're on the list."
