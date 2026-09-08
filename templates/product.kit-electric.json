@@ -136,15 +136,17 @@
         "d8"
       ],
       "custom_css": [
-        ".qlose-product__stage-img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;transform:none}"
+        ".qlose-product__stage-img {width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; transform: none;}",
+        ".qlose-product {padding-top: 16px;}",
+        ".qlose-product__breadcrumb {margin-bottom: 20px;}"
       ],
       "settings": {
         "product": "",
         "breadcrumb_label": "The Electric Kit",
-        "tag": "01 / KIT",
+        "tag": "",
         "meta_label": "THE ELECTRIC KIT",
-        "meta_left": "MODEL 02",
-        "meta_right": "IN STOCK",
+        "meta_left": "",
+        "meta_right": "",
         "title": "<p>The Electric<br/><em>clean</em> Mouth Kit.</p>",
         "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, USB-C rechargeable electric toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
         "purchase_label": "— Choose your plan",
