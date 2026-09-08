@@ -65,6 +65,7 @@
         "r2",
         "r3"
       ],
+      "custom_css": [],
       "settings": {
         "eyebrow": "— UK Delivery Options",
         "col_method": "Delivery Method",
@@ -159,13 +160,13 @@
         "p5"
       ],
       "custom_css": [
-        ".qlose-returns{padding-block:32px}",
-        ".qlose-returns>:first-child,.qlose-returns>:first-child *{font-size:14px}",
-        ".qlose-returns__heading{margin-bottom:24px}",
-        ".qlose-returns__pullquote{padding:24px 0;margin:24px 0}"
+        ".qlose-returns {padding-block: 32px;}",
+        ".qlose-returns > :first-child,.qlose-returns > :first-child * {font-size: 14px;}",
+        ".qlose-returns__heading {margin-bottom: 24px;}",
+        ".qlose-returns__pullquote {padding: 24px 0; margin: 24px 0;}"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "",
         "eyebrow_text": "RETURNS",
         "heading": "<p>RETURNS <em>&</em> REPLACEMENTS.</p>",
         "pullquote": "\"Oral care is personal. Once a kit's been opened, it belongs to you.\""
