@@ -41,7 +41,7 @@
         ".qlose-refill-hero__cta .qlose-btn {min-width: 210px; box-sizing: border-box; justify-content: center; text-align: center;}"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "",
         "eyebrow_text": "REFILLS",
         "heading": "<p>REFILLS,<br/>ON <em>time</em>.</p>",
         "text": "<p>Bristles wear out. Floss picks run low. Instead of remembering to reorder, we send replacements on the schedule that fits your routine.</p>",
@@ -105,7 +105,7 @@
         ".qlose-refill-contents__footnote {margin-top: 28px;}"
       ],
       "settings": {
-        "eyebrow_index": "03 /",
+        "eyebrow_index": "",
         "eyebrow_text": "WHAT ARRIVES",
         "heading": "<p>WHAT'S IN A<br/><em>refill</em> BOX.</p>",
         "intro": "<p>Just the parts that wear out. Your case, handles and stainless steel tongue scraper are built to stay with you.</p>",
@@ -119,7 +119,7 @@
           "type": "cadence",
           "settings": {
             "number": "90",
-            "unit": "— DAYS",
+            "unit": "DAYS",
             "description": "Every 90 days, the interval dentists recommend for replacing a brush head.",
             "price": "£18",
             "price_note": "PER BOX"
@@ -130,15 +130,15 @@
         "c1"
       ],
       "custom_css": [
-        ".qlose-frequency{padding-block:32px}",
-        ".qlose-eyebrow,.qlose-eyebrow *{font-size:14px}",
-        ".qlose-frequency__heading{margin-bottom:32px}",
-        ".qlose-freq-card{padding:32px 24px}",
-        ".qlose-freq-card__unit{margin-bottom:20px}",
-        ".qlose-refill-note{padding-block:32px}"
+        ".qlose-frequency {padding-block: 32px;}",
+        ".qlose-eyebrow,.qlose-eyebrow * {font-size: 14px;}",
+        ".qlose-frequency__heading {margin-bottom: 32px;}",
+        ".qlose-freq-card {padding: 32px 24px;}",
+        ".qlose-freq-card__unit {margin-bottom: 20px;}",
+        ".qlose-refill-note {padding-block: 32px;}"
       ],
       "settings": {
-        "eyebrow_index": "04 /",
+        "eyebrow_index": "",
         "eyebrow_text": "YOUR CADENCE",
         "heading": "<p>EVERY<br/><em>ninety</em> DAYS.</p>",
         "footnote": "<p>Pause anytime. Skip a delivery from your account. Cancel whenever you like. No calls, no forms.</p>",
