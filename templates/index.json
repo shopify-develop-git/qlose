@@ -72,7 +72,7 @@
         ".qlose-hero__meta {order: -3; position: relative; z-index: 2; border: 0; margin: 0 0 -42px; padding: 26px 0 0;}",
         ".qlose-hero__visual {order: -2; aspect-ratio: 2/1; margin: 0 calc(var(--qlose-gutter) * -1); background: linear-gradient(#f0dcd0, #f5f4f0);}",
         ".qlose-hero__cta {order: -1; position: relative; z-index: 2; margin: -12% 0 44px;}",
-        ".qlose-hero__img {width: 82%; max-width: none; transform: none; margin: auto auto 13%;}"
+        ".qlose-hero__img {width: 82%; max-width: none; transform: none; margin: auto auto 16%;}"
       ],
       "settings": {
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
