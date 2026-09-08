@@ -113,16 +113,16 @@
         ".qlose-product {padding-top: 16px;}",
         ".qlose-product__breadcrumb {margin-bottom: 20px;}",
         ".qlose-product__info {padding-top: 0;}",
-        " .qlose-detail__a ul{list-style:disc;padding-left:28px}",
-        ".qlose-detail__a li{padding-left:0}",
-        ".qlose-detail__a li::before{color:transparent}"
+        ".qlose-detail__a ul {list-style: disc; padding-left: 28px;}",
+        ".qlose-detail__a li {padding-left: 0;}",
+        ".qlose-detail__a li::before {color: transparent;}"
       ],
       "settings": {
         "product": "",
         "breadcrumb_label": "The Manual Kit",
-        "tag": "01 / KIT",
+        "tag": "",
         "meta_label": "THE MANUAL KIT",
-        "meta_left": "MODEL 01",
+        "meta_left": "",
         "meta_right": "IN STOCK",
         "title": "<p>The Manual<br/><em>clean</em> Mouth Kit.</p>",
         "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, soft-bristle manual toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
