@@ -83,7 +83,7 @@
           "type": "detail",
           "settings": {
             "heading": "Returns and hygiene seal",
-            "content": "<p>Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
+            "content": "<p>Every kit ships sealed with a hygien locked zip tie. If tie is intact you can return your kit within 14 days of delivery for a full refund. Once the tie has been broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
             "open": false
           }
         },
