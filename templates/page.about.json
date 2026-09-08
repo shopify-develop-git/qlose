@@ -72,9 +72,9 @@
     "team": {
       "type": "qlose-team",
       "settings": {
-        "eyebrow_index": "05 /",
+        "eyebrow_index": "",
         "eyebrow_text": "WHO WE ARE",
-        "heading": "<p>A SMALL TEAM,<br/>BUILDING <em>quietly</em>.</p>",
+        "heading": "<p>A SMALL TEAM,<br/>BUILDING WITH <em>intent</em>.</p>",
         "text": "<p>QLOSE is a small independent brand based in London. We work with makers and manufacturers who share our values, quality, honesty, restraint. We're not selling a dream. Just the routine, delivered well.</p>"
       }
     },
