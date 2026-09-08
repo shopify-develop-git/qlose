@@ -67,12 +67,12 @@
         "t3"
       ],
       "custom_css": [
-        ".qlose-hero {display: flex; flex-direction: column; padding-top: 0;}",
-        ".qlose-hero__main,.qlose-hero__copy {display: contents;}",
-        ".qlose-hero__meta {order: -3; z-index: 2; border: 0; font-size: 14px; margin: 0 0 -46px; padding: 26px 0 0;}",
-        ".qlose-hero__visual {order: -2; aspect-ratio: 2/1; margin: 0 calc(var(--qlose-gutter) * -1); background: linear-gradient(#f0dcd0, #f5f4f0);}",
-        ".qlose-hero__cta {order: -1; z-index: 2; margin: -13% 0 16%;}",
-        ".qlose-hero__img {width: 82%; max-width: none; transform: none; margin: auto auto 16%;}"
+        ".qlose-hero{display:flex;flex-direction:column;padding-top:20px;background:linear-gradient(#f0dcd0,#f5f4f0 60%)}",
+        ".qlose-hero__main,.qlose-hero__copy{display:contents}",
+        ".qlose-hero__meta{order:-3;border:0;font-size:13px;margin-bottom:4px}",
+        ".qlose-hero__visual{order:-2;aspect-ratio:auto;background:none;margin:0 calc(var(--qlose-gutter)*-1) 24px}",
+        ".qlose-hero__cta{order:-1;margin-bottom:40px}",
+        ".qlose-hero__img{position:static;width:86%;max-width:none;transform:none}"
       ],
       "settings": {
         "meta_left": "THE COMPLETE MOUTH ROUTINE",
