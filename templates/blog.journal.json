@@ -11,12 +11,19 @@
   "sections": {
     "hero": {
       "type": "qlose-page-hero",
+      "custom_css": [
+        ".qlose-page-hero{padding-top:16px}",
+        ".qlose-page-hero--editorial{padding-bottom:32px}",
+        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
+        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+      ],
+      "name": "QLOSE article page hero",
       "settings": {
         "variant": "editorial",
         "meta_label": "THE JOURNAL",
         "meta_left": "WRITINGS ON RITUAL, CARE, AND METHOD",
         "meta_right": "UPDATED WEEKLY",
-        "heading": "<p>THE<br><em>journal</em>.</p>",
+        "heading": "<p>THE<br/><em>journal</em>.</p>",
         "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>"
       }
     },
