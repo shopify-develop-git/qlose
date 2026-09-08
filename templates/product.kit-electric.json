@@ -107,7 +107,7 @@
           "type": "detail",
           "settings": {
             "heading": "Returns and hygiene seal",
-            "content": "<p>Every kit ships sealed with a hygien locked zip tie. If tie is intact you can return your kit within 14 days of delivery for a full refund. Once the tie has been broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
+            "content": "<p>Every kit ships sealed with a hygiene locked zip tie. If tie is intact you can return your kit within 14 days of delivery for a full refund. Once the tie has been broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
             "open": false
           }
         },
@@ -143,7 +143,7 @@
         ".qlose-detail__a ul {list-style: disc; padding-left: 28px;}",
         ".qlose-detail__a li {padding-left: 0;}",
         ".qlose-detail__a li::before {color: transparent;}",
-        ".qlose-product__meta{font-size:14px}"
+        ".qlose-product__meta {font-size: 14px;}"
       ],
       "settings": {
         "product": "",
