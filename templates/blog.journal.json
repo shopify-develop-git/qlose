@@ -42,10 +42,11 @@
     "featured": {
       "type": "qlose-featured-article",
       "custom_css": [
-        ".qlose-featured {padding-top: 16px;}",
-        ".qlose-featured__inner {align-items: start;}",
-        ".qlose-featured__meta {font-size: 14px; margin-bottom: 20px;}",
-        ".qlose-featured__byline {font-size: 12px;}"
+        ".qlose-featured{padding-top:16px}",
+        ".qlose-featured__meta{font-size:14px;margin-bottom:20px}",
+        ".qlose-featured__byline{font-size:12px}",
+        ".qlose-featured__byline span{display:none}",
+        ".qlose-featured__byline>:not(:last-child)::after{display:none}"
       ],
       "settings": {
         "blog": "",
