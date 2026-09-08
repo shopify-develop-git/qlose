@@ -329,10 +329,10 @@
       ],
       "custom_css": [
         ".qlose-cta-band .qlose-btn {min-width: 210px; box-sizing: border-box; justify-content: center; text-align: center;}",
-        ".qlose-cta-band{padding-block:32px}",
-        ".qlose-cta-band--dark{padding-block:70px}",
-        ".qlose-cta-band--compact{padding-block:32px}",
-        ".qlose-cta-band__heading{margin-bottom:35px}"
+        ".qlose-cta-band {padding-block: 32px;}",
+        ".qlose-cta-band--dark {padding-block: 150px;}",
+        ".qlose-cta-band--compact {padding-block: 32px;}",
+        ".qlose-cta-band__heading {margin-bottom: 35px;}"
       ],
       "settings": {
         "size": "regular",
