@@ -37,8 +37,8 @@
         "t1": {
           "type": "trust",
           "settings": {
-            "title": "Free UK Shipping",
-            "text": "On subscriptions"
+            "title": "tracked 48",
+            "text": "uk shipping"
           }
         },
         "t2": {
@@ -125,7 +125,7 @@
         "meta_left": "",
         "meta_right": "IN STOCK",
         "title": "<p>The Manual<br/><em>clean</em> Mouth Kit.</p>",
-        "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, soft-bristle manual toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
+        "description": "<p>A five-piece oral care system in one travel case. Angled floss pick, bristled manual toothbrush, tongue brush, tongue scraper, and tuft brush, precision tools designed to work in sequence.</p>",
         "purchase_label": "— Choose your plan",
         "save_note": "Free UK shipping on subscriptions",
         "atc_label": "Add to cart, start my routine"
@@ -188,9 +188,9 @@
         "x5"
       ],
       "settings": {
-        "eyebrow_index": "02 /",
+        "eyebrow_index": "",
         "eyebrow_text": "WHAT'S INSIDE",
-        "heading": "<p>FIVE TOOLS.<br>ONE <em>system</em>.</p>",
+        "heading": "<p>FIVE TOOLS.<br/>ONE <em>system</em>.</p>",
         "intro": "<p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.</p>",
         "cta_label": "Shop now",
         "cta_url": ""
@@ -248,7 +248,7 @@
         "r5"
       ],
       "settings": {
-        "eyebrow_index": "03 /",
+        "eyebrow_index": "",
         "eyebrow_text": "THE DIFFERENCE",
         "heading": "<p>WHY <em>complete</em> BEATS <em>separate</em>.</p>",
         "col_feature": "FEATURE",
