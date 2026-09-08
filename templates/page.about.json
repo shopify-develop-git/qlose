@@ -12,10 +12,10 @@
     "hero": {
       "type": "qlose-page-hero",
       "custom_css": [
-        ".qlose-page-hero{padding-top:16px}",
-        ".qlose-page-hero--editorial{padding-bottom:32px}",
-        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
-        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+        ".qlose-page-hero {padding-top: 16px;}",
+        ".qlose-page-hero--editorial {padding-bottom: 32px;}",
+        ".qlose-page-hero__meta {font-size: 14px; margin-bottom: 28px; padding-bottom: 18px;}",
+        "@media (max-width: 480px) {.qlose-page-hero__meta {font-size: 11px; letter-spacing: 0.08em; }}"
       ],
       "settings": {
         "variant": "editorial",
@@ -28,6 +28,11 @@
     },
     "story": {
       "type": "qlose-story",
+      "custom_css": [
+        ".qlose-story{padding-top:16px}",
+        ".qlose-story__eyebrow{font-size:14px;margin-bottom:20px}",
+        ".qlose-story__heading{margin-bottom:28px}"
+      ],
       "settings": {
         "image": "shopify://shop_images/hf_20260802_201630_6521c289-525d-4a73-9ed0-8e65d53c9171.png",
         "eyebrow": "— The Story",
