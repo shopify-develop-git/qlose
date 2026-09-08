@@ -59,7 +59,7 @@
           "type": "detail",
           "settings": {
             "heading": "What's inside",
-            "content": "<ul><li>Soft-bristle manual toothbrush</li><li>Angled floss handle + 90 replacement floss heads</li><li>Tongue brush with soft bristles</li><li>Stainless steel tongue scraper</li><li>Tuft brush handle + 4 screw-in heads</li><li>QLOSE zip-close travel case</li></ul>",
+            "content": "<ul><li>Bristled manual toothbrush</li><li>Angled floss handle + 90 replacement floss heads</li><li>Tongue brush with soft bristles</li><li>Stainless steel tongue scraper</li><li>Tuft brush handle + 4 screw-in heads</li><li>QLOSE zip-close travel case</li></ul>",
             "open": true
           }
         },
@@ -67,7 +67,7 @@
           "type": "detail",
           "settings": {
             "heading": "Materials",
-            "content": "<p>Medical-grade stainless steel scraper, BPA-free soft-touch handles, soft toothbrush and tongue brush bristles. Case is durable EVA foam with fabric interior.</p>",
+            "content": "<p>Medical-grade stainless steel scraper, BPA-free soft-touch handles, manual toothbrush and tongue brush bristles. Case is durable EVA foam with fabric interior.</p>",
             "open": false
           }
         },
