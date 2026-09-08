@@ -170,10 +170,19 @@
             "material": "USB-C rechargeable, IPX7, 2-minute timer"
           }
         },
-        "x3": {
+        "x5": {
           "type": "tool",
           "settings": {
             "index": "— 03",
+            "image": "shopify://shop_images/qlose-tool-03-tuft-brush.png",
+            "name": "Tuft Brush",
+            "material": "Screw-in replaceable head, angled bristle tuft"
+          }
+        },
+        "x3": {
+          "type": "tool",
+          "settings": {
+            "index": "— 04",
             "image": "shopify://shop_images/qlose-tool-04-tongue-brush.png",
             "name": "Tongue Brush",
             "material": "Soft bristles, ergonomic grip"
@@ -182,28 +191,19 @@
         "x4": {
           "type": "tool",
           "settings": {
-            "index": "— 04",
+            "index": "— 05",
             "image": "shopify://shop_images/qlose-tool-05-tongue-scraper.png",
             "name": "Tongue Scraper",
             "material": "Medical-grade stainless steel"
-          }
-        },
-        "x5": {
-          "type": "tool",
-          "settings": {
-            "index": "— 05",
-            "image": "shopify://shop_images/qlose-tool-03-tuft-brush.png",
-            "name": "Tuft Brush",
-            "material": "Screw-in replaceable head, angled bristle tuft"
           }
         }
       },
       "block_order": [
         "x1",
         "x2",
+        "x5",
         "x3",
-        "x4",
-        "x5"
+        "x4"
       ],
       "settings": {
         "eyebrow_index": "02 /",
