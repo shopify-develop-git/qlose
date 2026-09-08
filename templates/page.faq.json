@@ -115,7 +115,7 @@
           "type": "question",
           "settings": {
             "question": "Can I subscribe without buying the full kit?",
-            "answer": "<p>Not yet. The subscription is designed to keep your existing QLOSE kit fresh. If you already have the tools you need, get in touch and we'll figure something out.</p>",
+            "answer": "<p>Not. The subscription is designed to keep your existing QLOSE kit fresh. </p>",
             "open": false
           }
         },
