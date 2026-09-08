@@ -12,10 +12,10 @@
     "hero": {
       "type": "qlose-page-hero",
       "custom_css": [
-        ".qlose-page-hero{padding-top:16px}",
-        ".qlose-page-hero--editorial{padding-bottom:32px}",
-        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
-        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+        ".qlose-page-hero {padding-top: 16px;}",
+        ".qlose-page-hero--editorial {padding-bottom: 32px;}",
+        ".qlose-page-hero__meta {font-size: 14px; margin-bottom: 28px; padding-bottom: 18px;}",
+        "@media (max-width: 480px) {.qlose-page-hero__meta {font-size: 11px; letter-spacing: 0.08em; }}"
       ],
       "name": "QLOSE article page hero",
       "settings": {
@@ -37,6 +37,11 @@
     },
     "featured": {
       "type": "qlose-featured-article",
+      "custom_css": [
+        ".qlose-featured{padding-top:16px}",
+        ".qlose-featured__meta{font-size:14px;margin-bottom:20px}",
+        ".qlose-featured__byline{font-size:12px}"
+      ],
       "settings": {
         "blog": "",
         "badge": "FEATURED / 01",
