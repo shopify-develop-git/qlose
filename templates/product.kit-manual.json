@@ -91,7 +91,7 @@
           "type": "detail",
           "settings": {
             "heading": "Shipping",
-            "content": "<p>Free UK shipping on all subscription orders. One-time orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.</p>",
+            "content": "<p>Tracked 48 shipping on all orders. Orders ship for £3.50 standard or £6.50 express. Orders placed by 2pm ship same day. Delivery in 2-3 working days via Royal Mail tracked.</p>",
             "open": false
           }
         }
