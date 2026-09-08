@@ -49,7 +49,7 @@
       ],
       "settings": {
         "blog": "",
-        "badge": "FEATURED / 01",
+        "badge": "FEATURED",
         "read_time": "3 MIN READ",
         "cta_label": "Read the piece →"
       }
@@ -57,10 +57,10 @@
     "grid": {
       "type": "qlose-article-grid",
       "custom_css": [
-        ".qlose-articles{padding-top:16px}",
-        ".qlose-articles__eyebrow{font-size:14px}",
-        ".qlose-articles__header{font-size:13px;margin-bottom:32px}",
-        ".qlose-article__meta,.qlose-article__date{font-size:11px}"
+        ".qlose-articles {padding-top: 16px;}",
+        ".qlose-articles__eyebrow {font-size: 14px;}",
+        ".qlose-articles__header {font-size: 13px; margin-bottom: 32px;}",
+        ".qlose-article__meta,.qlose-article__date {font-size: 11px;}"
       ],
       "settings": {
         "blog": "",
