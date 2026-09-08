@@ -29,9 +29,9 @@
     "story": {
       "type": "qlose-story",
       "custom_css": [
-        ".qlose-story{padding-top:16px;padding-bottom:32px}",
-        ".qlose-story__eyebrow{font-size:14px;margin-bottom:20px}",
-        ".qlose-story__heading{margin-bottom:28px}"
+        ".qlose-story {padding-top: 16px; padding-bottom: 32px;}",
+        ".qlose-story__eyebrow {font-size: 14px; margin-bottom: 20px;}",
+        ".qlose-story__heading {margin-bottom: 28px;}"
       ],
       "settings": {
         "image": "shopify://shop_images/hf_20260802_201630_6521c289-525d-4a73-9ed0-8e65d53c9171.png",
@@ -75,6 +75,11 @@
         "v2",
         "v3"
       ],
+      "custom_css": [
+        ".qlose-values {padding-block: 24px 32px;}",
+        ".qlose-values__eyebrow {font-size: 14px; margin-bottom: 20px;}",
+        ".qlose-values__header {margin-bottom: 48px;}"
+      ],
       "settings": {
         "eyebrow": "— What we believe",
         "heading": "<p>THREE THINGS,<br/>ALWAYS <em>true</em>.</p>"
@@ -82,6 +87,11 @@
     },
     "team": {
       "type": "qlose-team",
+      "custom_css": [
+        ".qlose-team {padding-block: 35px 32px;}",
+        ".qlose-team > :first-child,.qlose-team > :first-child * {font-size: 14px;}",
+        ".qlose-team__text {margin-bottom: 0;}"
+      ],
       "settings": {
         "eyebrow_index": "",
         "eyebrow_text": "WHO WE ARE",
@@ -104,10 +114,16 @@
       "block_order": [
         "b1"
       ],
+      "custom_css": [
+        ".qlose-cta-band{padding-block:32px}",
+        ".qlose-cta-band--dark{padding-block:40px}",
+        ".qlose-cta-band--compact{padding-block:32px}",
+        ".qlose-cta-band__heading{margin-bottom:24px}"
+      ],
       "settings": {
         "size": "regular",
         "theme": "light",
-        "heading": "<p>READY TO START YOUR<br><em>routine</em>?</p>",
+        "heading": "<p>READY TO START YOUR<br/><em>routine</em>?</p>",
         "text": ""
       }
     }
