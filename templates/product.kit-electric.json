@@ -136,10 +136,10 @@
         "d8"
       ],
       "custom_css": [
-        ".qlose-product__stage-img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;transform:none}",
-        ".qlose-product{padding-top:16px}",
-        ".qlose-product__breadcrumb{margin-bottom:20px}",
-        ".qlose-product__info{padding-top:0}"
+        ".qlose-product__stage-img {width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; transform: none;}",
+        ".qlose-product {padding-top: 16px;}",
+        ".qlose-product__breadcrumb {margin-bottom: 20px;}",
+        ".qlose-product__info {padding-top: 0;}"
       ],
       "settings": {
         "product": "",
