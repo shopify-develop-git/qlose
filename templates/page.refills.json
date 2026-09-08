@@ -73,7 +73,7 @@
         "i3": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/make_with_transparent_background_qw10g2zx5e69fdsf37r3.jpg",
+            "image": "shopify://shop_images/tuft-refill-upright.png",
             "index": "— 03",
             "title": "Tuft Brush Heads × 4",
             "text": "Tuft heads wear faster than a toothbrush, swap one roughly every three weeks. Four covers your cycle. The handle stays with you."
@@ -96,9 +96,9 @@
         "i4"
       ],
       "custom_css": [
-        ".qlose-content-item__media{height:260px;margin:0 0 20px}",
-        ".qlose-content-item__img{max-width:100%;max-height:100%;width:auto;height:auto}",
-        ".qlose-content-item{padding:28px 18px}"
+        ".qlose-content-item__media {height: 260px; margin: 0 0 20px;}",
+        ".qlose-content-item__img {max-width: 100%; max-height: 100%; width: auto; height: auto;}",
+        ".qlose-content-item {padding: 28px 18px;}"
       ],
       "settings": {
         "eyebrow_index": "03 /",
