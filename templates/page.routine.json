@@ -327,10 +327,17 @@
       "block_order": [
         "b1"
       ],
+      "custom_css": [
+        ".qlose-cta-band .qlose-btn {min-width: 210px; box-sizing: border-box; justify-content: center; text-align: center;}",
+        ".qlose-cta-band{padding-block:32px}",
+        ".qlose-cta-band--dark{padding-block:70px}",
+        ".qlose-cta-band--compact{padding-block:32px}",
+        ".qlose-cta-band__heading{margin-bottom:35px}"
+      ],
       "settings": {
         "size": "regular",
         "theme": "dark",
-        "heading": "<p>THE ROUTINE<br>IS <em>the</em> PRODUCT.</p>",
+        "heading": "<p>THE ROUTINE<br/>IS <em>the</em> PRODUCT.</p>",
         "text": "<p>You could buy each of these tools separately. But the point of QLOSE is that they arrive together, live together in the case, and become the ritual you actually stick with.</p>"
       }
     }
