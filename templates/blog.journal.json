@@ -12,25 +12,35 @@
     "hero": {
       "type": "qlose-page-hero",
       "settings": {
-        "meta_label": "THE JOURNAL",
         "variant": "editorial",
+        "meta_label": "THE JOURNAL",
         "meta_left": "WRITINGS ON RITUAL, CARE, AND METHOD",
         "meta_right": "UPDATED WEEKLY",
-        "heading": "<p>THE<br><em>journal<\/em>.<\/p>",
-        "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.<\/p>"
+        "heading": "<p>THE<br><em>journal</em>.</p>",
+        "subtext": "<p>Writings on ritual, oral care, design, and the small things that add up. New pieces every week.</p>"
+      }
+    },
+    "filters": {
+      "type": "qlose-article-filters",
+      "settings": {
+        "blog": "",
+        "filter_label": "Filter by topic",
+        "filter_all_label": "— All"
       }
     },
     "featured": {
       "type": "qlose-featured-article",
       "settings": {
-        "badge": "FEATURED \/ 01",
-        "read_time": "8 MIN READ",
+        "blog": "",
+        "badge": "FEATURED / 01",
+        "read_time": "3 MIN READ",
         "cta_label": "Read the piece →"
       }
     },
     "grid": {
       "type": "qlose-article-grid",
       "settings": {
+        "blog": "",
         "skip_featured": true,
         "eyebrow": "RECENT PIECES",
         "count_label": "ARTICLES",
@@ -41,18 +51,13 @@
     "newsletter": {
       "type": "qlose-newsletter",
       "settings": {
-        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox<\/em>.<\/p>",
-        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.<\/p>",
+        "variant": "journal",
+        "heading": "<p>NEW PIECES,<br>IN YOUR <em>inbox</em>.</p>",
+        "text": "<p>One considered email per fortnight. On ritual, oral care, and the small things that add up. Never any promotions.</p>",
+        "email_label": "Email address",
         "placeholder": "your@email.com",
         "button_label": "Subscribe →",
         "success_text": "Thanks, you're on the list."
-      }
-    },
-    "filters": {
-      "type": "qlose-article-filters",
-      "settings": {
-        "filter_label": "Filter by topic",
-        "filter_all_label": "— All"
       }
     }
   },
