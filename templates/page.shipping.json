@@ -11,6 +11,12 @@
   "sections": {
     "hero": {
       "type": "qlose-page-hero",
+      "custom_css": [
+        ".qlose-page-hero{padding-top:16px}",
+        ".qlose-page-hero--editorial{padding-bottom:32px}",
+        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
+        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+      ],
       "settings": {
         "variant": "simple",
         "meta_label": "SHIPPING",
@@ -133,7 +139,7 @@
           "type": "para",
           "settings": {
             "label": "Damaged, incomplete or faulty:",
-            "text": "If your kit arrives with anything wrong, a missing tool, damaged case, or a toothbrush that won't power on, email hello@getqlose.com within 14 days with your order number. We'll send a replacement, no returns needed. The electric toothbrush also carries a 12-month warranty from delivery. Your statutory rights in respect of faulty goods are unaffected by the hygiene-seal policy above."
+            "text": "If your kit arrives with anything wrong, a missing tool, damaged case, or a toothbrush that won't power on, email hello@getqlose.com within 14 days with your order number. We'll send a replacement, no returns needed. The electric toothbrush also carries a 24-month warranty from delivery. Your statutory rights in respect of faulty goods are unaffected by the hygiene-seal policy above."
           }
         },
         "p5": {
