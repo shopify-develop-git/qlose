@@ -37,8 +37,8 @@
         "t1": {
           "type": "trust",
           "settings": {
-            "title": "48 tracked UK Shipping",
-            "text": "On subscriptions"
+            "title": "48 tracked",
+            "text": "uk shipping"
           }
         },
         "t2": {
@@ -91,7 +91,7 @@
           "type": "detail",
           "settings": {
             "heading": "Warranty",
-            "content": "<p>Your electric toothbrush is covered by a 12-month QLOSE warranty from the date of delivery. This is in addition to your statutory rights under UK consumer law, which are not affected.</p>",
+            "content": "<p>Your electric toothbrush is covered by a 24-month QLOSE warranty from the date of delivery. This is in addition to your statutory rights under UK consumer law, which are not affected.</p>",
             "open": false
           }
         },
@@ -107,7 +107,7 @@
           "type": "detail",
           "settings": {
             "heading": "Returns and hygiene seal",
-            "content": "<p>Every kit ships sealed with a belly band and a perforated pull tab. If the seal is intact you can return your kit within 14 days of delivery for a full refund. Once the perforated tab is broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
+            "content": "<p>Every kit ships sealed with a hygien locked zip tie. If tie is intact you can return your kit within 14 days of delivery for a full refund. Once the tie has been broken the kit is considered opened and, for hygiene reasons, cannot be returned. This does not affect your statutory rights in respect of faulty goods.</p>",
             "open": false
           }
         },
@@ -140,9 +140,9 @@
         ".qlose-product {padding-top: 16px;}",
         ".qlose-product__breadcrumb {margin-bottom: 20px;}",
         ".qlose-product__info {padding-top: 0;}",
-        ".qlose-detail__a ul{list-style:disc;padding-left:28px}",
-        ".qlose-detail__a li{padding-left:0}",
-        ".qlose-detail__a li::before{color:transparent}"
+        ".qlose-detail__a ul {list-style: disc; padding-left: 28px;}",
+        ".qlose-detail__a li {padding-left: 0;}",
+        ".qlose-detail__a li::before {color: transparent;}"
       ],
       "settings": {
         "product": "",
