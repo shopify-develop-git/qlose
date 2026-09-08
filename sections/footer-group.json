@@ -41,6 +41,10 @@
         "c2",
         "c3"
       ],
+      "custom_css": [
+        ".qlose-footer__mega-img{max-width:520px;margin-inline:auto}",
+        ".qlose-footer__mega{margin-bottom:36px}"
+      ],
       "settings": {
         "logo_mega": "shopify://shop_images/logo-footer.png",
         "tagline": "A better routine, delivered. Made for people who take the small rituals seriously.",
