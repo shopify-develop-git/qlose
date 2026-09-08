@@ -11,12 +11,18 @@
   "sections": {
     "hero": {
       "type": "qlose-page-hero",
+      "custom_css": [
+        ".qlose-page-hero{padding-top:16px}",
+        ".qlose-page-hero--editorial{padding-bottom:32px}",
+        ".qlose-page-hero__meta{font-size:14px;margin-bottom:28px;padding-bottom:18px}",
+        "@media (max-width:480px){.qlose-page-hero__meta{font-size:11px;letter-spacing:0.08em}}"
+      ],
       "settings": {
         "variant": "simple",
         "meta_label": "SUPPORT",
         "meta_left": "FREQUENTLY ASKED",
         "meta_right": "UPDATED JULY 2026",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>",
+        "heading": "<p>QUESTIONS,<br/><em>answered</em>.</p>",
         "subtext": "<p>Everything you might want to know about QLOSE, the kit, the subscription, and how it all works. If we've missed anything, drop us a line.</p>"
       }
     },
