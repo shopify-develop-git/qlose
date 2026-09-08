@@ -34,11 +34,11 @@
         "b2"
       ],
       "custom_css": [
-        ".qlose-refill-hero{padding-top:16px;align-items:start}",
-        ".qlose-refill-hero__content>:first-child,.qlose-refill-hero__content>:first-child *{font-size:14px}",
-        ".qlose-refill-hero__heading{margin-bottom:24px}",
-        ".qlose-refill-hero__text{margin-bottom:24px}",
-        ".qlose-refill-hero__img{inset:0;margin:0;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover}"
+        ".qlose-refill-hero {padding-top: 16px; align-items: start;}",
+        ".qlose-refill-hero__content > :first-child,.qlose-refill-hero__content > :first-child * {font-size: 14px;}",
+        ".qlose-refill-hero__heading {margin-bottom: 24px;}",
+        ".qlose-refill-hero__text {margin-bottom: 24px;}",
+        ".qlose-refill-hero__img {inset: 0; margin: 0; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: cover;}"
       ],
       "settings": {
         "eyebrow_index": "02 /",
@@ -73,7 +73,7 @@
         "i3": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/qlose-refill-tuft-heads.png",
+            "image": "shopify://shop_images/make_with_transparent_background_qw10g2zx5e69fdsf37r3.jpg",
             "index": "— 03",
             "title": "Tuft Brush Heads × 4",
             "text": "Tuft heads wear faster than a toothbrush, swap one roughly every three weeks. Four covers your cycle. The handle stays with you."
@@ -94,6 +94,11 @@
         "i2",
         "i3",
         "i4"
+      ],
+      "custom_css": [
+        ".qlose-content-item__media{height:260px;margin:0 0 20px}",
+        ".qlose-content-item__img{max-width:100%;max-height:100%;width:auto;height:auto}",
+        ".qlose-content-item{padding:28px 18px}"
       ],
       "settings": {
         "eyebrow_index": "03 /",
