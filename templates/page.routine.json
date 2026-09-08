@@ -12,7 +12,8 @@
     "hero": {
       "type": "qlose-routine-hero",
       "custom_css": [
-        ".qlose-routine-hero{padding-top:16px}"
+        ".qlose-routine-hero{padding-top:16px}",
+        ".qlose-routine-hero__meta{font-size:14px}"
       ],
       "settings": {
         "meta_left": "THE METHOD",
