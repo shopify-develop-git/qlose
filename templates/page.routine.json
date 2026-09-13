@@ -147,7 +147,7 @@
         "h5": {
           "type": "step",
           "settings": {
-            "text": "Don't rinse straight after, let the fluoride work"
+            "text": "Rinse brush. Don't rinse mouth straight after, let the fluoride work"
           }
         }
       },
@@ -203,7 +203,7 @@
         "h4": {
           "type": "step",
           "settings": {
-            "text": "Rinse when done"
+            "text": "Rinse tool and mouth when done"
           }
         }
       },
