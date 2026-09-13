@@ -100,7 +100,11 @@
         "h3",
         "h4"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".qlose-routine-step__eyebrow,.qlose-routine-step__howto-title {font-size: 14px;}",
+        ".qlose-routine-step {border-bottom: none;}",
+        ".qlose-routine-step__howto {border-top: none;}"
+      ],
       "settings": {
         "reverse": false,
         "tag": "01 / 30 SEC",
@@ -156,7 +160,12 @@
       ],
       "custom_css": [
         ".qlose-routine-step__frame {inset: 0;}",
-        ".qlose-routine-step__img {width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover;}"
+        ".qlose-routine-step__img {width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover;}",
+        ".qlose-routine-step__frame {inset: 0;}",
+        ".qlose-routine-step__img {width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: cover;}",
+        ".qlose-routine-step__eyebrow {font-size: 16px; letter-spacing: 0.18em;}",
+        ".qlose-routine-step__howto-title {font-size: 14px;}",
+        ".qlose-routine-step__howto {border-top: none;}"
       ],
       "settings": {
         "reverse": true,
@@ -204,6 +213,11 @@
         "h3",
         "h4"
       ],
+      "custom_css": [
+        ".qlose-routine-step__eyebrow,.qlose-routine-step__howto-title {font-size: 14px;}",
+        ".qlose-routine-step {border-bottom: none;}",
+        ".qlose-routine-step__howto {border-top: none;}"
+      ],
       "settings": {
         "reverse": false,
         "tag": "03 / 30 SEC",
@@ -211,7 +225,7 @@
         "image_alt": "Tuft brush",
         "image_shape": "tall",
         "eyebrow": "— Step 03 / Precision finish",
-        "heading": "<p>TUFT<br><em>detail</em>.</p>",
+        "heading": "<p>TUFT<br/><em>detail</em>.</p>",
         "text": "<p>The final pass. The angled tuft brush reaches the tight spots your regular brush can't, behind the back molars, around dental work, along the gumline. A precision finish that leaves nothing behind. The head is small and works hard, so it wears faster than a toothbrush, screw on a fresh one roughly every three weeks.</p>",
         "howto_title": "How to"
       }
@@ -252,7 +266,10 @@
       ],
       "custom_css": [
         ".qlose-routine-step__frame {inset: 0;}",
-        ".qlose-routine-step__img {width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover;}"
+        ".qlose-routine-step__img {width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover;}",
+        ".qlose-routine-step__eyebrow,.qlose-routine-step__howto-title {font-size: 14px;}",
+        ".qlose-routine-step {border-bottom: none;}",
+        ".qlose-routine-step__howto {border-top: none;}"
       ],
       "settings": {
         "reverse": true,
@@ -300,6 +317,11 @@
         "h3",
         "h4"
       ],
+      "custom_css": [
+        ".qlose-routine-step__eyebrow,.qlose-routine-step__howto-title {font-size: 14px;}",
+        ".qlose-routine-step {border-bottom: none;}",
+        ".qlose-routine-step__howto {border-top: none;}"
+      ],
       "settings": {
         "reverse": false,
         "tag": "05 / 15 SEC",
@@ -307,7 +329,7 @@
         "image_alt": "Tongue scraper",
         "image_shape": "curved",
         "eyebrow": "— Step 05 / Lift it all off",
-        "heading": "<p>TONGUE<br><em>scrape</em>.</p>",
+        "heading": "<p>TONGUE<br/><em>scrape</em>.</p>",
         "text": "<p>Everything the brush loosened, the scraper lifts off in one smooth pull. Stainless steel, U-shaped, one motion. This is the step that changes your morning breath.</p>",
         "howto_title": "How to"
       }
