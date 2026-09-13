@@ -193,7 +193,7 @@
         "s5"
       ],
       "custom_css": [
-        "@media (min-width:1200px){.qlose-steps{grid-template-columns:repeat(5,1fr)}}"
+        "@media (min-width: 1200px) {.qlose-steps {grid-template-columns: repeat(5, 1fr); }}"
       ],
       "settings": {
         "eyebrow_index": "02 /",
@@ -244,11 +244,14 @@
         "p1",
         "p2"
       ],
+      "custom_css": [
+        ".qlose-subscribe__img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover}"
+      ],
       "settings": {
         "numeral": "90",
         "eyebrow_index": "04 /",
         "eyebrow_text": "THE SUBSCRIPTION",
-        "heading": "<p>TWO KITS.<br><em>one</em> SYSTEM.</p>",
+        "heading": "<p>TWO KITS.<br/><em>one</em> SYSTEM.</p>",
         "description": "<p>Same five-step routine, your choice of brush. Bristles wear out and floss runs low, so your subscription sends a fresh refill every 90 days for £18, the same cadence dentists recommend for replacing a brush head.</p>",
         "cta_label": "Choose your kit →",
         "cta_url": ""
