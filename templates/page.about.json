@@ -12,10 +12,10 @@
     "hero": {
       "type": "qlose-page-hero",
       "custom_css": [
-        ".qlose-story {padding-top: 16px; padding-bottom: 32px;}",
-        ".qlose-story__eyebrow {font-size: 14px; margin-bottom: 20px;}",
-        ".qlose-story__heading {margin-bottom: 28px;}",
-        "@media (max-width: 900px) {.qlose-story__visual {position: relative; }}"
+        ".qlose-page-hero {padding-top: 16px;}",
+        ".qlose-page-hero--editorial {padding-bottom: 32px;}",
+        ".qlose-page-hero__meta {font-size: 14px; margin-bottom: 28px; padding-bottom: 18px;}",
+        "@media (max-width: 480px) {.qlose-page-hero__meta {font-size: 11px; letter-spacing: 0.08em; }}"
       ],
       "settings": {
         "variant": "editorial",
@@ -29,7 +29,10 @@
     "story": {
       "type": "qlose-story",
       "custom_css": [
-        "@media (max-width:900px){.qlose-story__visual{position:relative;aspect-ratio:auto;height:auto}.qlose-story__img{position:relative;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}}"
+        ".qlose-story {padding-top: 66px; padding-bottom: 62px;}",
+        ".qlose-story__eyebrow {font-size: 14px; margin-bottom: 20px;}",
+        ".qlose-story__heading {margin-bottom: 28px;}",
+        "@media (max-width: 900px) {.qlose-story__visual {position: relative; aspect-ratio: auto; } .qlose-story__img {position: static; width: 100%; height: auto; }}"
       ],
       "settings": {
         "image": "shopify://shop_images/hf_20260802_201630_6521c289-525d-4a73-9ed0-8e65d53c9171.png",
@@ -74,9 +77,9 @@
         "v3"
       ],
       "custom_css": [
-        ".qlose-team {padding-block: 35px 32px;}",
-        ".qlose-team > :first-child,.qlose-team > :first-child * {font-size: 14px;}",
-        ".qlose-team__text {margin-bottom: 0;}"
+        ".qlose-values{padding-block:64px 32px}",
+        ".qlose-values__eyebrow{font-size:14px;margin-bottom:20px}",
+        ".qlose-values__header{margin-bottom:48px}"
       ],
       "settings": {
         "eyebrow": "— What we believe",
