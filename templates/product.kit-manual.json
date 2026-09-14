@@ -188,6 +188,13 @@
         "x4",
         "x5"
       ],
+      "custom_css": [
+        ".qlose-tools{padding-block:62px}",
+        ".qlose-tools__header{margin-bottom:40px;padding-bottom:24px}",
+        ".qlose-tools__header>:first-child>:first-child,.qlose-tools__header>:first-child>:first-child *{font-size:14px}",
+        ".qlose-tools__intro{font-size:16px}",
+        ".qlose-tools__cta{margin-top:36px}"
+      ],
       "settings": {
         "eyebrow_index": "",
         "eyebrow_text": "WHAT'S INSIDE",
@@ -248,6 +255,11 @@
         "r4",
         "r5"
       ],
+      "custom_css": [
+        ".qlose-compare {padding-block: 62px;}",
+        ".qlose-compare__header {margin-bottom: 32px;}",
+        ".qlose-compare__header > :first-child,.qlose-compare__header > :first-child * {font-size: 14px;}"
+      ],
       "settings": {
         "eyebrow_index": "",
         "eyebrow_text": "THE DIFFERENCE",
@@ -290,14 +302,20 @@
         "q2",
         "q3"
       ],
+      "custom_css": [
+        ".qlose-faq {padding-top: 66px;}",
+        ".qlose-faq > :first-child,.qlose-faq > :first-child * {font-size: 14px;}",
+        ".qlose-faq__heading {margin-bottom: 32px;}"
+      ],
       "settings": {
         "eyebrow_index": "04 /",
         "eyebrow_text": "THE DETAILS",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
+        "heading": "<p>QUESTIONS,<br/><em>answered</em>.</p>"
       }
     },
     "cross": {
       "type": "qlose-cross-sell",
+      "custom_css": [],
       "settings": {
         "eyebrow_index": "",
         "eyebrow_text": "",
