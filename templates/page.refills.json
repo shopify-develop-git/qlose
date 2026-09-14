@@ -96,8 +96,8 @@
         "i4"
       ],
       "custom_css": [
-        ".qlose-refill-contents {padding-block: 32px;}",
-        ".qlose-refill-contents__header {margin-bottom: 32px; padding-bottom: 24px;}",
+        ".qlose-refill-contents {padding-block: 52px;}",
+        ".qlose-refill-contents__header {margin-bottom: 42px; padding-bottom: 24px;}",
         ".qlose-refill-contents__header > :first-child > :first-child,.qlose-refill-contents__header > :first-child > :first-child * {font-size: 14px;}",
         ".qlose-content-item {padding: 28px 18px;}",
         ".qlose-content-item__media {height: 260px; margin: 0 0 20px;}",
