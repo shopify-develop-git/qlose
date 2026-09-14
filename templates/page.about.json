@@ -29,9 +29,9 @@
     "story": {
       "type": "qlose-story",
       "custom_css": [
-        ".qlose-story{padding-top:66px;padding-bottom:62px}",
-        ".qlose-story__eyebrow{font-size:14px;margin-bottom:20px}",
-        ".qlose-story__heading{margin-bottom:28px}"
+        ".qlose-story {padding-top: 66px; padding-bottom: 62px;}",
+        ".qlose-story__eyebrow {font-size: 14px; margin-bottom: 20px;}",
+        ".qlose-story__heading {margin-bottom: 28px;}"
       ],
       "settings": {
         "image": "shopify://shop_images/hf_20260802_201630_6521c289-525d-4a73-9ed0-8e65d53c9171.png",
@@ -76,9 +76,9 @@
         "v3"
       ],
       "custom_css": [
-        ".qlose-values {padding-block: 64px 32px;}",
+        ".qlose-values {padding-block: 64px 62px;}",
         ".qlose-values__eyebrow {font-size: 14px; margin-bottom: 20px;}",
-        ".qlose-values__header {margin-bottom: 48px;}"
+        ".qlose-values__header {margin-bottom: 68px;}"
       ],
       "settings": {
         "eyebrow": "— What we believe",
