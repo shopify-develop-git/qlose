@@ -76,7 +76,7 @@
         "v3"
       ],
       "custom_css": [
-        ".qlose-values {padding-block: 64px 62px;}",
+        ".qlose-values {padding-block: 64px 64px;}",
         ".qlose-values__eyebrow {font-size: 14px; margin-bottom: 20px;}",
         ".qlose-values__header {margin-bottom: 68px;}"
       ],
