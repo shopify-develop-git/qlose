@@ -29,7 +29,7 @@
     "story": {
       "type": "qlose-story",
       "custom_css": [
-        "@media (max-width:900px){.qlose-story__visual{position:relative}}"
+        "@media (max-width:900px){.qlose-story__visual{position:relative;aspect-ratio:auto;height:auto}.qlose-story__img{position:relative;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}}"
       ],
       "settings": {
         "image": "shopify://shop_images/hf_20260802_201630_6521c289-525d-4a73-9ed0-8e65d53c9171.png",
