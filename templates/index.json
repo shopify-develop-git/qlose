@@ -193,6 +193,10 @@
         "s5"
       ],
       "custom_css": [
+        ".qlose-routine {padding-top: 66px;}",
+        ".qlose-routine__header {margin-bottom: 40px; padding-bottom: 24px;}",
+        ".qlose-routine__header > :first-child > :first-child,.qlose-routine__header > :first-child > :first-child * {font-size: 14px;}",
+        ".qlose-routine__intro {font-size: 16px;}",
         "@media (min-width: 1200px) {.qlose-steps {grid-template-columns: repeat(5, 1fr); }}"
       ],
       "settings": {
@@ -204,9 +208,15 @@
     },
     "statement": {
       "type": "qlose-statement",
+      "custom_css": [
+        ".qlose-statement {padding-block: 78px;}",
+        ".qlose-statement__eyebrow,.qlose-statement__attribution {font-size: 14px;}",
+        ".qlose-statement__eyebrow {margin-bottom: 28px;}",
+        ".qlose-statement__attribution {margin-top: 36px;}"
+      ],
       "settings": {
         "eyebrow": "— 03 / THE PHILOSOPHY",
-        "heading": "<p>ORAL CARE<br>ISN'T A <strong>CHORE</strong>.<br>IT'S A <em>ritual</em>.</p>",
+        "heading": "<p>ORAL CARE<br/>ISN'T A <strong>CHORE</strong>.<br/>IT'S A <em>ritual</em>.</p>",
         "attribution": "— QLOSE / MANIFESTO"
       }
     },
@@ -245,6 +255,8 @@
         "p2"
       ],
       "custom_css": [
+        ".qlose-subscribe {padding-top: 66px;}",
+        ".qlose-subscribe > :last-child > :first-child,.qlose-subscribe > :last-child > :first-child * {font-size: 14px;}",
         ".qlose-subscribe__img {width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: cover;}"
       ],
       "settings": {
@@ -308,10 +320,15 @@
         "q4",
         "q5"
       ],
+      "custom_css": [
+        ".qlose-faq{padding-top:76px}",
+        ".qlose-faq>:first-child,.qlose-faq>:first-child *{font-size:14px}",
+        ".qlose-faq__heading{margin-bottom:32px}"
+      ],
       "settings": {
         "eyebrow_index": "05 /",
         "eyebrow_text": "THE DETAILS",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
+        "heading": "<p>QUESTIONS,<br/><em>answered</em>.</p>"
       }
     }
   },
