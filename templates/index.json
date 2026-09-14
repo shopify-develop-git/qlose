@@ -215,7 +215,7 @@
         ".qlose-statement__attribution {margin-top: 36px;}"
       ],
       "settings": {
-        "eyebrow": "— 03 / THE PHILOSOPHY",
+        "eyebrow": "03 / THE PHILOSOPHY",
         "heading": "<p>ORAL CARE<br/>ISN'T A <strong>CHORE</strong>.<br/>IT'S A <em>ritual</em>.</p>",
         "attribution": "— QLOSE / MANIFESTO"
       }
@@ -321,9 +321,9 @@
         "q5"
       ],
       "custom_css": [
-        ".qlose-faq{padding-top:76px}",
-        ".qlose-faq>:first-child,.qlose-faq>:first-child *{font-size:14px}",
-        ".qlose-faq__heading{margin-bottom:32px}"
+        ".qlose-faq {padding-top: 76px;}",
+        ".qlose-faq > :first-child,.qlose-faq > :first-child * {font-size: 14px;}",
+        ".qlose-faq__heading {margin-bottom: 32px;}"
       ],
       "settings": {
         "eyebrow_index": "05 /",
