@@ -130,7 +130,7 @@
         "c1"
       ],
       "custom_css": [
-        ".qlose-frequency {padding-block: 32px;}",
+        ".qlose-frequency {padding-block: 62px;}",
         ".qlose-eyebrow,.qlose-eyebrow * {font-size: 14px;}",
         ".qlose-frequency__heading {margin-bottom: 32px;}",
         ".qlose-freq-card {padding: 32px 24px;}",
