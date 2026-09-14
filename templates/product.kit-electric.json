@@ -215,10 +215,17 @@
         "x3",
         "x4"
       ],
+      "custom_css": [
+        ".qlose-tools {padding-block: 62px;}",
+        ".qlose-tools__header {margin-bottom: 40px; padding-bottom: 24px;}",
+        ".qlose-tools__header > :first-child > :first-child,.qlose-tools__header > :first-child > :first-child * {font-size: 14px;}",
+        ".qlose-tools__intro {font-size: 16px;}",
+        ".qlose-tools__cta {margin-top: 36px;}"
+      ],
       "settings": {
         "eyebrow_index": "02 /",
         "eyebrow_text": "WHAT'S INSIDE",
-        "heading": "<p>FIVE TOOLS.<br>ONE <em>system</em>.</p>",
+        "heading": "<p>FIVE TOOLS.<br/>ONE <em>system</em>.</p>",
         "intro": "<p>Each tool is chosen for its specific role in the routine. Nothing is filler. Nothing is redundant. Every piece works with the others to give you the complete clean.</p>",
         "cta_label": "Shop now",
         "cta_url": ""
@@ -274,6 +281,11 @@
         "r3",
         "r4",
         "r5"
+      ],
+      "custom_css": [
+        ".qlose-compare {padding-block: 62px;}",
+        ".qlose-compare__header {margin-bottom: 32px;}",
+        ".qlose-compare__header > :first-child,.qlose-compare__header > :first-child * {font-size: 14px;}"
       ],
       "settings": {
         "eyebrow_index": "03 /",
@@ -335,17 +347,22 @@
         "q4",
         "q5"
       ],
+      "custom_css": [
+        ".qlose-faq {padding-top: 66px;}",
+        ".qlose-faq > :first-child,.qlose-faq > :first-child * {font-size: 14px;}",
+        ".qlose-faq__heading {margin-bottom: 32px;}"
+      ],
       "settings": {
         "eyebrow_index": "04 /",
         "eyebrow_text": "THE DETAILS",
-        "heading": "<p>QUESTIONS,<br><em>answered</em>.</p>"
+        "heading": "<p>QUESTIONS,<br/><em>answered</em>.</p>"
       }
     },
     "cross": {
       "type": "qlose-cross-sell",
       "settings": {
         "eyebrow_index": "",
-        "eyebrow_text": "ALSO AVAILABLE",
+        "eyebrow_text": "",
         "heading": "<p>PREFER MANUAL?</p>",
         "text": "<p>The Manual Kit has the same five-step system without the rechargeable brush.</p>",
         "cta_label": "View The Manual Kit, £29 →",
